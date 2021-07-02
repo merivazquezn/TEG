@@ -1,4 +1,4 @@
-![tp2](https://github.com/szwtomas/algo3_tp2_TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/szwtomas/algo3_tp2_TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/szwtomas/algo3_tp2_TEG)
+![tp2](https://github.com/szwtomas/algo3_tp2_TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/szwtomas/algo3_tp2_TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/szwtomas/algo3_tp2_TEG)
 
 # TP2 Algoritmos 3: A.L.T.E.G.O
 
