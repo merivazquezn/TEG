@@ -4,7 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 3
 
 * **Integrante 1** - [Primerano Lomba, Franco Alejandro](https://github.com/FrancoPrime)
 * **Integrante 2** - [Szwarcberg, Tomas](https://github.com/szwtomas)
@@ -12,7 +12,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 4** - [Bulnes, Mateo](https://github.com/MateoBulnes)
 * **Integrante 5** - [Lazzarini, Mariano](https://github.com/Maleriandro)
 
-Corrector: **{Corrector}**
+Correctores: **Blázquez, Sebastián - Fernández Theillet, Nicolás Pablo**
 
 ## Aplicación
 
