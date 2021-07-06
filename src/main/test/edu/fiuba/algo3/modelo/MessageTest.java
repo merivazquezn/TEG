@@ -9,5 +9,8 @@ public class MessageTest {
         Message message = new Message("Hello world!");
 
         assertEquals("Hello world!", message.greet());
+        Message message2 = new Message("Hello!");
+
+        assertEquals("Hello!", message2.greet());
     }
 }
