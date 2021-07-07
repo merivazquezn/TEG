@@ -21,5 +21,10 @@ public class Pais {
     public int getCantidadFichas() {
         return fichas.size();
     }
-
+/*
+    public void eliminarFichas(int cantidadFichas) {
+        for(int i = 0; i < cantidadFichas; i++) {
+            fichas.remove(i);
+        }
+    }
 }

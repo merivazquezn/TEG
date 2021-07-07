@@ -20,6 +20,14 @@ public class PaisTest {
             unPais.colocarFichas(5);
             assertEquals(unPais.getCantidadFichas(), 5);
         }
+/*
+        @Test
+        public void test03paisCon5FichasElimina2YTiene3(){
+            Pais unPais = new Pais("Chile");
+            unPais.colocarFichas(5);
+            unPais.eliminarFichas(2);
+            assertEquals(unPais.getCantidadFichas(), 3);
+        }*/
 
 
 
