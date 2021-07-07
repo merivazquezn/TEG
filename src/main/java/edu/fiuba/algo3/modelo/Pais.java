@@ -22,8 +22,11 @@ public class Pais {
         return fichas.size();
     }
 
-    public void eliminarFichas(int cantidadFichas) {
-        for(int i = 0; i < cantidadFichas; i++) {
+    public void eliminarFichas(int cantidadFichasEliminar) {
+        if(this.getCantidadFichas() < cantidadFichasEliminar) {
+            throw new FichasInsuficientesException();
+        }
+        for(int i = 0; i < cantidadFichasEliminar; i++) {
             fichas.pop();
         }
     }

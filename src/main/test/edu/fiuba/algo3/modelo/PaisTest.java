@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PaisTest {
 
@@ -38,6 +38,27 @@ public class PaisTest {
         assertEquals(unPais.getCantidadFichas(), 0);
     }
 
+    @Test
+    public void test05paisCon1FichaElimina2ElevaException() {
+            Pais unPais = new Pais("Argentina");
+            unPais.colocarFichas(1);
+            assertThrows(FichasInsuficientesException.class,
+                ()->{
+                    unPais.eliminarFichas(2);
+                });
+    }
 
-
+    @Test
+    public void test06paisCon2FichasElimina1NoElevaExcepcion() {
+            Pais unPais = new Pais("Argentina");
+            unPais.colocarFichas(2);
+            boolean error = false;
+            try {
+                unPais.eliminarFichas(1);
+            } catch (FichasInsuficientesException e) {
+                error = true;
+            }
+            assertFalse(error);
+    }
+    
 }
