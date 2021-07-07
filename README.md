@@ -1,18 +1,18 @@
-![tp2](https://github.com/szwtomas/algo3_tp2_TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/szwtomas/algo3_tp2_TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/szwtomas/algo3_tp2_TEG)
+![tp2](https://github.com/szwtomas/algo3_tp2_TEG/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/szwtomas/algo3_tp2_TEG/branch/master/graph/badge.svg)](https://codecov.io/gh/szwtomas/algo3_tp2_TEG)
 
 # TP2 Algoritmos 3: A.L.T.E.G.O
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 3
 
 * **Integrante 1** - [Primerano Lomba, Franco Alejandro](https://github.com/FrancoPrime)
 * **Integrante 2** - [Szwarcberg, Tomas](https://github.com/szwtomas)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
-* **Integrante 5** - [integrante5](https://github.com/integrante5)
+* **Integrante 3** - [Vazquez Navarro, Maria](https://github.com/merivazquezn)
+* **Integrante 4** - [Bulnes, Mateo](https://github.com/MateoBulnes)
+* **Integrante 5** - [Lazzarini, Mariano](https://github.com/Maleriandro)
 
-Corrector: **{Corrector}**
+Correctores: **Blázquez, Sebastián - Fernández Theillet, Nicolás Pablo**
 
 ## Aplicación
 
