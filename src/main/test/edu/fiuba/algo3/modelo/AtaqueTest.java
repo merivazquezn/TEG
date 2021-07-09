@@ -18,15 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AtaqueTest {
 
-    /*private IRandomizador randomizadorNumerosBajos() {
-        IRandomizador
-    }*/
-
     @Test
-    public void devuelveErrorAlAtacarCon() {
-
+    public void test01devuelveErrorAlAtacarConLaMismaCantidadDeEjercitosDelPais() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(2);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(5);
+        assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
+            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
+        });
     }
-
 
     @Test
     public void devuelveErrorAlAtacarCon1Ejercito() {
