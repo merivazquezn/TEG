@@ -14,8 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
 public class AtaqueTest {
 
     @Test
@@ -52,11 +50,11 @@ public class AtaqueTest {
     }
 
     @Test
-    public void PaisAtacaCon2EjercitosContra1EjercitoDefensorYDefensorPierdeElEjercito() {
-        Pais paisAtacante = mock(Pais.class);
-        when(paisAtacante.getCantidadFichas()).thenReturn(2);
-        Pais paisDefensor = mock(Pais.class);
-        when(paisDefensor.getCantidadFichas()).thenReturn(1);
+    public void test04paisAtacaCon2EjercitosContra1EjercitoDefensorYDefensorPierdeElEjercito() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(3);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(1);
         IConjuntoDados atacante = mock(ConjuntoDados.class);
         IConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
@@ -73,6 +71,78 @@ public class AtaqueTest {
 
         assertEquals(paisAtacante.getCantidadFichas(), 3);
         assertEquals(paisDefensor.getCantidadFichas(), 0);
+    }
+
+    @Test
+    public void test05paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde2Defensor1() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(4);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(3);
+        IConjuntoDados atacante = mock(ConjuntoDados.class);
+        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                ArrayList<Integer> lista = new ArrayList<Integer>();
+                lista.add(2);
+                lista.add(1);
+                return lista;
+            }
+        });
+
+        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
+        assertFalse(ataque.ejecutar(atacante, defensor));
+
+        assertEquals(paisAtacante.getCantidadFichas(), 2);
+        assertEquals(paisDefensor.getCantidadFichas(), 2);
+    }
+
+    @Test
+    public void test06paisAtacaCon1EjercitosContra3EjercitosDefensoresDefensorPierde1() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(2);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(3);
+        IConjuntoDados atacante = mock(ConjuntoDados.class);
+        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                ArrayList<Integer> lista = new ArrayList<Integer>();
+                lista.add(0);
+                lista.add(1);
+                return lista;
+            }
+        });
+
+        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 1);
+        assertFalse(ataque.ejecutar(atacante, defensor));
+
+        assertEquals(paisAtacante.getCantidadFichas(), 2);
+        assertEquals(paisDefensor.getCantidadFichas(), 2);
+    }
+
+    @Test
+    public void test07paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde3() {
+        Pais paisAtacante = new Pais("Chile");
+        paisAtacante.colocarFichas(4);
+        Pais paisDefensor = new Pais("Argentina");
+        paisDefensor.colocarFichas(3);
+        IConjuntoDados atacante = mock(ConjuntoDados.class);
+        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                ArrayList<Integer> lista = new ArrayList<Integer>();
+                lista.add(3);
+                lista.add(0);
+                return lista;
+            }
+        });
+
+        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
+        assertFalse(ataque.ejecutar(atacante, defensor));
+
+        assertEquals(paisAtacante.getCantidadFichas(), 1);
+        assertEquals(paisDefensor.getCantidadFichas(), 3);
     }
 
 }

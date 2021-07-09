@@ -22,9 +22,12 @@ public class Ataque {
 
 
     private void cantidadEjercitosAtacantesValido(int cantEjercitos) {
-        if (cantEjercitos < 2 || cantEjercitos > 3) {
+
+        if (this.atacante.getCantidadFichas()-1 < cantEjercitos)
             throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
-        }
+
+        if (cantEjercitos < 1 || cantEjercitos > 3)
+            throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
 
     }
 

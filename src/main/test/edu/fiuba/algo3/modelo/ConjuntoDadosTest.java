@@ -30,8 +30,8 @@ public class ConjuntoDadosTest {
     @Test
     public void test03ConjuntoTiraErrorAlGenerarConjuntoConMasDe3Dados() {
         assertThrows(CantidadInvalidaDeDadosError.class, () -> {
-        ConjuntoDados conjunto = new ConjuntoDados();
-        conjunto.generar(4, new Randomizador());
+            ConjuntoDados conjunto = new ConjuntoDados();
+            conjunto.generar(4, new Randomizador());
         });
     }
 
