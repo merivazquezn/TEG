@@ -31,4 +31,13 @@ public class Pais {
         }
         return ejercitos.size();
     }
+
+    public void transferirFichasA(Pais destino, int cantidad) {
+        //TODO: comprobar que sean del mismo jugador
+        if (this.getCantidadFichas() <= cantidad)
+            throw new EjercitosInsuficientesException();
+
+        this.eliminarFichas(cantidad);
+        destino.colocarFichas(cantidad);
+    }
 }

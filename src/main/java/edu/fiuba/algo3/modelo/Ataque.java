@@ -11,6 +11,16 @@ public class Ataque {
     private IConjuntoDados conjuntoAtacante;
     private IConjuntoDados conjuntoDefensor;
 
+    public Ataque(Pais paisAtacante, Pais paisDefensor, int cantEjercitosAtacantes){
+        this.atacante = paisAtacante;
+        this.defensor = paisDefensor;
+
+        cantidadEjercitosAtacantesValido(cantEjercitosAtacantes);
+        this.cantEjercitoAtacantes = cantEjercitosAtacantes;
+        this.cantEjercitoDefensor = obtenerEjercitosDefensor();
+    }
+
+
     private void cantidadEjercitosAtacantesValido(int cantEjercitos) {
         if (cantEjercitos < 2 || cantEjercitos > 3) {
             throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
@@ -25,15 +35,6 @@ public class Ataque {
         }
 
         return cantEjercitos;
-    }
-
-    public Ataque(Pais paisAtacante, Pais paisDefensor, int cantEjercitosAtacantes){
-        this.atacante = paisAtacante;
-        this.defensor = paisDefensor;
-
-        cantidadEjercitosAtacantesValido(cantEjercitosAtacantes);
-        this.cantEjercitoAtacantes = cantEjercitosAtacantes;
-        this.cantEjercitoDefensor = obtenerEjercitosDefensor();
     }
 
     public boolean ejecutar(IConjuntoDados conjuntoAtacante, IConjuntoDados conjuntoDefensor){

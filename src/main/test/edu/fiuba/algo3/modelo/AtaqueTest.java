@@ -30,18 +30,22 @@ public class AtaqueTest {
     }
 
     @Test
-    public void devuelveErrorAlAtacarCon1Ejercito() {
-        Pais paisAtacante = mock(Pais.class);
-        Pais paisDefensor = mock(Pais.class);
+    public void test02devuelveErrorAlAtacarCon0Ejercitos() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(5);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(5);
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
-            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 1);
+            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 0);
         });
     }
 
     @Test
-    public void devuelveErrorAlAtacarConMasDe3Ejercitos() {
-        Pais paisAtacante = mock(Pais.class);
-        Pais paisDefensor = mock(Pais.class);
+    public void test03devuelveErrorAlAtacarConMasDe4Ejercitos() {
+        Pais paisAtacante = new Pais("Argentina");
+        paisAtacante.colocarFichas(5);
+        Pais paisDefensor = new Pais("Chile");
+        paisDefensor.colocarFichas(5);
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
             Ataque ataque = new Ataque(paisAtacante, paisDefensor, 4);
         });
@@ -67,10 +71,8 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
         assertTrue(ataque.ejecutar(atacante, defensor));
 
-        //assertEquals(atacante.getCantidadFichas(), );
-
-
-
+        assertEquals(paisAtacante.getCantidadFichas(), 3);
+        assertEquals(paisDefensor.getCantidadFichas(), 0);
     }
 
 }
