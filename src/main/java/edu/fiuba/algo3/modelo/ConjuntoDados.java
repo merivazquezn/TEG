@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ConjuntoDados {
+public class ConjuntoDados implements IConjuntoDados{
     private ArrayList<Dado> dados;
 
 
@@ -12,7 +12,7 @@ public class ConjuntoDados {
         return (cantidad >= 1 && cantidad <= 3);
     }
 
-    public ConjuntoDados(int cantidad, IRandomizador randomizador){
+    public void generar(int cantidad, IRandomizador randomizador){
         if (!cantidadDeDadosValida(cantidad))
             throw new CantidadInvalidaDeDadosError("Cantidad inválida de Dados");
         this.dados = new ArrayList<Dado>();
@@ -32,7 +32,7 @@ public class ConjuntoDados {
 
     // El primer valor devuelto son las fichas perdidas por el mismo objeto,
     // el segundo valor devuelto son las fichas perdidas por el segundo objeto
-    public ArrayList<Integer> compararCon(ConjuntoDados conjunto2){
+    public ArrayList<Integer> compararCon(IConjuntoDados conjunto2){
         ArrayList<Dado> defensor = conjunto2.obtenerDados();
 
         int perdidosDefensor = 0;

@@ -29,5 +29,6 @@ public class Pais {
         for(int i = 0; i < cantidadEjercitosEliminar; i++) {
             ejercitos.pop();
         }
+        return ejercitos.size();
     }
 }
