@@ -42,7 +42,7 @@ public class PaisTest {
     public void test05paisCon1FichaElimina2ElevaException() {
             Pais unPais = new Pais("Argentina");
             unPais.colocarFichas(1);
-            assertThrows(FichasInsuficientesException.class,
+            assertThrows(EjercitosInsuficientesException.class,
                 ()->{
                     unPais.eliminarFichas(2);
                 });
@@ -55,10 +55,10 @@ public class PaisTest {
             boolean error = false;
             try {
                 unPais.eliminarFichas(1);
-            } catch (FichasInsuficientesException e) {
+            } catch (EjercitosInsuficientesException e) {
                 error = true;
             }
             assertFalse(error);
     }
-    
+
 }

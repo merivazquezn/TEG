@@ -5,29 +5,29 @@ import java.util.LinkedList;
 public class Pais {
 
     private String nombre;
-    private LinkedList<Ficha> fichas;
+    private LinkedList<Ejercito> ejercitos;
 
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
-        this.fichas = new LinkedList<Ficha>();
+        this.ejercitos = new LinkedList<Ejercito>();
     }
 
     public void colocarFichas(int cantidadFichas) {
         for(int i = 0; i < cantidadFichas; i++) {
-            fichas.push(new Ficha());
+            ejercitos.push(new Ejercito());
         }
     }
 
     public int getCantidadFichas() {
-        return fichas.size();
+        return ejercitos.size();
     }
 
-    public void eliminarFichas(int cantidadFichasEliminar) {
-        if(this.getCantidadFichas() < cantidadFichasEliminar) {
-            throw new FichasInsuficientesException();
+    public void eliminarFichas(int cantidadEjercitosEliminar) {
+        if(this.getCantidadFichas() < cantidadEjercitosEliminar) {
+            throw new EjercitosInsuficientesException();
         }
-        for(int i = 0; i < cantidadFichasEliminar; i++) {
-            fichas.pop();
+        for(int i = 0; i < cantidadEjercitosEliminar; i++) {
+            ejercitos.pop();
         }
     }
 }
