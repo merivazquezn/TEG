@@ -153,8 +153,125 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(5);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertEquals(2, (int) resultado.get(0));
-        assertEquals(1, (int) resultado.get(1));
+        assertEquals(2, (int) resultado.get(0)); //perdidos por el atacante
+        assertEquals(1, (int) resultado.get(1)); //perdidos por el defensor
+    }
+
+    @Test
+    public void AtacanteSaca444DefensorSaca444DeberiaPerder3Atacante0Defensor() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenReturn(4);
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
+        assertEquals(resultado.get(0), 3);
+        assertEquals(resultado.get(1), 0);
+    }
+
+    @Test
+    public void AtacanteSaca666DefensorSaca666DeberiaPerder3Atacante0Defensor() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenReturn(6);
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
+        assertEquals(resultado.get(0), 3);
+        assertEquals(resultado.get(1), 0);
+    }
+
+    @Test
+    public void AtacanteSaca111DefensorSaca111DeberiaPerder3Atacante0Defensor() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 5;
+                }
+                else if (count == 2){
+                    count++;
+                    return 4;
+                }
+                count++;
+                return 6;
+            }
+        });
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 4;
+                }
+                else if (count == 2){
+                    count++;
+                    return 3;
+                }
+                count++;
+                return 5;
+            }
+        });
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
+        assertEquals(resultado.get(0), 0);
+        assertEquals(resultado.get(1), 3);
+    }
+
+    @Test
+    public void AtacanteSaca456DefensorSaca543DeberiPerder0Atacante3Defensor() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenReturn(6);
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
+        assertEquals(resultado.get(0), 3);
+        assertEquals(resultado.get(1), 0);
+    }
+
+    @Test
+    public void AtacanteSaca544DefensorSaca661DeberiaPerder2Atacante1Defensor() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 4;
+                }
+                else if (count == 2){
+                    count++;
+                    return 4;
+                }
+                count++;
+                return 5;
+            }
+        });
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 6;
+                }
+                else if (count == 2){
+                    count++;
+                    return 1;
+                }
+                count++;
+                return 6;
+            }
+        });
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
+        assertEquals(resultado.get(0), 2);
+        assertEquals(resultado.get(1), 1);
     }
 
 }
