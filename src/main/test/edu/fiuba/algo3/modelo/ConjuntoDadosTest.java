@@ -94,7 +94,7 @@ public class ConjuntoDadosTest {
             }
         });
         ConjuntoDados conjuntoAtacante = new ConjuntoDados();
-        conjuntoAtacante.generar(23, random);
+        conjuntoAtacante.generar(2, random);
         when(random.generar(1,6)).thenReturn(5);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados();
         conjuntoDefensor.generar(3, random);
