@@ -1,21 +1,19 @@
 package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import org.mockito.invocation.*;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class ConjuntoDadosTest {
 
     @Test
     public void ConjuntoGeneraLaCantidadDeDadosPedidosEntre1Y3(){
         ConjuntoDados conjunto = new ConjuntoDados(2, new Randomizador());
-        assertTrue(conjunto.size() == 2);
+        assertEquals(2, conjunto.size());
     }
 
     @Test
@@ -39,8 +37,10 @@ public class ConjuntoDadosTest {
         ArrayList<Dado> lista = conjunto.obtenerDados();
 
         for(int i=0;i<lista.size()-1;i++){
-            if(lista.get(i).compareTo(lista.get(i+1)) == Dado.DADO_PERDIO)
+            if (lista.get(i).compareTo(lista.get(i + 1)) == Dado.DADO_PERDIO) {
                 ordenados = false;
+                break;
+            }
         }
         assertTrue(ordenados);
     }
@@ -68,8 +68,8 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(1);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 2);
+        assertEquals(1, (int) resultado.get(0));
+        assertEquals(2, (int) resultado.get(1));
     }
 
     @Test
@@ -91,8 +91,8 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(5);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 1);
+        assertEquals(1, (int) resultado.get(0));
+        assertEquals(1, (int) resultado.get(1));
     }
 
     @Test
@@ -102,8 +102,8 @@ public class ConjuntoDadosTest {
         ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, random);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(1, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 0);
+        assertEquals(1, (int) resultado.get(0));
+        assertEquals(0, (int) resultado.get(1));
     }
 
     @Test
@@ -114,8 +114,8 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(1);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 0);
-        assertTrue(resultado.get(1) == 1);
+        assertEquals(0, (int) resultado.get(0));
+        assertEquals(1, (int) resultado.get(1));
     }
 
     @Test
@@ -126,8 +126,8 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(1);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 0);
+        assertEquals(1, (int) resultado.get(0));
+        assertEquals(0, (int) resultado.get(1));
     }
 
     @Test
@@ -153,8 +153,8 @@ public class ConjuntoDadosTest {
         when(random.generar(1,6)).thenReturn(5);
         ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 2);
-        assertTrue(resultado.get(1) == 1);
+        assertEquals(2, (int) resultado.get(0));
+        assertEquals(1, (int) resultado.get(1));
     }
 
 }
