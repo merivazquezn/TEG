@@ -1,20 +1,20 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.Random;
-
 public class Dado implements Comparable<Dado>{
     static final int DADO_GANO = 1;
     static final int DADO_EMPATO = 0;
     static final int DADO_PERDIO = -1;
 
+    private IRandomizador randomizador;
+
     private int numeroDado;
 
     private void generar(){
-        Random rand = new Random();
-        this.numeroDado = rand.nextInt(5)+1;
+        this.numeroDado = this.randomizador.generar(1,6);
     }
 
-    public Dado(){
+    public Dado(IRandomizador randomizador){
+        this.randomizador = randomizador;
         generar();
     }
 

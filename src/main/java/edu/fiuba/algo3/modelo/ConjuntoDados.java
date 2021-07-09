@@ -12,13 +12,12 @@ public class ConjuntoDados {
         return (cantidad >= 1 && cantidad <= 3);
     }
 
-    public ConjuntoDados(int cantidad) throws CantidadInvalidaDeDadosError{
-        if (cantidadDeDadosValida(cantidad) == false){
+    public ConjuntoDados(int cantidad, IRandomizador randomizador){
+        if (!cantidadDeDadosValida(cantidad))
             throw new CantidadInvalidaDeDadosError("Cantidad inválida de Dados");
-        }
         this.dados = new ArrayList<Dado>();
         for(int i =0; i<cantidad; i++) {
-            this.dados.add(new Dado());
+            this.dados.add(new Dado(randomizador));
         }
         Collections.sort(dados, Collections.reverseOrder());
     }
