@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ConjuntoDadosTest {
 
     @Test
-    public void ConjuntoGeneraLaCantidadDeDadosPedidosEntre1Y3(){
+    public void test01ConjuntoGeneraLaCantidadDeDadosPedidosEntre1Y3(){
         ConjuntoDados conjunto = new ConjuntoDados();
         conjunto.generar(2, new Randomizador());
         assertTrue(conjunto.size() == 2);
     }
 
     @Test
-    public void ConjuntoTiraErrorAlGenerarConjuntoConMenosDe1Dado() {
+    public void test02ConjuntoTiraErrorAlGenerarConjuntoConMenosDe1Dado() {
         assertThrows(CantidadInvalidaDeDadosError.class, () -> {
             ConjuntoDados conjunto = new ConjuntoDados();
             conjunto.generar(0, new Randomizador());
@@ -28,7 +28,7 @@ public class ConjuntoDadosTest {
     }
 
     @Test
-    public void ConjuntoTiraErrorAlGenerarConjuntoConMasDe3Dados() {
+    public void test03ConjuntoTiraErrorAlGenerarConjuntoConMasDe3Dados() {
         assertThrows(CantidadInvalidaDeDadosError.class, () -> {
         ConjuntoDados conjunto = new ConjuntoDados();
         conjunto.generar(4, new Randomizador());
@@ -36,7 +36,7 @@ public class ConjuntoDadosTest {
     }
 
     @Test
-    public void CunjuntoSeGeneraConLosDadosOrdenadosDeMayorAMenor() {
+    public void test04CunjuntoSeGeneraConLosDadosOrdenadosDeMayorAMenor() {
         ConjuntoDados conjunto = new ConjuntoDados();
         conjunto.generar(3, new Randomizador());
         boolean ordenados = true;
@@ -50,7 +50,7 @@ public class ConjuntoDadosTest {
     }
 
     @Test
-    public void ConjuntoDadoComparaConOtroConjuntoYDeberiaPerder1AtacanteY2Defensor() {
+    public void test05ConjuntoDadoComparaConOtroConjuntoYDeberiaPerder1AtacanteY2Defensor() {
         IRandomizador random = mock(Randomizador.class);
         when(random.generar(1,6)).thenAnswer(new Answer() {
             private int count = 0;
@@ -79,7 +79,7 @@ public class ConjuntoDadosTest {
     }
 
     @Test
-    public void ConjuntoDadoComparaConOtroConjuntoYDeberiaPerder1AtacanteY1Defensor() {
+    public void test06ConjuntoDadoComparaConOtroConjuntoYDeberiaPerder1AtacanteY1Defensor() {
         IRandomizador random = mock(Randomizador.class);
         when(random.generar(1,6)).thenAnswer(new Answer() {
             private int count = 0;

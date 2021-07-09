@@ -12,7 +12,7 @@ public class DadoTest {
     }
 
     @Test
-    public void dadoGeneradoEnRangoEsperado(){
+    public void test01dadoGeneradoEnRangoEsperado(){
         for(int i=0;i<50;i++){
             Dado dado = new Dado(new Randomizador());
             assertTrue(dadoEnRango(dado));
@@ -20,7 +20,7 @@ public class DadoTest {
     }
 
     @Test
-    public void dadoComparaConOtroDadoYSoloPierdeSiEsMenor(){
+    public void test02dadoComparaConOtroDadoYSoloPierdeSiEsMenor(){
         IRandomizador randomizador = mock(Randomizador.class);
         when(randomizador.generar(1,6)).thenReturn(2);
         Dado dadoAtacante = new Dado(randomizador);
@@ -30,7 +30,7 @@ public class DadoTest {
     }
 
     @Test
-    public void dadoComparaConOtroDadoYSoloGanaSiEsMayor(){
+    public void test03dadoComparaConOtroDadoYSoloGanaSiEsMayor(){
         IRandomizador randomizador = mock(Randomizador.class);
         when(randomizador.generar(1,6)).thenReturn(6);
         Dado dadoAtacante = new Dado(randomizador);
@@ -40,7 +40,7 @@ public class DadoTest {
     }
 
     @Test
-    public void dadoComparaConOtroDadoYEmpataSiEsIgual(){
+    public void test04dadoComparaConOtroDadoYEmpataSiEsIgual(){
         IRandomizador randomizador = mock(Randomizador.class);
         when(randomizador.generar(1,6)).thenReturn(5);
         Dado dadoAtacante = new Dado(randomizador);
