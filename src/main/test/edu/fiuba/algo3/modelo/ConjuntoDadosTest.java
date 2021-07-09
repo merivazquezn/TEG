@@ -34,7 +34,8 @@ public class ConjuntoDadosTest {
 
     @Test
     public void CunjuntoSeGeneraConLosDadosOrdenadosDeMayorAMenor() {
-        ConjuntoDados conjunto = new ConjuntoDados(3, new Randomizador());
+        ConjuntoDados conjunto = new ConjuntoDados();
+        conjunto.generar(3, new Randomizador());
         boolean ordenados = true;
         ArrayList<Dado> lista = conjunto.obtenerDados();
 

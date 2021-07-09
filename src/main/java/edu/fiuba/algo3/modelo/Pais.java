@@ -22,7 +22,7 @@ public class Pais {
         return ejercitos.size();
     }
 
-    public void eliminarFichas(int cantidadEjercitosEliminar) {
+    public int eliminarFichas(int cantidadEjercitosEliminar) {
         if(this.getCantidadFichas() < cantidadEjercitosEliminar) {
             throw new EjercitosInsuficientesException();
         }
