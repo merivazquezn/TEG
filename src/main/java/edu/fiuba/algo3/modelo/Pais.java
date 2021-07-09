@@ -12,18 +12,18 @@ public class Pais {
         this.ejercitos = new LinkedList<Ejercito>();
     }
 
-    public void colocarFichas(int cantidadFichas) {
-        for(int i = 0; i < cantidadFichas; i++) {
+    public void colocarEjercitos(int cantidadEjercitos) {
+        for(int i = 0; i < cantidadEjercitos; i++) {
             ejercitos.push(new Ejercito());
         }
     }
 
-    public int getCantidadFichas() {
+    public int getCantidadEjercitos() {
         return ejercitos.size();
     }
 
-    public int eliminarFichas(int cantidadEjercitosEliminar) {
-        if(this.getCantidadFichas() < cantidadEjercitosEliminar) {
+    public int eliminarEjercitos(int cantidadEjercitosEliminar) {
+        if(this.getCantidadEjercitos() < cantidadEjercitosEliminar) {
             throw new EjercitosInsuficientesException();
         }
         for(int i = 0; i < cantidadEjercitosEliminar; i++) {
@@ -32,12 +32,12 @@ public class Pais {
         return ejercitos.size();
     }
 
-    public void transferirFichasA(Pais destino, int cantidad) {
+    public void transferirEjercitosA(Pais destino, int cantidad) {
         //TODO: comprobar que sean del mismo jugador
-        if (this.getCantidadFichas() <= cantidad)
+        if (this.getCantidadEjercitos() <= cantidad)
             throw new EjercitosInsuficientesException();
 
-        this.eliminarFichas(cantidad);
-        destino.colocarFichas(cantidad);
+        this.eliminarEjercitos(cantidad);
+        destino.colocarEjercitos(cantidad);
     }
 }

@@ -7,97 +7,97 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PaisTest {
 
     @Test
-    public void test01paisColocaTresFichasYTieneTresFichas() {
+    public void test01paisColocaTresEjercitosYTieneTresEjercitos() {
 
         Pais unPais = new Pais("Argentina");
-        unPais.colocarFichas(3);
-        assertEquals(unPais.getCantidadFichas(), 3);
+        unPais.colocarEjercitos(3);
+        assertEquals(unPais.getCantidadEjercitos(), 3);
     }
 
     @Test
-    public void test02paisColocaCinchoFichasYTiene5Fichas() {
+    public void test02paisColocaCinchoEjercitosYTiene5Ejercitos() {
         Pais unPais = new Pais("Brasil");
-        unPais.colocarFichas(5);
-        assertEquals(unPais.getCantidadFichas(), 5);
+        unPais.colocarEjercitos(5);
+        assertEquals(unPais.getCantidadEjercitos(), 5);
     }
 
 
     @Test
-    public void test03paisCon5FichasElimina2YTiene3(){
+    public void test03paisCon5EjercitosElimina2YTiene3(){
         Pais unPais = new Pais("Chile");
-        unPais.colocarFichas(5);
-        unPais.eliminarFichas(2);
-        assertEquals(unPais.getCantidadFichas(), 3);
+        unPais.colocarEjercitos(5);
+        unPais.eliminarEjercitos(2);
+        assertEquals(unPais.getCantidadEjercitos(), 3);
     }
 
     @Test
-    public void test04paisCon3FichasElimina3YTiene0Fichas(){
+    public void test04paisCon3EjercitosElimina3YTiene0Ejercitos(){
         Pais unPais = new Pais("Chile");
-        unPais.colocarFichas(3);
-        unPais.eliminarFichas(3);
-        assertEquals(unPais.getCantidadFichas(), 0);
+        unPais.colocarEjercitos(3);
+        unPais.eliminarEjercitos(3);
+        assertEquals(unPais.getCantidadEjercitos(), 0);
     }
 
     @Test
-    public void test05paisCon1FichaElimina2ElevaException() {
-            Pais unPais = new Pais("Argentina");
-            unPais.colocarFichas(1);
-            assertThrows(EjercitosInsuficientesException.class,
+    public void test05paisCon1EjercitoElimina2ElevaException() {
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(1);
+        assertThrows(EjercitosInsuficientesException.class,
                 ()->{
-                    unPais.eliminarFichas(2);
+                    unPais.eliminarEjercitos(2);
                 });
     }
 
     @Test
-    public void test06paisCon2FichasElimina1NoElevaExcepcion() {
-            Pais unPais = new Pais("Argentina");
-            unPais.colocarFichas(2);
-            boolean error = false;
-            try {
-                unPais.eliminarFichas(1);
-            } catch (EjercitosInsuficientesException e) {
-                error = true;
-            }
-            assertFalse(error);
+    public void test06paisCon2EjercitosElimina1NoElevaExcepcion() {
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(2);
+        boolean error = false;
+        try {
+            unPais.eliminarEjercitos(1);
+        } catch (EjercitosInsuficientesException e) {
+            error = true;
+        }
+        assertFalse(error);
     }
 
     @Test
-    public void test07paisCon2FichasTransfiere1AOtroSinFichasConquistado() {
+    public void test07paisCon2EjercitosTransfiere1AOtroSinEjercitosConquistado() {
         Pais unPais = new Pais("Argentina");
-        unPais.colocarFichas(2);
+        unPais.colocarEjercitos(2);
         Pais otroPais = new Pais("Chile");
-        unPais.transferirFichasA(otroPais, 1);
-        assertEquals(1, unPais.getCantidadFichas());
-        assertEquals(1, otroPais.getCantidadFichas());
+        unPais.transferirEjercitosA(otroPais, 1);
+        assertEquals(1, unPais.getCantidadEjercitos());
+        assertEquals(1, otroPais.getCantidadEjercitos());
     }
 
     @Test
-    public void test08paisCon5FichasTransfiere4AOtroSinFichasConquistado() {
+    public void test08paisCon5EjercitosTransfiere4AOtroSinEjercitosConquistado() {
         Pais unPais = new Pais("Argentina");
-        unPais.colocarFichas(5);
+        unPais.colocarEjercitos(5);
         Pais otroPais = new Pais("Chile");
-        unPais.transferirFichasA(otroPais, 4);
-        assertEquals(1, unPais.getCantidadFichas());
-        assertEquals(4, otroPais.getCantidadFichas());
+        unPais.transferirEjercitosA(otroPais, 4);
+        assertEquals(1, unPais.getCantidadEjercitos());
+        assertEquals(4, otroPais.getCantidadEjercitos());
     }
 
     @Test
-    public void test09paisCon5FichasQuiereTransferir5AOtroSinFichasConquistadoYLevantaUnaExcepcion() {
+    public void test09paisCon5EjercitosQuiereTransferir5AOtroSinEjercitosConquistadoYLevantaUnaExcepcion() {
         Pais unPais = new Pais("Argentina");
-        unPais.colocarFichas(5);
+        unPais.colocarEjercitos(5);
         Pais otroPais = new Pais("Chile");
         assertThrows(EjercitosInsuficientesException.class, () -> {
-            unPais.transferirFichasA(otroPais, 5);
+            unPais.transferirEjercitosA(otroPais, 5);
         });
     }
 
     @Test
-    public void test10paisCon3FichasQuiereTransferir5AOtroSinFichasConquistadoYLevantaUnaExcepcion() {
+    public void test10paisCon3EjercitosQuiereTransferir5AOtroSinEjercitosConquistadoYLevantaUnaExcepcion() {
         Pais unPais = new Pais("Argentina");
-        unPais.colocarFichas(3);
+        unPais.colocarEjercitos(3);
         Pais otroPais = new Pais("Chile");
         assertThrows(EjercitosInsuficientesException.class, () -> {
-            unPais.transferirFichasA(otroPais, 5);
+            unPais.transferirEjercitosA(otroPais, 5);
         });
     }
 

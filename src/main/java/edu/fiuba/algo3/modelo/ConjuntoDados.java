@@ -30,8 +30,8 @@ public class ConjuntoDados implements IConjuntoDados{
         return this.dados;
     }
 
-    // El primer valor devuelto son las fichas perdidas por el mismo objeto,
-    // el segundo valor devuelto son las fichas perdidas por el segundo objeto
+    // El primer valor devuelto son los ejercitos perdidos por el mismo objeto,
+    // el segundo valor devuelto son los ejercitos perdidos por el segundo objeto
     public ArrayList<Integer> compararCon(IConjuntoDados conjunto2){
         ArrayList<Dado> defensor = conjunto2.obtenerDados();
 

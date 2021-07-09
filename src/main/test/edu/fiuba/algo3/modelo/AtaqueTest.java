@@ -19,9 +19,9 @@ public class AtaqueTest {
     @Test
     public void test01devuelveErrorAlAtacarConLaMismaCantidadDeEjercitosDelPais() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(2);
+        paisAtacante.colocarEjercitos(2);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(5);
+        paisDefensor.colocarEjercitos(5);
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
             Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
         });
@@ -30,9 +30,9 @@ public class AtaqueTest {
     @Test
     public void test02devuelveErrorAlAtacarCon0Ejercitos() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(5);
+        paisAtacante.colocarEjercitos(5);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(5);
+        paisDefensor.colocarEjercitos(5);
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
             Ataque ataque = new Ataque(paisAtacante, paisDefensor, 0);
         });
@@ -41,9 +41,9 @@ public class AtaqueTest {
     @Test
     public void test03devuelveErrorAlAtacarConMasDe4Ejercitos() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(5);
+        paisAtacante.colocarEjercitos(5);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(5);
+        paisDefensor.colocarEjercitos(5);
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
             Ataque ataque = new Ataque(paisAtacante, paisDefensor, 4);
         });
@@ -52,9 +52,9 @@ public class AtaqueTest {
     @Test
     public void test04paisAtacaCon2EjercitosContra1EjercitoDefensorYDefensorPierdeElEjercito() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(3);
+        paisAtacante.colocarEjercitos(3);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(1);
+        paisDefensor.colocarEjercitos(1);
         IConjuntoDados atacante = mock(ConjuntoDados.class);
         IConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
@@ -69,16 +69,16 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
         assertTrue(ataque.ejecutar(atacante, defensor));
 
-        assertEquals(paisAtacante.getCantidadFichas(), 3);
-        assertEquals(paisDefensor.getCantidadFichas(), 0);
+        assertEquals(paisAtacante.getCantidadEjercitos(), 3);
+        assertEquals(paisDefensor.getCantidadEjercitos(), 0);
     }
 
     @Test
     public void test05paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde2Defensor1() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(4);
+        paisAtacante.colocarEjercitos(4);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(3);
+        paisDefensor.colocarEjercitos(3);
         IConjuntoDados atacante = mock(ConjuntoDados.class);
         IConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
@@ -93,16 +93,16 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
         assertFalse(ataque.ejecutar(atacante, defensor));
 
-        assertEquals(paisAtacante.getCantidadFichas(), 2);
-        assertEquals(paisDefensor.getCantidadFichas(), 2);
+        assertEquals(paisAtacante.getCantidadEjercitos(), 2);
+        assertEquals(paisDefensor.getCantidadEjercitos(), 2);
     }
 
     @Test
     public void test06paisAtacaCon1EjercitosContra3EjercitosDefensoresDefensorPierde1() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarFichas(2);
+        paisAtacante.colocarEjercitos(2);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarFichas(3);
+        paisDefensor.colocarEjercitos(3);
         IConjuntoDados atacante = mock(ConjuntoDados.class);
         IConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
@@ -117,16 +117,16 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(paisAtacante, paisDefensor, 1);
         assertFalse(ataque.ejecutar(atacante, defensor));
 
-        assertEquals(paisAtacante.getCantidadFichas(), 2);
-        assertEquals(paisDefensor.getCantidadFichas(), 2);
+        assertEquals(paisAtacante.getCantidadEjercitos(), 2);
+        assertEquals(paisDefensor.getCantidadEjercitos(), 2);
     }
 
     @Test
     public void test07paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde3() {
         Pais paisAtacante = new Pais("Chile");
-        paisAtacante.colocarFichas(4);
+        paisAtacante.colocarEjercitos(4);
         Pais paisDefensor = new Pais("Argentina");
-        paisDefensor.colocarFichas(3);
+        paisDefensor.colocarEjercitos(3);
         IConjuntoDados atacante = mock(ConjuntoDados.class);
         IConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
@@ -141,8 +141,8 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
         assertFalse(ataque.ejecutar(atacante, defensor));
 
-        assertEquals(paisAtacante.getCantidadFichas(), 1);
-        assertEquals(paisDefensor.getCantidadFichas(), 3);
+        assertEquals(paisAtacante.getCantidadEjercitos(), 1);
+        assertEquals(paisDefensor.getCantidadEjercitos(), 3);
     }
 
 }

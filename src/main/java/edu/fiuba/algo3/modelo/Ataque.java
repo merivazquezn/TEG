@@ -23,7 +23,7 @@ public class Ataque {
 
     private void cantidadEjercitosAtacantesValido(int cantEjercitos) {
 
-        if (this.atacante.getCantidadFichas()-1 < cantEjercitos)
+        if (this.atacante.getCantidadEjercitos()-1 < cantEjercitos)
             throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
 
         if (cantEjercitos < 1 || cantEjercitos > 3)
@@ -32,7 +32,7 @@ public class Ataque {
     }
 
     private int obtenerEjercitosDefensor(){
-        int cantEjercitos = this.defensor.getCantidadFichas();
+        int cantEjercitos = this.defensor.getCantidadEjercitos();
         if (cantEjercitos > 3) {
             return 3;
         }
@@ -48,13 +48,10 @@ public class Ataque {
 
         ArrayList<Integer> resultados = conjuntoAtacante.compararCon(conjuntoDefensor);
 
-        this.cantEjercitoDefensor = this.defensor.eliminarFichas(resultados.get(1));
-        this.cantEjercitoAtacantes = this.atacante.eliminarFichas(resultados.get(0));
+        this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
+        this.cantEjercitoAtacantes = this.atacante.eliminarEjercitos(resultados.get(0));
 
         // devuelve true si conquisto el pais
         return (cantEjercitoDefensor <= 0);
     }
 }
-
-
-
