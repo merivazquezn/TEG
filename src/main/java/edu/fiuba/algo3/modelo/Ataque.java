@@ -8,8 +8,8 @@ public class Ataque {
     private int cantEjercitoAtacantes;
     private int cantEjercitoDefensor;
 
-    private IConjuntoDados conjuntoAtacante;
-    private IConjuntoDados conjuntoDefensor;
+    private ConjuntoDados conjuntoAtacante;
+    private ConjuntoDados conjuntoDefensor;
 
     public Ataque(Pais paisAtacante, Pais paisDefensor, int cantEjercitosAtacantes){
         this.atacante = paisAtacante;
@@ -40,7 +40,7 @@ public class Ataque {
         return cantEjercitos;
     }
 
-    public boolean ejecutar(IConjuntoDados conjuntoAtacante, IConjuntoDados conjuntoDefensor){
+    public boolean ejecutar(ConjuntoDados conjuntoAtacante, ConjuntoDados conjuntoDefensor){
         this.conjuntoAtacante = conjuntoAtacante;
         this.conjuntoAtacante.generar(this.cantEjercitoAtacantes, new Randomizador());
         this.conjuntoDefensor = conjuntoDefensor;

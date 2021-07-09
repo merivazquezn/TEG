@@ -55,8 +55,8 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(3);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(1);
-        IConjuntoDados atacante = mock(ConjuntoDados.class);
-        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        ConjuntoDados atacante = mock(ConjuntoDados.class);
+        ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -79,8 +79,8 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(4);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(3);
-        IConjuntoDados atacante = mock(ConjuntoDados.class);
-        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        ConjuntoDados atacante = mock(ConjuntoDados.class);
+        ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -103,8 +103,8 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(2);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(3);
-        IConjuntoDados atacante = mock(ConjuntoDados.class);
-        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        ConjuntoDados atacante = mock(ConjuntoDados.class);
+        ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -127,8 +127,8 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(4);
         Pais paisDefensor = new Pais("Argentina");
         paisDefensor.colocarEjercitos(3);
-        IConjuntoDados atacante = mock(ConjuntoDados.class);
-        IConjuntoDados defensor = mock(ConjuntoDados.class);
+        ConjuntoDados atacante = mock(ConjuntoDados.class);
+        ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 ArrayList<Integer> lista = new ArrayList<Integer>();

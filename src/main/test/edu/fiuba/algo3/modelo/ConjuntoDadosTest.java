@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ConjuntoDadosTest {
@@ -16,7 +17,7 @@ public class ConjuntoDadosTest {
     public void test01ConjuntoGeneraLaCantidadDeDadosPedidosEntre1Y3(){
         ConjuntoDados conjunto = new ConjuntoDados();
         conjunto.generar(2, new Randomizador());
-        assertTrue(conjunto.size() == 2);
+        assertEquals(2,conjunto.size());
     }
 
     @Test
@@ -74,8 +75,8 @@ public class ConjuntoDadosTest {
         ConjuntoDados conjuntoDefensor = new ConjuntoDados();
         conjuntoDefensor.generar(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 2);
+        assertEquals(1, resultado.get(0));
+        assertEquals(2, resultado.get(1));
     }
 
     @Test
@@ -99,8 +100,8 @@ public class ConjuntoDadosTest {
         ConjuntoDados conjuntoDefensor = new ConjuntoDados();
         conjuntoDefensor.generar(3, random);
         ArrayList<Integer> resultado = conjuntoAtacante.compararCon(conjuntoDefensor);
-        assertTrue(resultado.get(0) == 1);
-        assertTrue(resultado.get(1) == 1);
+        assertEquals(1, resultado.get(0));
+        assertEquals(1, resultado.get(1));
     }
 
 }
