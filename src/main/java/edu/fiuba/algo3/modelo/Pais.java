@@ -6,6 +6,7 @@ public class Pais {
 
     private String nombre;
     private LinkedList<Ejercito> ejercitos;
+    private Jugador jugador;
 
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
@@ -39,5 +40,13 @@ public class Pais {
 
         this.eliminarEjercitos(cantidad);
         destino.colocarEjercitos(cantidad);
+    }
+
+    public void asignarJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
+    public boolean esDeJugador(Jugador unJugador) {
+        return this.jugador.equals(unJugador);
     }
 }
