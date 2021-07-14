@@ -73,7 +73,7 @@ public class AtaqueTest {
 
         ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
 
-        when(constructor.obtenerConjuntosDados(3,1)).thenReturn(arrayConjuntos);
+        when(constructor.obtenerConjuntosDados(2,1)).thenReturn(arrayConjuntos);
 
         when(atacante.ejercitosPerdidos(defensor)).thenAnswer((Answer) invocation -> {
             ArrayList<Integer> lista = new ArrayList<Integer>();
