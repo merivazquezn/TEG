@@ -11,13 +11,9 @@ public class Dado implements Comparable<Dado>{
 
     private int numeroDado;
 
-    private void generar(){
-        this.numeroDado = this.randomizador.generar(NUM_MIN, NUM_MAX);
-    }
-
     public Dado(IRandomizador randomizador){
         this.randomizador = randomizador;
-        generar();
+        this.numeroDado = this.randomizador.generar(NUM_MIN, NUM_MAX);
     }
 
     public int obtenerValor() {

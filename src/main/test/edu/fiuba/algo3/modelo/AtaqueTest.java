@@ -22,8 +22,11 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(2);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
+
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
-            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
+            Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 2);
         });
     }
 
@@ -33,8 +36,11 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(5);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
+
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
-            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 0);
+            Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 0);
         });
     }
 
@@ -44,8 +50,11 @@ public class AtaqueTest {
         paisAtacante.colocarEjercitos(5);
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
+
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+
         assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
-            Ataque ataque = new Ataque(paisAtacante, paisDefensor, 4);
+            Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 4);
         });
     }
 
@@ -57,21 +66,31 @@ public class AtaqueTest {
         paisDefensor.colocarEjercitos(1);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
-        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<Integer> lista = new ArrayList<Integer>();
-                lista.add(0);
-                lista.add(1);
-                return lista;
-            }
+
+        ArrayList<ConjuntoDados> arrayConjuntos = new ArrayList<>();
+        arrayConjuntos.add(atacante);
+        arrayConjuntos.add(defensor);
+
+        ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
+
+        when(constructor.obtenerConjuntosDados(3,1)).thenReturn(arrayConjuntos);
+
+        when(atacante.ejercitosPerdidos(defensor)).thenAnswer((Answer) invocation -> {
+            ArrayList<Integer> lista = new ArrayList<Integer>();
+            lista.add(0);
+            lista.add(1);
+            return lista;
         });
 
-        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 2);
-        assertTrue(ataque.ejecutar(atacante, defensor));
+        ConstructorDeConjuntoDados constructorDeConjuntoDados = new ConstructorDeConjuntoDados();
 
+        Ataque ataque = new Ataque(constructorDeConjuntoDados, paisAtacante, paisDefensor, 2);
+        assertTrue(ataque.conquisto());
+;
         assertEquals(paisAtacante.getCantidadEjercitos(), 3);
         assertEquals(paisDefensor.getCantidadEjercitos(), 0);
     }
+
 
     @Test
     public void test05paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde2Defensor1() {
@@ -81,17 +100,24 @@ public class AtaqueTest {
         paisDefensor.colocarEjercitos(3);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
-        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<Integer> lista = new ArrayList<Integer>();
-                lista.add(2);
-                lista.add(1);
-                return lista;
-            }
+
+
+        ArrayList<ConjuntoDados> arrayConjuntos = new ArrayList<ConjuntoDados>();
+        arrayConjuntos.add(atacante);
+        arrayConjuntos.add(defensor);
+
+        ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
+        when(constructor.obtenerConjuntosDados(3,3)).thenReturn(arrayConjuntos);
+
+        when(atacante.ejercitosPerdidos(defensor)).thenAnswer((Answer) invocation -> {
+            ArrayList<Integer> lista = new ArrayList<Integer>();
+            lista.add(2);
+            lista.add(1);
+            return lista;
         });
 
-        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
-        assertFalse(ataque.ejecutar(atacante, defensor));
+        Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 3);
+        assertFalse(ataque.conquisto());
 
         assertEquals(paisAtacante.getCantidadEjercitos(), 2);
         assertEquals(paisDefensor.getCantidadEjercitos(), 2);
@@ -105,17 +131,23 @@ public class AtaqueTest {
         paisDefensor.colocarEjercitos(3);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
-        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<Integer> lista = new ArrayList<Integer>();
-                lista.add(0);
-                lista.add(1);
-                return lista;
-            }
+
+        ArrayList<ConjuntoDados> arrayConjuntos = new ArrayList<>();
+        arrayConjuntos.add(atacante);
+        arrayConjuntos.add(defensor);
+
+        ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
+        when(constructor.obtenerConjuntosDados(1,3)).thenReturn(arrayConjuntos);
+
+        when(atacante.ejercitosPerdidos(defensor)).thenAnswer((Answer) invocation -> {
+            ArrayList<Integer> lista = new ArrayList<Integer>();
+            lista.add(0);
+            lista.add(1);
+            return lista;
         });
 
-        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 1);
-        assertFalse(ataque.ejecutar(atacante, defensor));
+        Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 1);
+        assertFalse(ataque.conquisto());
 
         assertEquals(paisAtacante.getCantidadEjercitos(), 2);
         assertEquals(paisDefensor.getCantidadEjercitos(), 2);
@@ -129,20 +161,29 @@ public class AtaqueTest {
         paisDefensor.colocarEjercitos(3);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
-        when(atacante.compararCon(defensor)).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                ArrayList<Integer> lista = new ArrayList<Integer>();
-                lista.add(3);
-                lista.add(0);
-                return lista;
-            }
+
+        ArrayList<ConjuntoDados> arrayConjuntos = new ArrayList<>();
+        arrayConjuntos.add(atacante);
+        arrayConjuntos.add(defensor);
+
+        ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
+        when(constructor.obtenerConjuntosDados(3,3)).thenReturn(arrayConjuntos);
+
+        when(atacante.ejercitosPerdidos(defensor)).thenAnswer((Answer) invocation -> {
+            ArrayList<Integer> lista = new ArrayList<Integer>();
+            lista.add(3);
+            lista.add(0);
+            return lista;
         });
 
-        Ataque ataque = new Ataque(paisAtacante, paisDefensor, 3);
-        assertFalse(ataque.ejecutar(atacante, defensor));
+        Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 3);
+        assertFalse(ataque.conquisto());
 
         assertEquals(paisAtacante.getCantidadEjercitos(), 1);
         assertEquals(paisDefensor.getCantidadEjercitos(), 3);
     }
 
+
+
 }
+

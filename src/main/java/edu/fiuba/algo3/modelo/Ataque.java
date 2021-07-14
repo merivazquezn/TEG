@@ -11,9 +11,13 @@ public class Ataque {
     private ConjuntoDados conjuntoAtacante;
     private ConjuntoDados conjuntoDefensor;
 
-    public Ataque(Pais paisAtacante, Pais paisDefensor, int cantEjercitosAtacantes){
+    private ConstructorDeConjuntoDados constructor;
+
+    public Ataque(ConstructorDeConjuntoDados constructorConjuntoDados, Pais paisAtacante, Pais paisDefensor, int cantEjercitosAtacantes){
         this.atacante = paisAtacante;
         this.defensor = paisDefensor;
+
+        this.constructor = constructorConjuntoDados;
 
         cantidadEjercitosAtacantesValido(cantEjercitosAtacantes);
         this.cantEjercitoAtacantes = cantEjercitosAtacantes;
@@ -40,18 +44,16 @@ public class Ataque {
         return cantEjercitos;
     }
 
-    public boolean ejecutar(ConjuntoDados conjuntoAtacante, ConjuntoDados conjuntoDefensor){
-        this.conjuntoAtacante = conjuntoAtacante;
-        this.conjuntoAtacante.generar(this.cantEjercitoAtacantes, new Randomizador());
-        this.conjuntoDefensor = conjuntoDefensor;
-        this.conjuntoDefensor.generar(this.cantEjercitoDefensor, new Randomizador());
+    public boolean conquisto(){
+        ArrayList<ConjuntoDados> conjuntos = this.constructor.obtenerConjuntosDados(this.cantEjercitoAtacantes, this.cantEjercitoDefensor);
+        this.conjuntoAtacante = conjuntos.get(0);
+        this.conjuntoDefensor = conjuntos.get(1);
 
-        ArrayList<Integer> resultados = conjuntoAtacante.compararCon(conjuntoDefensor);
+        ArrayList<Integer> resultados = conjuntoAtacante.ejercitosPerdidos(conjuntoDefensor);
 
         this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
         this.cantEjercitoAtacantes = this.atacante.eliminarEjercitos(resultados.get(0));
 
-        // devuelve true si conquisto el pais
         return (cantEjercitoDefensor <= 0);
     }
 }
