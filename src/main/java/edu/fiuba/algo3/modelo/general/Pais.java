@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.general;
+
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.LinkedList;
 
@@ -26,7 +28,7 @@ public class Pais {
 
     public int eliminarEjercitos(int cantidadEjercitosEliminar) {
         if(this.getCantidadEjercitos() < cantidadEjercitosEliminar) {
-            throw new EjercitosInsuficientesException();
+            throw new CantidadInvalidaDeEjercitosException();
         }
         for(int i = 0; i < cantidadEjercitosEliminar; i++) {
             ejercitos.pop();
@@ -37,7 +39,7 @@ public class Pais {
     public void transferirEjercitosA(Pais destino, int cantidad) {
         //TODO: comprobar que sean del mismo jugador
         if (this.getCantidadEjercitos() <= cantidad)
-            throw new EjercitosInsuficientesException();
+            throw new CantidadInvalidaDeEjercitosException();
 
         this.eliminarEjercitos(cantidad);
         destino.colocarEjercitos(cantidad);

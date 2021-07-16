@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.controlador;
 import java.util.ArrayList;
 
 public class EleccionAtaque {

@@ -1,6 +1,4 @@
-package edu.fiuba.algo3.modelo;
-
-import java.lang.reflect.Array;
+package edu.fiuba.algo3.controlador;
 
 public class Comunicacion {
     EleccionAtaque ataque;

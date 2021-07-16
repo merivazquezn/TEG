@@ -1,4 +1,9 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.flujoDeJuego;
+
+import edu.fiuba.algo3.controlador.Comunicacion;
+import edu.fiuba.algo3.controlador.EleccionAtaque;
+import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
 

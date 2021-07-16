@@ -1,13 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
+import edu.fiuba.algo3.modelo.ataque.*;
+import edu.fiuba.algo3.modelo.general.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
@@ -25,7 +21,7 @@ public class AtaqueTest {
 
         ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
 
-        assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
+        assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 2);
         });
     }
@@ -39,7 +35,7 @@ public class AtaqueTest {
 
         ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
 
-        assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
+        assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 0);
         });
     }
@@ -53,7 +49,7 @@ public class AtaqueTest {
 
         ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
 
-        assertThrows(CantidadInvalidaDeEjercitosParaAtaqueExeption.class, () -> {
+        assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 4);
         });
     }

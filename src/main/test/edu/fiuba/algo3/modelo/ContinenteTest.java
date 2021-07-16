@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.general.Continente;
+import edu.fiuba.algo3.modelo.general.Pais;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.ataque;
 
 public class Dado implements Comparable<Dado>{
     static final int DADO_GANO = 1;

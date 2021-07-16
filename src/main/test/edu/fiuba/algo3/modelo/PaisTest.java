@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.general.*;
+import edu.fiuba.algo3.modelo.general.Pais;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +44,7 @@ public class PaisTest {
     public void test05paisCon1EjercitoElimina2ElevaException() {
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(1);
-        assertThrows(EjercitosInsuficientesException.class,
+        assertThrows(CantidadInvalidaDeEjercitosException.class,
                 ()->{
                     unPais.eliminarEjercitos(2);
                 });
@@ -55,7 +57,7 @@ public class PaisTest {
         boolean error = false;
         try {
             unPais.eliminarEjercitos(1);
-        } catch (EjercitosInsuficientesException e) {
+        } catch (CantidadInvalidaDeEjercitosException e) {
             error = true;
         }
         assertFalse(error);
@@ -86,7 +88,7 @@ public class PaisTest {
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(5);
         Pais otroPais = new Pais("Chile");
-        assertThrows(EjercitosInsuficientesException.class, () -> {
+        assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 5);
         });
     }
@@ -96,7 +98,7 @@ public class PaisTest {
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(3);
         Pais otroPais = new Pais("Chile");
-        assertThrows(EjercitosInsuficientesException.class, () -> {
+        assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 5);
         });
     }

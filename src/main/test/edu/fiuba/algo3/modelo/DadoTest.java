@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.ataque.Dado;
+import edu.fiuba.algo3.modelo.ataque.IRandomizador;
+import edu.fiuba.algo3.modelo.ataque.Randomizador;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 

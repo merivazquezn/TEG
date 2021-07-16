@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import static org.mockito.Mockito.*;
+
+import edu.fiuba.algo3.modelo.general.Continente;
+import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

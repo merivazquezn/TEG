@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.ataque;
+
+import edu.fiuba.algo3.modelo.general.*;
 
 import java.util.ArrayList;
 
@@ -28,10 +30,10 @@ public class Ataque {
     private void cantidadEjercitosAtacantesValido(int cantEjercitos) {
 
         if (this.atacante.getCantidadEjercitos()-1 < cantEjercitos)
-            throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
+            throw new CantidadInvalidaDeEjercitosException();
 
         if (cantEjercitos < 1 || cantEjercitos > 3)
-            throw new CantidadInvalidaDeEjercitosParaAtaqueExeption();
+            throw new CantidadInvalidaDeEjercitosException();
 
     }
 

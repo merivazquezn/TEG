@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.ataque.CantidadInvalidaDeDadosError;
+import edu.fiuba.algo3.modelo.ataque.ConjuntoDados;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

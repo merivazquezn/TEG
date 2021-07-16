@@ -1,4 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.general;
+
+import edu.fiuba.algo3.modelo.ataque.Ataque;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
 

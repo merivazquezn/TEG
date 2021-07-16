@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.controlador.EleccionAtaque;
+import edu.fiuba.algo3.modelo.flujoDeJuego.TurnoAtaque;
+import edu.fiuba.algo3.modelo.general.Pais;
+import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
