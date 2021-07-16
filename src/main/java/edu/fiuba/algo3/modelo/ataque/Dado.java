@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.modelo.ataque;
 
 public class Dado implements Comparable<Dado>{
-    static final int DADO_GANO = 1;
-    static final int DADO_EMPATO = 0;
-    static final int DADO_PERDIO = -1;
-    static final int NUM_MIN = 1;
-    static final int NUM_MAX = 6;
+    public static final int DADO_GANO = 1;
+    public static final int DADO_EMPATO = 0;
+    public static final int DADO_PERDIO = -1;
+    public static final int NUM_MIN = 1;
+    public static final int NUM_MAX = 6;
 
     private IRandomizador randomizador;
 

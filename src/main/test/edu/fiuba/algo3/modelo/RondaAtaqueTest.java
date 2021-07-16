@@ -89,4 +89,51 @@ public class RondaAtaqueTest {
         assertFalse(ronda.realizarRondaYContinuar(tablero));
     }
 
+    @Test
+    public void test03unaRondaDeDosJugadoresJugador1AtacaYConquista2PaisesDelJugador2(){
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(5);
+        Pais otroPais = new Pais("Chile");
+        otroPais.colocarEjercitos(2);
+        Pais otroPaisMas = new Pais("Brasil");
+        otroPaisMas.colocarEjercitos(2);
+        Tablero tablero = mock(Tablero.class);
+        Comunicacion comunicacion = mock(Comunicacion.class);
+        EleccionAtaque eleccion = mock(EleccionAtaque.class);
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+        Jugador uno = mock(Jugador.class);
+        Jugador dos = mock(Jugador.class);
+        jugadores.add(uno);
+        jugadores.add(dos);
+        when(comunicacion.getEleccionAtaque()).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                return eleccion;
+            }
+        });
+        when(eleccion.pedirAtaque()).thenAnswer(new Answer() {
+            int count = 0;
+            public Object answer(InvocationOnMock invocation) {
+                ArrayList lista = new ArrayList();
+                if(count == 0){
+                    lista.add(unPais);
+                    lista.add(otroPais);
+                    lista.add(3);
+                    count++;
+                }
+                else{
+                    lista.add("Terminar");
+                }
+                return lista;
+            }
+        });
+        when(tablero.conquisto(unPais, otroPais, 3)).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                return true;
+            }
+        });
+        when(uno.jugadorGano()).thenReturn(true);
+        RondaAtaque ronda = new RondaAtaque(jugadores, comunicacion);
+        assertFalse(ronda.realizarRondaYContinuar(tablero));
+    }
+
 }
