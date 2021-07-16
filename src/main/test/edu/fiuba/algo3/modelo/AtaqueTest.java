@@ -31,7 +31,7 @@ public class AtaqueTest {
     }
 
     @Test
-    public void test02devuelveErrorAlAtacarCon0Ejercitos() {
+    public void test03devuelveErrorAlAtacarCon0Ejercitos() {
         Pais paisAtacante = new Pais("Argentina");
         paisAtacante.colocarEjercitos(5);
         Pais paisDefensor = new Pais("Chile");
