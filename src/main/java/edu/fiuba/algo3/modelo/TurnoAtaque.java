@@ -11,6 +11,7 @@ public class TurnoAtaque implements Turno{
         this.eleccion = eleccion;
     }
 
+
     public boolean realizarTurnoYContinuar(Tablero tablero){
         ArrayList<Object> orden = this.eleccion.pedirAtaque();
         while(orden.get(0).toString() != "Terminar"){
