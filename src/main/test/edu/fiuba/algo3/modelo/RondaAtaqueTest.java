@@ -80,11 +80,7 @@ public class RondaAtaqueTest {
                 return lista;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 3, new ConstructorDeConjuntoDados())).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                return true;
-            }
-        });
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenReturn(true);
         when(uno.jugadorGano()).thenReturn(true);
         RondaAtaque ronda = new RondaAtaque(jugadores, comunicacion);
         assertFalse(ronda.realizarRondaYContinuar(tablero));
@@ -127,7 +123,7 @@ public class RondaAtaqueTest {
                 return lista;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 3, new ConstructorDeConjuntoDados())).thenAnswer(new Answer() {
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 return true;
             }

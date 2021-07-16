@@ -19,12 +19,12 @@ public class Pais {
 
     public void colocarEjercitos(int cantidadEjercitos) {
         for(int i = 0; i < cantidadEjercitos; i++) {
-            ejercitos.push(new Ejercito());
+            this.ejercitos.push(new Ejercito());
         }
     }
 
     public int getCantidadEjercitos() {
-        return ejercitos.size();
+        return this.ejercitos.size();
     }
 
     public int eliminarEjercitos(int cantidadEjercitosEliminar) {
@@ -32,9 +32,9 @@ public class Pais {
             throw new CantidadInvalidaDeEjercitosException();
         }
         for(int i = 0; i < cantidadEjercitosEliminar; i++) {
-            ejercitos.pop();
+            this.ejercitos.pop();
         }
-        return ejercitos.size();
+        return this.ejercitos.size();
     }
 
     public void transferirEjercitosA(Pais destino, int cantidad) {

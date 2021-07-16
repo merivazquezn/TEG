@@ -78,9 +78,7 @@ public class AtaqueTest {
             return lista;
         });
 
-        ConstructorDeConjuntoDados constructorDeConjuntoDados = new ConstructorDeConjuntoDados();
-
-        Ataque ataque = new Ataque(constructorDeConjuntoDados, paisAtacante, paisDefensor, 2);
+        Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 2);
         assertTrue(ataque.conquisto());
         assertEquals(paisAtacante.getCantidadEjercitos(), 3);
         assertEquals(paisDefensor.getCantidadEjercitos(), 0);

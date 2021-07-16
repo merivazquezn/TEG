@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.controlador.EleccionAtaque;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.flujoDeJuego.TurnoAtaque;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
@@ -45,7 +46,7 @@ public class TurnoAtaqueTest {
         Tablero tablero = mock(Tablero.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);
-        verify(tablero).conquisto(unPais, otroPais, 2);
+        verify(tablero).conquisto(eq(unPais), eq(otroPais), eq(2), any());
     }
 
     @Test
@@ -72,18 +73,8 @@ public class TurnoAtaqueTest {
                 return lista;
             }
         });
-        when(eleccion.cantidadAMover()).thenAnswer(new Answer() {
-
-            public Object answer(InvocationOnMock invocation) {
-                return 2;
-            }
-        });
-        when(tablero.conquisto(unPais, otroPais, 2)).thenAnswer(new Answer() {
-
-            public Object answer(InvocationOnMock invocation) {
-                return true;
-            }
-        });
+        when(eleccion.cantidadAMover()).thenReturn(2);
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenReturn(true);
         Jugador atacante = mock(Jugador.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);
@@ -119,11 +110,7 @@ public class TurnoAtaqueTest {
                 return 2;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 2)).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                return false;
-            }
-        });
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenReturn(false);
         Jugador atacante = mock(Jugador.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);
@@ -159,7 +146,7 @@ public class TurnoAtaqueTest {
                 return 2;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 3)).thenAnswer(new Answer() {
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 return true;
             }

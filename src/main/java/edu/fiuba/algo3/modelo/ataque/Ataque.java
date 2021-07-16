@@ -56,9 +56,9 @@ public class Ataque {
         this.cantEjercitoAtacantes = this.atacante.eliminarEjercitos(resultados.get(0));
         this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
 
-        if(this.cantEjercitoDefensor <=0)
+        if(this.cantEjercitoDefensor == 0)
             this.defensor.asignarJugador(this.atacante.getJugador());
 
-        return (this.cantEjercitoDefensor <= 0);
+        return (this.cantEjercitoDefensor == 0);
     }
 }
