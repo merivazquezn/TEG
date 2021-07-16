@@ -8,6 +8,7 @@ public class Pais {
     private LinkedList<Ejercito> ejercitos;
     private Jugador jugador;
 
+
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
         this.ejercitos = new LinkedList<Ejercito>();

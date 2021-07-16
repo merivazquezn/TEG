@@ -19,10 +19,10 @@ public class Continente {
         if (this.ocupadoPorJugador(jugador)){
             return this.cantidadEjercitosNuevos;
         }
-
         return 0;
      }
 
+     // TODO: Refactorizar con Foreach
      public boolean ocupadoPorJugador(Jugador jugador) {
          for (int i = 0; i< paises.size(); i++) {
             if (!paises.get(i).esDeJugador(jugador))
