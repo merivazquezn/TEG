@@ -51,9 +51,9 @@ public class Ataque {
 
         ArrayList<Integer> resultados = conjuntoAtacante.ejercitosPerdidos(conjuntoDefensor);
 
-        this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
         this.cantEjercitoAtacantes = this.atacante.eliminarEjercitos(resultados.get(0));
+        this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
 
-        return (cantEjercitoDefensor <= 0);
+        return (this.cantEjercitoDefensor <= 0);
     }
 }
