@@ -53,6 +53,8 @@ public class Pais {
         return this.jugador.equals(unJugador);
     }
 
+    public Jugador getJugador() { return this.jugador; }
+
 
 
 }
