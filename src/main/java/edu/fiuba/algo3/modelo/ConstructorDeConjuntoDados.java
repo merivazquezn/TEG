@@ -12,6 +12,7 @@ public class ConstructorDeConjuntoDados {
     }
 
 
+
     public ArrayList<ConjuntoDados> obtenerConjuntosDados (int cantidadAtacante, int cantidadDefensor){
         ConjuntoDados atacante = new ConjuntoDados (cantidadAtacante, randomizador);
         ConjuntoDados defensor = new ConjuntoDados(cantidadDefensor, randomizador);
