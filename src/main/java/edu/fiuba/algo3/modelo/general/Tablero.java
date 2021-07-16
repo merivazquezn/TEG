@@ -16,8 +16,7 @@ public class Tablero {
         this.continentes = continentes;
     }
 
-    public boolean conquisto(Pais atacante, Pais defensor, int cantidad) {
-        ConstructorDeConjuntoDados constructorConjuntoDados = new ConstructorDeConjuntoDados();
+    public boolean conquisto(Pais atacante, Pais defensor, int cantidad, ConstructorDeConjuntoDados constructorConjuntoDados) {
         Ataque ataque = new Ataque(constructorConjuntoDados, atacante, defensor, cantidad);
         return ataque.conquisto();
     }

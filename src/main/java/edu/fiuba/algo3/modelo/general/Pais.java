@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.general;
 
-import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.util.LinkedList;
 
@@ -14,6 +14,7 @@ public class Pais {
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
         this.ejercitos = new LinkedList<Ejercito>();
+        this.jugador = new JugadorNulo();
     }
 
     public void colocarEjercitos(int cantidadEjercitos) {

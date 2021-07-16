@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.controlador.Comunicacion;
 import edu.fiuba.algo3.controlador.EleccionAtaque;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.flujoDeJuego.RondaAtaque;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
@@ -79,7 +80,7 @@ public class RondaAtaqueTest {
                 return lista;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 3)).thenAnswer(new Answer() {
+        when(tablero.conquisto(unPais, otroPais, 3, new ConstructorDeConjuntoDados())).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 return true;
             }
@@ -126,7 +127,7 @@ public class RondaAtaqueTest {
                 return lista;
             }
         });
-        when(tablero.conquisto(unPais, otroPais, 3)).thenAnswer(new Answer() {
+        when(tablero.conquisto(unPais, otroPais, 3, new ConstructorDeConjuntoDados())).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 return true;
             }
