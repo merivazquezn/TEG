@@ -6,9 +6,13 @@ import java.util.ArrayList;
 
 
 public class Jugador {
-    ArrayList<Pais> listaPaises;
+    private ArrayList<Pais> listaPaises;
+    private int numeroJugador;
+    private static int numeroDeJugadorSiguiente = 1;
 
     public Jugador(){
+        this.numeroJugador = numeroDeJugadorSiguiente;
+        numeroDeJugadorSiguiente++;
         listaPaises = new ArrayList<Pais>();
     }
 
