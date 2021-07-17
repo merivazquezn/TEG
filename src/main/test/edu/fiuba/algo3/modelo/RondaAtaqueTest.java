@@ -102,11 +102,7 @@ public class RondaAtaqueTest {
         Jugador dos = mock(Jugador.class);
         jugadores.add(uno);
         jugadores.add(dos);
-        when(comunicacion.getEleccionAtaque()).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                return eleccion;
-            }
-        });
+        when(comunicacion.getEleccionAtaque()).thenReturn(eleccion);
         when(eleccion.pedirAtaque()).thenAnswer(new Answer() {
             int count = 0;
             public Object answer(InvocationOnMock invocation) {
@@ -117,20 +113,32 @@ public class RondaAtaqueTest {
                     lista.add(3);
                     count++;
                 }
+                else if(count == 1){
+                    lista.add(unPais);
+                    lista.add(otroPaisMas);
+                    lista.add(3);
+                    count++;
+                }
                 else{
                     lista.add("Terminar");
                 }
                 return lista;
             }
         });
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) {
-                return true;
-            }
-        });
-        when(uno.jugadorGano()).thenReturn(true);
+        when(eleccion.cantidadAMover()).thenReturn(1);
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenReturn(true);
+        when(tablero.conquisto(eq(unPais), eq(otroPaisMas), eq(3), any())).thenReturn(true);
+        when(uno.jugadorGano()).thenReturn(false);
         RondaAtaque ronda = new RondaAtaque(jugadores, comunicacion);
-        assertFalse(ronda.realizarRondaYContinuar(tablero));
+
+        int cantidad_original_unPais = otroPais.getCantidadEjercitos();
+        int cantidad_original_unPaisMas = otroPais.getCantidadEjercitos();
+
+        assertTrue(ronda.realizarRondaYContinuar(tablero));
+
+        assertEquals(unPais.getCantidadEjercitos(), 3);
+        assertEquals(otroPais.getCantidadEjercitos(), cantidad_original_unPais+1);
+        assertEquals(otroPaisMas.getCantidadEjercitos(), cantidad_original_unPaisMas+1);
     }
 
 }
