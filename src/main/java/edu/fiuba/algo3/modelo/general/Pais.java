@@ -48,6 +48,7 @@ public class Pais {
 
     public void asignarJugador(Jugador jugador) {
         this.jugador = jugador;
+        this.jugador.asignarPais(this);
     }
 
     public boolean esDeJugador(Jugador unJugador) {
