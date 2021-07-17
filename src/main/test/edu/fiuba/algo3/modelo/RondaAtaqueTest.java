@@ -47,6 +47,7 @@ public class RondaAtaqueTest {
 
     @Test
     public void test02seCreaUnaRondaDeAtaqueSeConquistaUnJugadorGanoYEstaDevuelveNoContinuar(){
+        setUp();
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(5);
         Pais otroPais = new Pais("Chile");
@@ -88,10 +89,7 @@ public class RondaAtaqueTest {
 
     @Test
     public void test03unaRondaDeDosJugadoresJugador1AtacaYConquista2PaisesDelJugador2(){
-        Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(5);
-        Pais otroPais = new Pais("Chile");
-        otroPais.colocarEjercitos(2);
+        setUp();
         Pais otroPaisMas = new Pais("Brasil");
         otroPaisMas.colocarEjercitos(2);
         Tablero tablero = mock(Tablero.class);
