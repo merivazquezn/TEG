@@ -50,7 +50,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 3);
         listaObjetivos.put("Asia", 3);
         listaObjetivos.put("Africa", 3);
@@ -75,7 +75,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 3);
         listaObjetivos.put("Asia", 3);
         listaObjetivos.put("Africa", 3);
@@ -100,7 +100,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 4);
         listaObjetivos.put("Asia", 3);
         listaObjetivos.put("Africa", 5);
@@ -124,7 +124,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 4);
         listaObjetivos.put("Asia", 3);
         listaObjetivos.put("Africa", 5);
@@ -182,7 +182,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 4);
         listaObjetivos.put("Asia", 3);
         Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises(unJugador, "Europa", listaObjetivos);
@@ -200,7 +200,7 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Map<String, Integer> listaObjetivos = new HashMap<>();
+        HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 3);
         listaObjetivos.put("Asia", 4);
         Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises(unJugador, "Europa", listaObjetivos);
