@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.modelo.general.*;
+import edu.fiuba.algo3.modelo.jugador.*;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
