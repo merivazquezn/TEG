@@ -51,9 +51,13 @@ public class TurnoAtaqueTest {
 
     @Test
     public void test02elAtaqueConquistaYElTurnoTransfiereLasFichasPedidas(){
+        Jugador unJugador = mock(Jugador.class);
+        Jugador otroJugador = mock(Jugador.class);
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(5);
+        unPais.asignarJugador(unJugador);
         Pais otroPais = new Pais("Chile");
+        otroPais.asignarJugador(otroJugador);
         otroPais.colocarEjercitos(2);
         EleccionAtaque eleccion = mock(EleccionAtaque.class);
         Tablero tablero = mock(Tablero.class);
@@ -74,7 +78,12 @@ public class TurnoAtaqueTest {
             }
         });
         when(eleccion.cantidadAMover()).thenReturn(2);
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenReturn(true);
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenAnswer( new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                otroPais.serConquistadoPor(unJugador);
+                return true;
+            }
+        });
         Jugador atacante = mock(Jugador.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);

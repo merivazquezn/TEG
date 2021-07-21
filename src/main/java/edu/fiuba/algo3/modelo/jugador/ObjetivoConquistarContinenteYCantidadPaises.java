@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.jugador;
 import edu.fiuba.algo3.modelo.general.Tablero;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
@@ -11,7 +12,7 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
     private ObjetivoCantidadPorContinente objetivo2;
 
 
-    public ObjetivoConquistarContinenteYCantidadPaises(Jugador unJugador, String continente,Map<String, Integer> listaObjetivos2){
+    public ObjetivoConquistarContinenteYCantidadPaises(Jugador unJugador, String continente, HashMap<String, Integer> listaObjetivos2){
         this.jugador = unJugador;
         ArrayList<String> listaObjetivo1 = new ArrayList<>();
         listaObjetivo1.add(continente);

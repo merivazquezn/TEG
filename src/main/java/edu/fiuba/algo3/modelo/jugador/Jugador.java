@@ -43,7 +43,7 @@ public class Jugador {
     public void perdioPaisAnte(Pais pais, Jugador jugador){
         int i = 0;
         boolean borrado = false;
-        while( borrado == false){
+        while( borrado == false && i < this.listaPaises.size()){
             if(this.listaPaises.get(i).equals(pais)){
                 borrado = true;
                 this.listaPaises.remove(i);

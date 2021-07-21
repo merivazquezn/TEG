@@ -20,8 +20,7 @@ public class TableroTest {
     @Test
     public void test01CantidadEjercitosPorContinenteDevuelve0SiJugadorNoConquistoNingunContinente() {
 
-
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -55,7 +54,7 @@ public class TableroTest {
     public void test02CantidadEjercitosPorContinenteDevuelve7SiJugadorConquistoSoloAsia() {
 
 
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -89,7 +88,7 @@ public class TableroTest {
     public void test03CantidadEjercitosPorContinenteDevuelve5SiJugadorConquistoOceaniaYAfrica() {
 
 
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -122,7 +121,7 @@ public class TableroTest {
     @Test
     public void test04CantidadEjercitosPorContinenteDevuelve25SiJugadorConquistoTodosLosContinentes() {
 
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -154,7 +153,7 @@ public class TableroTest {
 
     @Test
     public void test05CantidadDePaisesEnAsiaDebeSer5(){
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -183,7 +182,7 @@ public class TableroTest {
 
     @Test
     public void test06CantidadDePaisesEnEuropaDebeSer9(){
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -212,7 +211,7 @@ public class TableroTest {
 
     @Test
     public void test07EuropaDeberiaEstarOcupadaPorUnJugador(){
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -239,7 +238,7 @@ public class TableroTest {
 
     @Test
     public void test07AsiaNoDeberiaEstarOcupadaPorUnJugador(){
-        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);

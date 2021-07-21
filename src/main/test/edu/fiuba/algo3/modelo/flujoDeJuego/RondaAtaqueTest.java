@@ -98,6 +98,9 @@ public class RondaAtaqueTest {
         otroPaisMas.colocarEjercitos(2);
         Jugador jugadorUno = mock(Jugador.class);
         Jugador jugadorDos = mock(Jugador.class);
+        this.unPais.asignarJugador(jugadorUno);
+        this.otroPais.asignarJugador(jugadorDos);
+        otroPaisMas.asignarJugador(jugadorDos);
         jugadores.add(jugadorUno);
         jugadores.add(jugadorDos);
         when(comunicacion.getEleccionAtaque()).thenReturn(eleccion);
@@ -124,8 +127,18 @@ public class RondaAtaqueTest {
             }
         });
         when(eleccion.cantidadAMover()).thenReturn(1);
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenReturn(true);
-        when(tablero.conquisto(eq(unPais), eq(otroPaisMas), eq(3), any())).thenReturn(true);
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                otroPais.serConquistadoPor(jugadorUno);
+                return true;
+            }
+        });
+        when(tablero.conquisto(eq(unPais), eq(otroPaisMas), eq(3), any())).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                otroPaisMas.serConquistadoPor(jugadorUno);
+                return true;
+            }
+        });
         when(jugadorUno.jugadorGano()).thenReturn(false);
         RondaAtaque ronda = new RondaAtaque(jugadores, comunicacion);
 
