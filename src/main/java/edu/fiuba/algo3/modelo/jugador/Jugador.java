@@ -36,4 +36,22 @@ public class Jugador {
         return listaPaises.size();
     }
 
+    public Jugador jugadorQueLoDerroto(){
+        return this.jugadorQueLoDerroto;
+    }
+
+    public void perdioPaisAnte(Pais pais, Jugador jugador){
+        int i = 0;
+        boolean borrado = false;
+        while( borrado == false){
+            if(this.listaPaises.get(i).equals(pais)){
+                borrado = true;
+                this.listaPaises.remove(i);
+            }
+            i++;
+        }
+        if(this.listaPaises.size() == 0)
+            this.jugadorQueLoDerroto = jugador;
+    }
+
 }
