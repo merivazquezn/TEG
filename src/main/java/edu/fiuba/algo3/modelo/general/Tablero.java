@@ -31,4 +31,9 @@ public class Tablero {
     public int cantidadPaisesDeJugadorEn(Jugador jugador, String continente){
         return this.continentes.get(continente).cantidadPaisesDeJugador(jugador);
     }
+
+    public boolean continenteOcupadoPorJugador(Jugador jugador, String continente){
+        return this.continentes.get(continente).ocupadoPorJugador(jugador);
+    }
+
 }

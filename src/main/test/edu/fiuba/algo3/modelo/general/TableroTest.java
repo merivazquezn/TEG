@@ -210,4 +210,58 @@ public class TableroTest {
 
     }
 
+    @Test
+    public void test07EuropaDeberiaEstarOcupadaPorUnJugador(){
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        Jugador jugador = new Jugador();
+
+        Tablero tablero = new Tablero(continentes);
+
+        Continente americaDelSur = mock(Continente.class);
+        Continente americaDelNorte = mock(Continente.class);
+        Continente europa = mock(Continente.class);
+        Continente asia = mock(Continente.class);
+        Continente africa = mock(Continente.class);
+        Continente oceania = mock(Continente.class);
+
+        when(europa.ocupadoPorJugador(jugador)).thenReturn(true);
+
+        continentes.put("America Del Norte", americaDelNorte);
+        continentes.put("America Del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
+
+        assertTrue(tablero.continenteOcupadoPorJugador(jugador, "Europa"));
+
+    }
+
+    @Test
+    public void test07AsiaNoDeberiaEstarOcupadaPorUnJugador(){
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        Jugador jugador = new Jugador();
+
+        Tablero tablero = new Tablero(continentes);
+
+        Continente americaDelSur = mock(Continente.class);
+        Continente americaDelNorte = mock(Continente.class);
+        Continente europa = mock(Continente.class);
+        Continente asia = mock(Continente.class);
+        Continente africa = mock(Continente.class);
+        Continente oceania = mock(Continente.class);
+
+        when(asia.ocupadoPorJugador(jugador)).thenReturn(false);
+
+        continentes.put("America Del Norte", americaDelNorte);
+        continentes.put("America Del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
+
+        assertFalse(tablero.continenteOcupadoPorJugador(jugador, "Asia"));
+
+    }
+
 }

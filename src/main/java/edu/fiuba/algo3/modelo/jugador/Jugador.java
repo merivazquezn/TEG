@@ -9,11 +9,17 @@ public class Jugador {
     private ArrayList<Pais> listaPaises;
     private int numeroJugador;
     private static int numeroDeJugadorSiguiente = 1;
+    Jugador jugadorQueLoDerroto;
 
     public Jugador(){
         this.numeroJugador = numeroDeJugadorSiguiente;
         numeroDeJugadorSiguiente++;
         listaPaises = new ArrayList<Pais>();
+        this.asignarJugadorQueDerroto();
+    }
+
+    protected void asignarJugadorQueDerroto(){
+        this.jugadorQueLoDerroto = new JugadorNulo();
     }
 
     public boolean jugadorGano(){

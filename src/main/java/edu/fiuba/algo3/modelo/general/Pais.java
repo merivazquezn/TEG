@@ -19,6 +19,7 @@ public class Pais {
         this.limitrofes = new ArrayList<Pais>();
     }
 
+
     public void colocarEjercitos(int cantidadEjercitos) {
         for(int i = 0; i < cantidadEjercitos; i++) {
             this.ejercitos.push(new Ejercito());
@@ -40,7 +41,9 @@ public class Pais {
     }
 
     public void transferirEjercitosA(Pais destino, int cantidad) {
-        //TODO: comprobar que sean del mismo jugador
+        Jugador propietarioDestino = destino.getJugador();
+        if(!this.jugador.equals(propietarioDestino))
+            throw new MovimientoDeEjercitosInvalidoException();
         if (this.getCantidadEjercitos() <= cantidad)
             throw new CantidadInvalidaDeEjercitosException();
 
@@ -50,6 +53,7 @@ public class Pais {
 
     public void asignarJugador(Jugador jugador) {
         this.jugador = jugador;
+        this.jugador.asignarPais(this);
     }
 
     public boolean esDeJugador(Jugador unJugador) {
@@ -66,5 +70,9 @@ public class Pais {
         return this.nombre;
     }
 
+    public void serConquistadoPor(Jugador jugadorConquistador){
+        this.jugador.perdioPaisAnte(this, jugadorConquistador);
+        this.asignarJugador(jugadorConquistador);
+    }
 }
 

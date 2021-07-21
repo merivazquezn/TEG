@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.general.Pais;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -100,6 +101,36 @@ public class PaisTest {
         Pais otroPais = new Pais("Chile");
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 5);
+        });
+    }
+
+    @Test
+    public void test11paisCon3EjercitosEsConquistadoYPasaASerDeOtroJugador() {
+        Jugador unJugador = mock(Jugador.class);
+        Jugador otroJugador = mock(Jugador.class);
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(3);
+        unPais.asignarJugador(unJugador);
+        Pais otroPais = new Pais("Chile");
+        otroPais.colocarEjercitos(3);
+        otroPais.asignarJugador(otroJugador);
+        unPais.eliminarEjercitos(3);
+        unPais.serConquistadoPor(unPais.getJugador());
+        verify(unJugador, times(1)).perdioPaisAnte(unPais, otroJugador);
+    }
+
+    @Test
+    public void test12paisCon3EjercitosQuiereMover1AOtroPaisDeOtroJugadorYLanzaExcepcion() {
+        Jugador unJugador = mock(Jugador.class);
+        Jugador otroJugador = mock(Jugador.class);
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(3);
+        unPais.asignarJugador(unJugador);
+        Pais otroPais = new Pais("Chile");
+        otroPais.colocarEjercitos(3);
+        otroPais.asignarJugador(otroJugador);
+        assertThrows(MovimientoDeEjercitosInvalidoException.class, () -> {
+            unPais.transferirEjercitosA(otroPais, 1);
         });
     }
 
