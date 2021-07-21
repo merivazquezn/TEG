@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.ataque;
 
 import static org.mockito.Mockito.*;
-import edu.fiuba.algo3.modelo.ataque.*;
+
 import edu.fiuba.algo3.modelo.general.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;

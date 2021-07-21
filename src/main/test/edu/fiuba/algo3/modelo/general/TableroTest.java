@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.general;
 
 import static org.mockito.Mockito.*;
 
@@ -8,6 +8,9 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +21,7 @@ public class TableroTest {
     public void test01CantidadEjercitosPorContinenteDevuelve0SiJugadorNoConquistoNingunContinente() {
 
 
-        ArrayList<Continente> continentes = new ArrayList<Continente>();
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -119,7 +122,6 @@ public class TableroTest {
     @Test
     public void test04CantidadEjercitosPorContinenteDevuelve25SiJugadorConquistoTodosLosContinentes() {
 
-
         ArrayList<Continente> continentes = new ArrayList<Continente>();
         Jugador jugador = new Jugador();
 
@@ -146,7 +148,66 @@ public class TableroTest {
         continentes.add(oceania);
         continentes.add(asia);
 
-        assertEquals(tablero.cantidadEjercitosPorContinente(jugador), 25);
+        assertEquals(25, tablero.cantidadEjercitosPorContinente(jugador));
 
     }
+
+    @Test
+    public void test05CantidadDePaisesEnAsiaDebeSer5(){
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        Jugador jugador = new Jugador();
+
+        Tablero tablero = new Tablero(continentes);
+
+        Continente americaDelSur = mock(Continente.class);
+        Continente americaDelNorte = mock(Continente.class);
+        Continente europa = mock(Continente.class);
+        Continente asia = mock(Continente.class);
+        Continente africa = mock(Continente.class);
+        Continente oceania = mock(Continente.class);
+
+        when(asia.cantidadPaisesDeJugador(jugador)).thenReturn(5);
+        when(europa.cantidadPaisesDeJugador(jugador)).thenReturn(6);
+        when(africa.cantidadPaisesDeJugador(jugador)).thenReturn(7);
+
+        continentes.put("America Del Norte", americaDelNorte);
+        continentes.put("America Del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
+
+        assertEquals(5, tablero.cantidadPaisesDeJugadorEn(jugador, "Asia"));
+
+    }
+
+    @Test
+    public void test06CantidadDePaisesEnEuropaDebeSer9(){
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
+        Jugador jugador = new Jugador();
+
+        Tablero tablero = new Tablero(continentes);
+
+        Continente americaDelSur = mock(Continente.class);
+        Continente americaDelNorte = mock(Continente.class);
+        Continente europa = mock(Continente.class);
+        Continente asia = mock(Continente.class);
+        Continente africa = mock(Continente.class);
+        Continente oceania = mock(Continente.class);
+
+        when(asia.cantidadPaisesDeJugador(jugador)).thenReturn(5);
+        when(europa.cantidadPaisesDeJugador(jugador)).thenReturn(9);
+        when(africa.cantidadPaisesDeJugador(jugador)).thenReturn(7);
+
+        continentes.put("America Del Norte", americaDelNorte);
+        continentes.put("America Del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
+
+        assertEquals(9, tablero.cantidadPaisesDeJugadorEn(jugador, "Europa"));
+
+    }
+
 }

@@ -24,7 +24,6 @@ public class Continente {
         return 0;
      }
 
-     // TODO: Refactorizar con Foreach
      public boolean ocupadoPorJugador(Jugador jugador) {
          for (int i = 0; i< paises.size(); i++) {
             if (!paises.get(i).esDeJugador(jugador))

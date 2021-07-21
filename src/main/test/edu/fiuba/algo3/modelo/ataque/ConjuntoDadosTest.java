@@ -1,9 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.ataque;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-import edu.fiuba.algo3.modelo.ataque.*;
 import org.mockito.invocation.*;
 
 import org.junit.jupiter.api.Test;

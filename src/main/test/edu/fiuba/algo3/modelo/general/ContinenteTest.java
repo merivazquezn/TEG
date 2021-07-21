@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.general;
 import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.general.Continente;

@@ -5,14 +5,13 @@ import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Tablero {
-    // TODO: Tableto tiene paises?¡?¡?¡
-    //private ArrayList<Pais> paises;
-    private ArrayList<Continente> continentes;
+    private Map<String, Continente> continentes;
 
-    public Tablero(ArrayList<Continente> continentes) {
-        //this.paises = paises;
+    public Tablero(Map<String, Continente> continentes) {
         this.continentes = continentes;
     }
 
@@ -21,12 +20,10 @@ public class Tablero {
         return ataque.conquisto();
     }
 
-    //TODO: Refactorizar por for each
     public int cantidadEjercitosPorContinente(Jugador jugador) {
         int cantidadEjercitos = 0;
-
-        for(int i = 0; i < continentes.size(); i++) {
-            cantidadEjercitos += continentes.get(i).ejercitosParaJugador(jugador);
+        for (Continente actual : this.continentes.values()){
+            cantidadEjercitos += actual.ejercitosParaJugador(jugador);
         }
 
         return cantidadEjercitos;

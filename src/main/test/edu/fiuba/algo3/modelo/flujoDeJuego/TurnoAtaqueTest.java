@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.flujoDeJuego;
 
 import edu.fiuba.algo3.controlador.EleccionAtaque;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
