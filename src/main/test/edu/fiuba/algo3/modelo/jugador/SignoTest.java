@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.jugador.IdentificadorInvalidoException;
 import edu.fiuba.algo3.modelo.jugador.Signo;
@@ -11,7 +11,7 @@ public class SignoTest {
     public void test01SignoDevuelveIdentificadorInvalidoExceptionSiElIdentificadorNoEstaEntre0y2() {
 
         assertThrows(IdentificadorInvalidoException.class, () -> {
-            Signo signo = new Signo(-1);
+            Signo signo = new Signo(-2);
         });
 
         assertThrows(IdentificadorInvalidoException.class, () -> {
