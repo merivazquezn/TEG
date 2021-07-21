@@ -2,6 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.general.Continente;
 import edu.fiuba.algo3.modelo.general.Pais;
+import edu.fiuba.algo3.modelo.jugador.IdentificadorInvalidoException;
+import edu.fiuba.algo3.modelo.jugador.Signo;
+import edu.fiuba.algo3.modelo.jugador.SignoComodin;
+import edu.fiuba.algo3.modelo.jugador.Tarjeta;
 import edu.fiuba.algo3.util.Parser;
 
 import org.junit.jupiter.api.Test;
@@ -9,10 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +22,7 @@ public class ParserTest {
     @Test
     public void test01leerArchivoPaisesDevuelveFileNotFoundExceptionSiNoExisteElArchivo() {
         assertThrows(FileNotFoundException.class, () -> {
-            Parser.leerArchivoPaises("archivoInexistente.csv");
+            Parser.leerArchivo("archivoInexistente.csv");
         });
 
     }
@@ -31,7 +32,7 @@ public class ParserTest {
     public void test02leeArchivoDePaisesSinElevarExcepcion() {
         try {
 
-            Parser.leerArchivoPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+            Parser.leerArchivo("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
             assertTrue(true);
         } catch (Exception e) {
             assertFalse(true);
@@ -43,7 +44,7 @@ public class ParserTest {
     public void test03leeArchivoPaisesCorrectamente() throws IOException {
         ArrayList<ArrayList> devolucion = new ArrayList<ArrayList>();
         try {
-            devolucion = Parser.leerArchivoPaises("./src/main/test/edu/fiuba/algo3/modelo/test1parser.csv");
+            devolucion = Parser.leerArchivo("./src/main/test/edu/fiuba/algo3/modelo/test1parser.csv");
         } catch (Exception e) {
             fail();
         }
@@ -104,7 +105,7 @@ public class ParserTest {
 
 
     @Test
-    public void test05parseaArchivoDelJuegoSinElevarExcepcion() {
+    public void test05parseaArchivoDePaisesSinElevarExcepcion() {
         try {
             Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
             assertTrue(true);
@@ -116,7 +117,7 @@ public class ParserTest {
 
     @Test
     public void test06ParsearPaisesleeArchivoPaisesCorrectamente() {
-        ArrayList<ArrayList> devolucion = new ArrayList<ArrayList>();
+        ArrayList<HashMap> devolucion = new ArrayList<HashMap>();
         try {
             devolucion = Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
         } catch (Exception e) {
@@ -124,28 +125,132 @@ public class ParserTest {
             fail();
         }
 
-        ArrayList<Pais> paises = devolucion.get(0);
-        ArrayList<Continente> continentes = devolucion.get(1);
+        HashMap<String, Pais> paises = devolucion.get(0);
+        HashMap<String, Continente> continentes = devolucion.get(1);
 
         String[] nombresPaises = {"Francia", "Tartaria", "Etiopia", "Australia", "Egipto", "Argentina",
                 "China", "Alemania", "Mexico", "Sudafrica", "Japon", "Sumatra"};
 
 
         for (String nombrePais : nombresPaises) {
-            boolean encontro = false;
 
-            for (Pais unPais : paises) {
-                if (unPais.getNombre().equals(nombrePais)) {
-                    encontro = true;
-                }
-            }
-            if (!encontro)
-                fail();
+            assertTrue(paises.containsKey(nombrePais));
+
+            Pais paisEncontrado = paises.get(nombrePais);
+
+            assertEquals(paisEncontrado.getNombre(), nombrePais);
+
         }
-
-        assertTrue(true);
     }
 
+    @Test
+    public void test07ParsearPaisesAsignaCorrectamenteLosPaisesALosContinentes() {
+        ArrayList<HashMap> devolucion = new ArrayList<HashMap>();
+        try {
+            devolucion = Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
+        HashMap<String, Continente> hashContinentes = devolucion.get(1);
+
+        ArrayList<Pais> paisesOceania = hashContinentes.get("Oceania").getListaPaises();
+
+        HashSet<String> setNombrePaises = new HashSet<String>();
+
+        setNombrePaises.add("Australia");
+        setNombrePaises.add("Java");
+        setNombrePaises.add("Borneo");
+        setNombrePaises.add("Sumatra");
+
+        for (Pais pais : paisesOceania) {
+            assertTrue(setNombrePaises.contains(pais.getNombre()));
+
+            setNombrePaises.remove(pais.getNombre());
+        }
+
+        assertTrue(setNombrePaises.isEmpty());
+    }
+
+
+
+    @Test
+    public void test08ObtenerSignoDevuelveSignoConElIdCorrectoSegunString() {
+        String string1 = "barco";
+        String string2 = "globo";
+        String string3 = "cañon";
+        String string4 = "comodin";
+
+
+        assertEquals(Parser.obtenerSigno(string1).getIdentificador(), 0);
+        assertEquals(Parser.obtenerSigno(string2).getIdentificador(), 1);
+        assertEquals(Parser.obtenerSigno(string3).getIdentificador(), 2);
+        assertEquals(Parser.obtenerSigno(string4).getIdentificador(), -1);
+    }
+
+    @Test
+    public void test09ObtenerSignoElevaIdentificadorInvalidoSiRecibeStringInvalido() {
+        assertThrows(IdentificadorInvalidoException.class, () -> {
+            Signo signo = Parser.obtenerSigno("Saracatunga");
+        });
+    }
+
+
+    @Test
+    public void test10ParsearTarjetasDevuelveFileNotFoundExceptionSiNoExisteElArchivo() {
+        assertThrows(FileNotFoundException.class, () -> {
+            Parser.parserarPaises("archivoInexistente.csv");
+        });
+
+    }
+
+    @Test
+    public void test11parseaArchivoDelJuegoSinElevarExcepcion() {
+        HashMap<String, Pais> hashPaises = new HashMap<String, Pais>();
+
+        hashPaises.put("Terranova", new Pais("Terranova"));
+        hashPaises.put("Argentina", new Pais("Argentina"));
+        hashPaises.put("Iran", new Pais("Iran"));
+        hashPaises.put("Madagascar", new Pais("Madagascar"));
+
+
+        try {
+            Parser.parsearTarjetas("./src/main/test/edu/fiuba/algo3/modelo/test3parsertarjetas.csv", hashPaises);
+            assertTrue(true);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void test12leerArchivoDePruebaTarjetasGeneraLasTarjetasCorrectas() {
+        HashMap<String, Pais> hashPaises = new HashMap<String, Pais>();
+
+        hashPaises.put("Terranova", new Pais("Terranova"));
+        hashPaises.put("Argentina", new Pais("Argentina"));
+        hashPaises.put("Iran", new Pais("Iran"));
+        hashPaises.put("Madagascar", new Pais("Madagascar"));
+
+        HashMap<String, Signo> signoDePais = new HashMap<String, Signo>();
+
+        signoDePais.put("Argentina", new SignoComodin());
+        signoDePais.put("Madagascar", new Signo(0));
+        signoDePais.put("Iran", new Signo(1));
+        signoDePais.put("Terranova", new Signo(2));
+
+        ArrayList<Tarjeta> arrayTarjetas = new ArrayList<Tarjeta>();
+
+        try {
+            arrayTarjetas = Parser.parsearTarjetas("./src/main/test/edu/fiuba/algo3/modelo/test3parsertarjetas.csv", hashPaises);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
+        for (Tarjeta tarjeta : arrayTarjetas) {
+            String nombrePais = tarjeta.getPais().getNombre();
+            assertTrue(tarjeta.obtenerSigno().compararIdentificador(signoDePais.get(nombrePais)));
+        }
+    }
 }
 
 

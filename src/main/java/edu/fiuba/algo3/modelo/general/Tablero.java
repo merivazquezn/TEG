@@ -5,13 +5,14 @@ import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class Tablero {
-    private Map<String, Continente> continentes;
+    private HashMap<String, Continente> continentes;
 
-    public Tablero(Map<String, Continente> continentes) {
+    public Tablero(HashMap<String, Continente> continentes) {
         this.continentes = continentes;
     }
 

@@ -7,10 +7,13 @@ public class Tarjeta {
 
     private final Pais pais;
     private Jugador jugador;
+    private Signo signo;
 
-    public Tarjeta(Pais pais) {
+
+    public Tarjeta(Pais pais, Signo signo) {
         this.pais = pais;
         this.jugador = new JugadorNulo();
+        this.signo = signo;
     }
 
     public void asignarJugador(Jugador jugador) {
@@ -24,4 +27,18 @@ public class Tarjeta {
         }
         pais.colocarEjercitos(2);
     }
+
+    public boolean mismoSignoQue(Tarjeta tarjeta) {
+        return this.signo.mismoSignoQue(tarjeta.obtenerSigno());
+    }
+
+    public Signo obtenerSigno() {
+        return this.signo;
+    }
+
+    public Pais getPais() {
+        return this.pais;
+    }
 }
+
+

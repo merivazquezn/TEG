@@ -42,4 +42,12 @@ public class Continente {
          return cantidadPaises;
      }
 
+     public String getNombre() {
+         return this.getNombre();
+     }
+
+     public ArrayList<Pais> getListaPaises() {
+        return this.paises;
+     }
+
 }
