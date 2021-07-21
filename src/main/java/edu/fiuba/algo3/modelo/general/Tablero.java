@@ -28,4 +28,7 @@ public class Tablero {
 
         return cantidadEjercitos;
     }
+    public int cantidadPaisesDeJugadorEn(Jugador jugador, String continente){
+        return this.continentes.get(continente).cantidadPaisesDeJugador(jugador);
+    }
 }
