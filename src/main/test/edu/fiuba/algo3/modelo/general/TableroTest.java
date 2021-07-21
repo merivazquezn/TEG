@@ -40,12 +40,12 @@ public class TableroTest {
         when(africa.ejercitosParaJugador(jugador)).thenReturn(0);
         when(oceania.ejercitosParaJugador(jugador)).thenReturn(0);
 
-        continentes.add(americaDelNorte);
-        continentes.add(americaDelSur);
-        continentes.add(africa);
-        continentes.add(europa);
-        continentes.add(oceania);
-        continentes.add(asia);
+        continentes.put("America del Norte",americaDelNorte);
+        continentes.put("America del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
 
         assertEquals(tablero.cantidadEjercitosPorContinente(jugador), 0);
 
@@ -55,7 +55,7 @@ public class TableroTest {
     public void test02CantidadEjercitosPorContinenteDevuelve7SiJugadorConquistoSoloAsia() {
 
 
-        ArrayList<Continente> continentes = new ArrayList<Continente>();
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -74,12 +74,12 @@ public class TableroTest {
         when(africa.ejercitosParaJugador(jugador)).thenReturn(0);
         when(oceania.ejercitosParaJugador(jugador)).thenReturn(0);
 
-        continentes.add(americaDelNorte);
-        continentes.add(americaDelSur);
-        continentes.add(africa);
-        continentes.add(europa);
-        continentes.add(oceania);
-        continentes.add(asia);
+        continentes.put("America del Norte",americaDelNorte);
+        continentes.put("America del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
 
         assertEquals(tablero.cantidadEjercitosPorContinente(jugador), 7);
 
@@ -89,7 +89,7 @@ public class TableroTest {
     public void test03CantidadEjercitosPorContinenteDevuelve5SiJugadorConquistoOceaniaYAfrica() {
 
 
-        ArrayList<Continente> continentes = new ArrayList<Continente>();
+        Map<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
         Tablero tablero = new Tablero(continentes);
@@ -108,12 +108,12 @@ public class TableroTest {
         when(africa.ejercitosParaJugador(jugador)).thenReturn(3);
         when(oceania.ejercitosParaJugador(jugador)).thenReturn(2);
 
-        continentes.add(americaDelNorte);
-        continentes.add(americaDelSur);
-        continentes.add(africa);
-        continentes.add(europa);
-        continentes.add(oceania);
-        continentes.add(asia);
+        continentes.put("America del Norte",americaDelNorte);
+        continentes.put("America del Sur", americaDelSur);
+        continentes.put("Africa", africa);
+        continentes.put("Europa", europa);
+        continentes.put("Oceania", oceania);
+        continentes.put("Asia", asia);
 
         assertEquals(tablero.cantidadEjercitosPorContinente(jugador), 5);
 

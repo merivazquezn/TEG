@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.general;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Continente {
     private int cantidadEjercitosNuevos;
@@ -25,13 +26,20 @@ public class Continente {
      }
 
      public boolean ocupadoPorJugador(Jugador jugador) {
-         for (int i = 0; i< paises.size(); i++) {
-            if (!paises.get(i).esDeJugador(jugador))
-                return false;
+         for (Pais pais : this.paises) {
+             if (!pais.esDeJugador(jugador))
+                 return false;
          }
 
          return true;
      }
-
+     public int cantidadPaisesDeJugador(Jugador jugador){
+         int cantidadPaises = 0;
+         for (Pais pais : this.paises) {
+             if (pais.esDeJugador(jugador))
+                 cantidadPaises++;
+         }
+         return cantidadPaises;
+     }
 
 }
