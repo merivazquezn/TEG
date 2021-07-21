@@ -117,7 +117,7 @@ public class PaisTest {
         otroPais.colocarEjercitos(3);
         otroPais.asignarJugador(otroJugador);
         unPais.eliminarEjercitos(3);
-        unPais.serConquistadoPor(unPais.getJugador());
+        unPais.serConquistadoPor(otroPais.getJugador());
         verify(unJugador, times(1)).perdioPaisAnte(unPais, otroJugador);
     }
 
