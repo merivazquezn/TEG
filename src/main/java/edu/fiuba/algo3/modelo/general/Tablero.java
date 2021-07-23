@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.general;
 import edu.fiuba.algo3.modelo.ataque.Ataque;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.infraestructura.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

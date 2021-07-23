@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.ataque;
 
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

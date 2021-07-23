@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.util;
+package edu.fiuba.algo3.infraestructura;
 
 import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.jugador.Signo;
@@ -8,13 +8,10 @@ import edu.fiuba.algo3.modelo.jugador.Tarjeta;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.invoke.SwitchPoint;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.lang.*;
-import java.util.Locale;
 
 
 public class Parser {

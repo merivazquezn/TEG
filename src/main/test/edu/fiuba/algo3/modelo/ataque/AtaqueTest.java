@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.ataque;
 
 import static org.mockito.Mockito.*;
 
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.general.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
@@ -19,7 +20,7 @@ public class AtaqueTest {
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
 
-        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados(new Randomizador());
 
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 2);
@@ -33,7 +34,7 @@ public class AtaqueTest {
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
 
-        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados(new Randomizador());
 
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 0);
@@ -47,7 +48,7 @@ public class AtaqueTest {
         Pais paisDefensor = new Pais("Chile");
         paisDefensor.colocarEjercitos(5);
 
-        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados();
+        ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados(new Randomizador());
 
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 4);

@@ -6,13 +6,12 @@ import edu.fiuba.algo3.modelo.jugador.IdentificadorInvalidoException;
 import edu.fiuba.algo3.modelo.jugador.Signo;
 import edu.fiuba.algo3.modelo.jugador.SignoComodin;
 import edu.fiuba.algo3.modelo.jugador.Tarjeta;
-import edu.fiuba.algo3.util.Parser;
+import edu.fiuba.algo3.infraestructura.Parser;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;

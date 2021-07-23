@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 import edu.fiuba.algo3.controlador.EleccionAtaque;
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
@@ -23,7 +24,7 @@ public class TurnoAtaque implements Turno{
         while(orden.get(0).toString() != "Terminar"){
             Pais paisAtacante = (Pais) orden.get(0);
             Pais paisDefensor = (Pais) orden.get(1);
-            if(tablero.conquisto(paisAtacante, paisDefensor, (int) orden.get(2), new ConstructorDeConjuntoDados())){
+            if(tablero.conquisto(paisAtacante, paisDefensor, (int) orden.get(2), new ConstructorDeConjuntoDados(new Randomizador()))){
                 if(this.atacante.jugadorGano())
                     return false;
                 int cantidadAMover = this.eleccion.cantidadAMover();

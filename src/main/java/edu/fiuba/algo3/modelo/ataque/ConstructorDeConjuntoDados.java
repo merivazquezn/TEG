@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.ataque;
 
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+import edu.fiuba.algo3.infraestructura.Randomizador;
+
 import java.util.ArrayList;
 
 public class ConstructorDeConjuntoDados {
@@ -7,8 +10,8 @@ public class ConstructorDeConjuntoDados {
     private IRandomizador randomizador;
 
 
-    public ConstructorDeConjuntoDados (){
-        this.randomizador = new Randomizador();
+    public ConstructorDeConjuntoDados (IRandomizador randomizador){
+        this.randomizador = randomizador;
     }
 
 

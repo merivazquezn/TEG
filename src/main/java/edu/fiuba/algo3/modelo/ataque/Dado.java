@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.ataque;
 
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+
 public class Dado implements Comparable<Dado>{
     public static final int DADO_GANO = 1;
     public static final int DADO_EMPATO = 0;

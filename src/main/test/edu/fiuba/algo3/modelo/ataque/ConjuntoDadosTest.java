@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import org.mockito.invocation.*;
 
 import org.junit.jupiter.api.Test;
