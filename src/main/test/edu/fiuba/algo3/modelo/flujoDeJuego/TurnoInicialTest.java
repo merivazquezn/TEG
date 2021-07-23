@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class  TurnoInicialTest {
-
+/*
     Jugador jugador;
     Pais unPais;
     Tablero tablero;
@@ -117,7 +117,7 @@ public class  TurnoInicialTest {
         turno.realizarTurnoYContinuar(tablero);
         assertEquals(7, unPais.getCantidadEjercitos());
     }
-
+*/
 }
 
 //TODO: crear la prueba en la que se cumple el objetivo apenas se colocan los paises en el turno inicial

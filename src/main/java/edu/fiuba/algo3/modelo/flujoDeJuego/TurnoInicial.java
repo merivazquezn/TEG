@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class TurnoInicial implements Turno{
-
+/*
     private Jugador jugador;
     private EleccionInicial eleccion;
     private int cantidadAColocar;
@@ -38,6 +38,7 @@ public class TurnoInicial implements Turno{
         }
         return true;
     }
+    */
 }
 
 

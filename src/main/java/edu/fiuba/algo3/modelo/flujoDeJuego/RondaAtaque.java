@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 import java.util.ArrayList;
 
 public class RondaAtaque{
+    /*
     private ArrayList <Jugador> jugadores;
     private EleccionAtaque eleccionAtaque;
 
@@ -29,5 +30,5 @@ public class RondaAtaque{
         }
         return continuarJuego;
     }
-
+*/
 }

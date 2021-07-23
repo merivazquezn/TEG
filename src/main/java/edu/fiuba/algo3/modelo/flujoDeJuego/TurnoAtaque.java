@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 import java.util.ArrayList;
 
 public class TurnoAtaque implements Turno{
-
+/*
     private Jugador atacante;
     private EleccionAtaque eleccion;
 
@@ -36,5 +36,6 @@ public class TurnoAtaque implements Turno{
         }
         return true;
     }
+    */
 }
 

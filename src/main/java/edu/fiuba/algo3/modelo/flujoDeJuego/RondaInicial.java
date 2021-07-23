@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RondaInicial {
-
+/*
     private final Juego juego;
     private final int cantidadDeJugadores;
     private ArrayList<Jugador> listaJugadores;
@@ -42,14 +42,7 @@ public class RondaInicial {
         this.generarListaJugadores();
         int i = 0;
         boolean continuarJuego = true;
-        /*while(i< this.cantidadDeJugadores && continuarJuego){
-            TurnoInicial turno = new TurnoInicial(this.listaJugadores.get(i), 5, this.eleccion);
-            continuarJuego = turno.realizarTurnoYContinuar(tablero);
-        }
-        for(i = 0; i< this.cantidadDeJugadores;i++){
-            TurnoInicial turno = new TurnoInicial(this.listaJugadores.get(i), 3, this.eleccion);
-            turno.realizarTurnoYContinuar(tablero);
-        }*/
         return continuarJuego;
     }
+    */
 }

@@ -8,7 +8,7 @@ import static org.mockito.Mockito.*;
 import edu.fiuba.algo3.controlador.EleccionInicial;
 
 public class RondaInicialTest {
-
+/*
     @Test
     public void test01SeIntentaCrearUnaRondaCon3JugadoresYSeCreaLaListaDeJugadores(){
         EleccionInicial eleccion = mock(EleccionInicial.class);
@@ -19,5 +19,5 @@ public class RondaInicialTest {
         ronda.realizarRondaYContinuar(tablero);
         assertEquals(2, juego.cantidadJugadores());
     }
-
+*/
 }

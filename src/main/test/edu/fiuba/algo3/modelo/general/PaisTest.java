@@ -13,7 +13,6 @@ public class PaisTest {
 
     @Test
     public void test01paisColocaTresEjercitosYTieneTresEjercitos() {
-
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(3);
         assertEquals(unPais.getCantidadEjercitos(), 3);
@@ -25,7 +24,6 @@ public class PaisTest {
         unPais.colocarEjercitos(5);
         assertEquals(unPais.getCantidadEjercitos(), 5);
     }
-
 
     @Test
     public void test03paisCon5EjercitosElimina2YTiene3(){
@@ -74,6 +72,8 @@ public class PaisTest {
         unPais.colocarEjercitos(2);
         Pais otroPais = new Pais("Chile");
         otroPais.asignarJugador(unJugador);
+        unPais.agregarLimitrofe(otroPais);
+        otroPais.agregarLimitrofe(unPais);
         unPais.transferirEjercitosA(otroPais, 1);
         assertEquals(1, unPais.getCantidadEjercitos());
         assertEquals(1, otroPais.getCantidadEjercitos());
@@ -87,6 +87,8 @@ public class PaisTest {
         unPais.asignarJugador(unJugador);
         Pais otroPais = new Pais("Chile");
         otroPais.asignarJugador(unJugador);
+        unPais.agregarLimitrofe(otroPais);
+        otroPais.agregarLimitrofe(unPais);
         unPais.transferirEjercitosA(otroPais, 4);
         assertEquals(1, unPais.getCantidadEjercitos());
         assertEquals(4, otroPais.getCantidadEjercitos());
@@ -100,6 +102,8 @@ public class PaisTest {
         unPais.colocarEjercitos(5);
         Pais otroPais = new Pais("Chile");
         otroPais.asignarJugador(unJugador);
+        unPais.agregarLimitrofe(otroPais);
+        otroPais.agregarLimitrofe(unPais);
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 5);
         });
@@ -113,6 +117,8 @@ public class PaisTest {
         unPais.colocarEjercitos(3);
         Pais otroPais = new Pais("Chile");
         otroPais.asignarJugador(unJugador);
+        unPais.agregarLimitrofe(otroPais);
+        otroPais.agregarLimitrofe(unPais);
         assertThrows(CantidadInvalidaDeEjercitosException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 5);
         });
@@ -143,6 +149,20 @@ public class PaisTest {
         Pais otroPais = new Pais("Chile");
         otroPais.colocarEjercitos(3);
         otroPais.asignarJugador(otroJugador);
+        assertThrows(MovimientoDeEjercitosInvalidoException.class, () -> {
+            unPais.transferirEjercitosA(otroPais, 1);
+        });
+    }
+
+    @Test
+    public void test13paisCon3EjercitosQuiereMover1AOtroPaisNoLimitrofeYLanzaExcepcion() {
+        Jugador unJugador = mock(Jugador.class);
+        Pais unPais = new Pais("Argentina");
+        unPais.colocarEjercitos(3);
+        unPais.asignarJugador(unJugador);
+        Pais otroPais = new Pais("Rusia");
+        otroPais.colocarEjercitos(3);
+        otroPais.asignarJugador(unJugador);
         assertThrows(MovimientoDeEjercitosInvalidoException.class, () -> {
             unPais.transferirEjercitosA(otroPais, 1);
         });

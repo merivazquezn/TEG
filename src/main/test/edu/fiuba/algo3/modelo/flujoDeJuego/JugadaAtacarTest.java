@@ -77,7 +77,7 @@ public class JugadaAtacarTest {
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,1)).thenReturn(lista);
         Tablero tablero = new Tablero(new HashMap<>(), constructor);
-        Ronda ronda = new Ronda();
+        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>()));
         jugadaAtacar.ejecutar(tablero, ronda);
         assertTrue(otroPais.getJugador().equals(unJugador));
     }
@@ -109,7 +109,7 @@ public class JugadaAtacarTest {
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,2)).thenReturn(lista);
         Tablero tablero = new Tablero(new HashMap<>(), constructor);
-        Ronda ronda = new Ronda();
+        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>()));
         jugadaAtacar.ejecutar(tablero, ronda);
         assertTrue(otroPais.getJugador().equals(otroJugador));
     }

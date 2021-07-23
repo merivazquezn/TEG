@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RondaAtaqueTest {
 
+    /*
     Tablero tablero;
     Comunicacion comunicacion;
     EleccionAtaque eleccion;
@@ -151,5 +152,5 @@ public class RondaAtaqueTest {
         assertEquals(otroPais.getCantidadEjercitos(), cantidadOriginalUnPais+1);
         assertEquals(otroPaisMas.getCantidadEjercitos(), cantidadOriginalUnPaisMas+1);
     }
-
+*/
 }

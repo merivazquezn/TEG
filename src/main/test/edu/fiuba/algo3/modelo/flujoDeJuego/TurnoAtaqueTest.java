@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TurnoAtaqueTest {
-
+/*
     @Test
     public void test01sePideAtacarYElTurnoDelegaEnElTableroCorrectamente(){
         Pais unPais = new Pais("Argentina");
@@ -165,5 +165,5 @@ public class TurnoAtaqueTest {
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         assertFalse(turno.realizarTurnoYContinuar(tablero));
     }
-
+*/
 }

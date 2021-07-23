@@ -44,6 +44,8 @@ public class Pais {
         Jugador propietarioDestino = destino.getJugador();
         if(!this.jugador.equals(propietarioDestino))
             throw new MovimientoDeEjercitosInvalidoException();
+        if(!this.limitrofes.contains(destino))
+            throw new MovimientoDeEjercitosInvalidoException();
         if (this.getCantidadEjercitos() <= cantidad)
             throw new CantidadInvalidaDeEjercitosException();
 

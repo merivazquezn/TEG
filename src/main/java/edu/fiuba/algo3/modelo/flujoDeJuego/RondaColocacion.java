@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 import java.util.ArrayList;
 
 public class RondaColocacion {
-
+/*
     private ArrayList<Jugador> jugadores;
     private EleccionColocacion eleccionColocacion;
 
@@ -25,5 +25,5 @@ public class RondaColocacion {
         }
         return true;
     }
-
+*/
 }
