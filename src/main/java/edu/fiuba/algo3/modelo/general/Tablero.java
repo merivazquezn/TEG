@@ -12,13 +12,15 @@ import java.util.Map;
 
 public class Tablero {
     private HashMap<String, Continente> continentes;
+    private ConstructorDeConjuntoDados constructorDeConjuntoDados;
 
-    public Tablero(HashMap<String, Continente> continentes) {
+    public Tablero(HashMap<String, Continente> continentes, ConstructorDeConjuntoDados constructorDeConjuntoDados) {
         this.continentes = continentes;
+        this.constructorDeConjuntoDados = constructorDeConjuntoDados;
     }
 
-    public boolean conquisto(Pais atacante, Pais defensor, int cantidad, ConstructorDeConjuntoDados constructorConjuntoDados) {
-        Ataque ataque = new Ataque(constructorConjuntoDados, atacante, defensor, cantidad);
+    public boolean conquisto(Pais atacante, Pais defensor, int cantidad) {
+        Ataque ataque = new Ataque(this.constructorDeConjuntoDados, atacante, defensor, cantidad);
         return ataque.conquisto();
     }
 

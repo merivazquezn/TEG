@@ -46,7 +46,7 @@ public class TurnoAtaqueTest {
         Tablero tablero = mock(Tablero.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);
-        verify(tablero).conquisto(eq(unPais), eq(otroPais), eq(2), any());
+        verify(tablero).conquisto(eq(unPais), eq(otroPais), eq(2));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TurnoAtaqueTest {
             }
         });
         when(eleccion.cantidadAMover()).thenReturn(2);
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenAnswer( new Answer() {
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2))).thenAnswer( new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 otroPais.serConquistadoPor(unJugador);
                 return true;
@@ -119,7 +119,7 @@ public class TurnoAtaqueTest {
                 return 2;
             }
         });
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2), any())).thenReturn(false);
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(2))).thenReturn(false);
         Jugador atacante = mock(Jugador.class);
         TurnoAtaque turno = new TurnoAtaque(atacante, eleccion);
         turno.realizarTurnoYContinuar(tablero);
@@ -155,7 +155,7 @@ public class TurnoAtaqueTest {
                 return 2;
             }
         });
-        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3), any())).thenAnswer(new Answer() {
+        when(tablero.conquisto(eq(unPais), eq(otroPais), eq(3))).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 return true;
             }

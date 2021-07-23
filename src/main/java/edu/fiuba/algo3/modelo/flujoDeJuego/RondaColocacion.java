@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.jugador.Jugador;
 
 import java.util.ArrayList;
 
-public class RondaColocacion implements Ronda {
+public class RondaColocacion {
 
     private ArrayList<Jugador> jugadores;
     private EleccionColocacion eleccionColocacion;

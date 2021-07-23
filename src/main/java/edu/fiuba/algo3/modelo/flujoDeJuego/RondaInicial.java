@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.jugador.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RondaInicial implements Ronda {
+public class RondaInicial {
 
     private final Juego juego;
     private final int cantidadDeJugadores;

@@ -11,7 +11,7 @@ public class JugadaColocar implements Jugada{
         this.cantidad = unaCantidad;
     }
 
-    public void ejecutar(Tablero tablero){
+    public void ejecutar(Tablero tablero, Ronda ronda){
         pais.colocarEjercitos(this.cantidad);
     }
 

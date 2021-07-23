@@ -24,7 +24,7 @@ public class TurnoAtaque implements Turno{
         while(orden.get(0).toString() != "Terminar"){
             Pais paisAtacante = (Pais) orden.get(0);
             Pais paisDefensor = (Pais) orden.get(1);
-            if(tablero.conquisto(paisAtacante, paisDefensor, (int) orden.get(2), new ConstructorDeConjuntoDados(new Randomizador()))){
+            if(tablero.conquisto(paisAtacante, paisDefensor, (int) orden.get(2))){
                 if(this.atacante.jugadorGano())
                     return false;
                 int cantidadAMover = this.eleccion.cantidadAMover();
