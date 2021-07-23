@@ -43,7 +43,7 @@ public class Continente {
      }
 
      public String getNombre() {
-         return this.getNombre();
+         return this.nombre;
      }
 
      public ArrayList<Pais> getListaPaises() {

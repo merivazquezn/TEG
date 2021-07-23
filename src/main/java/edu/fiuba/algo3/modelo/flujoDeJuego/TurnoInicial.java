@@ -1,13 +1,5 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 
-import edu.fiuba.algo3.controlador.EleccionInicial;
-import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
-import edu.fiuba.algo3.modelo.general.Pais;
-import edu.fiuba.algo3.modelo.general.Tablero;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-
-import java.util.ArrayList;
-
 
 public class TurnoInicial implements Turno{
 /*

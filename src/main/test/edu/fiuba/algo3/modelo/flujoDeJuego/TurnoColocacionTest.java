@@ -1,19 +1,5 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 
-import edu.fiuba.algo3.controlador.EleccionColocacion;
-import edu.fiuba.algo3.modelo.flujoDeJuego.*;
-import edu.fiuba.algo3.modelo.jugador.*;
-import edu.fiuba.algo3.modelo.general.*;
-import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
-import java.util.ArrayList;
-
-import static org.mockito.Mockito.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class TurnoColocacionTest {
 /*
     @Test

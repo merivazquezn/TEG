@@ -1,14 +1,5 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 
-import edu.fiuba.algo3.controlador.EleccionAtaque;
-import edu.fiuba.algo3.controlador.EleccionColocacion;
-import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
-import edu.fiuba.algo3.modelo.general.Pais;
-import edu.fiuba.algo3.modelo.general.Tablero;
-import edu.fiuba.algo3.modelo.jugador.*;
-
-import java.util.ArrayList;
-
 public class TurnoColocacion implements Turno{
 /*
     private Jugador jugador;

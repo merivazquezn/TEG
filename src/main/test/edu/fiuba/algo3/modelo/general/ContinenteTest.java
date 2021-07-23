@@ -140,7 +140,6 @@ public class ContinenteTest {
     public void test06EjercitosParaJugadorDevuelve3SiJugadorNoConquistoTodoElAmericaDelSur() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
         Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -161,6 +160,53 @@ public class ContinenteTest {
         assertEquals(continente.ejercitosParaJugador(unJugador), 5);
     }
 
+    @Test
+    public void test07UnJugadorTiene3PaisesEnAmericaDelSurYElContinenteDevuelveCantidad3() {
+        ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+        Jugador unJugador = new Jugador();
+        Jugador otroJugador = new Jugador();
 
+        listaPaises.add(new Pais("Argentina"));
+        listaPaises.add(new Pais("Chile"));
+        listaPaises.add(new Pais("Brasil"));
+        listaPaises.add(new Pais("Colombia"));
+        listaPaises.add(new Pais("Peru"));
+        listaPaises.add(new Pais("Uruguay"));
+
+        listaPaises.get(0).asignarJugador(unJugador);
+        listaPaises.get(1).asignarJugador(otroJugador);
+        listaPaises.get(2).asignarJugador(unJugador);
+        listaPaises.get(3).asignarJugador(otroJugador);
+        listaPaises.get(4).asignarJugador(unJugador);
+        listaPaises.get(5).asignarJugador(otroJugador);
+
+        Continente continente = new Continente(listaPaises, "America Del Sur", 5);
+
+        assertEquals(3, continente.cantidadPaisesDeJugador(unJugador));
+    }
+
+    @Test
+    public void test08UnContinenteDevuelveSuNombreCorrectamente() {
+        ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+        Jugador unJugador = new Jugador();
+
+        listaPaises.add(new Pais("Argentina"));
+        listaPaises.add(new Pais("Chile"));
+        listaPaises.add(new Pais("Brasil"));
+        listaPaises.add(new Pais("Colombia"));
+        listaPaises.add(new Pais("Peru"));
+        listaPaises.add(new Pais("Uruguay"));
+
+        listaPaises.get(0).asignarJugador(unJugador);
+        listaPaises.get(1).asignarJugador(unJugador);
+        listaPaises.get(2).asignarJugador(unJugador);
+        listaPaises.get(3).asignarJugador(unJugador);
+        listaPaises.get(4).asignarJugador(unJugador);
+        listaPaises.get(5).asignarJugador(unJugador);
+
+        Continente continente = new Continente(listaPaises, "America Del Sur", 5);
+
+        assertEquals("America Del Sur", continente.getNombre());
+    }
 
 }
