@@ -10,7 +10,7 @@ public class Jugador {
     private int numeroJugador;
     private static int numeroDeJugadorSiguiente = 1;
     Jugador jugadorQueLoDerroto;
-    private int cantidadCanjes;
+    private CantidadCanjes cantidadCanjes;
 
     static public void reiniciarClase(){
         Jugador.numeroDeJugadorSiguiente = 1;
@@ -19,7 +19,7 @@ public class Jugador {
     public Jugador(){
         listaPaises = new ArrayList<Pais>();
         this.asignarAtributosDeJugadorValido();
-        this.cantidadCanjes = 0;
+        this.cantidadCanjes = new CeroCanjes();
     }
 
     protected void asignarAtributosDeJugadorValido(){

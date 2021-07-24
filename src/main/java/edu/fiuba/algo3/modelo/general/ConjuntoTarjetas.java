@@ -25,7 +25,7 @@ public class ConjuntoTarjetas {
 
     public boolean sePudoCanjear(){
         if(this.sonCanjeables()){
-            //this.mazo.agregarTarjetas(this.tarjeta1, this.tarjeta2, this.tarjeta3));
+            this.mazo.agregarTarjetas(this.tarjeta1, this.tarjeta2, this.tarjeta3);
             return true;
         }
         return false;

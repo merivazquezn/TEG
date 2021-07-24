@@ -70,4 +70,36 @@ public class MazoTest {
         assertTrue(tarjetaActual.equals(unaTarjeta));
     }
 
+    @Test
+    public void test04seLeDevuelven3TarjetasAlMazoYAumentaEn3LaCantidad() {
+        Signo signo1 = new SignoComodin();
+        Signo signo2 = new Signo(0);
+        Signo signo3 = new Signo(1);
+        Signo signo4 = new Signo(0);
+        Signo signo5 = new Signo(2);
+
+        Pais pais1 = new Pais("Argentina");
+        Pais pais2 = new Pais("Brasil");
+        Pais pais3 = new Pais("Francia");
+        Pais pais4 = new Pais("Sudafrica");
+        Pais pais5 = new Pais("Australia");
+
+
+        Tarjeta tarjeta1 = new Tarjeta(pais1, signo1);
+        Tarjeta tarjeta2 = new Tarjeta(pais2, signo2);
+        Tarjeta tarjeta3 = new Tarjeta(pais3, signo3);
+        Tarjeta tarjeta4 = new Tarjeta(pais4, signo4);
+        Tarjeta tarjeta5 = new Tarjeta(pais5, signo5);
+
+        ArrayList<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
+        listaTarjetas.add(tarjeta1);
+        listaTarjetas.add(tarjeta2);
+
+        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+
+        int cantInicial = mazo.largoMazo();
+        mazo.agregarTarjetas(tarjeta3, tarjeta4, tarjeta5);
+
+        assertEquals(cantInicial+3, mazo.largoMazo());
+    }
 }

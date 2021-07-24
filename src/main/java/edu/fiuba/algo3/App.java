@@ -39,10 +39,13 @@ public class App extends Application {
     public void realizarJuego(Stage stage, int cantidadJugadores){
         inicializarJuego(cantidadJugadores);
         FileInputStream inputImagenFondo;
+        FileInputStream inputImagenInterfaz;
         try {
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
-            StackPane panel = new StackPane();
+            inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
+            Image imagenInterfaz = new Image(inputImagenInterfaz);
+            Pane panel = new Pane();
             Scene scene = new Scene(panel, 1440, 819);
             BackgroundImage backgroundimage = new BackgroundImage(imagenFondo,
                     BackgroundRepeat.NO_REPEAT,
@@ -51,6 +54,7 @@ public class App extends Application {
                     BackgroundSize.DEFAULT);
             Background background = new Background(backgroundimage);
             panel.setBackground(background);
+
             stage.setScene(scene);
             stage.show();
         } catch (FileNotFoundException e) {
