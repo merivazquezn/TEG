@@ -64,4 +64,8 @@ public class Jugador {
         return this.numeroJugador;
     }
 
+    public void realizarCanje(){ this.cantidadCanjes = this.cantidadCanjes.siguiente();}
+
+    public int cantidadAColocarPorCanje(){ return this.cantidadCanjes.cantidadAColocarPorCanje();}
+
 }
