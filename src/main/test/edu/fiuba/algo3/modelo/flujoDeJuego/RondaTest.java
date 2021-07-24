@@ -25,7 +25,7 @@ public class RondaTest {
         arrayJugadores.add(unJugador);
         arrayJugadores.add(otroJugador);
         arrayJugadores.add(otroJugadorMas);
-        ListaJugadores listaJugadores = new ListaJugadores(arrayJugadores);
+        ListaJugadores listaJugadores = new ListaJugadores(arrayJugadores, new Randomizador());
         Ronda ronda = new Ronda(tablero, listaJugadores);
         ronda.realizarJugada(jugada);
         verify(jugada, times(1)).ejecutar(tablero, ronda);

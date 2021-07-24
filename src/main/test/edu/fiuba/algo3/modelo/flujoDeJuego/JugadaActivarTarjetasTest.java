@@ -28,7 +28,7 @@ public class JugadaActivarTarjetasTest {
         tarjeta.asignarJugador(unJugador);
         Jugada jugada = new JugadaActivarTarjetas(tarjeta);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
-        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>()));
+        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>(), new Randomizador()));
         jugada.ejecutar(tablero, ronda);
         assertEquals(4, unPais.getCantidadEjercitos());
     }
@@ -42,7 +42,7 @@ public class JugadaActivarTarjetasTest {
         tarjeta.asignarJugador(unJugador);
         Jugada jugada = new JugadaActivarTarjetas(tarjeta);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
-        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>()));
+        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>(), new Randomizador()));
         jugada.ejecutar(tablero, ronda);
         assertEquals(2, unPais.getCantidadEjercitos());
     }

@@ -1,5 +1,12 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.infraestructura.Randomizador;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
+import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
+import edu.fiuba.algo3.modelo.general.Juego;
+import edu.fiuba.algo3.modelo.general.ListaJugadores;
+import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,10 +22,25 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class App extends Application {
 
+    private Juego juego;
+    private Tablero tablero;
+    private Ronda ronda;
+
+    public void inicializarJuego(int cantidadJugadores){
+        this.juego = new Juego();
+        this.tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
+        ArrayList<Jugador> arrayJugadores = new ArrayList<Jugador>();
+        ListaJugadores listaJugadores = new ListaJugadores(arrayJugadores, new Randomizador());
+        this.ronda = new Ronda(tablero, listaJugadores);
+    }
+
     public void realizarJuego(Stage stage, int cantidadJugadores){
+        inicializarJuego(cantidadJugadores);
         FileInputStream inputImagenFondo = null;
         try {
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
