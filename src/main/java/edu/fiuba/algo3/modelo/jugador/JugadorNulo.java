@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class JugadorNulo extends Jugador {
 
     @Override
-    protected void asignarJugadorQueDerroto(){
+    protected void asignarAtributosDeJugadorValido(){
         this.jugadorQueLoDerroto = null;
     }
 

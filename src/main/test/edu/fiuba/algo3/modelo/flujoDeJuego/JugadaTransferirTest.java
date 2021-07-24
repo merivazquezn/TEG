@@ -28,7 +28,7 @@ public class JugadaTransferirTest {
         otroPais.agregarLimitrofe(unPais);
         Jugada jugada = new JugadaTransferir(unPais, otroPais, 1);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
-        Ronda ronda = new Ronda(tablero, new ListaJugadores(new ArrayList<>(), new Randomizador()));
+        Ronda ronda = new Ronda(tablero, new ListaJugadores(2, new Randomizador()));
         jugada.ejecutar(tablero, ronda);
         assertEquals(1, unPais.getCantidadEjercitos());
         assertEquals(2, otroPais.getCantidadEjercitos());

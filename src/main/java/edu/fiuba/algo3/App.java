@@ -32,10 +32,8 @@ public class App extends Application {
 
     public void inicializarJuego(int cantidadJugadores){
         this.tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
-        ArrayList<Jugador> arrayJugadores = new ArrayList<>();
-        ListaJugadores listaJugadores = new ListaJugadores(arrayJugadores, new Randomizador());
+        ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador());
         this.ronda = new Ronda(tablero, listaJugadores);
-
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){

@@ -16,5 +16,4 @@ public class Mazo {
         return this.listaTarjetas.remove(this.listaTarjetas.size()-1);
     }
 
-
 }

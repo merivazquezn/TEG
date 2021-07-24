@@ -11,12 +11,21 @@ public class ListaJugadores {
 
     ArrayList<Jugador> listaJugadores;
     int indiceActual;
+    final int cantidadMinimaJugadores = 2;
+    final int cantidadMaximaJugadores = 6;
 
-    public ListaJugadores(ArrayList<Jugador> arrayJugadores, IRandomizador randomizador){
-        this.listaJugadores = arrayJugadores;
-        this.indiceActual = 0;
-        if(this.listaJugadores.size() > 1)
-            mezclar(randomizador);
+
+    public ListaJugadores(int cantidadJugadores, IRandomizador randomizador){
+        if(cantidadJugadores < this.cantidadMinimaJugadores || cantidadJugadores > this.cantidadMaximaJugadores)
+                throw new CantidadInvalidaDeJugadoresException();
+        this.listaJugadores = new ArrayList<>();
+
+        for(int i=0; i < cantidadJugadores; i++) {
+            Jugador nuevoJugador = new Jugador();
+            listaJugadores.add(nuevoJugador);
+        }
+
+        mezclar(randomizador);
     }
 
     public Jugador siguiente(){

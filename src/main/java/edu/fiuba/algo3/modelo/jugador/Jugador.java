@@ -12,15 +12,19 @@ public class Jugador {
     Jugador jugadorQueLoDerroto;
     private int cantidadCanjes;
 
+    static public void reiniciarClase(){
+        Jugador.numeroDeJugadorSiguiente = 1;
+    }
+
     public Jugador(){
-        this.numeroJugador = numeroDeJugadorSiguiente;
-        numeroDeJugadorSiguiente++;
         listaPaises = new ArrayList<Pais>();
-        this.asignarJugadorQueDerroto();
+        this.asignarAtributosDeJugadorValido();
         this.cantidadCanjes = 0;
     }
 
-    protected void asignarJugadorQueDerroto(){
+    protected void asignarAtributosDeJugadorValido(){
+        this.numeroJugador = numeroDeJugadorSiguiente;
+        numeroDeJugadorSiguiente++;
         this.jugadorQueLoDerroto = new JugadorNulo();
     }
 
@@ -56,6 +60,8 @@ public class Jugador {
             this.jugadorQueLoDerroto = jugador;
     }
 
-
+    public int getNumero() {
+        return this.numeroJugador;
+    }
 
 }
