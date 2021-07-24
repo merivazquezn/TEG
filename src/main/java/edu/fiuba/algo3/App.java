@@ -27,21 +27,20 @@ import java.util.HashMap;
 
 public class App extends Application {
 
-    private Juego juego;
     private Tablero tablero;
     private Ronda ronda;
 
     public void inicializarJuego(int cantidadJugadores){
-        this.juego = new Juego();
         this.tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
-        ArrayList<Jugador> arrayJugadores = new ArrayList<Jugador>();
+        ArrayList<Jugador> arrayJugadores = new ArrayList<>();
         ListaJugadores listaJugadores = new ListaJugadores(arrayJugadores, new Randomizador());
         this.ronda = new Ronda(tablero, listaJugadores);
+
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){
         inicializarJuego(cantidadJugadores);
-        FileInputStream inputImagenFondo = null;
+        FileInputStream inputImagenFondo;
         try {
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
