@@ -10,12 +10,14 @@ public class Jugador {
     private int numeroJugador;
     private static int numeroDeJugadorSiguiente = 1;
     Jugador jugadorQueLoDerroto;
+    private int cantidadCanjes;
 
     public Jugador(){
         this.numeroJugador = numeroDeJugadorSiguiente;
         numeroDeJugadorSiguiente++;
         listaPaises = new ArrayList<Pais>();
         this.asignarJugadorQueDerroto();
+        this.cantidadCanjes = 0;
     }
 
     protected void asignarJugadorQueDerroto(){
@@ -53,5 +55,7 @@ public class Jugador {
         if(this.listaPaises.size() == 0)
             this.jugadorQueLoDerroto = jugador;
     }
+
+
 
 }
