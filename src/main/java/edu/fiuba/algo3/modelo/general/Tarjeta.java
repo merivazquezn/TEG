@@ -41,6 +41,8 @@ public class Tarjeta {
     public Pais getPais() {
         return this.pais;
     }
+
+    public Jugador getJugador() { return this.jugador; }
 }
 
 
