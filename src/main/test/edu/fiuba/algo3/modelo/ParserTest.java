@@ -3,9 +3,9 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.general.Continente;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.IdentificadorInvalidoException;
-import edu.fiuba.algo3.modelo.jugador.Signo;
-import edu.fiuba.algo3.modelo.jugador.SignoComodin;
-import edu.fiuba.algo3.modelo.jugador.Tarjeta;
+import edu.fiuba.algo3.modelo.general.Signo;
+import edu.fiuba.algo3.modelo.general.SignoComodin;
+import edu.fiuba.algo3.modelo.general.Tarjeta;
 import edu.fiuba.algo3.infraestructura.Parser;
 
 import org.junit.jupiter.api.Test;

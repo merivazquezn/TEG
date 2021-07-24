@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.flujoDeJuego;
 
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.jugador.JugadorNoTieneElPaisException;
-import edu.fiuba.algo3.modelo.jugador.Tarjeta;
+import edu.fiuba.algo3.modelo.general.Tarjeta;
 
 public class JugadaActivarTarjetas implements Jugada{
 

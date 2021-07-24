@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.jugador.IdentificadorInvalidoException;
-import edu.fiuba.algo3.modelo.jugador.Signo;
+import edu.fiuba.algo3.modelo.general.Signo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo.jugador;
+package edu.fiuba.algo3.modelo.general;
 
-import edu.fiuba.algo3.modelo.general.Pais;
+import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.JugadorNoTieneElPaisException;
+import edu.fiuba.algo3.modelo.jugador.JugadorNulo;
 
 public class Tarjeta {
 

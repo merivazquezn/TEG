@@ -6,11 +6,10 @@ import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.jugador.Signo;
-import edu.fiuba.algo3.modelo.jugador.Tarjeta;
+import edu.fiuba.algo3.modelo.general.Signo;
+import edu.fiuba.algo3.modelo.general.Tarjeta;
 import org.junit.jupiter.api.Test;
 
-import javax.print.attribute.HashAttributeSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 

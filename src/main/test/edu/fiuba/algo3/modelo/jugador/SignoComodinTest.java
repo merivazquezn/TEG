@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.jugador;
 
+import edu.fiuba.algo3.modelo.general.Signo;
+import edu.fiuba.algo3.modelo.general.SignoComodin;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
