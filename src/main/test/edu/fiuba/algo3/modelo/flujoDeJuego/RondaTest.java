@@ -18,7 +18,7 @@ public class RondaTest {
     @Test
     public void test01LaRondaRecibeUnaJugadaYLaEjecuta(){
         Jugada jugada = mock(JugadaAtacar.class);
-        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
         Ronda ronda = new Ronda(tablero, listaJugadores);
         ronda.realizarJugada(jugada);
@@ -48,7 +48,7 @@ public class RondaTest {
         Continente asia = new Continente(listaPaisesAsia, "Asia", 7);
 
         continentes.put("Asia", asia);
-        Tablero tablero = new Tablero(continentes, mock(ConstructorDeConjuntoDados.class));
+        Tablero tablero = new Tablero(continentes, mock(ConstructorDeConjuntoDados.class), new Mazo(new ArrayList<>(), new Randomizador()));
 
 
         JugadaColocar jugada = new JugadaColocar(pais2, 2);

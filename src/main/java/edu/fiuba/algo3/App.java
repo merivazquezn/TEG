@@ -4,10 +4,7 @@ import edu.fiuba.algo3.infraestructura.Parser;
 import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
-import edu.fiuba.algo3.modelo.general.Continente;
-import edu.fiuba.algo3.modelo.general.ListaJugadores;
-import edu.fiuba.algo3.modelo.general.Pais;
-import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.general.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -101,7 +98,7 @@ public class App extends Application {
                 this.etiquetaEjercitos.add(etiquetaEjercito);
             }
 
-            this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+            this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador());
             this.ronda = new Ronda(tablero, listaJugadores);
         } catch (IOException e) {

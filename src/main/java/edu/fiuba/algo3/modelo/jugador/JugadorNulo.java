@@ -12,4 +12,9 @@ public class JugadorNulo extends Jugador {
         this.jugadorQueLoDerroto = null;
     }
 
+    @Override
+    public boolean esNulo() {
+        return true;
+    }
+
 }

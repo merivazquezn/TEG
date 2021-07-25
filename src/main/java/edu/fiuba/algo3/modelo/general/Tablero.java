@@ -13,10 +13,12 @@ import java.util.Map;
 public class Tablero {
     private HashMap<String, Continente> continentes;
     private ConstructorDeConjuntoDados constructorDeConjuntoDados;
+    private Mazo mazo;
 
-    public Tablero(HashMap<String, Continente> continentes, ConstructorDeConjuntoDados constructorDeConjuntoDados) {
+    public Tablero(HashMap<String, Continente> continentes, ConstructorDeConjuntoDados constructorDeConjuntoDados, Mazo mazo) {
         this.continentes = continentes;
         this.constructorDeConjuntoDados = constructorDeConjuntoDados;
+        this.mazo = mazo;
     }
 
     public boolean conquisto(Pais atacante, Pais defensor, int cantidad) {
@@ -39,5 +41,7 @@ public class Tablero {
     public boolean continenteOcupadoPorJugador(Jugador jugador, String continente){
         return this.continentes.get(continente).ocupadoPorJugador(jugador);
     }
+
+    public Mazo obtenerMazo() { return this.mazo; }
 
 }

@@ -21,6 +21,6 @@ public class JugadaAtacar implements Jugada{
     public void ejecutar(Tablero tablero, Ronda ronda){
         boolean hayConquista = tablero.conquisto(this.atacante, this.defensor, this.cantidad);
         if(hayConquista)
-            ronda.jugadorDebeReagrupar();
+            ronda.seProdujoConquista();
     }
 }

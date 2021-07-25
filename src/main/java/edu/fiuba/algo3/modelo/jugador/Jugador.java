@@ -68,4 +68,6 @@ public class Jugador {
 
     public int cantidadAColocarPorCanje(){ return this.cantidadCanjes.cantidadAColocarPorCanje();}
 
+    public boolean esNulo() { return false; }
+
 }

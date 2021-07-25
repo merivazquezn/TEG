@@ -17,7 +17,7 @@ public class JugadaColocarTest {
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(3);
         int unaCantidad = 2;
-        Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);
         jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador())));
         assertEquals(5, unPais.getCantidadEjercitos());
@@ -28,7 +28,7 @@ public class JugadaColocarTest {
         Pais unPais = new Pais("Chile");
         unPais.colocarEjercitos(5);
         int unaCantidad = 3;
-        Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);
         jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador())));
         assertEquals(8, unPais.getCantidadEjercitos());

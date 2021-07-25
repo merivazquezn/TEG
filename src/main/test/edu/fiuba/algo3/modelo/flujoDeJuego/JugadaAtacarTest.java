@@ -13,7 +13,7 @@ import org.mockito.stubbing.Answer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class JugadaAtacarTest {
@@ -44,10 +44,10 @@ public class JugadaAtacarTest {
         lista.add(atacante);
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,1)).thenReturn(lista);
-        Tablero tablero = new Tablero(new HashMap<>(), constructor);
+        Tablero tablero = new Tablero(new HashMap<>(), constructor, new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = mock(Ronda.class);
         jugadaAtacar.ejecutar(tablero, ronda);
-        verify(ronda, times(1)).jugadorDebeReagrupar();
+        verify(ronda, times(1)).seProdujoConquista();
     }
 
     @Test
@@ -76,7 +76,7 @@ public class JugadaAtacarTest {
         lista.add(atacante);
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,1)).thenReturn(lista);
-        Tablero tablero = new Tablero(new HashMap<>(), constructor);
+        Tablero tablero = new Tablero(new HashMap<>(), constructor, new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = new Ronda(tablero, new ListaJugadores(2, new Randomizador()));
         jugadaAtacar.ejecutar(tablero, ronda);
         assertTrue(otroPais.getJugador().equals(unJugador));
@@ -108,7 +108,7 @@ public class JugadaAtacarTest {
         lista.add(atacante);
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,2)).thenReturn(lista);
-        Tablero tablero = new Tablero(new HashMap<>(), constructor);
+        Tablero tablero = new Tablero(new HashMap<>(), constructor, new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = new Ronda(tablero, new ListaJugadores(2, new Randomizador()));
         jugadaAtacar.ejecutar(tablero, ronda);
         assertTrue(otroPais.getJugador().equals(otroJugador));

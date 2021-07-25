@@ -25,7 +25,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -59,7 +59,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -93,7 +93,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -126,7 +126,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -158,7 +158,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -187,7 +187,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -216,7 +216,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);
@@ -243,7 +243,7 @@ public class TableroTest {
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
-        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()));
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
         Continente americaDelSur = mock(Continente.class);
         Continente americaDelNorte = mock(Continente.class);

@@ -2,13 +2,10 @@ package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,7 +28,6 @@ public class ListaJugadoresTest {
 
     @Test
     public void test02laListaDeJugadoresDevuelveLaCantidadCorrectaDeJugadores(){
-        Jugador.reiniciarClase();
         Randomizador randomMock = mock(Randomizador.class);
         when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
         ListaJugadores lista = new ListaJugadores(3, randomMock);
@@ -67,6 +63,16 @@ public class ListaJugadoresTest {
         assertEquals(1, jugadorActual.getNumero());
         jugadorActual = lista.siguiente();
         assertEquals(3, jugadorActual.getNumero());
+    }
+
+    @Test
+    public void test05siSeAvanzaMasDeLaCantidadDeJugadoresSeDevuelveJugadorNulo(){
+        ListaJugadores lista = new ListaJugadores(3, new Randomizador());
+        lista.siguiente();
+        lista.siguiente();
+        lista.siguiente();
+        Jugador jugadorActual = lista.siguiente();
+        assertTrue(jugadorActual.esNulo());
     }
 
 }
