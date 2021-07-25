@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.general.Tarjeta;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,9 +19,6 @@ public class Parser {
 
 
     public static ArrayList<ArrayList> leerArchivo(String rutaArchivo) throws IOException {
-        /*
-        Devuelve una ArrayList con las lineas leidas en listas
-         */
         ArrayList<ArrayList> lineasArchivo = new ArrayList<ArrayList>();
 
         try {
@@ -28,7 +26,7 @@ public class Parser {
 			String row = "";
 
 			while ((row = csvReader.readLine()) != null) {
-    		    ArrayList<String> linea = new ArrayList<String>();
+    		    ArrayList<String> linea = new ArrayList<>();
     			String[] data = row.split(",");
 
                 Collections.addAll(linea, data);
@@ -74,18 +72,17 @@ public class Parser {
         HashMap<String, Pais> paises = new HashMap<String, Pais>();
 
         HashMap<String, ArrayList<Pais>> hashContinentesConPaises = new HashMap<String, ArrayList<Pais>>();
-        hashContinentesConPaises.put("America del Sur", new ArrayList());
+        hashContinentesConPaises.put("América Del Sur", new ArrayList());
         hashContinentesConPaises.put("Europa", new ArrayList());
-        hashContinentesConPaises.put("America del Norte", new ArrayList());
+        hashContinentesConPaises.put("América Del Norte", new ArrayList());
         hashContinentesConPaises.put("Asia", new ArrayList());
-        hashContinentesConPaises.put("Oceania", new ArrayList());
+        hashContinentesConPaises.put("Oceanía", new ArrayList());
         hashContinentesConPaises.put("Africa", new ArrayList());
 
 
         for(ArrayList<String> linea : datosPaisesCompleto) {
 
             Pais pais = new Pais(linea.get(0));
-
             paises.putIfAbsent(linea.get(0), pais);
 
             String nombreContinente = linea.get(1);
@@ -116,12 +113,12 @@ public class Parser {
         HashMap<String, Continente> hashContinentes = new HashMap<String, Continente>();
 
         HashMap<String, Integer> ejercitosPorContinentes = new HashMap<String, Integer>();
-        ejercitosPorContinentes.put("America del Sur", 3);
-        ejercitosPorContinentes.put("America del Norte", 5);
+        ejercitosPorContinentes.put("América Del Sur", 3);
+        ejercitosPorContinentes.put("América Del Norte", 5);
         ejercitosPorContinentes.put("Europa", 5);
         ejercitosPorContinentes.put("Asia", 7);
         ejercitosPorContinentes.put("Africa", 3);
-        ejercitosPorContinentes.put("Oceania", 2);
+        ejercitosPorContinentes.put("Oceanía", 2);
 
         hashContinentesConPaises.forEach((key,value) -> {
                     String nombreContinente = key;

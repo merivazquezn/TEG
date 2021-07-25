@@ -53,16 +53,22 @@ public class ParserTest {
         ArrayList<String> linea3 = new ArrayList();
 
         linea1.add("Argentina");
-        linea1.add("America del Sur");
+        linea1.add("America Del Sur");
         linea1.add("\"Uruguay;Brasil\"");
+        linea1.add("0");
+        linea1.add("0");
 
         linea2.add("Uruguay");
-        linea2.add("America del Sur");
+        linea2.add("America Del Sur");
         linea2.add("\"Argentina;Brasil\"");
+        linea2.add("0");
+        linea2.add("0");
 
         linea3.add("Brasil");
-        linea3.add("America del Sur");
+        linea3.add("America Del Sur");
         linea3.add("\"Argentina;Uruguay\"");
+        linea3.add("0");
+        linea3.add("0");
 
         esperado.add(linea1);
         esperado.add(linea2);
@@ -75,16 +81,6 @@ public class ParserTest {
             for (int j = 0; j < 3; j++) {
                 if (!(devolucion.get(i).get(j).equals(esperado.get(i).get(j)))) {
                     fail();
-                }
-
-                if (devolucion.get(i).size() != 3) {
-                    for (int k = 0; k < 4; k++) {
-                        System.out.println(devolucion.get(i).get(k));
-                    }
-                    System.out.println(devolucion.get(i));
-                    fail();
-
-
                 }
             }
 
@@ -152,7 +148,7 @@ public class ParserTest {
 
         HashMap<String, Continente> hashContinentes = devolucion.get(1);
 
-        ArrayList<Pais> paisesOceania = hashContinentes.get("Oceania").getListaPaises();
+        ArrayList<Pais> paisesOceania = hashContinentes.get("Oceanía").getListaPaises();
 
         HashSet<String> setNombrePaises = new HashSet<String>();
 
