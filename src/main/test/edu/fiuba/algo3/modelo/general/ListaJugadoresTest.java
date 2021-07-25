@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.infraestructura.Randomizador;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
+import edu.fiuba.algo3.modelo.jugador.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -16,8 +19,12 @@ public class ListaJugadoresTest {
     public void test01laListaDeJugadoresDevuelveLosJugadoresEnElOrdenCorrecto(){
         Jugador.reiniciarClase();
         Randomizador randomMock = mock(Randomizador.class);
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
         when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
-        ListaJugadores lista = new ListaJugadores(3, randomMock);
+        ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
         assertEquals(1, jugadorActual.getNumero());
         jugadorActual = lista.siguiente();
@@ -29,17 +36,25 @@ public class ListaJugadoresTest {
     @Test
     public void test02laListaDeJugadoresDevuelveLaCantidadCorrectaDeJugadores(){
         Randomizador randomMock = mock(Randomizador.class);
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
         when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
-        ListaJugadores lista = new ListaJugadores(3, randomMock);
+        ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         assertEquals(3, lista.size());
     }
 
     @Test
     public void test03SeLePideReiniciarALaListaYVuelveAlPrimerJugador(){
         Jugador.reiniciarClase();
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
         Randomizador randomMock = mock(Randomizador.class);
         when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
-        ListaJugadores lista = new ListaJugadores(3, randomMock);
+        ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
         assertEquals(1, jugadorActual.getNumero());
         jugadorActual = lista.siguiente();
@@ -54,9 +69,13 @@ public class ListaJugadoresTest {
     @Test
     public void test04seUtilizaUnJugadorInicialDistintoYLaListaLosDevuelveEnElOrdenEsperado(){
         Jugador.reiniciarClase();
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
         Randomizador randomMock = mock(Randomizador.class);
         when(randomMock.generar(eq(0),eq(2))).thenReturn(1);
-        ListaJugadores lista = new ListaJugadores(3, randomMock);
+        ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
         assertEquals(2, jugadorActual.getNumero());
         jugadorActual = lista.siguiente();
@@ -67,7 +86,11 @@ public class ListaJugadoresTest {
 
     @Test
     public void test05siSeAvanzaMasDeLaCantidadDeJugadoresSeDevuelveJugadorNulo(){
-        ListaJugadores lista = new ListaJugadores(3, new Randomizador());
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores lista = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         lista.siguiente();
         lista.siguiente();
         lista.siguiente();
@@ -75,4 +98,14 @@ public class ListaJugadoresTest {
         assertTrue(jugadorActual.esNulo());
     }
 
+    @Test
+    public void test06SeInicializaLaListaNoHayGanadores(){
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
+        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
+        assertFalse(listaJugadores.hayGanador(tablero));
+    }
 }

@@ -9,8 +9,8 @@ public class JugadorTest {
 
     @Test
     public void test01elJugadorEsDerrotadoYDevuelveAlJugadorQueLoDerroto(){
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = mock(Pais.class);
         Pais otroPais = mock(Pais.class);
         unJugador.asignarPais(unPais);
@@ -22,25 +22,25 @@ public class JugadorTest {
     }
     @Test
     public void test02JugadorSinCanjesPuedeColocar0Ejercitos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         assertEquals(jugador.cantidadAColocarPorCanje(), 0);
     }
     @Test
     public void test03JugadorSinCanjesRealizaCanjeYPuedeColocar4Ejercitos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         jugador.realizarCanje();
         assertEquals(jugador.cantidadAColocarPorCanje(), 4);
     }
     @Test
     public void test04JugadorCon1CanjeRealizaOtroCanjeYPuedeColocar7EjercitosEnElSegundo(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         jugador.realizarCanje();
         jugador.realizarCanje();
         assertEquals(7, jugador.cantidadAColocarPorCanje());
     }
     @Test
     public void test05JugadorCon2CanjesRealizaOtroCanjeYPuedeColocar10Ejercitos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         jugador.realizarCanje();
         jugador.realizarCanje();
         jugador.realizarCanje();
@@ -48,7 +48,7 @@ public class JugadorTest {
     }
     @Test
     public void test06JugadorCon3RealizaOtroCanjeYPuedeColocar15Ejercitos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         jugador.realizarCanje();
         jugador.realizarCanje();
         jugador.realizarCanje();
@@ -57,7 +57,7 @@ public class JugadorTest {
     }
     @Test
     public void test07JugadorRealiza7CanjesYPuedeColocar25Ejercitos(){
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         for (int i = 0; i < 7; i++){
             jugador.realizarCanje();
         }

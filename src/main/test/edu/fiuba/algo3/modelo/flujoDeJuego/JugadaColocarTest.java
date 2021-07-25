@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.flujoDeJuego;
 
 import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
+import edu.fiuba.algo3.modelo.jugador.Objetivo;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import edu.fiuba.algo3.modelo.general.*;
@@ -19,7 +21,11 @@ public class JugadaColocarTest {
         int unaCantidad = 2;
         Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);
-        jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador())));
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador(), listaObjetivos)));
+
         assertEquals(5, unPais.getCantidadEjercitos());
     }
 
@@ -30,8 +36,11 @@ public class JugadaColocarTest {
         int unaCantidad = 3;
         Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);
-        jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador())));
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        jugada.ejecutar(tablero, new Ronda(tablero, new ListaJugadores(2, new Randomizador(), listaObjetivos)));
+
         assertEquals(8, unPais.getCantidadEjercitos());
     }
-
 }

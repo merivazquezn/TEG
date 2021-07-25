@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.general.Continente;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,8 +13,8 @@ public class ContinenteTest {
     @Test
     public void test01OcupadoPorJugadorDevuelveFalseSiOtroJugadorTieneTodosLosPaises() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -37,9 +38,9 @@ public class ContinenteTest {
     @Test
     public void test02OcupadoPorJugadorDevuelveFalseSiOtrosJugadorsTieneTodosLosPaises() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
-        Jugador otroJugadorMas = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugadorMas = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -63,8 +64,8 @@ public class ContinenteTest {
     @Test
     public void test03OcupadoPorJugadorDevuelveFalseSiLeFaltaConquistarUnPais() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -88,8 +89,8 @@ public class ContinenteTest {
     @Test
     public void test04OcupadoPorJugadorDevuelveTrueSiTieneTodosLosPaises() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -114,8 +115,8 @@ public class ContinenteTest {
     @Test
     public void test05EjercitosParaJugadorDevuelve0SiJugadorNoConquistoTodoAmericaDelSur() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -139,7 +140,7 @@ public class ContinenteTest {
     @Test
     public void test06EjercitosParaJugadorDevuelve3SiJugadorNoConquistoTodoElAmericaDelSur() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -163,8 +164,8 @@ public class ContinenteTest {
     @Test
     public void test07UnJugadorTiene3PaisesEnAmericaDelSurYElContinenteDevuelveCantidad3() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));
@@ -188,7 +189,7 @@ public class ContinenteTest {
     @Test
     public void test08UnContinenteDevuelveSuNombreCorrectamente() {
         ArrayList<Pais> listaPaises = new ArrayList<Pais>();
-        Jugador unJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
 
         listaPaises.add(new Pais("Argentina"));
         listaPaises.add(new Pais("Chile"));

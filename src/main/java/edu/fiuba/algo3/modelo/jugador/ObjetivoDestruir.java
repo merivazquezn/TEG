@@ -8,6 +8,8 @@ public class ObjetivoDestruir implements Objetivo {
     public Jugador otroJugador;
 
     public ObjetivoDestruir (){
+        this.jugador = new JugadorNulo();
+        this.otroJugador = new JugadorNulo();
     }
 
     public void setJugadorAtacante(Jugador jugador) {
@@ -21,7 +23,9 @@ public class ObjetivoDestruir implements Objetivo {
     }
 
 
-    public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
+    public boolean haGanado(Tablero tablero){
+        if(this.jugador.esNulo() || this.otroJugador.esNulo())
+            return false;
         return (this.jugador.equals(this.otroJugador.jugadorQueLoDerroto()));
     }
 

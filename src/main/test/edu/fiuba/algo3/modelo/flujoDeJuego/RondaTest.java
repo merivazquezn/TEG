@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.Objetivo;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,7 +21,11 @@ public class RondaTest {
     public void test01LaRondaRecibeUnaJugadaYLaEjecuta(){
         Jugada jugada = mock(JugadaAtacar.class);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         ronda.realizarJugada(jugada);
         verify(jugada, times(1)).ejecutar(tablero, ronda);
@@ -27,7 +33,11 @@ public class RondaTest {
 
     @Test
     public void test02RondaCon3JugadoresRecibeUnaJugadaColocarDondeJugador2ControlaAsiaYLaEjecuta(){
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Jugador jugador1 = listaJugadores.siguiente();
         Jugador jugador2 = listaJugadores.siguiente();
         Jugador jugador3 = listaJugadores.siguiente();
@@ -58,4 +68,9 @@ public class RondaTest {
         assertEquals(pais2.getCantidadEjercitos(), 3);
 
     }
+
+
+
+
+
 }

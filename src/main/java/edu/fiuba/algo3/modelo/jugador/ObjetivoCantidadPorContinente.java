@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.modelo.general.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class ObjetivoCantidadPorContinente implements Objetivo{
 
 
 
-    public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
+    public boolean haGanado(Tablero tablero){
         boolean cumpleObjetivo = true;
         for (HashMap.Entry<String, Integer> entry : this.objetivo.entrySet()) {
             String nombreContinente = entry.getKey();

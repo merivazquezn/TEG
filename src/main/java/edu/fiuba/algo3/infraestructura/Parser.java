@@ -230,7 +230,16 @@ public class Parser {
         }
         return objetivo;
     }
-    // public static ArrayList<Objetivo> parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
+    /*
+    *cantidad por continente --> tipo,continente1,num1,continente2,num2,...,continenteN,numN
+
+    conquistar 2 continentes --> tipo,continente1,continente2
+
+    conquistar continentes y cantidad paises -	-> tipo,continente,continente1,cant1,continente2,cant2,...,continenteN,cantN
+
+    destruir jugador --> tipo
+
+    * */
     public static ArrayList<Objetivo>  parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
 
         ArrayList<ArrayList> datosObjetivos = Parser.leerArchivo(rutaArchivoObjetivos);

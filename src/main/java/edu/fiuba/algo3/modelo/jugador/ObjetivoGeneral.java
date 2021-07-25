@@ -8,7 +8,7 @@ public class ObjetivoGeneral implements Objetivo{
     public ObjetivoGeneral(Jugador jugador){
         this.jugador = jugador;
     }
-    public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
+    public boolean haGanado(Tablero tablero){
         return(this.jugador.cantidadPaises() >= 30);
     }
 }

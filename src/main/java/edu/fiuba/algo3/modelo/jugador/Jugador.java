@@ -11,15 +11,19 @@ public class Jugador {
     private static int numeroDeJugadorSiguiente = 1;
     Jugador jugadorQueLoDerroto;
     private CantidadCanjes cantidadCanjes;
+    private Objetivo objetivoGeneral;
+    private Objetivo objetivoPrivado;
 
     static public void reiniciarClase(){
         Jugador.numeroDeJugadorSiguiente = 1;
     }
 
-    public Jugador(){
-        listaPaises = new ArrayList<Pais>();
+    public Jugador(Objetivo objetivo){
+        listaPaises = new ArrayList<>();
         this.asignarAtributosDeJugadorValido();
         this.cantidadCanjes = new CeroCanjes();
+        this.objetivoGeneral = new ObjetivoGeneral(this);
+        this.objetivoPrivado = objetivo;
     }
 
     protected void asignarAtributosDeJugadorValido(){
@@ -28,8 +32,8 @@ public class Jugador {
         this.jugadorQueLoDerroto = new JugadorNulo();
     }
 
-    public boolean jugadorGano(){
-        return false;
+    public boolean jugadorGano(Tablero tablero){
+        return (this.objetivoGeneral.haGanado(tablero) || this.objetivoPrivado.haGanado(tablero));
     }
 
 

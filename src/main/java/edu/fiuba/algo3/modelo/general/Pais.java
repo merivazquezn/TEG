@@ -76,5 +76,9 @@ public class Pais {
         this.jugador.perdioPaisAnte(this, jugadorConquistador);
         this.asignarJugador(jugadorConquistador);
     }
+
+    public boolean sonLimitrofes(Pais otroPais) {
+        return limitrofes.contains(otroPais);
+    }
 }
 

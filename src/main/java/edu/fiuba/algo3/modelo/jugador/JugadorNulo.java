@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class JugadorNulo extends Jugador {
 
+    public JugadorNulo(){
+        super(new ObjetivoNulo());
+    }
+
     @Override
     protected void asignarAtributosDeJugadorValido(){
         this.jugadorQueLoDerroto = null;

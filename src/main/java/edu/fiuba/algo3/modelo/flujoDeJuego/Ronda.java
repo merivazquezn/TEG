@@ -45,7 +45,9 @@ public class Ronda {
     }
 
     public void seProdujoConquista(){
-        this.faseActual = new FaseReagruparPorConquista();
+        if (this.listaJugadores.hayGanador(this.tablero))
+            this.faseActual = new JuegoTerminado();
+        else this.faseActual = new FaseReagruparPorConquista();
     }
 
     public void seRealizoCanje(){

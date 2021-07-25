@@ -4,6 +4,8 @@ import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.jugador.JugadorNulo;
+import edu.fiuba.algo3.modelo.jugador.Objetivo;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +19,13 @@ public class FaseTest {
     public void test01faseInicial5FichasSeDevuelveASiMismaSiNoLlegoAlFinal(){
         Fase fase = new FaseInicial5Fichas();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseInicial5Fichas);
@@ -27,7 +35,13 @@ public class FaseTest {
     public void test02FaseInicial3FichasSeDevuelveASiMismaSiNoLlegoAlFinal() {
         Fase fase = new FaseInicial3Fichas();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseInicial3Fichas);
@@ -37,7 +51,13 @@ public class FaseTest {
     public void test03FaseInicial3FichasDevuelveFaseAtaqueSiEstaAlFinalDeLaListaJugadores() {
         Fase fase = new FaseInicial3Fichas();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
@@ -49,7 +69,14 @@ public class FaseTest {
     public void test04FaseReagruparPorConquistaDevuelveFaseAtaqueSiNoEstaAlFinal() {
         Fase fase = new FaseReagruparPorConquista();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(4, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(4, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseAtaque);
@@ -59,7 +86,13 @@ public class FaseTest {
     public void test05FaseReagruparPorConquistaDevuelveFaseAtaqueSiEstaAlFinal() {
         Fase fase = new FaseReagruparPorConquista();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
@@ -70,7 +103,16 @@ public class FaseTest {
     public void test06FaseJuegoTerminadoSeDevuelveASiMisma() {
         Fase fase = new JuegoTerminado();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(6, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(6, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof JuegoTerminado);
@@ -80,7 +122,13 @@ public class FaseTest {
     public void test07FaseReagruparFinalDevuelveFaseAtaqueSiNoEstaAlFinalDeLaLista(){
         Fase fase = new FaseReagruparFinal();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseAtaque);
@@ -90,7 +138,16 @@ public class FaseTest {
     public void test08FaseColocacionSeDevuelveASiMismaSiNoEstaAlFinalDeLaLista() {
         Fase fase = new FaseColocacion();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(6, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(6, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         listaJugadores.siguiente();
         listaJugadores.siguiente();
@@ -103,7 +160,13 @@ public class FaseTest {
     public void test09FaseColocacionDevuelveFaseAtaqueSiEstaAlFinalDeLaLista() {
         Fase fase = new FaseColocacion();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
@@ -114,7 +177,13 @@ public class FaseTest {
     public void test10FaseReagruparFinalDevuelveFaseColocacionSiEstaAlFinalDeLaLista(){
         Fase fase = new FaseReagruparFinal();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
@@ -126,7 +195,13 @@ public class FaseTest {
     public void test11faseInicial5FichasDevuelveFaseInicial3FichasSiLlegoAlFinalDeLaLista(){
         Fase fase = new FaseInicial5Fichas();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase siguienteFase = fase.siguienteFase(ronda);
@@ -147,7 +222,13 @@ public class FaseTest {
     @Test
     public void test13laRondaCambiaSuEstadoAFaseReagruparPorConquistaCuandoSeProduceConquista(){
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         ronda.seProdujoConquista();
         Fase faseActual = ronda.obtenerFaseActual();
@@ -157,9 +238,36 @@ public class FaseTest {
     @Test
     public void test14unaRondaSeCreaConFaseInicial5Fichas(){
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase faseActual = ronda.obtenerFaseActual();
         assertTrue(faseActual instanceof FaseInicial5Fichas);
+    }
+
+    @Test
+    public void test15FaseAtaqueSiempreDevuelveFaseReagruparFinal() {
+        Fase fase = new FaseAtaque();
+        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        ListaJugadores listaJugadores = new ListaJugadores(6, new Randomizador(), listaObjetivos);
+        listaJugadores.siguiente();
+        listaJugadores.siguiente();
+        Ronda ronda = new Ronda(tablero, listaJugadores);
+        Fase siguienteFase = fase.siguienteFase(ronda);
+        assertTrue(siguienteFase instanceof FaseReagruparFinal);
     }
 }

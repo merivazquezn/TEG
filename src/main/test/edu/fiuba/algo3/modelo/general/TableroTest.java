@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.general.Continente;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class TableroTest {
     public void test01CantidadEjercitosPorContinenteDevuelve0SiJugadorNoConquistoNingunContinente() {
 
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -57,7 +58,7 @@ public class TableroTest {
 
 
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -91,7 +92,7 @@ public class TableroTest {
 
 
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -124,7 +125,7 @@ public class TableroTest {
     public void test04CantidadEjercitosPorContinenteDevuelve25SiJugadorConquistoTodosLosContinentes() {
 
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -156,7 +157,7 @@ public class TableroTest {
     @Test
     public void test05CantidadDePaisesEnAsiaDebeSer5(){
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -185,7 +186,7 @@ public class TableroTest {
     @Test
     public void test06CantidadDePaisesEnEuropaDebeSer9(){
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -214,7 +215,7 @@ public class TableroTest {
     @Test
     public void test07EuropaDeberiaEstarOcupadaPorUnJugador(){
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 
@@ -241,7 +242,7 @@ public class TableroTest {
     @Test
     public void test08AsiaNoDeberiaEstarOcupadaPorUnJugador(){
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
 
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
 

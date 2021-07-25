@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.general.Tablero;
 
+import edu.fiuba.algo3.modelo.general.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
     }
 
 
-    public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
-        return (this.objetivo1.haGanado(tablero, listaJugadores) && this.objetivo2.haGanado(tablero, listaJugadores));
+    public boolean haGanado(Tablero tablero){
+        return (this.objetivo1.haGanado(tablero) && this.objetivo2.haGanado(tablero));
     }
 }

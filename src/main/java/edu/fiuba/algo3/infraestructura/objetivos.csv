@@ -1,0 +1,12 @@
+destruir_jugador
+destruir_jugador
+destruir_jugador
+destruir_jugador
+conquistar_2_continentes,Europa,America del Sur
+conquistar_2_continentes,Africa,America del Norte
+conquistar_2_continentes,Asia,Oceania
+conquistar_continentes_y_cantidad_paises,America del Norte,Africa,3,Oceania,2
+conquistar_continentes_y_cantidad_paises,Europa,America del Sur,3,Asia,4
+conquistar_continentes_y_cantidad_paises,Asia,America del Norte,2,Africa,3
+conquistar_continentes_y_cantidad_paises,America del Sur,Europa,4,Asia,7
+cantidad_por_continente,Africa,2,America del Sur,2,America del Norte,3,Asia,3,Oceania,2,Europa,2

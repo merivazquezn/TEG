@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.jugador.JugadorNoTieneElPaisException;
 import edu.fiuba.algo3.modelo.general.Signo;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
 
+import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +22,7 @@ public class TarjetaTest {
 
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
 
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(jugador);
         tarjeta.asignarJugador(jugador);
         tarjeta.activar();
@@ -33,8 +34,8 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(3);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(otroJugador);
         tarjeta.asignarJugador(unJugador);
         assertThrows(JugadorNoTieneElPaisException.class, tarjeta::activar);
@@ -45,7 +46,7 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(3);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador unJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(unJugador);
         assertThrows(JugadorNoTieneElPaisException.class, tarjeta::activar);
     }
@@ -56,7 +57,7 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(7);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(jugador);
         tarjeta.asignarJugador(jugador);
         tarjeta.activar();
@@ -69,7 +70,7 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(1);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador jugador = new Jugador();
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(jugador);
         tarjeta.asignarJugador(jugador);
         tarjeta.activar();
@@ -81,8 +82,8 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(3);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(otroJugador);
         tarjeta.asignarJugador(unJugador);
         assertThrows(JugadorNoTieneElPaisException.class, tarjeta::activar);
@@ -94,8 +95,8 @@ public class TarjetaTest {
         Pais pais = new Pais("Argentina");
         pais.colocarEjercitos(1);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
-        Jugador unJugador = new Jugador();
-        Jugador otroJugador = new Jugador();
+        Jugador unJugador = new Jugador(new ObjetivoDestruir());
+        Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(otroJugador);
         tarjeta.asignarJugador(unJugador);
         assertThrows(JugadorNoTieneElPaisException.class, tarjeta::activar);

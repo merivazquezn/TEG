@@ -99,8 +99,8 @@ public class App extends Application {
             }
 
             this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-            ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador());
-            this.ronda = new Ronda(tablero, listaJugadores);
+            //ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador());
+            //this.ronda = new Ronda(tablero, listaJugadores);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.infraestructura.IRandomizador;
-import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.modelo.jugador.JugadorNulo;
+import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,13 +14,15 @@ public class ListaJugadores {
     final int cantidadMaximaJugadores = 6;
 
 
-    public ListaJugadores(int cantidadJugadores, IRandomizador randomizador){
+    public ListaJugadores(int cantidadJugadores, IRandomizador randomizador, ArrayList<Objetivo> listaObjetivos){
         if(cantidadJugadores < this.cantidadMinimaJugadores || cantidadJugadores > this.cantidadMaximaJugadores)
                 throw new CantidadInvalidaDeJugadoresException();
         this.listaJugadores = new ArrayList<>();
+        randomizador.mezclarObjetivos(listaObjetivos);
 
         for(int i=0; i < cantidadJugadores; i++) {
-            Jugador nuevoJugador = new Jugador();
+            Objetivo objetivoDelJugador = listaObjetivos.remove(0);
+            Jugador nuevoJugador = new Jugador(objetivoDelJugador);
             listaJugadores.add(nuevoJugador);
         }
 
@@ -56,4 +57,13 @@ public class ListaJugadores {
         this.listaJugadores = listaJugadoresAuxiliar;
     }
 
+    public boolean hayGanador(Tablero tablero){
+        boolean hayGanador = false;
+        int iterador = 0;
+        while(!hayGanador && iterador < listaJugadores.size()){
+            hayGanador = listaJugadores.get(iterador).jugadorGano(tablero);
+            iterador++;
+        }
+        return hayGanador;
+    }
 }

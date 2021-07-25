@@ -21,12 +21,9 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         Objetivo objetivo = new ObjetivoGeneral(unJugador);
         when(unJugador.cantidadPaises()).thenReturn(30);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -34,12 +31,9 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         Objetivo objetivo = new ObjetivoGeneral(unJugador);
         when(unJugador.cantidadPaises()).thenReturn(29);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -47,9 +41,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 3);
         listaObjetivos.put("Asia", 3);
@@ -67,7 +58,7 @@ public class ObjetivoTest {
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Sur")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Norte")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Oceania")).thenReturn(3);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -75,9 +66,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 3);
         listaObjetivos.put("Asia", 3);
@@ -95,7 +83,7 @@ public class ObjetivoTest {
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Sur")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Norte")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Oceania")).thenReturn(3);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -103,9 +91,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 4);
         listaObjetivos.put("Asia", 3);
@@ -122,7 +107,7 @@ public class ObjetivoTest {
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Sur")).thenReturn(6);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Norte")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Oceania")).thenReturn(0);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -130,9 +115,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Europa", 4);
         listaObjetivos.put("Asia", 3);
@@ -149,7 +131,7 @@ public class ObjetivoTest {
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Sur")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "America Del Norte")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Oceania")).thenReturn(0);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -157,9 +139,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         ArrayList<String> listaObjetivos = new ArrayList<String>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
@@ -167,7 +146,7 @@ public class ObjetivoTest {
         ((ObjetivoConquistar2Continentes) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Asia")).thenReturn(true);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -175,9 +154,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         ArrayList<String> listaObjetivos = new ArrayList<String>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
@@ -185,7 +161,7 @@ public class ObjetivoTest {
         ((ObjetivoConquistar2Continentes) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Asia")).thenReturn(false);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -193,9 +169,6 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 4);
         listaObjetivos.put("Asia", 3);
@@ -204,17 +177,13 @@ public class ObjetivoTest {
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
     public void test10unObjetivoDeContinenteMasPaisesVariosNoEsCumplido(){
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
-        Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 3);
         listaObjetivos.put("Asia", 4);
@@ -223,7 +192,7 @@ public class ObjetivoTest {
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -231,14 +200,11 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
         Objetivo objetivo = new ObjetivoDestruir();
         ((ObjetivoDestruir) objetivo).setJugadorAtacante(unJugador);
         ((ObjetivoDestruir) objetivo).setJugadorObjetivo(otroJugador);
         when(otroJugador.jugadorQueLoDerroto()).thenReturn(unJugador);
-        assertTrue(objetivo.haGanado(tablero, listaJugadores));
+        assertTrue(objetivo.haGanado(tablero));
     }
 
     @Test
@@ -247,15 +213,11 @@ public class ObjetivoTest {
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
         Jugador otroJugadorMas = mock(Jugador.class);
-        ArrayList<Jugador> listaJugadores = new ArrayList<>();
-        listaJugadores.add(unJugador);
-        listaJugadores.add(otroJugador);
-        listaJugadores.add(otroJugadorMas);
         Objetivo objetivo = new ObjetivoDestruir();
         ((ObjetivoDestruir) objetivo).setJugadorAtacante(unJugador);
         ((ObjetivoDestruir) objetivo).setJugadorObjetivo(otroJugador);
         when(otroJugador.jugadorQueLoDerroto()).thenReturn(otroJugadorMas);
-        assertFalse(objetivo.haGanado(tablero, listaJugadores));
+        assertFalse(objetivo.haGanado(tablero));
     }
 
 }
