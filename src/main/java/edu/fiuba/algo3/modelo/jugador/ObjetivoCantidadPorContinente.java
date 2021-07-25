@@ -10,10 +10,17 @@ public class ObjetivoCantidadPorContinente implements Objetivo{
     private Jugador jugador;
     private HashMap<String, Integer> objetivo;
 
-    public ObjetivoCantidadPorContinente(Jugador unJugador, HashMap<String, Integer> objetivo) {
-        this.jugador = unJugador;
+    public ObjetivoCantidadPorContinente(HashMap<String, Integer> objetivo) {
+        this.jugador = new JugadorNulo();
         this.objetivo = objetivo;
     }
+
+    public void setJugador(Jugador jugador) {
+
+        this.jugador = jugador;
+    }
+
+
 
     public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
         boolean cumpleObjetivo = true;
@@ -25,4 +32,5 @@ public class ObjetivoCantidadPorContinente implements Objetivo{
         }
         return cumpleObjetivo;
     }
+
 }

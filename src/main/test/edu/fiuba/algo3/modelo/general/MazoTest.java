@@ -102,4 +102,5 @@ public class MazoTest {
 
         assertEquals(cantInicial+3, mazo.largoMazo());
     }
+
 }

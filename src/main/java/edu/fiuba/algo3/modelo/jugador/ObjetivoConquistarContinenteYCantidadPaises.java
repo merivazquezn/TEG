@@ -12,14 +12,23 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
     private ObjetivoCantidadPorContinente objetivo2;
 
 
-    public ObjetivoConquistarContinenteYCantidadPaises(Jugador unJugador, String continente, HashMap<String, Integer> listaObjetivos2){
-        this.jugador = unJugador;
+    public ObjetivoConquistarContinenteYCantidadPaises(String continente, HashMap<String, Integer> listaObjetivos2){
+        this.jugador = new JugadorNulo();
         ArrayList<String> listaObjetivo1 = new ArrayList<>();
         listaObjetivo1.add(continente);
         listaObjetivo1.add(continente);
-        this.objetivo1 = new ObjetivoConquistar2Continentes(unJugador, listaObjetivo1);
-        this.objetivo2 = new ObjetivoCantidadPorContinente(unJugador, listaObjetivos2);
+        this.objetivo1 = new ObjetivoConquistar2Continentes(listaObjetivo1);
+        objetivo1.setJugador(this.jugador);
+        this.objetivo2 = new ObjetivoCantidadPorContinente(listaObjetivos2);
+        objetivo2.setJugador(this.jugador);
     }
+
+    public void setJugador(Jugador jugador) {
+        objetivo1.setJugador(jugador);
+        objetivo2.setJugador(jugador);
+    }
+
+
     public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){
         return (this.objetivo1.haGanado(tablero, listaJugadores) && this.objetivo2.haGanado(tablero, listaJugadores));
     }

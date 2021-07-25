@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.general.Signo;
 import edu.fiuba.algo3.modelo.general.SignoComodin;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
+import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -173,5 +174,78 @@ public class Parser {
 
         return arrayTarjetas;
     }
+
+    //cambiar a retorno de Objetivo
+    private static Objetivo seleccionarSegunNombreObjetivo(String nombreObjetivo, ArrayList<String> linea) {
+
+        Objetivo objetivo = null;
+
+        switch(nombreObjetivo) {
+            case "cantidad_por_continente":
+                //(Jugador unJugador, HashMap<String, Integer> objetivo)
+                HashMap<String, Integer> hashCantidades = new HashMap<String, Integer>();
+                String nombreContinenteActual = "";
+                for(int i=1; i < linea.size(); i++) {
+                    if(i % 2 != 0) { //Si i es impar, esta el nombre del continente
+                        nombreContinenteActual = linea.get(i);
+                    } else { //Si es impar, esta la cantidad a conquistar en el continente
+                        hashCantidades.put(nombreContinenteActual, Integer.parseInt(linea.get(i)));
+                    }
+                }
+
+                objetivo = new ObjetivoCantidadPorContinente(hashCantidades);
+                break;
+
+            case "conquistar_2_continentes":
+
+                ArrayList<String> listaContinentes = new ArrayList<String>();
+
+                for(int i=1; i < linea.size(); i++) {
+
+                    listaContinentes.add(linea.get(i));
+                }
+                objetivo = new ObjetivoConquistar2Continentes(listaContinentes);
+                break;
+
+            case "conquistar_continentes_y_cantidad_paises":
+                // Jugador unJugador, String continente, HashMap<String, Integer> listaObjetivos2)
+
+                String nombreContinente = linea.get(1);
+                HashMap<String, Integer> hashContinentesConCantidad = new HashMap<String, Integer>();
+                String nombreActual = null;
+                for(int i=2; i < linea.size(); i++) {
+                    if(i % 2 == 0) { //si el split de la linea es par, aparece el nombre del continente
+                        nombreActual = linea.get(i);
+                    } else {
+                        hashContinentesConCantidad.put(nombreActual, Integer.parseInt(linea.get(i)));
+                    }
+                }
+
+                objetivo = new ObjetivoConquistarContinenteYCantidadPaises(nombreContinente, hashContinentesConCantidad);
+                break;
+
+            case "destruir_jugador":
+                objetivo = new ObjetivoDestruir();
+                break;
+        }
+        return objetivo;
+    }
+    // public static ArrayList<Objetivo> parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
+    public static ArrayList<Objetivo>  parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
+
+        ArrayList<ArrayList> datosObjetivos = Parser.leerArchivo(rutaArchivoObjetivos);
+
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+
+        for(ArrayList<String> linea : datosObjetivos) {
+
+            String nombreTipoObjetivo = linea.get(0);
+            listaObjetivos.add(seleccionarSegunNombreObjetivo(nombreTipoObjetivo, linea));
+        }
+
+        return listaObjetivos;
+
+    }
+
 
 }

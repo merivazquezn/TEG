@@ -8,9 +8,13 @@ public class ObjetivoConquistar2Continentes implements Objetivo{
     private Jugador jugador;
     private ArrayList<String> listaObjetivos;
 
-    public ObjetivoConquistar2Continentes(Jugador unJugador, ArrayList<String> listaObjetivos){
-        this.jugador = unJugador;
+    public ObjetivoConquistar2Continentes(ArrayList<String> listaObjetivos){
+        this.jugador = new JugadorNulo();
         this.listaObjetivos = listaObjetivos;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     public boolean haGanado(Tablero tablero, ArrayList<Jugador> listaJugadores){

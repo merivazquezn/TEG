@@ -57,7 +57,10 @@ public class ObjetivoTest {
         listaObjetivos.put("America Del Sur", 3);
         listaObjetivos.put("America Del Norte", 3);
         listaObjetivos.put("Oceania", 3);
-        Objetivo objetivo = new ObjetivoCantidadPorContinente(unJugador, listaObjetivos);
+
+        Objetivo objetivo = new ObjetivoCantidadPorContinente(listaObjetivos);
+        ((ObjetivoCantidadPorContinente) objetivo).setJugador(unJugador);
+
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Europa")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(3);
@@ -82,7 +85,10 @@ public class ObjetivoTest {
         listaObjetivos.put("America Del Sur", 3);
         listaObjetivos.put("America Del Norte", 3);
         listaObjetivos.put("Oceania", 3);
-        Objetivo objetivo = new ObjetivoCantidadPorContinente(unJugador, listaObjetivos);
+
+        Objetivo objetivo = new ObjetivoCantidadPorContinente(listaObjetivos);
+        ((ObjetivoCantidadPorContinente) objetivo).setJugador(unJugador);
+
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Europa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(2);
@@ -106,7 +112,10 @@ public class ObjetivoTest {
         listaObjetivos.put("Africa", 5);
         listaObjetivos.put("America Del Sur", 6);
         listaObjetivos.put("America Del Norte", 1);
-        Objetivo objetivo = new ObjetivoCantidadPorContinente(unJugador, listaObjetivos);
+
+        Objetivo objetivo = new ObjetivoCantidadPorContinente(listaObjetivos);
+        ((ObjetivoCantidadPorContinente) objetivo).setJugador(unJugador);
+
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Europa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(5);
@@ -130,7 +139,10 @@ public class ObjetivoTest {
         listaObjetivos.put("Africa", 5);
         listaObjetivos.put("America Del Sur", 6);
         listaObjetivos.put("America Del Norte", 1);
-        Objetivo objetivo = new ObjetivoCantidadPorContinente(unJugador, listaObjetivos);
+
+        Objetivo objetivo = new ObjetivoCantidadPorContinente(listaObjetivos);
+        ((ObjetivoCantidadPorContinente) objetivo).setJugador(unJugador);
+
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Europa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(2);
@@ -151,7 +163,8 @@ public class ObjetivoTest {
         ArrayList<String> listaObjetivos = new ArrayList<String>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
-        Objetivo objetivo = new ObjetivoConquistar2Continentes(unJugador, listaObjetivos);
+        Objetivo objetivo = new ObjetivoConquistar2Continentes(listaObjetivos);
+        ((ObjetivoConquistar2Continentes) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Asia")).thenReturn(true);
         assertTrue(objetivo.haGanado(tablero, listaJugadores));
@@ -168,7 +181,8 @@ public class ObjetivoTest {
         ArrayList<String> listaObjetivos = new ArrayList<String>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
-        Objetivo objetivo = new ObjetivoConquistar2Continentes(unJugador, listaObjetivos);
+        Objetivo objetivo = new ObjetivoConquistar2Continentes(listaObjetivos);
+        ((ObjetivoConquistar2Continentes) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Asia")).thenReturn(false);
         assertFalse(objetivo.haGanado(tablero, listaJugadores));
@@ -185,7 +199,8 @@ public class ObjetivoTest {
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 4);
         listaObjetivos.put("Asia", 3);
-        Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises(unJugador, "Europa", listaObjetivos);
+        Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises("Europa", listaObjetivos);
+        ((ObjetivoConquistarContinenteYCantidadPaises) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
@@ -203,7 +218,8 @@ public class ObjetivoTest {
         HashMap<String, Integer> listaObjetivos = new HashMap<>();
         listaObjetivos.put("Africa", 3);
         listaObjetivos.put("Asia", 4);
-        Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises(unJugador, "Europa", listaObjetivos);
+        Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises("Europa", listaObjetivos);
+        ((ObjetivoConquistarContinenteYCantidadPaises) objetivo).setJugador(unJugador);
         when(tablero.continenteOcupadoPorJugador(unJugador, "Europa")).thenReturn(true);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Africa")).thenReturn(4);
         when(tablero.cantidadPaisesDeJugadorEn(unJugador, "Asia")).thenReturn(3);
@@ -218,7 +234,9 @@ public class ObjetivoTest {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
-        Objetivo objetivo = new ObjetivoDestruir(unJugador, otroJugador);
+        Objetivo objetivo = new ObjetivoDestruir();
+        ((ObjetivoDestruir) objetivo).setJugadorAtacante(unJugador);
+        ((ObjetivoDestruir) objetivo).setJugadorObjetivo(otroJugador);
         when(otroJugador.jugadorQueLoDerroto()).thenReturn(unJugador);
         assertTrue(objetivo.haGanado(tablero, listaJugadores));
     }
@@ -233,7 +251,9 @@ public class ObjetivoTest {
         listaJugadores.add(unJugador);
         listaJugadores.add(otroJugador);
         listaJugadores.add(otroJugadorMas);
-        Objetivo objetivo = new ObjetivoDestruir(unJugador, otroJugador);
+        Objetivo objetivo = new ObjetivoDestruir();
+        ((ObjetivoDestruir) objetivo).setJugadorAtacante(unJugador);
+        ((ObjetivoDestruir) objetivo).setJugadorObjetivo(otroJugador);
         when(otroJugador.jugadorQueLoDerroto()).thenReturn(otroJugadorMas);
         assertFalse(objetivo.haGanado(tablero, listaJugadores));
     }
