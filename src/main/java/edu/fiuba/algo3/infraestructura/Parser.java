@@ -43,7 +43,26 @@ public class Parser {
         return lineasArchivo;
 	}
 
-    public static ArrayList<HashMap> parserarPaises(String rutaArchivo) throws IOException {
+	public static HashMap<Pais, int[]> parsearPaisesParaVista(String rutaArchivo, HashMap<String, Pais> hashPaises) throws IOException {
+        ArrayList<ArrayList> datosPaisesCompleto = Parser.leerArchivo(rutaArchivo);
+
+        HashMap<Pais, int[]> hashPaisesConCoord = new HashMap<Pais, int[]>();
+
+        for(ArrayList<String> linea : datosPaisesCompleto) {
+
+            Pais pais = hashPaises.get(linea.get(0));
+
+            int[] coordenadas = new int[2];
+            coordenadas[0] = Integer.parseInt(linea.get(3));
+            coordenadas[1] = Integer.parseInt(linea.get(4));
+
+            hashPaisesConCoord.put(pais, coordenadas);
+        }
+
+        return hashPaisesConCoord;
+    }
+
+    public static ArrayList<HashMap> parsearPaisesParaTablero(String rutaArchivo) throws IOException {
         /*
         *
         * Devuelve un ArrayList donde en la posicion 0 tiene un Hash con los paises
@@ -68,7 +87,10 @@ public class Parser {
             Pais pais = new Pais(linea.get(0));
 
             paises.putIfAbsent(linea.get(0), pais);
-            hashContinentesConPaises.get(linea.get(1)).add(pais);
+
+            String nombreContinente = linea.get(1);
+            ArrayList<Pais> continente = hashContinentesConPaises.get(nombreContinente);
+            continente.add(pais);
         }
 
 
