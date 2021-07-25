@@ -144,7 +144,7 @@ public class FaseTest {
         verify(listaJugadores, times(1)).reiniciar();
     }
 
-    /*@Test
+    @Test
     public void test13laRondaCambiaSuEstadoAFaseReagruparPorConquistaCuandoSeProduceConquista(){
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador());
@@ -161,5 +161,5 @@ public class FaseTest {
         Ronda ronda = new Ronda(tablero, listaJugadores);
         Fase faseActual = ronda.obtenerFaseActual();
         assertTrue(faseActual instanceof FaseInicial5Fichas);
-    }*/
+    }
 }

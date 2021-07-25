@@ -12,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConjuntoTarjetasTest {
 
@@ -39,9 +38,7 @@ public class ConjuntoTarjetasTest {
         Tarjeta tarjeta3 = new Tarjeta(new Pais("Chile"), new Signo(2));
 
         ConjuntoTarjetas conjuntoTarjetas = new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, mazo);
-        assertThrows(TarjetasNoCanjeablesError.class, () -> {
-            conjuntoTarjetas.sePudoCanjear();
-        });
+        assertFalse(conjuntoTarjetas.sePudoCanjear());
     }
 
     @Test

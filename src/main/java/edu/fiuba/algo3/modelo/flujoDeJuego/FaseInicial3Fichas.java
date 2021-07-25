@@ -6,6 +6,7 @@ public class FaseInicial3Fichas implements Fase {
             ronda.reiniciarLista();
             return new FaseAtaque();
         }
+        ronda.establecerCantidadAColocar(3);
         return new FaseInicial3Fichas();
     }
 }
