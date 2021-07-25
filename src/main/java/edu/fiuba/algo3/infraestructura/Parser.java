@@ -15,8 +15,6 @@ import java.lang.*;
 
 
 public class Parser {
-    private static String rutaArchivoPaises = "./src/main/java/edu/fiuba/algo3/util/paises.csv";
-    // archivo cartas
 
 
     public static ArrayList<ArrayList> leerArchivo(String rutaArchivo) throws IOException {

@@ -26,7 +26,6 @@ public class ParserTest {
 
     }
 
-
     @Test
     public void test02leeArchivoDePaisesSinElevarExcepcion() {
         try {
@@ -118,7 +117,7 @@ public class ParserTest {
     public void test06ParsearPaisesleeArchivoPaisesCorrectamente() {
         ArrayList<HashMap> devolucion = new ArrayList<HashMap>();
         try {
-            devolucion = Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+            devolucion = Parser.parsearPaisesParaTablero("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
         } catch (Exception e) {
             System.out.println(e);
             fail();
@@ -198,7 +197,7 @@ public class ParserTest {
     @Test
     public void test10ParsearTarjetasDevuelveFileNotFoundExceptionSiNoExisteElArchivo() {
         assertThrows(FileNotFoundException.class, () -> {
-            Parser.parserarPaises("archivoInexistente.csv");
+            Parser.parsearPaisesParaTablero("archivoInexistente.csv");
         });
 
     }
