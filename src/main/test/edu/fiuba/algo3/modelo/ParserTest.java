@@ -26,7 +26,6 @@ public class ParserTest {
 
     }
 
-
     @Test
     public void test02leeArchivoDePaisesSinElevarExcepcion() {
         try {
@@ -54,16 +53,22 @@ public class ParserTest {
         ArrayList<String> linea3 = new ArrayList();
 
         linea1.add("Argentina");
-        linea1.add("America del Sur");
+        linea1.add("America Del Sur");
         linea1.add("\"Uruguay;Brasil\"");
+        linea1.add("0");
+        linea1.add("0");
 
         linea2.add("Uruguay");
-        linea2.add("America del Sur");
+        linea2.add("America Del Sur");
         linea2.add("\"Argentina;Brasil\"");
+        linea2.add("0");
+        linea2.add("0");
 
         linea3.add("Brasil");
-        linea3.add("America del Sur");
+        linea3.add("America Del Sur");
         linea3.add("\"Argentina;Uruguay\"");
+        linea3.add("0");
+        linea3.add("0");
 
         esperado.add(linea1);
         esperado.add(linea2);
@@ -77,16 +82,6 @@ public class ParserTest {
                 if (!(devolucion.get(i).get(j).equals(esperado.get(i).get(j)))) {
                     fail();
                 }
-
-                if (devolucion.get(i).size() != 3) {
-                    for (int k = 0; k < 4; k++) {
-                        System.out.println(devolucion.get(i).get(k));
-                    }
-                    System.out.println(devolucion.get(i));
-                    fail();
-
-
-                }
             }
 
             assertTrue(true);
@@ -97,7 +92,7 @@ public class ParserTest {
     @Test
     public void test04ParsearPaisesDevuelveFileNotFoundExceptionSiNoExisteElArchivo() {
         assertThrows(FileNotFoundException.class, () -> {
-            Parser.parserarPaises("archivoInexistente.csv");
+            Parser.parsearPaisesParaTablero("archivoInexistente.csv");
         });
 
     }
@@ -106,7 +101,7 @@ public class ParserTest {
     @Test
     public void test05parseaArchivoDePaisesSinElevarExcepcion() {
         try {
-            Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+            Parser.parsearPaisesParaTablero("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
             assertTrue(true);
         } catch (Exception e) {
             assertFalse(true);
@@ -118,7 +113,7 @@ public class ParserTest {
     public void test06ParsearPaisesleeArchivoPaisesCorrectamente() {
         ArrayList<HashMap> devolucion = new ArrayList<HashMap>();
         try {
-            devolucion = Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+            devolucion = Parser.parsearPaisesParaTablero("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
         } catch (Exception e) {
             System.out.println(e);
             fail();
@@ -146,14 +141,14 @@ public class ParserTest {
     public void test07ParsearPaisesAsignaCorrectamenteLosPaisesALosContinentes() {
         ArrayList<HashMap> devolucion = new ArrayList<HashMap>();
         try {
-            devolucion = Parser.parserarPaises("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
+            devolucion = Parser.parsearPaisesParaTablero("./src/main/test/edu/fiuba/algo3/modelo/test02parser.csv");
         } catch (Exception e) {
             fail(e.getMessage());
         }
 
         HashMap<String, Continente> hashContinentes = devolucion.get(1);
 
-        ArrayList<Pais> paisesOceania = hashContinentes.get("Oceania").getListaPaises();
+        ArrayList<Pais> paisesOceania = hashContinentes.get("Oceanía").getListaPaises();
 
         HashSet<String> setNombrePaises = new HashSet<String>();
 
@@ -198,7 +193,7 @@ public class ParserTest {
     @Test
     public void test10ParsearTarjetasDevuelveFileNotFoundExceptionSiNoExisteElArchivo() {
         assertThrows(FileNotFoundException.class, () -> {
-            Parser.parserarPaises("archivoInexistente.csv");
+            Parser.parsearPaisesParaTablero("archivoInexistente.csv");
         });
 
     }

@@ -1,50 +1,50 @@
-Francia,Europa,"Alemania;España;Italia"
-Gran Bretaña,Europa,"Islandia;Alemania;España"
-Tartaria,Asia,"Aral;Taymir;Siberia"
-Mongolia,Asia,"Aral;Siberia;Iran;Gobi;China"
-Zaire,Africa,"Madagascar;Sudafrica;Etiopia;Sahara"
-Polonia,Europa,"Alemania;Rusia;Turquia;Egipto"
-Oregon,America del Norte,"Alaska;Yukon;Canada;Nueva York;California"
-Etiopia,Africa,"Sahara;Egipto;Zaire;Sudafrica"
-Chile,America del Sur,"Argentina;Peru;Australia"
-Australia,Oceania,"Chile;Sumatra;Java;Borneo"
-Kamtchatka,Asia,"Siberia;China;Japon;Alaska"
-Egipto,Africa,"Polonia;Turquia;Israel;Madagascar;Etiopia;Sahara"
-Turquia,Asia,"Egipto;Polonia;Rusia;Iran;Israel;Arabia"
-Nueva York,America del Norte,"Groenlandia;Canada;Oregon;California;Terranova"
-Terranova,America del Norte,"Labrador;Canada;Nueva York"
-Iran,Asia,"Aral;Mongolia;Gobi;China;India;Turquia;Rusia"
-Madagascar,Africa,"Egipto;Zaire"
-Argentina,America del Sur,"Chile;Peru;Brasil;Uruguay"
-Israel,Asia,"Turquia;Arabia;Egipto"
-Rusia,Europa,"Suecia;Aral;Iran;Turquia;Polonia"
-Borneo,Oceania,"Australia;Malasia"
-California,America del Norte,"Oregon;Nueva York;Mexico"
-Taymir,Asia,"Tartaria;Siberia"
-Aral,Asia,"Rusia;Iran;Mongolia;Siberia;Tartaria"
-Siberia,Asia,"Aral;Tartaria;Taymir;Kamtchatka;China;Mongolia"
-Canada,America del Norte,"Yukon;Oregon;Nueva York;Terranova"
-Sahara,Africa,"Brasil;España;Egipto;Etiopia;Zaire"
-Yukon,America del Norte,"Alaska;Canada;Oregon"
-Uruguay,America del Sur,"Argentina;Brasil"
-Groenlandia,America del Norte,"Labrador;Nueva York;Islandia"
-Japon,Asia,"Kamtchatka;China"
-Sumatra,Oceania,"Australia;India"
-Alaska,America del Norte,"Yukon;Oregon;Kamtchatka"
-Brasil,America del Sur,"Colombia;Peru;Argentina;Uruguay;Sahara"
-Gobi,Asia,"Mongolia;China;Iran"
-Italia,Europa,"Alemania;Francia"
-España,Europa,"Sahara;Francia;Gran Bretaña"
-Colombia,America del Sur,"Mexico;Peru;Brasil"
-Suecia,Europa,"Rusia;Islandia"
-Sudafrica,Africa,"Zaire;Etiopia"
-Arabia,Asia,"Turquia;Israel"
-India,Asia,"China;Malasia;Iran;Sumatra"
-Java,Oceania,"Australia"
-Mexico,America del Norte,"Colombia;California"
-Peru,America del Sur,"Colombia;Brasil;Chile;Argentina"
-Alemania,Europa,"Polonia;Italia;Gran Bretaña;Francia"
-China,Asia,"Kamtchatka;Siberia;Mongolia;Gobi;Iran;India;Malasia;Japon"
-Labrador,America del Norte,"Groenlandia;Terranova"
-Islandia,Europa,"Groenlandia;Suecia;Gran Bretaña"
-Malasia,Asia,"China;India;Borneo"
+Francia,Europa,"Alemania;España;Italia",0,0
+Gran Bretaña,Europa,"Islandia;Alemania;España",0,0
+Tartaria,Asia,"Aral;Taymir;Siberia",0,0
+Mongolia,Asia,"Aral;Siberia;Iran;Gobi;China",0,0
+Zaire,Africa,"Madagascar;Sudafrica;Etiopia;Sahara",0,0
+Polonia,Europa,"Alemania;Rusia;Turquia;Egipto",0,0
+Oregon,América Del Norte,"Alaska;Yukon;Canada;Nueva York;California",0,0
+Etiopia,Africa,"Sahara;Egipto;Zaire;Sudafrica",0,0
+Chile,América Del Sur,"Argentina;Peru;Australia",0,0
+Australia,Oceanía,"Chile;Sumatra;Java;Borneo",0,0
+Kamtchatka,Asia,"Siberia;China;Japon;Alaska",0,0
+Egipto,Africa,"Polonia;Turquia;Israel;Madagascar;Etiopia;Sahara",0,0
+Turquia,Asia,"Egipto;Polonia;Rusia;Iran;Israel;Arabia",0,0
+Nueva York,América Del Norte,"Groenlandia;Canada;Oregon;California;Terranova",0,0
+Terranova,América Del Norte,"Labrador;Canada;Nueva York",0,0
+Iran,Asia,"Aral;Mongolia;Gobi;China;India;Turquia;Rusia",0,0
+Madagascar,Africa,"Egipto;Zaire",0,0
+Argentina,América Del Sur,"Chile;Peru;Brasil;Uruguay",0,0
+Israel,Asia,"Turquia;Arabia;Egipto",0,0
+Rusia,Europa,"Suecia;Aral;Iran;Turquia;Polonia",0,0
+Borneo,Oceanía,"Australia;Malasia",0,0
+California,América Del Norte,"Oregon;Nueva York;Mexico",0,0
+Taymir,Asia,"Tartaria;Siberia",0,0
+Aral,Asia,"Rusia;Iran;Mongolia;Siberia;Tartaria",0,0
+Siberia,Asia,"Aral;Tartaria;Taymir;Kamtchatka;China;Mongolia",0,0
+Canada,América Del Norte,"Yukon;Oregon;Nueva York;Terranova",0,0
+Sahara,Africa,"Brasil;España;Egipto;Etiopia;Zaire",0,0
+Yukon,América Del Norte,"Alaska;Canada;Oregon",0,0
+Uruguay,América Del Sur,"Argentina;Brasil",0,0
+Groenlandia,América Del Norte,"Labrador;Nueva York;Islandia",0,0
+Japon,Asia,"Kamtchatka;China",0,0
+Sumatra,Oceanía,"Australia;India",0,0
+Alaska,América Del Norte,"Yukon;Oregon;Kamtchatka",0,0
+Brasil,América Del Sur,"Colombia;Peru;Argentina;Uruguay;Sahara",0,0
+Gobi,Asia,"Mongolia;China;Iran",0,0
+Italia,Europa,"Alemania;Francia",0,0
+España,Europa,"Sahara;Francia;Gran Bretaña",0,0
+Colombia,América Del Sur,"Mexico;Peru;Brasil",0,0
+Suecia,Europa,"Rusia;Islandia",0,0
+Sudafrica,Africa,"Zaire;Etiopia",0,0
+Arabia,Asia,"Turquia;Israel",0,0
+India,Asia,"China;Malasia;Iran;Sumatra",0,0
+Java,Oceanía,"Australia",0,0
+Mexico,América Del Norte,"Colombia;California",0,0
+Peru,América Del Sur,"Colombia;Brasil;Chile;Argentina",0,0
+Alemania,Europa,"Polonia;Italia;Gran Bretaña;Francia",0,0
+China,Asia,"Kamtchatka;Siberia;Mongolia;Gobi;Iran;India;Malasia;Japon",0,0
+Labrador,América Del Norte,"Groenlandia;Terranova",0,0
+Islandia,Europa,"Groenlandia;Suecia;Gran Bretaña",0,0
+Malasia,Asia,"China;India;Borneo",0,0
