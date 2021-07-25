@@ -30,9 +30,9 @@ public class Continente {
              if (!pais.esDeJugador(jugador))
                  return false;
          }
-
          return true;
      }
+
      public int cantidadPaisesDeJugador(Jugador jugador){
          int cantidadPaises = 0;
          for (Pais pais : this.paises) {

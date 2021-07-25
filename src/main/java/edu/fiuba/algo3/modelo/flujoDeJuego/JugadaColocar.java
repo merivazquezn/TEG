@@ -12,7 +12,7 @@ public class JugadaColocar implements Jugada{
     }
 
     public void ejecutar(Tablero tablero, Ronda ronda){
-        pais.colocarEjercitos(this.cantidad);
+        this.pais.colocarEjercitos(this.cantidad);
     }
 
 }

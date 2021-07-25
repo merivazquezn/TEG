@@ -239,7 +239,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test07AsiaNoDeberiaEstarOcupadaPorUnJugador(){
+    public void test08AsiaNoDeberiaEstarOcupadaPorUnJugador(){
         HashMap<String, Continente> continentes = new HashMap<String, Continente>();
         Jugador jugador = new Jugador();
 
