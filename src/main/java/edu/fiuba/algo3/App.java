@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,11 +37,41 @@ public class App extends Application {
     private Ronda ronda;
     private ArrayList<Circle> vistaEjercitos;
     private ArrayList<Label> etiquetaEjercitos;
+    private PanelMenuAtaque panelMenuAtaque;
+    private Label etiquetaMenuAtaque;
+    private Button botonMenuAtaque;
+
+    public void aparecerMenu(MouseEvent evento, Pais unPais){
+        String nombrePais = unPais.getNombre();
+        this.panelMenuAtaque.setVisible(true);
+        this.panelMenuAtaque.aparecer(evento.getSceneX(), evento.getSceneY());
+        this.etiquetaMenuAtaque.setText(nombrePais);
+    }
+
+    public void ocultarMenu(MouseEvent evento){
+        if(this.panelMenuAtaque.isVisible()){
+            if(!this.panelMenuAtaque.adentro(evento.getSceneX(), evento.getSceneY())){
+                this.panelMenuAtaque.setVisible(false);
+            }
+        }
+    }
 
     public void inicializarJuego(int cantidadJugadores){
         ArrayList<HashMap> listaParser;
         try {
+            FileInputStream inputMenuAtaque = new FileInputStream("./src/imagenes/desplegableAbajo.png");
+            Image imagenMenuAtaque = new Image(inputMenuAtaque);
+            ImageView vistaImagenMenuAtaque = new ImageView(imagenMenuAtaque);
             String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            this.panelMenuAtaque = new PanelMenuAtaque();
+            this.panelMenuAtaque.getChildren().add(vistaImagenMenuAtaque);
+            this.etiquetaMenuAtaque = new Label("");
+            this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
+            this.etiquetaMenuAtaque.setTranslateY(-10);
+            this.botonMenuAtaque = new Button("Realizar ataque");
+            this.panelMenuAtaque.getChildren().add(this.etiquetaMenuAtaque);
+            this.panelMenuAtaque.getChildren().add(this.botonMenuAtaque);
+            this.botonMenuAtaque.setTranslateY(20);
             listaParser = Parser.parsearPaisesParaTablero(ruta);
             HashMap<String, Continente> continentes = listaParser.get(1);
             HashMap<String, Pais> paises = listaParser.get(0);
@@ -51,9 +82,17 @@ public class App extends Application {
                 Pais unPais = entry.getKey();
                 int[] coordenadas = entry.getValue();
                 Label etiquetaEjercito = new Label("1");
+                etiquetaEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                    aparecerMenu(e, unPais);
+                    e.consume();
+                });
                 etiquetaEjercito.setTranslateX(coordenadas[0]-4);
                 etiquetaEjercito.setTranslateY(coordenadas[1]-6);
                 Circle circuloPais = new Circle();
+                circuloPais.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                    aparecerMenu(e, unPais);
+                    e.consume();
+                });
                 circuloPais.setCenterX(coordenadas[0]);
                 circuloPais.setCenterY(coordenadas[1]);
                 circuloPais.setRadius(10.0f);
@@ -81,6 +120,7 @@ public class App extends Application {
             Image imagenInterfaz = new Image(inputImagenInterfaz);
             ImageView imagenInterfazVisible = new ImageView(imagenInterfaz);
             Pane panel = new Pane(imagenInterfazVisible);
+            this.panelMenuAtaque.setVisible(false);
             imagenInterfazVisible.setTranslateY(785);
             imagenInterfazVisible.setTranslateX(120);
             Scene scene = new Scene(panel, 1440, 819);
@@ -97,7 +137,12 @@ public class App extends Application {
             for (Label etiqueta : this.etiquetaEjercitos) {
                 panel.getChildren().add(etiqueta);
             }
+            panel.getChildren().add(this.panelMenuAtaque);
+            panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                ocultarMenu(e);
+            });
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -153,6 +198,22 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+
+    public static class PanelMenuAtaque extends StackPane {
+        private double puntoX;
+        private double puntoY;
+
+        public void aparecer( double mx, double my){
+            relocate(mx-100, my-110);
+            this.puntoX = mx;
+            this.puntoY = my;
+        }
+
+        public boolean adentro(double mx, double my){
+            return(mx >= this.puntoX-100 && mx <= this.puntoX+100 && my >= this.puntoY-100 && my <= this.puntoY);
+        }
     }
 
 }
