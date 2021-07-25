@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.flujoDeJuego;
 import edu.fiuba.algo3.modelo.general.ConjuntoTarjetas;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
+import edu.fiuba.algo3.modelo.general.TarjetasNoCanjeablesError;
 
 public class JugadaCanjearTarjetas implements Jugada{
 

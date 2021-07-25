@@ -10,19 +10,47 @@ public class Ronda {
     private ListaJugadores listaJugadores;
     private Jugador jugadorActual;
     private Fase faseActual;
+    private int cantidadAColocar;
 
     public Ronda(Tablero tablero, ListaJugadores listaJugadores){
         this.tablero = tablero;
         this.listaJugadores = listaJugadores;
         this.jugadorActual = this.listaJugadores.siguiente();
+        this.faseActual = new FaseInicial5Fichas();
+        this.cantidadAColocar = 5;
+    }
+
+    public int cantidadAColocar(){
+        return this.cantidadAColocar;
+    }
+
+    public void establecerCantidadAColocar(int cantidad){
+        this.cantidadAColocar = cantidad;
+    }
+
+    public void actualizarCantidadAColocar(){
+        this.cantidadAColocar = 0;
+        this.cantidadAColocar += this.jugadorActual.cantidadPaises()/2;
+        this.cantidadAColocar += this.tablero.cantidadEjercitosPorContinente(this.jugadorActual);
+    }
+
+    public void terminar(){
+        this.faseActual = this.faseActual.siguienteFase(this);
+    }
+
+    public void seColocaronEjercitos(int cantidad){
+        this.cantidadAColocar -= cantidad;
+        if(this.cantidadAColocar <= 0)
+            this.faseActual = this.faseActual.siguienteFase(this);
     }
 
     public void seProdujoConquista(){
-
+        this.faseActual = new FaseReagruparPorConquista();
     }
 
     public void seRealizoCanje(){
-
+        this.jugadorActual.realizarCanje();
+        this.cantidadAColocar += this.jugadorActual.cantidadAColocarPorCanje();
     }
 
     public Fase obtenerFaseActual(){

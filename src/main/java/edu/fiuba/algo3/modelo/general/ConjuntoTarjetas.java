@@ -15,12 +15,10 @@ public class ConjuntoTarjetas {
         this.mazo = mazo;
     }
     private boolean sonCanjeables(){
-        if(this.tarjeta1.mismoSignoQue(this.tarjeta2) && this.tarjeta1.mismoSignoQue(this.tarjeta3))
-            return true;
-        else if(!this.tarjeta1.mismoSignoQue(this.tarjeta2) && !this.tarjeta1.mismoSignoQue(this.tarjeta3) && !this.tarjeta2.mismoSignoQue(this.tarjeta3))
-            return true;
-        else
-            throw new TarjetasNoCanjeablesError();
+        boolean sonDeMismoSigno = (this.tarjeta1.mismoSignoQue(this.tarjeta2) && this.tarjeta1.mismoSignoQue(this.tarjeta3));
+        boolean sonDeSignosDistintos = (!this.tarjeta1.mismoSignoQue(this.tarjeta2) && !this.tarjeta1.mismoSignoQue(this.tarjeta3) && !this.tarjeta2.mismoSignoQue(this.tarjeta3));
+
+        return (sonDeMismoSigno || sonDeSignosDistintos);
     }
 
     public boolean sePudoCanjear(){

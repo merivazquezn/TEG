@@ -12,7 +12,10 @@ public class JugadaColocar implements Jugada{
     }
 
     public void ejecutar(Tablero tablero, Ronda ronda){
-        this.pais.colocarEjercitos(this.cantidad);
+        if(this.cantidad <= ronda.cantidadAColocar()) {
+            this.pais.colocarEjercitos(this.cantidad);
+            ronda.seColocaronEjercitos(this.cantidad);
+        }
     }
 
 }
