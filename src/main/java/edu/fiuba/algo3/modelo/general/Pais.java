@@ -8,36 +8,34 @@ import java.util.LinkedList;
 public class Pais {
 
     private String nombre;
-    private LinkedList<Ejercito> ejercitos;
+    private int ejercitos;
     private Jugador jugador;
     private ArrayList<Pais> limitrofes;
 
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
-        this.ejercitos = new LinkedList<Ejercito>();
+        this.ejercitos = 0;
         this.jugador = new JugadorNulo();
         this.limitrofes = new ArrayList<Pais>();
     }
 
 
     public void colocarEjercitos(int cantidadEjercitos) {
-        for(int i = 0; i < cantidadEjercitos; i++) {
-            this.ejercitos.push(new Ejercito());
-        }
+        this.ejercitos += cantidadEjercitos;
     }
 
     public int getCantidadEjercitos() {
-        return this.ejercitos.size();
+        return this.ejercitos;
     }
 
     public int eliminarEjercitos(int cantidadEjercitosEliminar) {
-        if(this.getCantidadEjercitos() < cantidadEjercitosEliminar) {
+        if(this.ejercitos < cantidadEjercitosEliminar) {
             throw new CantidadInvalidaDeEjercitosException();
         }
-        for(int i = 0; i < cantidadEjercitosEliminar; i++) {
-            this.ejercitos.pop();
-        }
-        return this.ejercitos.size();
+
+        this.ejercitos -= cantidadEjercitosEliminar;
+
+        return this.ejercitos;
     }
 
     public void transferirEjercitosA(Pais destino, int cantidad) {

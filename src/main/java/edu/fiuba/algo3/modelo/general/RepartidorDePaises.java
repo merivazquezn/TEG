@@ -21,13 +21,9 @@ public class RepartidorDePaises {
     }
 
     private ArrayList<Pais> listaDePaisesDesordenada(){
-        ArrayList<String> nombresDePaisesDesordenados = new ArrayList<String>(this.paises.keySet());
-        Collections.shuffle(nombresDePaisesDesordenados);
+        ArrayList<Pais> listaPaisesDesordenados = new ArrayList<Pais>(this.paises.values());
+        Collections.shuffle(listaPaisesDesordenados);
 
-        ArrayList<Pais> listaPaisesDesordenados = new ArrayList<Pais>();
-        for (Object o : nombresDePaisesDesordenados) {
-            listaPaisesDesordenados.add(this.paises.get(o));
-        }
         return listaPaisesDesordenados;
     }
 
