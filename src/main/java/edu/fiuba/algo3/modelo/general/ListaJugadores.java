@@ -44,6 +44,7 @@ public class ListaJugadores {
         return listaJugadores.size();
     }
 
+
     public void reiniciar(){
         this.indiceActual = 0;
     }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.infraestructura.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -43,5 +44,11 @@ public class Tablero {
     }
 
     public Mazo obtenerMazo() { return this.mazo; }
+
+    public void asignarPaisesAJugadores (HashMap<String, Pais> paises) {
+
+
+    }
+
 
 }
