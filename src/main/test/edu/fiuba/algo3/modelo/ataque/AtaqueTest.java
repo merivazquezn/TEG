@@ -187,11 +187,21 @@ public class AtaqueTest {
 
     @Test
     public void test08paisIntentaAtacarAPaisNoLimitrofeYLanzaExcepcion() {
+        Pais paisLimitrofeChile = new Pais("PaisLimitrofeChile");
+        Pais paisLimitrofeArgentina = new Pais("PaisLimitrofeArgentina");
+
         Pais paisAtacante = new Pais("Chile");
         paisAtacante.colocarEjercitos(4);
+        paisAtacante.agregarLimitrofe(paisLimitrofeChile);
+
         Pais paisDefensor = new Pais("Argentina");
         paisDefensor.colocarEjercitos(3);
+        paisAtacante.agregarLimitrofe(paisLimitrofeArgentina);
+
+        long start2 = System.currentTimeMillis();
         ConjuntoDados atacante = mock(ConjuntoDados.class);
+        long end2 = System.currentTimeMillis();
+
         ConjuntoDados defensor = mock(ConjuntoDados.class);
 
         ArrayList<ConjuntoDados> arrayConjuntos = new ArrayList<>();
@@ -210,9 +220,14 @@ public class AtaqueTest {
 
 
         Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 3);
+
+
         assertThrows(AtaqueDePaisNoLimitrofeException.class, () -> {
             ataque.conquisto();
         });
+
+
+        System.out.println(end2-start2 + "ms");
     }
 
 }

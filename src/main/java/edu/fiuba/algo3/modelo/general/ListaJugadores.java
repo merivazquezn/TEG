@@ -30,8 +30,11 @@ public class ListaJugadores {
     }
 
     public Jugador siguiente(){
-        if(indiceActual >= listaJugadores.size())
+        if(indiceActual >= listaJugadores.size()) {
+            indiceActual = 0;
             return new JugadorNulo();
+        }
+
         Jugador jugadorActual = listaJugadores.get(indiceActual);
         indiceActual++;
         return jugadorActual;
