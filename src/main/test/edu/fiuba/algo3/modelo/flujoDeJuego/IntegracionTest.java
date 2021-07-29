@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.general.*;
 
 
 import org.junit.jupiter.api.Test;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -25,9 +26,12 @@ public class IntegracionTest {
     public void test01seFinalizaLaRondaInicial5FichasYLaRondaPasaAFaseInicial3Fichas(){
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
             listaObjetivos.add(new ObjetivoDestruir());
@@ -40,17 +44,21 @@ public class IntegracionTest {
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseInicial3Fichas);
         }
-        catch(IOException e){
-            fail(e.getMessage());
+        catch(RuntimeException e){
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
     @Test
     public void test02seFinalizaLaRondaInicial3FichasYLaRondaPasaAFaseAtaque() throws IOException{
         HashMap<String, Continente> continentes;
-        String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-        ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-        continentes = listaParser.get(1);
+        String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+        String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+        String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+        Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+        continentes = parser.getContinentes();
         Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
         listaObjetivos.add(new ObjetivoDestruir());
@@ -72,9 +80,12 @@ public class IntegracionTest {
     public void test03seFinalizaLaPrimeraRondaAtaquePorCadaUnaSePasaAReagruparFinal(){
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
             listaObjetivos.add(new ObjetivoDestruir());
@@ -96,7 +107,7 @@ public class IntegracionTest {
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseReagruparFinal);
         }
-        catch(IOException e){
+        catch(RuntimeException e){
             fail(e.getMessage());
         }
     }
@@ -105,9 +116,12 @@ public class IntegracionTest {
     public void test04seFinalizaLaPrimeraRondaAtaquePasaAFaseColocacion(){
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
             listaObjetivos.add(new ObjetivoDestruir());
@@ -129,7 +143,7 @@ public class IntegracionTest {
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseColocacion);
         }
-        catch(IOException e){
+        catch(RuntimeException e){
             fail(e.getMessage());
         }
     }
@@ -139,9 +153,12 @@ public class IntegracionTest {
     public void test05seFinalizaLaPrimeraRondaColocacionPasaAFaseAtaque(){
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
             listaObjetivos.add(new ObjetivoDestruir());
@@ -162,7 +179,7 @@ public class IntegracionTest {
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseAtaque);
         }
-        catch(IOException e){
+        catch(RuntimeException e){
             fail(e.getMessage());
         }
     }
@@ -172,9 +189,12 @@ public class IntegracionTest {
     public void test06enFaseAtaqueSeConquistaRondaPasaAFaseReagrupePorConquista(){
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
             listaObjetivos.add(new ObjetivoDestruir());
@@ -211,18 +231,21 @@ public class IntegracionTest {
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseColocacion);
         }
-        catch(IOException e){
+        catch(RuntimeException e){
             fail(e.getMessage());
         }
     }
 
     @Test
-    public void test07enFaseAtaqueSeCumpleUnObjetivoYElJuegoTermina(){
+    public void test07enFaseAtaqueSeCumpleUnObjetivoYElJuegoTermina() {
         HashMap<String, Continente> continentes;
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
+            continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ListaJugadores listaJugadores = mock(ListaJugadores.class);
             Jugador unJugador = new Jugador(new ObjetivoDestruir());
@@ -232,10 +255,9 @@ public class IntegracionTest {
 
                 public Object answer(InvocationOnMock invocation) {
                     contador++;
-                    if(contador == 1 || contador == 3){
+                    if (contador == 1 || contador == 3) {
                         return true;
-                    }
-                    else{
+                    } else {
                         return false;
                     }
                 }
@@ -255,10 +277,8 @@ public class IntegracionTest {
             ronda.terminar();
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof JuegoTerminado);
-        }
-        catch(IOException e){
+        } catch (RuntimeException e) {
             fail(e.getMessage());
         }
     }
-
 }

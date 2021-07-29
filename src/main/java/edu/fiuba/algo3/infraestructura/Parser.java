@@ -18,6 +18,76 @@ import java.lang.*;
 
 public class Parser {
 
+    private String rutaPaises;
+    private String rutaObjetivos;
+    private String rutaTarjetas;
+    private HashMap paises;
+    private HashMap continentes;
+    private HashMap<Pais, int[]> paisesParaVista;
+    private ArrayList<Tarjeta> tarjetas;
+    private ArrayList<Objetivo> objetivos;
+
+
+    public Parser(String rutaArchivoPaises, String rutaArchivoObjetivos, String rutaArchivoTarjetas) {
+        this.rutaObjetivos = rutaArchivoObjetivos;
+        this.rutaPaises = rutaArchivoPaises;
+        this.rutaTarjetas = rutaArchivoTarjetas;
+        this.leerArchivos();
+    }
+
+    private void leerArchivos() {
+
+        try {
+
+            ArrayList<HashMap> listaParseados;
+            listaParseados = this.parsearPaisesParaTablero(this.rutaPaises);
+            this.paises = listaParseados.get(0);
+            this.continentes = listaParseados.get(1);
+
+            HashMap<Pais, int[]> hashPaisesParaVista;
+            hashPaisesParaVista = this.parsearPaisesParaVista(this.rutaPaises, this.paises);
+            this.paisesParaVista = hashPaisesParaVista;
+
+
+            ArrayList<Tarjeta> tarjetasLeidas;
+            tarjetasLeidas = this.parsearTarjetas(this.rutaTarjetas, this.paises);
+            this.tarjetas = tarjetasLeidas;
+
+            ArrayList<Objetivo> listaObjetivos;
+            listaObjetivos = this.parsearObjetivos(this.rutaObjetivos);
+            this.objetivos = listaObjetivos;
+
+        } catch (IOException e) {
+
+            throw new ArchivoInvalidoException();
+        }
+
+    }
+
+    public HashMap<String, Pais> getPaisesParaTablero() {
+
+        return this.paises;
+    }
+
+    public HashMap<String, Continente> getContinentes() {
+
+        return this.continentes;
+    }
+
+    public HashMap<Pais, int[]> getPaisesParaVista() {
+
+        return this.paisesParaVista;
+    }
+
+    public ArrayList<Objetivo> getObjetivos() {
+
+        return this.objetivos;
+    }
+
+    public ArrayList<Tarjeta> getTarjetas() {
+
+        return this.tarjetas;
+    }
 
     public static ArrayList<ArrayList> leerArchivo(String rutaArchivo) throws IOException {
         ArrayList<ArrayList> lineasArchivo = new ArrayList<ArrayList>();
@@ -42,7 +112,7 @@ public class Parser {
         return lineasArchivo;
 	}
 
-	public static HashMap<Pais, int[]> parsearPaisesParaVista(String rutaArchivo, HashMap<String, Pais> hashPaises) throws IOException {
+	private HashMap<Pais, int[]> parsearPaisesParaVista(String rutaArchivo, HashMap<String, Pais> hashPaises) throws IOException {
         ArrayList<ArrayList> datosPaisesCompleto = Parser.leerArchivo(rutaArchivo);
 
         HashMap<Pais, int[]> hashPaisesConCoord = new HashMap<Pais, int[]>();
@@ -61,7 +131,7 @@ public class Parser {
         return hashPaisesConCoord;
     }
 
-    public static ArrayList<HashMap> parsearPaisesParaTablero(String rutaArchivo) throws IOException {
+    private ArrayList<HashMap> parsearPaisesParaTablero(String rutaArchivo) throws IOException {
         /*
         *
         * Devuelve un ArrayList donde en la posicion 0 tiene un Hash con los paises
@@ -158,7 +228,7 @@ public class Parser {
     }
 
 
-    public static ArrayList parsearTarjetas(String rutaArchivoTarjetas, HashMap<String, Pais> paises) throws IOException {
+    private ArrayList<Tarjeta> parsearTarjetas(String rutaArchivoTarjetas, HashMap<String, Pais> paises) throws IOException {
         ArrayList<ArrayList> datosTarjetrasCompleto = Parser.leerArchivo(rutaArchivoTarjetas);
 
         ArrayList<Tarjeta> arrayTarjetas = new ArrayList<Tarjeta>();
@@ -239,7 +309,7 @@ public class Parser {
     destruir jugador --> tipo
 
     * */
-    public static ArrayList<Objetivo>  parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
+    private ArrayList<Objetivo>  parsearObjetivos(String rutaArchivoObjetivos) throws IOException {
 
         ArrayList<ArrayList> datosObjetivos = Parser.leerArchivo(rutaArchivoObjetivos);
 

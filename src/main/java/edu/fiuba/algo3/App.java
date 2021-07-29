@@ -34,14 +34,20 @@ public class App extends Application {
     private MenuAtaque panelMenuAtaque;
 
     public void inicializarJuego(int cantidadJugadores){
-        ArrayList<HashMap> listaParser;
+
         try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
+
             this.panelMenuAtaque = new MenuAtaque();
-            listaParser = Parser.parsearPaisesParaTablero(ruta);
-            HashMap<String, Continente> continentes = listaParser.get(1);
-            HashMap<String, Pais> paises = listaParser.get(0);
-            HashMap<Pais, int[]> vistaPaises = Parser.parsearPaisesParaVista(ruta, paises);
+
+            HashMap<String, Continente> continentes = parser.getContinentes();
+            //HashMap<String, Pais> paises = parser.getPaisesParaTablero();
+            HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
+
             this.vistaEjercitos = new ArrayList<>();
             this.etiquetaEjercitos = new ArrayList<>();
             for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
