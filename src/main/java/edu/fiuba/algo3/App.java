@@ -5,26 +5,23 @@ import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.*;
+import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,15 +31,13 @@ public class App extends Application {
     private Ronda ronda;
     private ArrayList<Circle> vistaEjercitos;
     private ArrayList<Label> etiquetaEjercitos;
-    private PanelMenuAtaque panelMenuAtaque;
-    private Label etiquetaMenuAtaque;
-    private Button botonMenuAtaque;
+    private MenuAtaque panelMenuAtaque;
 
     public void aparecerMenu(MouseEvent evento, Pais unPais){
         String nombrePais = unPais.getNombre();
         this.panelMenuAtaque.setVisible(true);
         this.panelMenuAtaque.aparecer(evento.getSceneX(), evento.getSceneY());
-        this.etiquetaMenuAtaque.setText(nombrePais);
+        this.panelMenuAtaque.setNombrePais(nombrePais);
     }
 
     public void ocultarMenu(MouseEvent evento){
@@ -60,15 +55,8 @@ public class App extends Application {
             Image imagenMenuAtaque = new Image(inputMenuAtaque);
             ImageView vistaImagenMenuAtaque = new ImageView(imagenMenuAtaque);
             String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            this.panelMenuAtaque = new PanelMenuAtaque();
+            this.panelMenuAtaque = new MenuAtaque();
             this.panelMenuAtaque.getChildren().add(vistaImagenMenuAtaque);
-            this.etiquetaMenuAtaque = new Label("");
-            this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
-            this.etiquetaMenuAtaque.setTranslateY(-10);
-            this.botonMenuAtaque = new Button("Realizar ataque");
-            this.panelMenuAtaque.getChildren().add(this.etiquetaMenuAtaque);
-            this.panelMenuAtaque.getChildren().add(this.botonMenuAtaque);
-            this.botonMenuAtaque.setTranslateY(20);
             listaParser = Parser.parsearPaisesParaTablero(ruta);
             HashMap<String, Continente> continentes = listaParser.get(1);
             HashMap<String, Pais> paises = listaParser.get(0);
@@ -195,22 +183,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
-
-
-    public static class PanelMenuAtaque extends StackPane {
-        private double puntoX;
-        private double puntoY;
-
-        public void aparecer( double mx, double my){
-            relocate(mx-100, my-110);
-            this.puntoX = mx;
-            this.puntoY = my;
-        }
-
-        public boolean adentro(double mx, double my){
-            return(mx >= this.puntoX-100 && mx <= this.puntoX+100 && my >= this.puntoY-100 && my <= this.puntoY);
-        }
     }
 
 }
