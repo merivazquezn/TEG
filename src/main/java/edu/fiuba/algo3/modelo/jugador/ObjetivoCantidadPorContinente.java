@@ -15,12 +15,9 @@ public class ObjetivoCantidadPorContinente implements Objetivo{
         this.objetivo = objetivo;
     }
 
-    public void setJugador(Jugador jugador) {
-
-        this.jugador = jugador;
+    public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
+        this.jugador = listaJugadores.get(indiceJugador);
     }
-
-
 
     public boolean haGanado(Tablero tablero){
         boolean cumpleObjetivo = true;

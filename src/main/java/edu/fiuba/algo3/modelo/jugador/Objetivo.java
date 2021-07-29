@@ -4,4 +4,5 @@ import java.util.ArrayList;
 
 public interface Objetivo {
     boolean haGanado(Tablero tablero);
+    void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador);
 }

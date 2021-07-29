@@ -12,16 +12,13 @@ public class ObjetivoDestruir implements Objetivo {
         this.otroJugador = new JugadorNulo();
     }
 
-    public void setJugadorAtacante(Jugador jugador) {
-
-        this.jugador = jugador;
+    public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
+        this.jugador = listaJugadores.get(indiceJugador);
+        if(indiceJugador > 0)
+            this.otroJugador = listaJugadores.get(indiceJugador-1);
+        else
+            this.otroJugador = listaJugadores.get(indiceJugador+1);
     }
-
-    public void setJugadorObjetivo(Jugador jugadorObjetivo) {
-
-        this.otroJugador = jugadorObjetivo;
-    }
-
 
     public boolean haGanado(Tablero tablero){
         if(this.jugador.esNulo() || this.otroJugador.esNulo())

@@ -139,7 +139,6 @@ public class Parser {
     }
 
     public static Signo obtenerSigno(String stringSigno) {
-        Signo signo;
 
         switch (stringSigno) {
             case "barco":

@@ -11,4 +11,9 @@ public class ObjetivoGeneral implements Objetivo{
     public boolean haGanado(Tablero tablero){
         return(this.jugador.cantidadPaises() >= 30);
     }
+
+    public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
+        this.jugador = listaJugadores.get(indiceJugador);
+    }
+
 }

@@ -4,7 +4,6 @@ import edu.fiuba.algo3.infraestructura.IRandomizador;
 import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ListaJugadores {
 
@@ -19,11 +18,17 @@ public class ListaJugadores {
                 throw new CantidadInvalidaDeJugadoresException();
         this.listaJugadores = new ArrayList<>();
         randomizador.mezclarObjetivos(listaObjetivos);
+        ArrayList<Objetivo> listaObjetivosUsados = new ArrayList<>();
 
         for(int i=0; i < cantidadJugadores; i++) {
             Objetivo objetivoDelJugador = listaObjetivos.remove(0);
+            listaObjetivosUsados.add(objetivoDelJugador);
             Jugador nuevoJugador = new Jugador(objetivoDelJugador);
-            listaJugadores.add(nuevoJugador);
+            this.listaJugadores.add(nuevoJugador);
+        }
+
+        for(int i=0; i < cantidadJugadores; i++){
+            listaObjetivosUsados.get(i).establecerJugadores(this.listaJugadores, i);
         }
 
         mezclar(randomizador);

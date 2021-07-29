@@ -19,14 +19,13 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
         listaObjetivo1.add(continente);
         listaObjetivo1.add(continente);
         this.objetivo1 = new ObjetivoConquistar2Continentes(listaObjetivo1);
-        objetivo1.setJugador(this.jugador);
         this.objetivo2 = new ObjetivoCantidadPorContinente(listaObjetivos2);
-        objetivo2.setJugador(this.jugador);
     }
 
-    public void setJugador(Jugador jugador) {
-        objetivo1.setJugador(jugador);
-        objetivo2.setJugador(jugador);
+    public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
+        this.jugador = listaJugadores.get(indiceJugador);
+        this.objetivo1.establecerJugadores(listaJugadores, indiceJugador);
+        this.objetivo2.establecerJugadores(listaJugadores, indiceJugador);
     }
 
 
