@@ -232,4 +232,11 @@ public class ObjetivoTest {
         assertFalse(objetivo.haGanado(tablero));
     }
 
+    @Test
+    public void test12unObjetivoNuloNuncaEsCumplido(){
+        Tablero tablero = mock(Tablero.class);
+        Objetivo objetivo = new ObjetivoNulo();
+        assertFalse(objetivo.haGanado(tablero));
+    }
+
 }
