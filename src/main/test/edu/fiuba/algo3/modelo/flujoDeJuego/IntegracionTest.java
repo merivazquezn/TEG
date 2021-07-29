@@ -227,19 +227,16 @@ public class IntegracionTest {
             ListaJugadores listaJugadores = mock(ListaJugadores.class);
             Jugador unJugador = new Jugador(new ObjetivoDestruir());
             Jugador otroJugador = new Jugador(new ObjetivoDestruir());
-            when(listaJugadores.siguiente()).thenAnswer(new Answer() {
+            when(listaJugadores.estaAlFinalDeLaLista()).thenAnswer(new Answer() {
                 private int contador = -1;
 
                 public Object answer(InvocationOnMock invocation) {
                     contador++;
-                    if(contador == 0 || contador == 3){
-                        return unJugador;
-                    }
-                    else if(contador == 1 || contador == 4){
-                        return otroJugador;
+                    if(contador == 1 || contador == 3){
+                        return true;
                     }
                     else{
-                        return new JugadorNulo();
+                        return false;
                     }
                 }
             });

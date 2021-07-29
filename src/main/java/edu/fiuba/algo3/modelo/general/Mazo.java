@@ -14,7 +14,7 @@ public class Mazo {
         randomizador.shuffle(this.listaTarjetas);
     }
 
-    public Tarjeta entregarCarta(){
+    public Tarjeta entregarTarjeta(){
         return this.listaTarjetas.remove(this.listaTarjetas.size()-1);
     }
 

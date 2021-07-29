@@ -33,6 +33,9 @@ public class ListaJugadores {
 
         mezclar(randomizador);
     }
+    public boolean estaAlFinalDeLaLista(){
+        return this.siguiente().esNulo();
+    }
 
     public Jugador siguiente(){
         if(indiceActual >= listaJugadores.size()) {

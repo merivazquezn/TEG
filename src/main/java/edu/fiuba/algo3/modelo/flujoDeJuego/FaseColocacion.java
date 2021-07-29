@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.flujoDeJuego;
 
 public class FaseColocacion implements Fase {
     public Fase siguienteFase(Ronda ronda){
-        if(ronda.siguienteJugador().esNulo()) {
+        if(ronda.estaAlFinalDeLaLista()) {
             ronda.reiniciarLista();
             return new FaseAtaque();
         }

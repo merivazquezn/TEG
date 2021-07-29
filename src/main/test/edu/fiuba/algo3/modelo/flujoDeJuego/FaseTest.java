@@ -213,7 +213,7 @@ public class FaseTest {
         Fase fase = new FaseInicial5Fichas();
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         ListaJugadores listaJugadores = mock(ListaJugadores.class);
-        when(listaJugadores.siguiente()).thenReturn(new JugadorNulo());
+        when(listaJugadores.estaAlFinalDeLaLista()).thenReturn(true);
         Ronda ronda = new Ronda(tablero, listaJugadores);
         fase.siguienteFase(ronda);
         verify(listaJugadores, times(1)).reiniciar();

@@ -20,7 +20,7 @@ public class MazoTest {
         Tarjeta unaTarjeta = new Tarjeta(unPais, signo);
         tarjetas.add(unaTarjeta);
         Mazo mazo = new Mazo(tarjetas, new Randomizador());
-        assertEquals(unaTarjeta, mazo.entregarCarta());
+        assertEquals(unaTarjeta, mazo.entregarTarjeta());
     }
 
     @Test
@@ -62,11 +62,11 @@ public class MazoTest {
         IRandomizador randomMock = mock(Randomizador.class);
 
         Mazo mazo = new Mazo(tarjetas, randomMock);
-        Tarjeta tarjetaActual = mazo.entregarCarta();
+        Tarjeta tarjetaActual = mazo.entregarTarjeta();
         assertTrue(tarjetaActual.equals(otraTarjetaMas));
-        tarjetaActual = mazo.entregarCarta();
+        tarjetaActual = mazo.entregarTarjeta();
         assertTrue(tarjetaActual.equals(otraTarjeta));
-        tarjetaActual = mazo.entregarCarta();
+        tarjetaActual = mazo.entregarTarjeta();
         assertTrue(tarjetaActual.equals(unaTarjeta));
     }
 

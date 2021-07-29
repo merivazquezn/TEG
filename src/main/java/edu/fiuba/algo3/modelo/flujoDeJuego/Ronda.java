@@ -70,6 +70,12 @@ public class Ronda {
         this.jugadorActual = this.listaJugadores.siguiente();
     }
 
+
+    public boolean estaAlFinalDeLaLista(){
+        return this.listaJugadores.estaAlFinalDeLaLista();
+    }
+
+
     public void realizarJugada(Jugada jugada){
         jugada.ejecutar(this.tablero, this);
     }
