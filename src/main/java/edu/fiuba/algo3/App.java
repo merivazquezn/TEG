@@ -33,30 +33,11 @@ public class App extends Application {
     private ArrayList<Label> etiquetaEjercitos;
     private MenuAtaque panelMenuAtaque;
 
-    public void aparecerMenu(MouseEvent evento, Pais unPais){
-        String nombrePais = unPais.getNombre();
-        this.panelMenuAtaque.setVisible(true);
-        this.panelMenuAtaque.aparecer(evento.getSceneX(), evento.getSceneY());
-        this.panelMenuAtaque.setNombrePais(nombrePais);
-    }
-
-    public void ocultarMenu(MouseEvent evento){
-        if(this.panelMenuAtaque.isVisible()){
-            if(!this.panelMenuAtaque.adentro(evento.getSceneX(), evento.getSceneY())){
-                this.panelMenuAtaque.setVisible(false);
-            }
-        }
-    }
-
     public void inicializarJuego(int cantidadJugadores){
         ArrayList<HashMap> listaParser;
         try {
-            FileInputStream inputMenuAtaque = new FileInputStream("./src/imagenes/desplegableAbajo.png");
-            Image imagenMenuAtaque = new Image(inputMenuAtaque);
-            ImageView vistaImagenMenuAtaque = new ImageView(imagenMenuAtaque);
             String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
             this.panelMenuAtaque = new MenuAtaque();
-            this.panelMenuAtaque.getChildren().add(vistaImagenMenuAtaque);
             listaParser = Parser.parsearPaisesParaTablero(ruta);
             HashMap<String, Continente> continentes = listaParser.get(1);
             HashMap<String, Pais> paises = listaParser.get(0);
@@ -68,14 +49,14 @@ public class App extends Application {
                 int[] coordenadas = entry.getValue();
                 Label etiquetaEjercito = new Label("1");
                 etiquetaEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                    aparecerMenu(e, unPais);
+                    this.panelMenuAtaque.aparecerMenu(e, unPais);
                     e.consume();
                 });
                 etiquetaEjercito.setTranslateX(coordenadas[0]-4);
                 etiquetaEjercito.setTranslateY(coordenadas[1]-6);
                 Circle circuloPais = new Circle();
                 circuloPais.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                    aparecerMenu(e, unPais);
+                    this.panelMenuAtaque.aparecerMenu(e, unPais);
                     e.consume();
                 });
                 circuloPais.setCenterX(coordenadas[0]);
@@ -87,8 +68,6 @@ public class App extends Application {
             }
 
             this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-            //ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador());
-            //this.ronda = new Ronda(tablero, listaJugadores);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,7 +84,6 @@ public class App extends Application {
             Image imagenInterfaz = new Image(inputImagenInterfaz);
             ImageView imagenInterfazVisible = new ImageView(imagenInterfaz);
             Pane panel = new Pane(imagenInterfazVisible);
-            this.panelMenuAtaque.setVisible(false);
             imagenInterfazVisible.setTranslateY(785);
             imagenInterfazVisible.setTranslateX(120);
             Scene scene = new Scene(panel, 1440, 819);
@@ -124,7 +102,7 @@ public class App extends Application {
             }
             panel.getChildren().add(this.panelMenuAtaque);
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                ocultarMenu(e);
+                this.panelMenuAtaque.ocultarMenu(e);
             });
             stage.setScene(scene);
             stage.centerOnScreen();
