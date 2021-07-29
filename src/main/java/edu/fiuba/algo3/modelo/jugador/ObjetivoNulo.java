@@ -6,11 +6,6 @@ import java.util.ArrayList;
 
 public class ObjetivoNulo implements Objetivo{
 
-    public ObjetivoNulo(){
-
-    }
-
-
     public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
     }
 
