@@ -15,18 +15,16 @@ public class Mazo {
     }
 
     public Tarjeta entregarTarjeta(){
-        return this.listaTarjetas.remove(this.listaTarjetas.size()-1);
-    }
+        if (this.listaTarjetas.size() == 0)
+            throw new NoQuedanTarjetasException();
 
-    public int largoMazo() {
-        return this.listaTarjetas.size();
+        return this.listaTarjetas.remove(0);
     }
 
     public void agregarTarjetas(Tarjeta t1, Tarjeta t2, Tarjeta t3){
         this.listaTarjetas.add(t1);
         this.listaTarjetas.add(t2);
         this.listaTarjetas.add(t3);
-        this.randomizador.shuffle(this.listaTarjetas);
     }
 
 }

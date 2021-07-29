@@ -44,30 +44,35 @@ public class MazoTest {
 
     @Test
     public void test03elMazoMezclaDevuelveLasCartasEnElOrdenIndicado(){
-
         Signo signo = new Signo(0); //barco
         Signo otroSigno = new Signo(1);
         Signo otroSignoMas = new SignoComodin();
-        ArrayList<Tarjeta> tarjetas = new ArrayList<>();
+
         Pais unPais = new Pais("Argentina");
         Pais otroPais = new Pais("Brasil");
         Pais otroPaisMas = new Pais("Francia");
-        Tarjeta unaTarjeta = new Tarjeta(unPais, signo);
-        Tarjeta otraTarjeta = new Tarjeta(otroPais, otroSigno);
-        Tarjeta otraTarjetaMas = new Tarjeta(otroPaisMas, otroSignoMas);
-        tarjetas.add(unaTarjeta);
-        tarjetas.add(otraTarjeta);
-        tarjetas.add(otraTarjetaMas);
+
+        Tarjeta tarjeta1 = new Tarjeta(unPais, signo);
+        Tarjeta tarjeta2 = new Tarjeta(otroPais, otroSigno);
+        Tarjeta tarjeta3 = new Tarjeta(otroPaisMas, otroSignoMas);
+
+
+        ArrayList<Tarjeta> tarjetas = new ArrayList<>();
+        tarjetas.add(tarjeta1);
+        tarjetas.add(tarjeta2);
+        tarjetas.add(tarjeta3);
 
         IRandomizador randomMock = mock(Randomizador.class);
 
         Mazo mazo = new Mazo(tarjetas, randomMock);
         Tarjeta tarjetaActual = mazo.entregarTarjeta();
-        assertTrue(tarjetaActual.equals(otraTarjetaMas));
+
+
+        assertTrue(tarjetaActual.equals(tarjeta1));
         tarjetaActual = mazo.entregarTarjeta();
-        assertTrue(tarjetaActual.equals(otraTarjeta));
+        assertTrue(tarjetaActual.equals(tarjeta2));
         tarjetaActual = mazo.entregarTarjeta();
-        assertTrue(tarjetaActual.equals(unaTarjeta));
+        assertTrue(tarjetaActual.equals(tarjeta3));
     }
 
     @Test
@@ -95,12 +100,37 @@ public class MazoTest {
         listaTarjetas.add(tarjeta1);
         listaTarjetas.add(tarjeta2);
 
-        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+        IRandomizador randomMock = mock(Randomizador.class);
 
-        int cantInicial = mazo.largoMazo();
+        Mazo mazo = new Mazo(listaTarjetas, randomMock);
+
+
         mazo.agregarTarjetas(tarjeta3, tarjeta4, tarjeta5);
 
-        assertEquals(cantInicial+3, mazo.largoMazo());
+        assertEquals(tarjeta1, mazo.entregarTarjeta());
+        assertEquals(tarjeta2, mazo.entregarTarjeta());
+        assertEquals(tarjeta3, mazo.entregarTarjeta());
+        assertEquals(tarjeta4, mazo.entregarTarjeta());
+        assertEquals(tarjeta5, mazo.entregarTarjeta());
+    }
+
+    @Test
+    public void test05SiMazoSeQuedaSinCartasTiraNoQuedanCartasException() {
+
+        Signo signo = new Signo(0);
+        Pais pais = new Pais("Argentina");
+        Tarjeta tarjeta = new Tarjeta(pais, signo);
+
+        ArrayList<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
+        listaTarjetas.add(tarjeta);
+
+        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+
+        mazo.entregarTarjeta();
+
+        assertThrows(NoQuedanTarjetasException.class, () -> {
+            mazo.entregarTarjeta();
+        });
     }
 
 }
