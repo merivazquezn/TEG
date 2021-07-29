@@ -46,29 +46,26 @@ public class IntegracionTest {
     }
 
     @Test
-    public void test02seFinalizaLaRondaInicial3FichasYLaRondaPasaAFaseAtaque(){
+    public void test02seFinalizaLaRondaInicial3FichasYLaRondaPasaAFaseAtaque() throws IOException{
         HashMap<String, Continente> continentes;
-        try {
-            String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
-            continentes = listaParser.get(1);
-            Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-            ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
-            listaObjetivos.add(new ObjetivoDestruir());
-            listaObjetivos.add(new ObjetivoDestruir());
-            listaObjetivos.add(new ObjetivoDestruir());
-            ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
-            Ronda ronda = new Ronda(tablero, listaJugadores);
-            ronda.terminar();
-            ronda.terminar();
-            ronda.terminar();
-            ronda.terminar();
-            Fase faseActual = ronda.obtenerFaseActual();
-            assertTrue(faseActual instanceof FaseAtaque);
-        }
-        catch(IOException e){
-            fail(e.getMessage());
-        }
+        String ruta = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+        ArrayList<HashMap> listaParser = Parser.parsearPaisesParaTablero(ruta);
+        continentes = listaParser.get(1);
+        Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
+        Ronda ronda = new Ronda(tablero, listaJugadores);
+
+        ronda.terminar();
+        ronda.terminar();
+        ronda.terminar();
+        ronda.terminar();
+
+        Fase faseActual = ronda.obtenerFaseActual();
+        assertTrue(faseActual instanceof FaseAtaque);
     }
 
     @Test
