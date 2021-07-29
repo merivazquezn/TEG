@@ -36,7 +36,7 @@ public class MenuAtaque extends StackPane {
         String nombrePais = unPais.getNombre();
         this.setVisible(true);
         this.aparecer(evento.getSceneX(), evento.getSceneY());
-        this.setNombrePais(nombrePais);
+        this.etiquetaMenuAtaque.setText(nombrePais);
     }
 
     public void ocultarMenu(MouseEvent evento){
@@ -55,9 +55,5 @@ public class MenuAtaque extends StackPane {
 
     public boolean adentro(double mx, double my){
         return(mx >= this.puntoX-100 && mx <= this.puntoX+100 && my >= this.puntoY-100 && my <= this.puntoY);
-    }
-
-    public void setNombrePais(String nombrePais){
-        this.etiquetaMenuAtaque.setText(nombrePais);
     }
 }
