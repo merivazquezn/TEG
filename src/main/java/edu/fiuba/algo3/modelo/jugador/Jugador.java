@@ -74,4 +74,8 @@ public class Jugador {
 
     public boolean esNulo() { return false; }
 
+    public boolean tienePais(Pais pais) {
+        return listaPaises.contains(pais);
+    }
+
 }

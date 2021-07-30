@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class RepartidorDePaises {
 
     /*
-        Se reparten los paises de forma equitativa, si la division no es entera, lo que resta se le da al ultimo jugador.
+     * Se reparten los paises de forma equitativa, si la division no es entera, lo que resta se le da al ultimo jugador.
      */
 
     HashMap<String, Pais> paises;
@@ -37,10 +37,11 @@ public class RepartidorDePaises {
         int aRepartir = cantidadPaisesPorJugador();
 
         Jugador jugadorActual = this.jugadores.siguiente();
+        Pais paisActual = new Pais("");
         int contador = 0;
 
         for (int i = 0; i < listaPaisesDesordenados.size(); i++){
-            jugadorActual.asignarPais(listaPaisesDesordenados.get(i));
+            listaPaisesDesordenados.get(i).asignarJugador(jugadorActual);
             contador++;
 
             if(contador == aRepartir){

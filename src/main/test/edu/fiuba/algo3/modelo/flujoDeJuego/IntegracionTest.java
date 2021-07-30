@@ -80,9 +80,9 @@ public class IntegracionTest {
     public void test03seFinalizaLaPrimeraRondaAtaquePorCadaUnaSePasaAReagruparFinal(){
         HashMap<String, Continente> continentes;
         try {
-            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+            final String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            final String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            final String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
 
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
             continentes = parser.getContinentes();
@@ -116,9 +116,9 @@ public class IntegracionTest {
     public void test04seFinalizaLaPrimeraRondaAtaquePasaAFaseColocacion(){
         HashMap<String, Continente> continentes;
         try {
-            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+            final String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            final String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            final String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
 
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
             continentes = parser.getContinentes();
@@ -153,9 +153,9 @@ public class IntegracionTest {
     public void test05seFinalizaLaPrimeraRondaColocacionPasaAFaseAtaque(){
         HashMap<String, Continente> continentes;
         try {
-            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+            final String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            final String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            final String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
 
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
             continentes = parser.getContinentes();
@@ -189,9 +189,9 @@ public class IntegracionTest {
     public void test06enFaseAtaqueSeConquistaRondaPasaAFaseReagrupePorConquista(){
         HashMap<String, Continente> continentes;
         try {
-            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-            String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+            final String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+            final String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+            final String rutaTarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
 
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutaTarjetas);
             continentes = parser.getContinentes();

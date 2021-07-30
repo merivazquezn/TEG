@@ -7,10 +7,10 @@ import java.util.LinkedList;
 
 public class Pais {
 
-    private String nombre;
+    private final String nombre;
     private int ejercitos;
     private Jugador jugador;
-    private ArrayList<Pais> limitrofes;
+    private final ArrayList<Pais> limitrofes;
 
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
@@ -53,7 +53,9 @@ public class Pais {
 
     public void asignarJugador(Jugador jugador) {
         this.jugador = jugador;
-        this.jugador.asignarPais(this);
+
+        if (!jugador.tienePais(this))
+            this.jugador.asignarPais(this);
     }
 
     public boolean esDeJugador(Jugador unJugador) {

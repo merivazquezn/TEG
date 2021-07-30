@@ -12,9 +12,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Tablero {
-    private HashMap<String, Continente> continentes;
-    private ConstructorDeConjuntoDados constructorDeConjuntoDados;
-    private Mazo mazo;
+    private final HashMap<String, Continente> continentes;
+    private final ConstructorDeConjuntoDados constructorDeConjuntoDados;
+    private final Mazo mazo;
 
     public Tablero(HashMap<String, Continente> continentes, ConstructorDeConjuntoDados constructorDeConjuntoDados, Mazo mazo) {
         this.continentes = continentes;
@@ -45,10 +45,6 @@ public class Tablero {
 
     public Mazo obtenerMazo() { return this.mazo; }
 
-    public void asignarPaisesAJugadores (HashMap<String, Pais> paises) {
-
-
-    }
-
+    
 
 }
