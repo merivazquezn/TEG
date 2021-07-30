@@ -16,12 +16,30 @@ public class MenuColocacion extends StackPane {
     private double puntoY;
     private Label etiquetaMenuAtaque;
     private Button botonMenuAtaque;
+    private ImageView imagenDesdeAbajo;
+    private ImageView imagenDesdeIzquierda;
+    private ImageView imagenDesdeArriba;
+
+    private void establecerImagenes() throws IOException{
+        FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
+        FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");
+        FileInputStream inputMenuAtaqueArriba = new FileInputStream("./src/imagenes/desplegableArriba.png");
+        Image imagenMenuAtaqueAbajo = new Image(inputMenuAtaqueAbajo);
+        Image imagenMenuAtaqueIzquierda = new Image(inputMenuAtaqueIzquierda);
+        Image imagenMenuAtaqueArriba = new Image(inputMenuAtaqueArriba);
+        this.imagenDesdeAbajo = new ImageView(imagenMenuAtaqueAbajo);
+        this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
+        this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
+        this.getChildren().add(this.imagenDesdeAbajo);
+        this.getChildren().add(this.imagenDesdeIzquierda);
+        this.getChildren().add(this.imagenDesdeArriba);
+        this.imagenDesdeAbajo.setVisible(false);
+        this.imagenDesdeArriba.setVisible(false);
+        this.imagenDesdeIzquierda.setVisible(false);
+    }
 
     public MenuColocacion() throws IOException {
-        FileInputStream inputMenuAtaque = new FileInputStream("./src/imagenes/desplegableAbajo.png");
-        Image imagenMenuAtaque = new Image(inputMenuAtaque);
-        ImageView vistaImagenMenuAtaque = new ImageView(imagenMenuAtaque);
-        this.getChildren().add(vistaImagenMenuAtaque);
+        establecerImagenes();
         this.etiquetaMenuAtaque = new Label("");
         this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
         this.etiquetaMenuAtaque.setTranslateY(-10);
@@ -37,6 +55,18 @@ public class MenuColocacion extends StackPane {
         this.setVisible(true);
         this.aparecer(evento.getSceneX(), evento.getSceneY());
         this.etiquetaMenuAtaque.setText(nombrePais);
+        this.imagenDesdeAbajo.setVisible(false);
+        this.imagenDesdeArriba.setVisible(false);
+        this.imagenDesdeIzquierda.setVisible(false);
+        if(evento.getSceneY() < 100){
+            this.imagenDesdeArriba.setVisible(true);
+        }
+        else if(evento.getSceneX() < 100){
+            this.imagenDesdeIzquierda.setVisible(true);
+        }
+        else{
+            this.imagenDesdeAbajo.setVisible(true);
+        }
     }
 
     public void ocultarMenu(MouseEvent evento){
@@ -48,7 +78,15 @@ public class MenuColocacion extends StackPane {
     }
 
     public void aparecer( double mx, double my){
-        relocate(mx-100, my-110);
+        if(my < 100){
+            relocate(mx-100, my+10);
+        }
+        else if(mx < 100){
+            relocate(mx, my-50);
+        }
+        else{
+            relocate(mx-100, my-110);
+        }
         this.puntoX = mx;
         this.puntoY = my;
     }
