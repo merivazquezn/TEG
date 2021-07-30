@@ -13,10 +13,11 @@ import java.util.Observer;
 public class VistaEjercito implements Observer {
     private Circle circuloEjercito;
     private Label cantidadEjercito;
+    private Pais paisAsociado;
 
     public VistaEjercito(Pais unPais, MenuAtaque menuAtaque){
         this.circuloEjercito = new Circle();
-        this.cantidadEjercito = new Label("1");
+        this.cantidadEjercito = new Label("" + unPais.getCantidadEjercitos());
         this.cantidadEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             menuAtaque.aparecerMenu(e, unPais);
             e.consume();
@@ -27,6 +28,7 @@ public class VistaEjercito implements Observer {
         });
         this.circuloEjercito.setRadius(10.0f);
         this.circuloEjercito.setFill(Color.YELLOW);
+        this.paisAsociado = unPais;
     }
 
     public void setCenterX(double cX){
@@ -41,8 +43,16 @@ public class VistaEjercito implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        ArrayList<Integer> informacion = (ArrayList<Integer>) arg;
-        int nuevoColor = informacion.get(0);
-        int cantidadEjercitos = informacion.get(1);
+        int nuevoColor = this.paisAsociado.getJugador().getNumero();
+        this.cantidadEjercito.setText(""+this.paisAsociado.getCantidadEjercitos());
+
+    }
+
+    public Circle getCirculoEjercito(){
+        return this.circuloEjercito;
+    }
+
+    public Label getEtiquetaEjercito(){
+        return this.cantidadEjercito;
     }
 }
