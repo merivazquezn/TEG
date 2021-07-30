@@ -4,8 +4,9 @@ import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observable;
 
-public class Pais {
+public class Pais extends Observable {
 
     private final String nombre;
     private int ejercitos;
@@ -14,14 +15,14 @@ public class Pais {
 
     public Pais(String nombrePais) {
         this.nombre = nombrePais;
-        this.ejercitos = 0;
+        this.ejercitos = 1;
         this.jugador = new JugadorNulo();
         this.limitrofes = new ArrayList<Pais>();
     }
 
-
     public void colocarEjercitos(int cantidadEjercitos) {
         this.ejercitos += cantidadEjercitos;
+        notifyAll();
     }
 
     public int getCantidadEjercitos() {
@@ -34,7 +35,7 @@ public class Pais {
         }
 
         this.ejercitos -= cantidadEjercitosEliminar;
-
+        notifyAll();
         return this.ejercitos;
     }
 
@@ -49,6 +50,7 @@ public class Pais {
 
         this.eliminarEjercitos(cantidad);
         destino.colocarEjercitos(cantidad);
+        notifyAll();
     }
 
     public void asignarJugador(Jugador jugador) {
@@ -75,6 +77,7 @@ public class Pais {
     public void serConquistadoPor(Jugador jugadorConquistador){
         this.jugador.perdioPaisAnte(this, jugadorConquistador);
         this.asignarJugador(jugadorConquistador);
+        notifyAll();
     }
 
     public boolean sonLimitrofes(Pais otroPais) {

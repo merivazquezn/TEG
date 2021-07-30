@@ -29,8 +29,7 @@ public class App extends Application {
 
     private Tablero tablero;
     private Ronda ronda;
-    private ArrayList<Circle> vistaEjercitos;
-    private ArrayList<Label> etiquetaEjercitos;
+    private ArrayList<VistaEjercito> vistaEjercitos;
     private MenuAtaque panelMenuAtaque;
 
     public void inicializarJuego(int cantidadJugadores){
@@ -49,28 +48,13 @@ public class App extends Application {
             HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
 
             this.vistaEjercitos = new ArrayList<>();
-            this.etiquetaEjercitos = new ArrayList<>();
             for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
                 Pais unPais = entry.getKey();
                 int[] coordenadas = entry.getValue();
-                Label etiquetaEjercito = new Label("1");
-                etiquetaEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                    this.panelMenuAtaque.aparecerMenu(e, unPais);
-                    e.consume();
-                });
-                etiquetaEjercito.setTranslateX(coordenadas[0]-4);
-                etiquetaEjercito.setTranslateY(coordenadas[1]-6);
-                Circle circuloPais = new Circle();
-                circuloPais.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                    this.panelMenuAtaque.aparecerMenu(e, unPais);
-                    e.consume();
-                });
-                circuloPais.setCenterX(coordenadas[0]);
-                circuloPais.setCenterY(coordenadas[1]);
-                circuloPais.setRadius(10.0f);
-                circuloPais.setFill(Color.YELLOW);
-                this.vistaEjercitos.add(circuloPais);
-                this.etiquetaEjercitos.add(etiquetaEjercito);
+                VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.panelMenuAtaque);
+                nuevaVistaEjercito.setCenterX(coordenadas[0]);
+                nuevaVistaEjercito.setCenterY(coordenadas[1]);
+                this.vistaEjercitos.add(nuevaVistaEjercito);
             }
 
             this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
@@ -100,11 +84,9 @@ public class App extends Application {
                     BackgroundSize.DEFAULT);
             Background background = new Background(backgroundimage);
             panel.setBackground(background);
-            for (Circle circuloEjercitos : this.vistaEjercitos) {
-                panel.getChildren().add(circuloEjercitos);
-            }
-            for (Label etiqueta : this.etiquetaEjercitos) {
-                panel.getChildren().add(etiqueta);
+            for (VistaEjercito vistaEjercito : this.vistaEjercitos) {
+                panel.getChildren().add(vistaEjercito.getCirculoEjercito());
+                panel.getChildren().add(vistaEjercito.getEtiquetaEjercito());
             }
             panel.getChildren().add(this.panelMenuAtaque);
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
