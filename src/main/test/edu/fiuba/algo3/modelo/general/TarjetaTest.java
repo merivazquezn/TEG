@@ -18,7 +18,7 @@ public class TarjetaTest {
     public void test01tarjetaSeActivaEnPaisQueTieneElJugadorYPasaDe3EjercitosA5() {
 
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(3);
+        pais.colocarEjercitos(2);
 
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
 
@@ -32,7 +32,7 @@ public class TarjetaTest {
     @Test
     public void test02tarjetaSeActivaEnPaisQueNoTieneElJugadorElevaExcepcion() {
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(3);
+        pais.colocarEjercitos(2);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
@@ -44,7 +44,7 @@ public class TarjetaTest {
     @Test
     public void test03tarjetaSinJugadorSeActivaElevaExcepcion() {
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(3);
+        pais.colocarEjercitos(2);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(unJugador);
@@ -55,7 +55,7 @@ public class TarjetaTest {
     public void test04tarjetaSeActivaEnPaisQueTieneElJugadorYPasaDe7EjercitosA9() {
 
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(7);
+        pais.colocarEjercitos(6);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador jugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(jugador);
@@ -68,7 +68,6 @@ public class TarjetaTest {
     public void test05tarjetaSeActivaEnPaisQueTieneElJugadorYPasaDe1EjercitosA3() {
 
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(1);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador jugador = new Jugador(new ObjetivoDestruir());
         pais.asignarJugador(jugador);
@@ -80,7 +79,7 @@ public class TarjetaTest {
     @Test
     public void test06tarjetaSeActivaEnPaisQueNoTieneElJugadorElevaExcepcionYSigueTeniendo3Ejercitos() {
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(3);
+        pais.colocarEjercitos(2);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
@@ -93,7 +92,6 @@ public class TarjetaTest {
     @Test
     public void test07tarjetaSeActivaEnPaisQueNoTieneElJugadorElevaExcepcionYSigueTeniendo1Ejercito() {
         Pais pais = new Pais("Argentina");
-        pais.colocarEjercitos(1);
         Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());

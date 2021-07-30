@@ -42,10 +42,9 @@ public class RondaTest {
         Jugador jugador2 = listaJugadores.siguiente();
         Jugador jugador3 = listaJugadores.siguiente();
 
-        Pais pais1 = new Pais("china");
-        pais1.colocarEjercitos(2);
-        Pais pais2 = new Pais("vietnam");
-        pais2.colocarEjercitos(1);
+        Pais pais1 = new Pais("China");
+        pais1.colocarEjercitos(1);
+        Pais pais2 = new Pais("Vietnam");
 
         jugador2.asignarPais(pais1);
         jugador2.asignarPais(pais2);

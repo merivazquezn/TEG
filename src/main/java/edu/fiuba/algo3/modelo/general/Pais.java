@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
 
-public class Pais extends Observable {
+public class Pais extends Observable{
 
     private final String nombre;
     private int ejercitos;
@@ -22,7 +22,7 @@ public class Pais extends Observable {
 
     public void colocarEjercitos(int cantidadEjercitos) {
         this.ejercitos += cantidadEjercitos;
-        notifyAll();
+        notifyObservers();
     }
 
     public int getCantidadEjercitos() {
@@ -35,7 +35,7 @@ public class Pais extends Observable {
         }
 
         this.ejercitos -= cantidadEjercitosEliminar;
-        notifyAll();
+        notifyObservers();
         return this.ejercitos;
     }
 
@@ -50,7 +50,7 @@ public class Pais extends Observable {
 
         this.eliminarEjercitos(cantidad);
         destino.colocarEjercitos(cantidad);
-        notifyAll();
+        notifyObservers();
     }
 
     public void asignarJugador(Jugador jugador) {
@@ -77,7 +77,7 @@ public class Pais extends Observable {
     public void serConquistadoPor(Jugador jugadorConquistador){
         this.jugador.perdioPaisAnte(this, jugadorConquistador);
         this.asignarJugador(jugadorConquistador);
-        notifyAll();
+        notifyObservers();
     }
 
     public boolean sonLimitrofes(Pais otroPais) {

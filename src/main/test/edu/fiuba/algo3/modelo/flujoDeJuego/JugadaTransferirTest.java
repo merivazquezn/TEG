@@ -23,8 +23,7 @@ public class JugadaTransferirTest {
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
         Pais otroPais = new Pais("Bolivia");
-        unPais.colocarEjercitos(2);
-        otroPais.colocarEjercitos(1);
+        unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
         otroPais.asignarJugador(unJugador);
         unPais.agregarLimitrofe(otroPais);

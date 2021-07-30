@@ -17,7 +17,7 @@ public class JugadaColocarTest {
     @Test
     public void test01paisPasaDe3A5EjercitosTrasJugadaColocarCon2Ejercitos(){
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(3);
+        unPais.colocarEjercitos(2);
         int unaCantidad = 2;
         Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);
@@ -32,7 +32,7 @@ public class JugadaColocarTest {
     @Test
     public void test02paisPasaDe5A8EjercitosTrasJugadaColocarCon3Ejercitos(){
         Pais unPais = new Pais("Chile");
-        unPais.colocarEjercitos(5);
+        unPais.colocarEjercitos(4);
         int unaCantidad = 3;
         Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Jugada jugada = new JugadaColocar(unPais, unaCantidad);

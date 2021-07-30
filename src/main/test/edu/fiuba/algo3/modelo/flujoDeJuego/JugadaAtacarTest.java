@@ -25,10 +25,9 @@ public class JugadaAtacarTest {
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(2);
+        unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
         Pais otroPais = new Pais("Chile");
-        otroPais.colocarEjercitos(1);
         otroPais.asignarJugador(otroJugador);
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);
@@ -59,10 +58,9 @@ public class JugadaAtacarTest {
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(2);
+        unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
         Pais otroPais = new Pais("Chile");
-        otroPais.colocarEjercitos(1);
         otroPais.asignarJugador(otroJugador);
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);
@@ -99,10 +97,10 @@ public class JugadaAtacarTest {
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(2);
+        unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
         Pais otroPais = new Pais("Chile");
-        otroPais.colocarEjercitos(2);
+        otroPais.colocarEjercitos(1);
         otroPais.asignarJugador(otroJugador);
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);

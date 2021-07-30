@@ -19,7 +19,7 @@ public class JugadaActivarTarjetasTest {
     public void test01unaJugadaActivaUnaTarjetaYAlPaisSeLeSuman2Ejercitos(){
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(2);
+        unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
         Tarjeta tarjeta = new Tarjeta(unPais, new Signo(2));
         tarjeta.asignarJugador(unJugador);
@@ -38,7 +38,7 @@ public class JugadaActivarTarjetasTest {
     public void test02unaJugadaIntentaActivarUnaTarjetaDeUnPaisQueNoLePerteneceAlJugadorYNoSeLeSuman(){
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Pais unPais = new Pais("Argentina");
-        unPais.colocarEjercitos(2);
+        unPais.colocarEjercitos(1);
         Tarjeta tarjeta = new Tarjeta(unPais, new Signo(2));
         tarjeta.asignarJugador(unJugador);
         Jugada jugada = new JugadaActivarTarjetas(tarjeta);

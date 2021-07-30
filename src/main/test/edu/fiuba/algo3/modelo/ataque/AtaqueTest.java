@@ -16,9 +16,9 @@ public class AtaqueTest {
     @Test
     public void test01devuelveErrorAlAtacarConLaMismaCantidadDeEjercitosDelPais() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarEjercitos(2);
+        paisAtacante.colocarEjercitos(1);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarEjercitos(5);
+        paisDefensor.colocarEjercitos(4);
 
         ConstructorDeConjuntoDados constructor = new ConstructorDeConjuntoDados(new Randomizador());
 
@@ -58,9 +58,8 @@ public class AtaqueTest {
     @Test
     public void test04paisAtacaCon2EjercitosContra1EjercitoDefensorYDefensorPierdeElEjercito() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarEjercitos(3);
+        paisAtacante.colocarEjercitos(2);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarEjercitos(1);
         paisAtacante.agregarLimitrofe(paisDefensor);
         paisDefensor.agregarLimitrofe(paisAtacante);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
@@ -91,9 +90,9 @@ public class AtaqueTest {
     @Test
     public void test05paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde2Defensor1() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarEjercitos(4);
+        paisAtacante.colocarEjercitos(3);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarEjercitos(3);
+        paisDefensor.colocarEjercitos(2);
         paisAtacante.agregarLimitrofe(paisDefensor);
         paisDefensor.agregarLimitrofe(paisAtacante);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
@@ -117,16 +116,16 @@ public class AtaqueTest {
         Ataque ataque = new Ataque(constructor, paisAtacante, paisDefensor, 3);
         assertFalse(ataque.conquisto());
 
-        assertEquals(paisAtacante.getCantidadEjercitos(), 2);
-        assertEquals(paisDefensor.getCantidadEjercitos(), 2);
+        assertEquals(2, paisAtacante.getCantidadEjercitos());
+        assertEquals(2, paisDefensor.getCantidadEjercitos());
     }
 
     @Test
     public void test06paisAtacaCon1EjercitosContra3EjercitosDefensoresDefensorPierde1() {
         Pais paisAtacante = new Pais("Argentina");
-        paisAtacante.colocarEjercitos(2);
+        paisAtacante.colocarEjercitos(1);
         Pais paisDefensor = new Pais("Chile");
-        paisDefensor.colocarEjercitos(3);
+        paisDefensor.colocarEjercitos(2);
         paisAtacante.agregarLimitrofe(paisDefensor);
         paisDefensor.agregarLimitrofe(paisAtacante);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
@@ -156,9 +155,9 @@ public class AtaqueTest {
     @Test
     public void test07paisAtacaCon3EjercitosContra3EjercitosDefensoresAtacantePierde3() {
         Pais paisAtacante = new Pais("Chile");
-        paisAtacante.colocarEjercitos(4);
+        paisAtacante.colocarEjercitos(3);
         Pais paisDefensor = new Pais("Argentina");
-        paisDefensor.colocarEjercitos(3);
+        paisDefensor.colocarEjercitos(2);
         paisAtacante.agregarLimitrofe(paisDefensor);
         paisDefensor.agregarLimitrofe(paisAtacante);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
