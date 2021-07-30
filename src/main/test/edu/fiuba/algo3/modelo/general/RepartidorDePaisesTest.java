@@ -71,5 +71,5 @@ public class RepartidorDePaisesTest {
         assertEquals(listaJugadores.siguiente().cantidadPaises(),  0);
         assertEquals(listaJugadores.siguiente().cantidadPaises(),  0);
     }
-    
+
 }
