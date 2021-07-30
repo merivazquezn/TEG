@@ -1,10 +1,12 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controlador.ControladorEjercito;
 import edu.fiuba.algo3.infraestructura.Parser;
 import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.*;
+import edu.fiuba.algo3.modelo.jugador.Objetivo;
 import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -12,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
@@ -31,6 +34,7 @@ public class App extends Application {
     private Ronda ronda;
     private ArrayList<VistaEjercito> vistaEjercitos;
     private MenuAtaque panelMenuAtaque;
+    private ControladorEjercito controladorEjercito;
 
     public void inicializarJuego(int cantidadJugadores){
 
@@ -42,16 +46,26 @@ public class App extends Application {
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
 
             this.panelMenuAtaque = new MenuAtaque();
-
             HashMap<String, Continente> continentes = parser.getContinentes();
-            //HashMap<String, Pais> paises = parser.getPaisesParaTablero();
+            HashMap<String, Pais> paises = parser.getPaisesParaTablero();
             HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
 
+            ArrayList<Objetivo> listaObjetivos = parser.getObjetivos();
+
+            ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador(), listaObjetivos);
+
+            RepartidorDePaises repartidorDePaises = new RepartidorDePaises(paises, listaJugadores);
+            repartidorDePaises.repartirPaisesPorJugadores();
+            Mazo mazo = new Mazo(new ArrayList<>(), new Randomizador());
+            this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
+            this.ronda = new Ronda(tablero, listaJugadores);
+
+            this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque);
             this.vistaEjercitos = new ArrayList<>();
             for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
                 Pais unPais = entry.getKey();
                 int[] coordenadas = entry.getValue();
-                VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.panelMenuAtaque);
+                VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.controladorEjercito);
                 nuevaVistaEjercito.setCenterX(coordenadas[0]);
                 nuevaVistaEjercito.setCenterY(coordenadas[1]);
                 this.vistaEjercitos.add(nuevaVistaEjercito);

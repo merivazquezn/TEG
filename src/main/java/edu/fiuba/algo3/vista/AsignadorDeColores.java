@@ -1,27 +1,33 @@
 package edu.fiuba.algo3.vista;
 
-import java.awt.Color;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class AsignadorDeColores {
 
-    public static final Color AZUL = new Color(0, 119, 187);
-    public static final Color ROJO = new Color(204, 51, 17);
-    public static final Color AMARILLO = new Color(238, 119, 51);
-    public static final Color VERDE = new Color(0, 153, 136);
-    public static final Color ROSA = new Color(238, 51, 119);
-    public static final Color NEGRO = new Color(0, 0, 0);
+    public static final Color AZUL = Color.rgb(0, 119, 187);
+    public static final Color ROJO = Color.rgb(204, 51, 17);
+    public static final Color AMARILLO = Color.rgb(238, 119, 51);
+    public static final Color VERDE = Color.rgb(0, 153, 136);
+    public static final Color ROSA = Color.rgb(238, 51, 119);
+    public static final Color NEGRO = Color.rgb(0, 0, 0);
 
-    private enum Colores{
-        AZUL,
-        ROJO,
-        AMARILLO,
-        VERDE,
-        ROSA,
-        NEGRO
+    public static Color colorEjercitoSegunElNumero(int numeroJugador){
+        ArrayList<Color> colores = new ArrayList<>();
+        colores.add(AZUL);
+        colores.add(ROJO);
+        colores.add(AMARILLO);
+        colores.add(VERDE);
+        colores.add(ROSA);
+        colores.add(NEGRO);
+        return colores.get(numeroJugador-1);
     }
 
-    public static Color colorSegunElNumero(int numeroJugador){
-        return new Color(0,0,0);
+    public static Color colorEtiquetaSegunElNumero(int numeroJugador){
+        if(numeroJugador != 6)
+            return Color.BLACK;
+        return Color.WHITE;
     }
 
 }
