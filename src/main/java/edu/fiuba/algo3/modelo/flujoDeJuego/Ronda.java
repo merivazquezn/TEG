@@ -3,8 +3,10 @@ package edu.fiuba.algo3.modelo.flujoDeJuego;
 import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import javafx.beans.InvalidationListener;
+import java.util.Observable;
 
-public class Ronda {
+public class Ronda extends Observable {
 
     private Tablero tablero;
     private ListaJugadores listaJugadores;
@@ -32,6 +34,7 @@ public class Ronda {
         this.cantidadAColocar = 0;
         this.cantidadAColocar += this.jugadorActual.cantidadPaises()/2;
         this.cantidadAColocar += this.tablero.cantidadEjercitosPorContinente(this.jugadorActual);
+        notifyObservers();
     }
 
     public void terminar(){
@@ -42,42 +45,39 @@ public class Ronda {
         this.cantidadAColocar -= cantidad;
         if(this.cantidadAColocar <= 0)
             this.faseActual = this.faseActual.siguienteFase(this);
+        notifyObservers();
     }
 
     public void seProdujoConquista(){
         if (this.listaJugadores.hayGanador(this.tablero))
             this.faseActual = new JuegoTerminado();
         else this.faseActual = new FaseReagruparPorConquista();
+        notifyObservers();
     }
 
     public void seRealizoCanje(){
         this.jugadorActual.realizarCanje();
         this.cantidadAColocar += this.jugadorActual.cantidadAColocarPorCanje();
+        notifyObservers();
     }
 
     public Fase obtenerFaseActual(){
         return this.faseActual;
     }
 
-    public Jugador siguienteJugador(){
-        this.jugadorActual = this.listaJugadores.siguiente();
-
-        return this.jugadorActual;
-    }
-
     public void reiniciarLista(){
         this.listaJugadores.reiniciar();
         this.jugadorActual = this.listaJugadores.siguiente();
+        notifyObservers();
     }
-
 
     public boolean estaAlFinalDeLaLista(){
         return this.listaJugadores.estaAlFinalDeLaLista();
     }
 
-
     public void realizarJugada(Jugada jugada){
         jugada.ejecutar(this.tablero, this);
+        notifyObservers();
     }
 
     public Jugador jugadorActual () { return this.jugadorActual; }

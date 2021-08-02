@@ -24,6 +24,17 @@ public class AsignadorDeColores {
         return colores.get(numeroJugador-1);
     }
 
+    public static String jugadorActualSegunElNumero(int numeroJugador){
+        ArrayList<String> nombreConColores = new ArrayList<>();
+        nombreConColores.add("Jugador Azul");
+        nombreConColores.add("Jugador Rojo");
+        nombreConColores.add("Jugador Amarillo");
+        nombreConColores.add("Jugador Verde");
+        nombreConColores.add("Jugador Rosa");
+        nombreConColores.add("Jugador Negro");
+        return nombreConColores.get(numeroJugador-1);
+    }
+
     public static Color colorEtiquetaSegunElNumero(int numeroJugador){
         if(numeroJugador != 6)
             return Color.BLACK;

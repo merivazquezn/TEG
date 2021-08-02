@@ -80,7 +80,6 @@ public class App extends Application {
     public void realizarJuego(Stage stage, int cantidadJugadores){
         inicializarJuego(cantidadJugadores);
         FileInputStream inputImagenFondo;
-        FileInputStream inputImagenInterfaz;
         try {
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
