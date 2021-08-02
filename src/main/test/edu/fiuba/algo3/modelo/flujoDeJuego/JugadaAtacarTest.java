@@ -24,16 +24,23 @@ public class JugadaAtacarTest {
     public void test01unJugadorAtacaYConquistaPorLoQueLaSiguienteRondaEsDeReagrupe(){
         Jugador unJugador = new Jugador(new ObjetivoDestruir());
         Jugador otroJugador = new Jugador(new ObjetivoDestruir());
+
         Pais unPais = new Pais("Argentina");
         unPais.colocarEjercitos(1);
         unPais.asignarJugador(unJugador);
+
         Pais otroPais = new Pais("Chile");
         otroPais.asignarJugador(otroJugador);
+
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);
-        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais, 1);
+
+
+        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais);
+
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
+
         when(atacante.ejercitosPerdidos(defensor)).thenAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) {
                 ArrayList<Integer> lista = new ArrayList();
@@ -42,11 +49,14 @@ public class JugadaAtacarTest {
                 return lista;
             }
         });
+
         ConstructorDeConjuntoDados constructor = mock(ConstructorDeConjuntoDados.class);
         ArrayList<ConjuntoDados> lista = new ArrayList<>();
+
         lista.add(atacante);
         lista.add(defensor);
         when(constructor.obtenerConjuntosDados(1,1)).thenReturn(lista);
+
         Tablero tablero = new Tablero(new HashMap<>(), constructor, new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = mock(Ronda.class);
         jugadaAtacar.ejecutar(tablero, ronda);
@@ -64,7 +74,7 @@ public class JugadaAtacarTest {
         otroPais.asignarJugador(otroJugador);
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);
-        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais, 1);
+        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.ejercitosPerdidos(defensor)).thenAnswer(new Answer() {
@@ -104,7 +114,7 @@ public class JugadaAtacarTest {
         otroPais.asignarJugador(otroJugador);
         unPais.agregarLimitrofe(otroPais);
         otroPais.agregarLimitrofe(unPais);
-        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais, 1);
+        Jugada jugadaAtacar = new JugadaAtacar(unPais, otroPais);
         ConjuntoDados atacante = mock(ConjuntoDados.class);
         ConjuntoDados defensor = mock(ConjuntoDados.class);
         when(atacante.ejercitosPerdidos(defensor)).thenAnswer(new Answer() {

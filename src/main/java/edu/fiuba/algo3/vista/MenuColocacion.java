@@ -100,7 +100,7 @@ public class MenuColocacion extends StackPane implements Observer {
         this.setVisible(true);
         this.inputCantidad.setText("0");
         this.aparecer(evento.getSceneX(), evento.getSceneY());
-        this.etiquetaMenuAtaque.setText(nombrePais);
+        this.etiquetaMenuColocacion.setText(nombrePais);
         this.imagenDesdeAbajo.setVisible(false);
         this.imagenDesdeArriba.setVisible(false);
         this.imagenDesdeIzquierda.setVisible(false);

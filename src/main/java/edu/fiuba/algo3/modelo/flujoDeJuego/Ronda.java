@@ -34,7 +34,7 @@ public class Ronda extends Observable {
         this.cantidadAColocar = 0;
         this.cantidadAColocar += this.jugadorActual.cantidadPaises()/2;
         this.cantidadAColocar += this.tablero.cantidadEjercitosPorContinente(this.jugadorActual);
-        notifyObservers();
+        setChanged();
     }
 
     public void terminar(){
@@ -52,13 +52,13 @@ public class Ronda extends Observable {
         if (this.listaJugadores.hayGanador(this.tablero))
             this.faseActual = new JuegoTerminado();
         else this.faseActual = new FaseReagruparPorConquista();
-        notifyObservers();
+        setChanged();
     }
 
     public void seRealizoCanje(){
         this.jugadorActual.realizarCanje();
         this.cantidadAColocar += this.jugadorActual.cantidadAColocarPorCanje();
-        notifyObservers();
+        setChanged();
     }
 
     public Fase obtenerFaseActual(){
@@ -77,7 +77,7 @@ public class Ronda extends Observable {
 
     public void realizarJugada(Jugada jugada){
         jugada.ejecutar(this.tablero, this);
-        notifyObservers();
+        setChanged();
     }
 
     public Jugador jugadorActual () { return this.jugadorActual; }
@@ -92,6 +92,11 @@ public class Ronda extends Observable {
 
     public boolean puedeAvanzar() {
         return this.cantidadAColocar <= 0;
+    }
+
+    public void siguienteJugador() {
+        this.jugadorActual = this.listaJugadores.siguiente();
+
     }
 
 }

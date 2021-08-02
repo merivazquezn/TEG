@@ -12,10 +12,19 @@ public class JugadaAtacar implements Jugada{
     private Pais defensor;
     private int cantidad;
 
-    public JugadaAtacar(Pais atacante, Pais defensor, int cantidad){
+    public int cantidadEjercitosAtacantes(Pais pais) {
+        int cant = pais.getCantidadEjercitos();
+
+        if (cant>3)
+            return 3;
+
+        return cant-1;
+    }
+
+    public JugadaAtacar(Pais atacante, Pais defensor){
         this.atacante = atacante;
         this.defensor = defensor;
-        this.cantidad = cantidad;
+        this.cantidad = this.cantidadEjercitosAtacantes(atacante);
     }
 
     public void ejecutar(Tablero tablero, Ronda ronda){
