@@ -26,6 +26,11 @@ public class ControladorEjercito {
 
     public void tocarPais(MouseEvent e, Pais unPais){
         panelMenuAtaque.aparecerMenu(e, unPais);
+
+
+
+
+
     }
 
 }

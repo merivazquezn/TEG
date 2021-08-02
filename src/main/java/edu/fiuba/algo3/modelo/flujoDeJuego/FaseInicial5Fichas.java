@@ -10,4 +10,12 @@ public class FaseInicial5Fichas implements Fase {
         ronda.establecerCantidadAColocar(5);
         return new FaseInicial5Fichas();
     }
+
+    public String getNombreRonda(){
+        return "Fase Inicial";
+    }
+
+    public String accionARealizar(int cantidadAColocar){
+        return "Ejercitos a colocar: "+cantidadAColocar;
+    }
 }

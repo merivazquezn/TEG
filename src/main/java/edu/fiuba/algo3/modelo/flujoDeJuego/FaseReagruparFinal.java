@@ -9,4 +9,12 @@ public class FaseReagruparFinal implements Fase{
         }
         return new FaseAtaque();
     }
+
+    public String getNombreRonda(){
+        return "Fase Reagrupación";
+    }
+
+    public String accionARealizar(int cantidadAColocar){
+        return "Realice reagrupes entre paises limitrofes";
+    }
 }

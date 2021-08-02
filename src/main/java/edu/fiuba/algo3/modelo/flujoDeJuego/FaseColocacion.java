@@ -9,4 +9,13 @@ public class FaseColocacion implements Fase {
         ronda.actualizarCantidadAColocar();
         return new FaseColocacion();
     }
+
+
+    public String getNombreRonda(){
+        return "Ronda Colocación";
+    }
+
+    public String accionARealizar(int cantidadAColocar){
+        return "Ejercitos a colocar: " + cantidadAColocar;
+    }
 }

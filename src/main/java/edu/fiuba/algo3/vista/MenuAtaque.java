@@ -20,6 +20,8 @@ public class MenuAtaque extends StackPane {
     private ImageView imagenDesdeIzquierda;
     private ImageView imagenDesdeArriba;
 
+    private boolean paisOrigenSeleccionado;
+
     private void establecerImagenes() throws IOException{
         FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
         FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");

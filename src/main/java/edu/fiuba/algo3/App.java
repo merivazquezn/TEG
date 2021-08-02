@@ -83,13 +83,11 @@ public class App extends Application {
         try {
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
-            inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
-            Image imagenInterfaz = new Image(inputImagenInterfaz);
-            ImageView imagenInterfazVisible = new ImageView(imagenInterfaz);
-            Pane panel = new Pane(imagenInterfazVisible);
-            imagenInterfazVisible.setTranslateY(785);
-            imagenInterfazVisible.setTranslateX(120);
+            InterfazUsuario interfaz = new InterfazUsuario(this.ronda);
+            this.ronda.addObserver(interfaz);
+            Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
+
             BackgroundImage backgroundimage = new BackgroundImage(imagenFondo,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
@@ -97,6 +95,7 @@ public class App extends Application {
                     BackgroundSize.DEFAULT);
             Background background = new Background(backgroundimage);
             panel.setBackground(background);
+
             for (VistaEjercito vistaEjercito : this.vistaEjercitos) {
                 panel.getChildren().add(vistaEjercito.getCirculoEjercito());
                 panel.getChildren().add(vistaEjercito.getEtiquetaEjercito());

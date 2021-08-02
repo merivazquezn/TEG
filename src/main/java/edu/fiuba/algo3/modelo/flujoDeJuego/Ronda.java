@@ -81,4 +81,17 @@ public class Ronda extends Observable {
     }
 
     public Jugador jugadorActual () { return this.jugadorActual; }
+
+    public String getNombreRonda() {
+        return this.faseActual.getNombreRonda();
+    }
+
+    public String accionARealizar(){
+        return this.faseActual.accionARealizar(this.cantidadAColocar);
+    }
+
+    public boolean puedeAvanzar() {
+        return this.cantidadAColocar <= 0;
+    }
+
 }
