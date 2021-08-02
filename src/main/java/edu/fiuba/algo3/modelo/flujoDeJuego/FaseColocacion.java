@@ -12,6 +12,7 @@ public class FaseColocacion implements Fase {
             ronda.reiniciarLista();
             return new FaseAtaque();
         }
+        ronda.siguienteJugador();
         ronda.actualizarCantidadAColocar();
         return new FaseColocacion();
     }

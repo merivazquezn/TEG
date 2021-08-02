@@ -13,6 +13,7 @@ public class FaseInicial3Fichas implements Fase {
             return new FaseAtaque();
         }
         ronda.establecerCantidadAColocar(3);
+        ronda.siguienteJugador();
         return new FaseInicial3Fichas();
     }
 

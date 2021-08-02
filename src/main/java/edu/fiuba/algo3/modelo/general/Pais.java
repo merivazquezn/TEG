@@ -22,7 +22,7 @@ public class Pais extends Observable{
 
     public void colocarEjercitos(int cantidadEjercitos) {
         this.ejercitos += cantidadEjercitos;
-        notifyObservers();
+        setChanged();
     }
 
     public int getCantidadEjercitos() {
@@ -35,7 +35,7 @@ public class Pais extends Observable{
         }
 
         this.ejercitos -= cantidadEjercitosEliminar;
-        notifyObservers();
+        setChanged();
         return this.ejercitos;
     }
 
@@ -50,7 +50,7 @@ public class Pais extends Observable{
 
         this.eliminarEjercitos(cantidad);
         destino.colocarEjercitos(cantidad);
-        notifyObservers();
+        setChanged();
     }
 
     public void asignarJugador(Jugador jugador) {
@@ -77,7 +77,7 @@ public class Pais extends Observable{
     public void serConquistadoPor(Jugador jugadorConquistador){
         this.jugador.perdioPaisAnte(this, jugadorConquistador);
         this.asignarJugador(jugadorConquistador);
-        notifyObservers();
+        setChanged();
     }
 
     public boolean sonLimitrofes(Pais otroPais) {

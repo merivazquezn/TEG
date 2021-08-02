@@ -45,7 +45,7 @@ public class Ronda extends Observable {
         this.cantidadAColocar -= cantidad;
         if(this.cantidadAColocar <= 0)
             this.faseActual = this.faseActual.siguienteFase(this);
-        notifyObservers();
+        setChanged();
     }
 
     public void seProdujoConquista(){
@@ -68,7 +68,7 @@ public class Ronda extends Observable {
     public void reiniciarLista(){
         this.listaJugadores.reiniciar();
         this.jugadorActual = this.listaJugadores.siguiente();
-        notifyObservers();
+        setChanged();
     }
 
     public boolean estaAlFinalDeLaLista(){

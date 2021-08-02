@@ -38,7 +38,7 @@ public class ListaJugadores {
     }
 
     public boolean estaAlFinalDeLaLista(){
-        return this.siguiente().esNulo();
+        return (indiceActual == this.listaJugadores.size());
     }
 
     public Jugador siguiente(){

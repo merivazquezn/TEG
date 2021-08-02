@@ -13,6 +13,7 @@ public class FaseInicial5Fichas implements Fase {
             return new FaseInicial3Fichas();
         }
         ronda.establecerCantidadAColocar(5);
+        ronda.siguienteJugador();
         return new FaseInicial5Fichas();
     }
 

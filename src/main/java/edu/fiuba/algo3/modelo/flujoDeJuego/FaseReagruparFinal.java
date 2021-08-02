@@ -7,6 +7,7 @@ public class FaseReagruparFinal implements Fase{
             ronda.actualizarCantidadAColocar();
             return new FaseColocacion();
         }
+        ronda.siguienteJugador();
         return new FaseAtaque();
     }
 

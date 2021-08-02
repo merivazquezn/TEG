@@ -34,7 +34,7 @@ public class InterfazUsuario extends StackPane implements Observer {
     private void inicializarEtiquetas(){
         String nombreRonda = this.ronda.getNombreRonda();
         this.etiquetaNombreRonda = new Label(nombreRonda);
-        this.etiquetaNombreRonda.setTranslateX(300);
+        this.etiquetaNombreRonda.setTranslateX(210);
         Jugador jugadorActual = this.ronda.jugadorActual();
         int numeroJugadorActual = jugadorActual.getNumero();
         String colorJugadorActual = AsignadorDeColores.jugadorActualSegunElNumero(numeroJugadorActual);
@@ -72,5 +72,7 @@ public class InterfazUsuario extends StackPane implements Observer {
         String colorJugadorActual = AsignadorDeColores.jugadorActualSegunElNumero(numeroJugadorActual);
         this.etiquetaNombreRonda.setText(rondaActual);
         this.etiquetaJugador.setText("Turno de "+ colorJugadorActual);
+        String accionARealizarActual = this.ronda.accionARealizar();
+        this.etiquetaInformacionRonda.setText(accionARealizarActual);
     }
 }
