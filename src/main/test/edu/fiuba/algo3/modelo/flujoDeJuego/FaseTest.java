@@ -27,6 +27,7 @@ public class FaseTest {
 
         ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseInicial5Fichas);
     }
@@ -43,6 +44,7 @@ public class FaseTest {
 
         ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseInicial3Fichas);
     }
@@ -61,6 +63,7 @@ public class FaseTest {
         listaJugadores.siguiente();
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseAtaque);
     }
@@ -152,6 +155,7 @@ public class FaseTest {
         listaJugadores.siguiente();
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseColocacion);
     }
@@ -169,6 +173,7 @@ public class FaseTest {
         ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseAtaque);
     }
@@ -204,6 +209,7 @@ public class FaseTest {
         ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         listaJugadores.siguiente();
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseInicial3Fichas);
     }
@@ -215,6 +221,7 @@ public class FaseTest {
         ListaJugadores listaJugadores = mock(ListaJugadores.class);
         when(listaJugadores.estaAlFinalDeLaLista()).thenReturn(true);
         Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.establecerCantidadAColocar(0);
         fase.siguienteFase(ronda);
         verify(listaJugadores, times(1)).reiniciar();
     }

@@ -23,7 +23,7 @@ public class ListaJugadoresTest {
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
-        when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
+        when(randomMock.generar(eq(0),eq(3))).thenReturn(0);
         ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
         assertEquals(1, jugadorActual.getNumero());
@@ -40,7 +40,7 @@ public class ListaJugadoresTest {
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
-        when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
+        when(randomMock.generar(eq(0),eq(3))).thenReturn(0);
         ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         assertEquals(3, lista.size());
     }
@@ -53,7 +53,7 @@ public class ListaJugadoresTest {
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
         Randomizador randomMock = mock(Randomizador.class);
-        when(randomMock.generar(eq(0),eq(2))).thenReturn(0);
+        when(randomMock.generar(eq(0),eq(3))).thenReturn(0);
         ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
         assertEquals(1, jugadorActual.getNumero());

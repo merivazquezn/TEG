@@ -34,6 +34,7 @@ public class App extends Application {
     private Ronda ronda;
     private ArrayList<VistaEjercito> vistaEjercitos;
     private MenuAtaque panelMenuAtaque;
+    private MenuColocacion panelMenuColocacion;
     private ControladorEjercito controladorEjercito;
 
     public void inicializarJuego(int cantidadJugadores){
@@ -46,6 +47,7 @@ public class App extends Application {
             Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
 
             this.panelMenuAtaque = new MenuAtaque();
+            this.panelMenuColocacion = new MenuColocacion();
             HashMap<String, Continente> continentes = parser.getContinentes();
             HashMap<String, Pais> paises = parser.getPaisesParaTablero();
             HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
@@ -60,7 +62,7 @@ public class App extends Application {
             this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
             this.ronda = new Ronda(tablero, listaJugadores);
 
-            this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque);
+            this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion);
             this.vistaEjercitos = new ArrayList<>();
             for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
                 Pais unPais = entry.getKey();
@@ -101,6 +103,7 @@ public class App extends Application {
                 panel.getChildren().add(vistaEjercito.getEtiquetaEjercito());
             }
             panel.getChildren().add(this.panelMenuAtaque);
+            panel.getChildren().add(this.panelMenuColocacion);
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 this.panelMenuAtaque.ocultarMenu(e);
             });

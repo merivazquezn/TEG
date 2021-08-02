@@ -39,7 +39,9 @@ public class IntegracionTest {
             listaObjetivos.add(new ObjetivoDestruir());
             ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseInicial3Fichas);
@@ -67,9 +69,13 @@ public class IntegracionTest {
         ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
 
+        ronda.establecerCantidadAColocar(0);
         ronda.terminar();
+        ronda.establecerCantidadAColocar(0);
         ronda.terminar();
+        ronda.establecerCantidadAColocar(0);
         ronda.terminar();
+        ronda.establecerCantidadAColocar(0);
         ronda.terminar();
 
         Fase faseActual = ronda.obtenerFaseActual();
@@ -93,9 +99,13 @@ public class IntegracionTest {
             listaObjetivos.add(new ObjetivoDestruir());
             ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
@@ -129,9 +139,13 @@ public class IntegracionTest {
             listaObjetivos.add(new ObjetivoDestruir());
             ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             ronda.terminar();
             ronda.terminar();
@@ -139,6 +153,7 @@ public class IntegracionTest {
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseColocacion);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseColocacion);
@@ -166,15 +181,21 @@ public class IntegracionTest {
             listaObjetivos.add(new ObjetivoDestruir());
             ListaJugadores listaJugadores = new ListaJugadores(2, new Randomizador(), listaObjetivos);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
+            ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
+            ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
+            ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             ronda.terminar();
             ronda.terminar();
             ronda.terminar();
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
-            ronda.terminar();
-            ronda.terminar();
-            ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseAtaque);
@@ -202,11 +223,17 @@ public class IntegracionTest {
             listaObjetivos.add(new ObjetivoDestruir());
             ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             ronda.terminar();
             ronda.terminar();
@@ -248,8 +275,6 @@ public class IntegracionTest {
             continentes = parser.getContinentes();
             Tablero tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
             ListaJugadores listaJugadores = mock(ListaJugadores.class);
-            Jugador unJugador = new Jugador(new ObjetivoDestruir());
-            Jugador otroJugador = new Jugador(new ObjetivoDestruir());
             when(listaJugadores.estaAlFinalDeLaLista()).thenAnswer(new Answer() {
                 private int contador = -1;
 
@@ -264,9 +289,13 @@ public class IntegracionTest {
             });
             when(listaJugadores.hayGanador(tablero)).thenReturn(true);
             Ronda ronda = new Ronda(tablero, listaJugadores);
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
+            ronda.establecerCantidadAColocar(0);
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseAtaque);

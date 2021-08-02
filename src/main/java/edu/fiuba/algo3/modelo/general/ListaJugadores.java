@@ -33,6 +33,7 @@ public class ListaJugadores {
 
         mezclar(randomizador);
     }
+
     public boolean estaAlFinalDeLaLista(){
         return this.siguiente().esNulo();
     }
@@ -58,7 +59,7 @@ public class ListaJugadores {
     }
 
     private void mezclar(IRandomizador randomizador){
-        int jugadorInicial = randomizador.generar(0,this.listaJugadores.size()-1);
+        int jugadorInicial = randomizador.generar(0,this.listaJugadores.size());
         ArrayList<Jugador> listaJugadoresAuxiliar = new ArrayList<>();
         for(int i=jugadorInicial; i>=0; i--){
             listaJugadoresAuxiliar.add(this.listaJugadores.get(i));
