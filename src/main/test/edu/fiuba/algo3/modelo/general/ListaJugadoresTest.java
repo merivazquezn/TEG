@@ -69,14 +69,18 @@ public class ListaJugadoresTest {
     @Test
     public void test04seUtilizaUnJugadorInicialDistintoYLaListaLosDevuelveEnElOrdenEsperado(){
         Jugador.reiniciarClase();
+
         ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
+
         Randomizador randomMock = mock(Randomizador.class);
-        when(randomMock.generar(eq(0),eq(2))).thenReturn(1);
+        when(randomMock.generar(eq(0),eq(3))).thenReturn(1);
+
         ListaJugadores lista = new ListaJugadores(3, randomMock, listaObjetivos);
         Jugador jugadorActual = lista.siguiente();
+
         assertEquals(2, jugadorActual.getNumero());
         jugadorActual = lista.siguiente();
         assertEquals(1, jugadorActual.getNumero());

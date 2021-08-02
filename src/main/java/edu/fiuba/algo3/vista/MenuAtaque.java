@@ -26,15 +26,19 @@ public class MenuAtaque extends StackPane {
         FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
         FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");
         FileInputStream inputMenuAtaqueArriba = new FileInputStream("./src/imagenes/desplegableArriba.png");
+
         Image imagenMenuAtaqueAbajo = new Image(inputMenuAtaqueAbajo);
         Image imagenMenuAtaqueIzquierda = new Image(inputMenuAtaqueIzquierda);
         Image imagenMenuAtaqueArriba = new Image(inputMenuAtaqueArriba);
+
         this.imagenDesdeAbajo = new ImageView(imagenMenuAtaqueAbajo);
         this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
         this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
+
         this.getChildren().add(this.imagenDesdeAbajo);
         this.getChildren().add(this.imagenDesdeIzquierda);
         this.getChildren().add(this.imagenDesdeArriba);
+
         this.imagenDesdeAbajo.setVisible(false);
         this.imagenDesdeArriba.setVisible(false);
         this.imagenDesdeIzquierda.setVisible(false);

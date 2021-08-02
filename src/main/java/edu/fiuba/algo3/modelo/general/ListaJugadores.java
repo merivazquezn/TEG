@@ -16,7 +16,10 @@ public class ListaJugadores {
     public ListaJugadores(int cantidadJugadores, IRandomizador randomizador, ArrayList<Objetivo> listaObjetivos){
         if(cantidadJugadores < this.cantidadMinimaJugadores || cantidadJugadores > this.cantidadMaximaJugadores)
                 throw new CantidadInvalidaDeJugadoresException();
+
         this.listaJugadores = new ArrayList<>();
+        this.indiceActual = 0;
+
         randomizador.mezclarObjetivos(listaObjetivos);
         ArrayList<Objetivo> listaObjetivosUsados = new ArrayList<>();
 
