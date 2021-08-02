@@ -24,7 +24,20 @@ public class InterfazUsuario extends StackPane implements Observer {
 
     private void inicializarBotones(){
         this.botonObjetivo = new Button("Ver Objetivo");
+
+        this.botonObjetivo.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;"+
+                "-fx-text-fill: rgb(255,255,255);");
+
+
         this.botonCartas = new Button("Ver Cartas");
+
+        this.botonCartas.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: rgb(255,255,255);");
+
         this.botonObjetivo.setTranslateX(-500);
         this.botonCartas.setTranslateX(-250);
         this.getChildren().add(this.botonObjetivo);
@@ -35,13 +48,28 @@ public class InterfazUsuario extends StackPane implements Observer {
         String nombreRonda = this.ronda.getNombreRonda();
         this.etiquetaNombreRonda = new Label(nombreRonda);
         this.etiquetaNombreRonda.setTranslateX(210);
+
+        this.etiquetaNombreRonda.setStyle(
+                "-fx-font-weight: bold;"+
+                "-fx-text-fill: rgb(255,255,255);");
+
         Jugador jugadorActual = this.ronda.jugadorActual();
         int numeroJugadorActual = jugadorActual.getNumero();
         String colorJugadorActual = AsignadorDeColores.jugadorActualSegunElNumero(numeroJugadorActual);
         this.etiquetaJugador = new Label("Turno de "+ colorJugadorActual);
+
+        this.etiquetaJugador.setStyle(
+                "-fx-font-weight: bold;"+
+                "-fx-text-fill: rgb(255,255,255);");
+
         String informacionRonda = this.ronda.accionARealizar();
         this.etiquetaInformacionRonda = new Label(informacionRonda);
         this.etiquetaInformacionRonda.setTranslateX(400);
+
+        this.etiquetaInformacionRonda.setStyle(
+                "-fx-font-weight: bold;"+
+                "-fx-text-fill: rgb(255,255,255);");
+
         this.getChildren().add(this.etiquetaNombreRonda);
         this.getChildren().add(this.etiquetaJugador);
         this.getChildren().add(this.etiquetaInformacionRonda);
