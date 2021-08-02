@@ -120,17 +120,16 @@ public class App extends Application {
         stage.setTitle("A.L.T.E.G.O");
         var mensajeTitulo = new Label("Bienvenido a  A.L.T.E.G.O");
         mensajeTitulo.setStyle("-fx-font: 24 arial;");
-        String mensajeDescripcion;
-        mensajeDescripcion = "El juego propone un conflicto belico que tiene lugar sobre un planisferio dividido en 50 paises." +
-        " Para empezar se reparten los 50 paises entre los jugadores, quienes ocupan sus dominios con ejercitos." +
-        " Cada jugador tiene un objetivo secreto a cumplir, que se le asigna al azar y que el resto de los jugadores desconocen."+
-        " Para cumplir el objetivo, el jugador deberia ampliar sus dominios y reordenar sus fuerzas, lo que exigira" +
-        " realizar ataques y defenderse de ataques adversarios; agrupar y desplazar ejercitos";
-        var mensajeDescripcion1 = new Label("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore\n" +
-                " et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\n" +
-                " ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\n" +
-                " fugiat nulla pariatur. Excepteur sint occaecat cupidatat\n" +
-                " non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
+        String mensajeDescripcion = "El juego propone un conflicto belico que tiene lugar sobre un planisferio dividido en 50 paises.\n" +
+        " Para empezar se reparten los 50 paises entre los jugadores, quienes ocupan sus dominios con ejercitos.\n" +
+        " Cada jugador tiene un objetivo secreto a cumplir, que se le asigna al azar y que el resto de los jugadores desconocen.\n"+
+        " Para cumplir el objetivo, el jugador deberia ampliar sus dominios y reordenar sus fuerzas, lo que exigira\n" +
+        " realizar ataques y defenderse de ataques adversarios, y agrupar y desplazar ejercitos.\n" +
+        " La conquista de nuevos territorios le permitira aumentar el numero de ejercitos a su disposicion\n" +
+        "otorgandole mayores chances para triunfar en los combates.\n";
+
+        var mensajeDescripcion1 = new Label(mensajeDescripcion);
         var mensajeCantidadJugadores = new Label("Cantidad de jugadores:");
         mensajeCantidadJugadores.setStyle("-fx-font: 22 arial;");
         Button botonInicio = new Button("Confirmar e Iniciar");
