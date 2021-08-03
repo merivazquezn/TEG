@@ -23,8 +23,18 @@ public class Tablero {
     }
 
     public boolean conquisto(Pais atacante, Pais defensor, int cantidad) {
-        Ataque ataque = new Ataque(this.constructorDeConjuntoDados, atacante, defensor, cantidad);
-        return ataque.conquisto();
+        ultimoAtaque = new Ataque(this.constructorDeConjuntoDados, atacante, defensor, cantidad);
+        boolean seProdujoConquista = ultimoAtaque.conquisto();
+        setChanged();
+        return seProdujoConquista;
+    }
+
+    public ArrayList<Integer> getUltimosDadosAtacante(){
+        return this.ultimoAtaque.devolverValoresDadosAtacante();
+    }
+
+    public ArrayList<Integer> getUltimosDadosDefensor(){
+        return this.ultimoAtaque.devolverValoresDadosDefensor();
     }
 
     public int cantidadEjercitosPorContinente(Jugador jugador) {

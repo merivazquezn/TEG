@@ -37,60 +37,55 @@ public class App extends Application {
     private MenuAtaque panelMenuAtaque;
     private MenuColocacion panelMenuColocacion;
     private ControladorEjercito controladorEjercito;
+    private VistaDados vistaDados;
 
-    public void inicializarJuego(int cantidadJugadores){
+    public void inicializarJuego(int cantidadJugadores) throws IOException{
+        String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+        String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+        String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
 
-        try {
-            String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-            String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-            String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+        Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
+        HashMap<String, Continente> continentes = parser.getContinentes();
+        HashMap<String, Pais> paises = parser.getPaisesParaTablero();
+        HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
 
-            Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
-            HashMap<String, Continente> continentes = parser.getContinentes();
-            HashMap<String, Pais> paises = parser.getPaisesParaTablero();
-            HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
+        ArrayList<Objetivo> listaObjetivos = parser.getObjetivos();
 
-            ArrayList<Objetivo> listaObjetivos = parser.getObjetivos();
+        ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador(), listaObjetivos);
 
-            ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador(), listaObjetivos);
+        RepartidorDePaises repartidorDePaises = new RepartidorDePaises(paises, listaJugadores);
+        repartidorDePaises.repartirPaisesPorJugadores();
+        Mazo mazo = new Mazo(new ArrayList<>(), new Randomizador());
+        this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
+        this.ronda = new Ronda(tablero, listaJugadores);
 
-            RepartidorDePaises repartidorDePaises = new RepartidorDePaises(paises, listaJugadores);
-            repartidorDePaises.repartirPaisesPorJugadores();
-            Mazo mazo = new Mazo(new ArrayList<>(), new Randomizador());
-            this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
-            this.ronda = new Ronda(tablero, listaJugadores);
-
-            this.panelMenuAtaque = new MenuAtaque(this.ronda);
-            this.panelMenuColocacion = new MenuColocacion(this.ronda);
-
-            this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion);
-            this.vistaEjercitos = new ArrayList<>();
-            for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
-                Pais unPais = entry.getKey();
-                int[] coordenadas = entry.getValue();
-                VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.controladorEjercito);
-                nuevaVistaEjercito.setCenterX(coordenadas[0]);
-                nuevaVistaEjercito.setCenterY(coordenadas[1]);
-                unPais.addObserver(nuevaVistaEjercito);
-                this.vistaEjercitos.add(nuevaVistaEjercito);
-            }
-
-            this.tablero = new Tablero(continentes, new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
-        } catch (IOException e) {
-            e.printStackTrace();
+        this.panelMenuAtaque = new MenuAtaque(this.ronda);
+        this.panelMenuColocacion = new MenuColocacion(this.ronda);
+        this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion);
+        this.vistaEjercitos = new ArrayList<>();
+        for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
+            Pais unPais = entry.getKey();
+            int[] coordenadas = entry.getValue();
+            VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.controladorEjercito);
+            nuevaVistaEjercito.setCenterX(coordenadas[0]);
+            nuevaVistaEjercito.setCenterY(coordenadas[1]);
+            unPais.addObserver(nuevaVistaEjercito);
+            this.vistaEjercitos.add(nuevaVistaEjercito);
         }
+        this.vistaDados = new VistaDados(this.tablero);
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){
-        inicializarJuego(cantidadJugadores);
         FileInputStream inputImagenFondo;
         try {
+            inicializarJuego(cantidadJugadores);
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
             InterfazUsuario interfaz = new InterfazUsuario(this.ronda);
             this.ronda.addObserver(interfaz);
             this.ronda.addObserver(this.panelMenuColocacion);
             this.ronda.addObserver(this.panelMenuAtaque);
+            this.tablero.addObserver(this.vistaDados);
             Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
 
@@ -108,6 +103,7 @@ public class App extends Application {
             }
             panel.getChildren().add(this.panelMenuAtaque);
             panel.getChildren().add(this.panelMenuColocacion);
+            panel.getChildren().add(this.vistaDados);
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 this.panelMenuAtaque.ocultarMenu(e);
                 this.panelMenuColocacion.ocultarMenu(e);

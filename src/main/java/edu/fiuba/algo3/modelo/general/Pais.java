@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.general;
 import edu.fiuba.algo3.modelo.jugador.*;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Observable;
 
 public class Pais extends Observable{

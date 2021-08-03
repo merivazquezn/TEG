@@ -28,13 +28,11 @@ public class Ataque {
 
 
     private void cantidadEjercitosAtacantesValido(int cantEjercitos) {
-
         if (this.atacante.getCantidadEjercitos()-1 < cantEjercitos)
             throw new CantidadInvalidaDeEjercitosException();
 
         if (cantEjercitos < 1 || cantEjercitos > 3)
             throw new CantidadInvalidaDeEjercitosException();
-
     }
 
     private int obtenerEjercitosDefensor(){

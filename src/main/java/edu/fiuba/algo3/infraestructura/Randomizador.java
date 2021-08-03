@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.jugador.Objetivo;
 
 public class Randomizador implements IRandomizador {
     public int generar(int low, int high){
-        Random rand = new Random();
         return rand.nextInt(high)+low;
     }
 

@@ -31,5 +31,7 @@ public class JugadaAtacar implements Jugada{
         boolean hayConquista = tablero.conquisto(this.atacante, this.defensor, this.cantidad);
         if(hayConquista)
             ronda.seProdujoConquista();
+
+        tablero.notifyObservers();
     }
 }
