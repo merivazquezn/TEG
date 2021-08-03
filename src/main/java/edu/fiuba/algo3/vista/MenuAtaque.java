@@ -61,7 +61,7 @@ public class MenuAtaque extends StackPane implements Observer {
         this.estadoActual = new EstadoAtaque(ronda);
         this.etiquetaMenuAtaque = new Label("");
         this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
-        this.etiquetaMenuAtaque.setTranslateY(-40);
+        this.etiquetaMenuAtaque.setTranslateY(-35);
         this.botonMenuAtaque = new Button("Realizar ataque");
         this.botonMenuAtaque.setTranslateY(0);
         this.botonMenuAtaque.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

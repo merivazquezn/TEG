@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -60,7 +61,7 @@ public class MenuColocacion extends StackPane implements Observer {
         this.maximaCantidadAColocar = this.ronda.cantidadAColocar();
         this.etiquetaMenuColocacion = new Label("");
         this.etiquetaMenuColocacion.setStyle("-fx-font: 22 arial;");
-        this.etiquetaMenuColocacion.setTranslateY(-40);
+        this.etiquetaMenuColocacion.setTranslateY(-35);
         this.botonMenuColocacion = new Button("Colocar ejercitos");
         this.botonMenuColocacion.setTranslateY(20);
         this.botonMenuColocacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -70,6 +71,9 @@ public class MenuColocacion extends StackPane implements Observer {
         });
         this.inputCantidad = new TextField();
         this.inputCantidad.setTranslateY(-10);
+        this.inputCantidad.setPrefWidth(50);
+        this.inputCantidad.setMaxWidth(50);
+        this.inputCantidad.setAlignment(Pos.CENTER);
         this.inputCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 inputCantidad.setText("0");

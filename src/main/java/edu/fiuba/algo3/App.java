@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.*;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
@@ -151,8 +152,12 @@ public class App extends Application {
                 }
             }
         });
+        cantidadJugadores.setPrefWidth(50);
+        cantidadJugadores.setMaxWidth(50);
+        cantidadJugadores.setAlignment(Pos.CENTER);
         StackPane panelBienvenida = new StackPane(mensajeTitulo, mensajeDescripcion1, mensajeCantidadJugadores, cantidadJugadores, botonInicio);
-        mensajeTitulo.setTranslateY(-100);
+        mensajeDescripcion1.setTranslateY(-100);
+        mensajeTitulo.setTranslateY(-200);
         mensajeCantidadJugadores.setTranslateY(70);
         cantidadJugadores.setTranslateY(100);
         botonInicio.setTranslateY(150);
