@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.ataque;
 
 import edu.fiuba.algo3.modelo.general.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Ataque {
@@ -44,6 +45,7 @@ public class Ataque {
         return cantEjercitos;
     }
 
+
     public boolean conquisto(){
         if(!this.atacante.sonLimitrofes(this.defensor))
             throw new AtaqueDePaisNoLimitrofeException();
@@ -63,4 +65,13 @@ public class Ataque {
 
         return (this.cantEjercitoDefensor == 0);
     }
+
+    public ArrayList<Integer> devolverValoresDadosAtacante(){
+        return this.conjuntoAtacante.devolverValoresDados();
+    }
+
+    public ArrayList<Integer> devolverValoresDadosDefensor() {
+        return this.conjuntoDefensor.devolverValoresDados();
+    }
+
 }

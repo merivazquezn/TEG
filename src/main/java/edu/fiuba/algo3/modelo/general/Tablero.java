@@ -3,18 +3,17 @@ package edu.fiuba.algo3.modelo.general;
 import edu.fiuba.algo3.modelo.ataque.Ataque;
 import edu.fiuba.algo3.modelo.ataque.ConstructorDeConjuntoDados;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import edu.fiuba.algo3.infraestructura.*;
+import java.util.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-public class Tablero {
+
+public class Tablero extends Observable {
+
     private final HashMap<String, Continente> continentes;
     private final ConstructorDeConjuntoDados constructorDeConjuntoDados;
     private final Mazo mazo;
+
+    private Ataque ultimoAtaque;
 
     public Tablero(HashMap<String, Continente> continentes, ConstructorDeConjuntoDados constructorDeConjuntoDados, Mazo mazo) {
         this.continentes = continentes;
@@ -46,6 +45,8 @@ public class Tablero {
         return cantidadEjercitos;
     }
     public int cantidadPaisesDeJugadorEn(Jugador jugador, String continente){
+        //Continente continente = this.continentes.get(continente);
+
         return this.continentes.get(continente).cantidadPaisesDeJugador(jugador);
     }
 
