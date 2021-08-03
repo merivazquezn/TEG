@@ -29,8 +29,14 @@ public class EstadoAtaque {
         }
     }
 
-    public boolean recibeDefensor(){
-        return this.recibeDefensor;
+    public boolean visibilizaDefensor(int numeroJugadorActual, Pais unPais){
+        if(this.recibeDefensor)
+            return (this.atacante.sonLimitrofes(unPais) && numeroJugadorActual != unPais.getJugador().getNumero());
+        return false;
+    }
+
+    public boolean visibilizaAtacante(int numeroJugadorActual, Pais unPais){
+        return (unPais.getCantidadEjercitos() > 1 && numeroJugadorActual == unPais.getJugador().getNumero());
     }
 
     public void resetear() {

@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import static java.lang.Integer.parseInt;
-
 public class MenuAtaque extends StackPane implements Observer {
     private double puntoX;
     private double puntoY;
@@ -63,14 +61,14 @@ public class MenuAtaque extends StackPane implements Observer {
         this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
         this.etiquetaMenuAtaque.setTranslateY(-35);
         this.botonMenuAtaque = new Button("Realizar ataque");
-        this.botonMenuAtaque.setTranslateY(0);
+        this.botonMenuAtaque.setTranslateY(-5);
         this.botonMenuAtaque.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.agregarPais(this.jugadorActual, this.paisActual);
             this.setVisible(false);
             e.consume();
         });
         this.botonCancelar = new Button("Cancelar ataque");
-        this.botonCancelar.setTranslateY(20);
+        this.botonCancelar.setTranslateY(25);
         this.botonCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.resetear();
             this.setVisible(false);
@@ -82,14 +80,14 @@ public class MenuAtaque extends StackPane implements Observer {
         this.setVisible(false);
     }
 
-    public void establecerBotonesVisibles(){
+    public void establecerBotonesVisibles(Pais unPais){
         this.botonCancelar.setVisible(false);
         this.botonMenuAtaque.setVisible(false);
-        if(this.jugadorActual == this.paisActual.getJugador().getNumero()){
+        if(this.estadoActual.visibilizaAtacante(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
-            this.botonMenuAtaque.setText("Realizar ataque desde");
+            this.botonMenuAtaque.setText("Realizar ataque desde aquí");
         }
-        else if(this.estadoActual.recibeDefensor()){
+        else if(this.estadoActual.visibilizaDefensor(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
             this.botonMenuAtaque.setText("Confirmar ataque");
             this.botonCancelar.setVisible(true);
@@ -105,7 +103,7 @@ public class MenuAtaque extends StackPane implements Observer {
         this.imagenDesdeAbajo.setVisible(false);
         this.imagenDesdeArriba.setVisible(false);
         this.imagenDesdeIzquierda.setVisible(false);
-        establecerBotonesVisibles();
+        establecerBotonesVisibles(unPais);
         if(evento.getSceneY() < 100){
             this.imagenDesdeArriba.setVisible(true);
         }
