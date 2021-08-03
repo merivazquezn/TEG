@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.ataque;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import edu.fiuba.algo3.infraestructura.IRandomizador;
@@ -9,11 +10,6 @@ import org.mockito.invocation.*;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 
 public class ConjuntoDadosTest {
@@ -277,6 +273,58 @@ public class ConjuntoDadosTest {
         ArrayList<Integer> resultado = conjuntoAtacante.ejercitosPerdidos(conjuntoDefensor);
         assertEquals(resultado.get(0), 2);
         assertEquals(resultado.get(1), 1);
+    }
+
+
+    @Test
+    public void test16AtacanteSaca544DefensorSaca661SeDevuelvenBienLosNumerosObtenidos() {
+        IRandomizador randomMock = mock(Randomizador.class);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 4;
+                }
+                else if (count == 2){
+                    count++;
+                    return 4;
+                }
+                count++;
+                return 5;
+            }
+        });
+        ConjuntoDados conjuntoAtacante = new ConjuntoDados(3, randomMock);
+        when(randomMock.generar(1,6)).thenAnswer(new Answer() {
+            private int count = 0;
+
+            public Object answer(InvocationOnMock invocation) {
+                if (count == 1){
+                    count++;
+                    return 6;
+                }
+                else if (count == 2){
+                    count++;
+                    return 1;
+                }
+                count++;
+                return 6;
+            }
+        });
+        ConjuntoDados conjuntoDefensor = new ConjuntoDados(3, randomMock);
+        ArrayList<Integer> valoresDadosObtenidosAtacante = conjuntoAtacante.devolverValoresDados();
+        ArrayList<Integer> valoresDadosObtenidosDefensor = conjuntoDefensor.devolverValoresDados();
+        ArrayList<Integer> valoresQueridosAtacante = new ArrayList<Integer>();
+        ArrayList<Integer> valoresQueridosDefensor = new ArrayList<Integer>();
+        valoresQueridosAtacante.add(5);
+        valoresQueridosAtacante.add(4);
+        valoresQueridosAtacante.add(4);
+        valoresQueridosDefensor.add(6);
+        valoresQueridosDefensor.add(6);
+        valoresQueridosDefensor.add(1);
+        assertEquals(valoresDadosObtenidosAtacante, valoresQueridosAtacante);
+        assertEquals(valoresDadosObtenidosDefensor, valoresQueridosDefensor);
     }
 
 }

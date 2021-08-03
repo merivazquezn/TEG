@@ -62,5 +62,15 @@ public class ConjuntoDados{
         lista.add(perdidosDefensor);
         return lista;
     }
-    
+
+
+
+
+    public ArrayList<Integer> devolverValoresDados(){
+        ArrayList<Integer> valores = new ArrayList<Integer>();
+        for (int i = 0; i < this.dados.size(); i++){
+            valores.add(this.dados.get(i).obtenerValor());
+        }
+        return valores;
+    }
 }
