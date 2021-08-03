@@ -39,6 +39,7 @@ public class Ronda extends Observable {
 
     public void terminar(){
         this.faseActual = this.faseActual.siguienteFase(this);
+        setChanged();
     }
 
     public void seColocaronEjercitos(int cantidad){

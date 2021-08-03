@@ -21,23 +21,23 @@ public class VistaDados extends StackPane implements Observer {
     private ArrayList<ImageView> dadosDefensor;
     private ArrayList<Image> imagenesDados;
     private Button botonCerrar;
-    private Label etiquetaAtacante;
-    private Label etiquetaDefensor;
     Tablero tablero;
 
     static final int MAX_DADOS = 3;
 
-    public VistaDados(Tablero tablero) throws IOException {
-        this.tablero = tablero;
+    private void inicializarBotonCerrar(){
         this.botonCerrar = new Button("X");
         this.botonCerrar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             this.setVisible(false);
             e.consume();
         });
-        this.etiquetaAtacante = new Label("Dados del atacante:");
-        this.etiquetaDefensor = new Label("Dados del defensor:");
-        this.etiquetaAtacante.setTranslateY(100);
-        this.etiquetaDefensor.setTranslateY(200);
+        this.botonCerrar.setTranslateX(200);
+        this.botonCerrar.setTranslateY(-100);
+    }
+
+    public VistaDados(Tablero tablero) throws IOException {
+        this.tablero = tablero;
+        inicializarBotonCerrar();
         this.setTranslateX(400);
         this.imagenesDados = new ArrayList<>();
         String rutaDado1 = "./src/imagenes/dado1.png";
@@ -72,21 +72,20 @@ public class VistaDados extends StackPane implements Observer {
         this.getChildren().add(this.botonCerrar);
         this.setTranslateY(300);
         this.setTranslateX(450);
-        this.dadosDefensor = new ArrayList<>();
-        this.dadosAtacante = new ArrayList<>();
         inicializarDados();
         this.setVisible(false);
     }
 
     private void inicializarDados(){
+        this.dadosDefensor = new ArrayList<>();
+        this.dadosAtacante = new ArrayList<>();
         for(int i=0; i < VistaDados.MAX_DADOS; i++){
             this.dadosAtacante.add(new ImageView());
-            this.dadosAtacante.get(i).setTranslateX(-120+(i)*100);
-            this.dadosAtacante.get(i).setTranslateY(-60);
-
+            this.dadosAtacante.get(i).setTranslateX(-140+(i)*145);
+            this.dadosAtacante.get(i).setTranslateY(-55);
             this.dadosDefensor.add(new ImageView());
-            this.dadosDefensor.get(i).setTranslateX(-120+(i)*120);
-            this.dadosDefensor.get(i).setTranslateY(40);
+            this.dadosDefensor.get(i).setTranslateX(-140+(i)*145);
+            this.dadosDefensor.get(i).setTranslateY(55);
             this.getChildren().add(this.dadosAtacante.get(i));
             this.getChildren().add(this.dadosDefensor.get(i));
         }

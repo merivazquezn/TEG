@@ -25,6 +25,7 @@ public class EstadoAtaque {
             if(unPais.sonLimitrofes(this.atacante)){
                 this.defensor = unPais;
                 ControladorMenuAtaque.realizarJugada(this.ronda, this.atacante, this.defensor);
+                this.resetear();
             }
         }
     }

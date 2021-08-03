@@ -1,11 +1,13 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.ControladorInterfaz;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 import java.io.FileInputStream;
@@ -20,6 +22,7 @@ public class InterfazUsuario extends StackPane implements Observer {
     private Label etiquetaJugador;
     private Button botonObjetivo;
     private Button botonCartas;
+    private Button botonTerminarTurno;
     private Ronda ronda;
 
     private void inicializarBotones(){
@@ -38,10 +41,24 @@ public class InterfazUsuario extends StackPane implements Observer {
                 "-fx-font-weight: bold;" +
                 "-fx-text-fill: rgb(255,255,255);");
 
+        this.botonTerminarTurno = new Button("Terminar Turno");
+
+        this.botonTerminarTurno.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: rgb(255,255,255);");
+
+        this.botonTerminarTurno.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            ControladorInterfaz.finalizarTurno(this.ronda);
+            e.consume();
+        });
+
         this.botonObjetivo.setTranslateX(-500);
         this.botonCartas.setTranslateX(-250);
+        this.botonTerminarTurno.setTranslateX(-150);
         this.getChildren().add(this.botonObjetivo);
         this.getChildren().add(this.botonCartas);
+        this.getChildren().add(this.botonTerminarTurno);
     }
 
     private void inicializarEtiquetas(){
