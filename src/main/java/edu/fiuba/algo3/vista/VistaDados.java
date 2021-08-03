@@ -31,7 +31,7 @@ public class VistaDados extends StackPane implements Observer {
             this.setVisible(false);
             e.consume();
         });
-        this.botonCerrar.setTranslateX(200);
+        this.botonCerrar.setTranslateX(220);
         this.botonCerrar.setTranslateY(-100);
     }
 

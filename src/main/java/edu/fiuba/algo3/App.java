@@ -35,6 +35,8 @@ public class App extends Application {
     private MenuColocacion panelMenuColocacion;
     private ControladorEjercito controladorEjercito;
     private VistaDados vistaDados;
+    private MenuObjetivo menuObjetivo;
+    private MenuReagrupar menuReagrupar;
 
     public void inicializarJuego(int cantidadJugadores) throws IOException{
         String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
@@ -70,6 +72,8 @@ public class App extends Application {
             this.vistaEjercitos.add(nuevaVistaEjercito);
         }
         this.vistaDados = new VistaDados(this.tablero);
+        this.menuObjetivo = new MenuObjetivo(this.ronda);
+        this.menuReagrupar = new MenuReagrupar(this.ronda);
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){
@@ -78,10 +82,11 @@ public class App extends Application {
             inicializarJuego(cantidadJugadores);
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
-            InterfazUsuario interfaz = new InterfazUsuario(this.ronda);
+            InterfazUsuario interfaz = new InterfazUsuario(this.ronda, this.menuObjetivo);
             this.ronda.addObserver(interfaz);
             this.ronda.addObserver(this.panelMenuColocacion);
             this.ronda.addObserver(this.panelMenuAtaque);
+            this.ronda.addObserver(this.menuReagrupar);
             this.tablero.addObserver(this.vistaDados);
             Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
@@ -101,9 +106,13 @@ public class App extends Application {
             panel.getChildren().add(this.panelMenuAtaque);
             panel.getChildren().add(this.panelMenuColocacion);
             panel.getChildren().add(this.vistaDados);
+            panel.getChildren().add(this.menuObjetivo);
+            panel.getChildren().add(this.menuReagrupar);
+
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 this.panelMenuAtaque.ocultarMenu(e);
                 this.panelMenuColocacion.ocultarMenu(e);
+                this.menuObjetivo.ocultarMenu(e);
             });
             stage.setScene(scene);
             stage.centerOnScreen();

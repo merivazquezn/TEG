@@ -8,13 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
-    private Jugador jugador;
     private ObjetivoConquistar2Continentes objetivo1;
     private ObjetivoCantidadPorContinente objetivo2;
 
 
     public ObjetivoConquistarContinenteYCantidadPaises(String continente, HashMap<String, Integer> listaObjetivos2){
-        this.jugador = new JugadorNulo();
         ArrayList<String> listaObjetivo1 = new ArrayList<>();
         listaObjetivo1.add(continente);
         listaObjetivo1.add(continente);
@@ -23,7 +21,6 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
     }
 
     public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
-        this.jugador = listaJugadores.get(indiceJugador);
         this.objetivo1.establecerJugadores(listaJugadores, indiceJugador);
         this.objetivo2.establecerJugadores(listaJugadores, indiceJugador);
     }
@@ -31,5 +28,15 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
 
     public boolean haGanado(Tablero tablero){
         return (this.objetivo1.haGanado(tablero) && this.objetivo2.haGanado(tablero));
+    }
+
+    public String nombreObjetivo(){
+        return "Conquistar una cierta cantidad en algunos\n continentes y 1 continente entero";
+    }
+
+    public String descripcionObjetivo(){
+        String descripcion = this.objetivo1.descripcionObjetivo();
+        descripcion += this.objetivo2.descripcionObjetivo();
+        return descripcion;
     }
 }

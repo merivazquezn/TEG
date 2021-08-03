@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.jugador;
 import edu.fiuba.algo3.modelo.general.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ObjetivoGeneral implements Objetivo{
     private Jugador jugador;
@@ -14,6 +15,14 @@ public class ObjetivoGeneral implements Objetivo{
 
     public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
         this.jugador = listaJugadores.get(indiceJugador);
+    }
+
+    public String nombreObjetivo(){
+        return "Objetivo General";
+    }
+
+    public String descripcionObjetivo(){
+        return "Conquistar 30 paises\n";
     }
 
 }

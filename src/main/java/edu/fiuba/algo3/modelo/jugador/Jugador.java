@@ -78,4 +78,12 @@ public class Jugador {
         return listaPaises.contains(pais);
     }
 
+    public String nombreObjetivo(){
+        return this.objetivoPrivado.nombreObjetivo();
+    }
+
+    public String descripcionObjetivo(){
+        return this.objetivoPrivado.descripcionObjetivo();
+    }
+
 }

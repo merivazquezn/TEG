@@ -37,7 +37,7 @@ public class Ronda extends Observable {
         setChanged();
     }
 
-    public void terminar(){
+    public void terminar() throws NoSePuedeAvanzarFaseException{
         this.faseActual = this.faseActual.siguienteFase(this);
         setChanged();
     }

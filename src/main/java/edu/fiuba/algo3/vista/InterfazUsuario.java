@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +25,7 @@ public class InterfazUsuario extends StackPane implements Observer {
     private Button botonCartas;
     private Button botonTerminarTurno;
     private Ronda ronda;
+    private MenuObjetivo menuObjetivo;
 
     private void inicializarBotones(){
         this.botonObjetivo = new Button("Ver Objetivo");
@@ -33,6 +35,10 @@ public class InterfazUsuario extends StackPane implements Observer {
                 "-fx-font-weight: bold;"+
                 "-fx-text-fill: rgb(255,255,255);");
 
+        this.botonObjetivo.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            this.menuObjetivo.aparecerMenu(e);
+            e.consume();
+        });
 
         this.botonCartas = new Button("Ver Cartas");
 
@@ -92,8 +98,9 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.getChildren().add(this.etiquetaInformacionRonda);
     }
 
-    public InterfazUsuario(Ronda ronda){
+    public InterfazUsuario(Ronda ronda, MenuObjetivo menuObjetivo){
         this.ronda = ronda;
+        this.menuObjetivo = menuObjetivo;
         try{
             FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
             Image imagenInterfaz = new Image(inputImagenInterfaz);

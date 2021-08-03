@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.vista.AsignadorDeColores;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ObjetivoDestruir implements Objetivo {
     public Jugador jugador;
@@ -24,6 +27,16 @@ public class ObjetivoDestruir implements Objetivo {
         if(this.jugador.esNulo() || this.otroJugador.esNulo())
             return false;
         return (this.jugador.equals(this.otroJugador.jugadorQueLoDerroto()));
+    }
+
+    public String nombreObjetivo(){
+        return "Destruir jugador";
+    }
+
+    public String descripcionObjetivo(){
+        String descripcion = "Se deberá destruir a:\n";
+        descripcion += AsignadorDeColores.jugadorActualSegunElNumero(this.otroJugador.getNumero()) + "\n";
+        return descripcion;
     }
 
 }
