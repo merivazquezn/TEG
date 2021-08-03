@@ -237,7 +237,7 @@ public class FaseTest {
 
         ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Ronda ronda = new Ronda(tablero, listaJugadores);
-        ronda.seProdujoConquista();
+        ronda.producirConquista();
         Fase faseActual = ronda.obtenerFaseActual();
         assertTrue(faseActual instanceof FaseReagruparPorConquista);
     }

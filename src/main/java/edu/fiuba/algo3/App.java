@@ -60,7 +60,8 @@ public class App extends Application {
 
         this.panelMenuAtaque = new MenuAtaque(this.ronda);
         this.panelMenuColocacion = new MenuColocacion(this.ronda);
-        this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion);
+        this.menuReagrupar = new MenuReagrupar(this.ronda);
+        this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion, this.menuReagrupar);
         this.vistaEjercitos = new ArrayList<>();
         for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
             Pais unPais = entry.getKey();
@@ -73,7 +74,6 @@ public class App extends Application {
         }
         this.vistaDados = new VistaDados(this.tablero);
         this.menuObjetivo = new MenuObjetivo(this.ronda);
-        this.menuReagrupar = new MenuReagrupar(this.ronda);
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){
@@ -113,6 +113,7 @@ public class App extends Application {
                 this.panelMenuAtaque.ocultarMenu(e);
                 this.panelMenuColocacion.ocultarMenu(e);
                 this.menuObjetivo.ocultarMenu(e);
+                this.menuReagrupar.ocultarMenu(e);
             });
             stage.setScene(scene);
             stage.centerOnScreen();

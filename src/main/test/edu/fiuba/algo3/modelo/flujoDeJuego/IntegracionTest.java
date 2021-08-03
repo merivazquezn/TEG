@@ -239,7 +239,7 @@ public class IntegracionTest {
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseAtaque);
-            ronda.seProdujoConquista();
+            ronda.producirConquista();
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseReagruparPorConquista);
             ronda.terminar();
@@ -299,7 +299,7 @@ public class IntegracionTest {
             ronda.terminar();
             Fase faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof FaseAtaque);
-            ronda.seProdujoConquista();
+            ronda.producirConquista();
             faseActual = ronda.obtenerFaseActual();
             assertTrue(faseActual instanceof JuegoTerminado);
 

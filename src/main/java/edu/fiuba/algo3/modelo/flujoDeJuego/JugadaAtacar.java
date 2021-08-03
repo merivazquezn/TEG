@@ -29,8 +29,11 @@ public class JugadaAtacar implements Jugada{
 
     public void ejecutar(Tablero tablero, Ronda ronda){
         boolean hayConquista = tablero.conquisto(this.atacante, this.defensor, this.cantidad);
-        if(hayConquista)
-            ronda.seProdujoConquista();
+        if(hayConquista){
+            ronda.producirConquista();
+            ronda.setConquistador(this.atacante);
+            ronda.setConquistado(this.defensor);
+        }
 
         tablero.notifyObservers();
     }

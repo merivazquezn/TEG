@@ -62,6 +62,14 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.imagenDesdeIzquierda.setVisible(false);
     }
 
+    public void limitarPaises(Pais origen, Pais destino){
+        this.estadoActual.limitarPaises(origen, destino);
+    }
+
+    public void noEstaLimitado(){
+        this.estadoActual.noLimitarPaises();
+    }
+
     public MenuReagrupar(Ronda ronda) throws IOException {
         establecerImagenes();
         this.ronda = ronda;
@@ -72,7 +80,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.etiquetaMenuReagrupacion.setTranslateY(-35);
 
         this.botonMenuReagrupacion = new Button("Mover ejercitos");
-        this.botonMenuReagrupacion.setTranslateY(20);
+        this.botonMenuReagrupacion.setTranslateY(-10);
         this.botonMenuReagrupacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             ControladorMenuReagrupar.realizarJugada(this.ronda, this.paisActual, this.paisActual, parseInt(this.inputCantidad.getText()));
             this.setVisible(false);
@@ -87,8 +95,8 @@ public class MenuReagrupar extends StackPane implements Observer {
             e.consume();
         });
 
-        this.inputCantidad = new TextField();
-        this.inputCantidad.setTranslateY(-10);
+        this.inputCantidad = new TextField("0");
+        this.inputCantidad.setTranslateY(25);
         this.inputCantidad.setPrefWidth(50);
         this.inputCantidad.setMaxWidth(50);
         this.inputCantidad.setAlignment(Pos.CENTER);
@@ -103,6 +111,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         });
         this.getChildren().add(this.etiquetaMenuReagrupacion);
         this.getChildren().add(this.botonMenuReagrupacion);
+        this.getChildren().add(this.botonCancelar);
         this.getChildren().add(this.inputCantidad);
         this.setVisible(false);
     }
@@ -125,11 +134,12 @@ public class MenuReagrupar extends StackPane implements Observer {
     }
 
     public void aparecerMenu(MouseEvent evento, Pais unPais){
+        this.inputCantidad.setText("0");
         String nombrePais = unPais.getNombre();
         this.paisActual = unPais;
 
         if (!estadoActual.paisOrigenIngresado())
-        this.CANTMAXIMAEJERCITOSTRANSFERIBLES = unPais.getCantidadEjercitos()-1;
+            this.CANTMAXIMAEJERCITOSTRANSFERIBLES = this.estadoActual.maximaCantidadEjercitosTransferibles(unPais);
 
         this.setVisible(true);
         this.aparecer(evento.getSceneX(), evento.getSceneY());
@@ -180,5 +190,6 @@ public class MenuReagrupar extends StackPane implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         this.jugadorActual = this.ronda.jugadorActual().getNumero();
+        this.estadoActual.resetear();
     }
 }

@@ -60,7 +60,7 @@ public class JugadaAtacarTest {
         Tablero tablero = new Tablero(new HashMap<>(), constructor, new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = mock(Ronda.class);
         jugadaAtacar.ejecutar(tablero, ronda);
-        verify(ronda, times(1)).seProdujoConquista();
+        verify(ronda, times(1)).producirConquista();
     }
 
     @Test
