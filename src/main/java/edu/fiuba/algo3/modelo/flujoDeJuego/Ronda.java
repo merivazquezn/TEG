@@ -128,4 +128,19 @@ public class Ronda extends Observable {
 
     }
 
+    public void setConquistador(Pais pais) {
+        this.conquistador = pais;
+    }
+
+    public void setConquistado(Pais pais) {
+        this.conquistado = pais;
+    }
+
+    public Pais getConquistador() {
+        return this.conquistador;
+    }
+    public Pais getConquistado() {
+        return this.conquistado;
+    }
+
 }

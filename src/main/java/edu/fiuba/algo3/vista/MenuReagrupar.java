@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vista;
 
 
-import edu.fiuba.algo3.controlador.ControladorMenuReagrupar;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.Pais;
 import javafx.geometry.Pos;
@@ -82,7 +81,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.botonMenuReagrupacion = new Button("Mover ejercitos");
         this.botonMenuReagrupacion.setTranslateY(-10);
         this.botonMenuReagrupacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            ControladorMenuReagrupar.realizarJugada(this.ronda, this.paisActual, this.paisActual, parseInt(this.inputCantidad.getText()));
+            this.estadoActual.agregarPais(this.paisActual, parseInt(this.inputCantidad.getText()));
             this.setVisible(false);
             e.consume();
         });
@@ -121,12 +120,19 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.botonMenuReagrupacion.setVisible(false);
         this.inputCantidad.setVisible(false);
 
-        if(this.estadoActual.visibilizaDador(this.jugadorActual, unPais)){
+        if(!this.estadoActual.puedeSerModificado()){
+            if(this.estadoActual.elDestinoEs(unPais)){
+                this.botonMenuReagrupacion.setVisible(true);
+                this.botonMenuReagrupacion.setText("Confirmar transferencia");
+                this.inputCantidad.setVisible(true);
+            }
+        }
+        else if(this.estadoActual.visibilizaOrigen(this.jugadorActual, unPais)){
             this.botonMenuReagrupacion.setVisible(true);
-            this.botonMenuReagrupacion.setText("Realizar ataque desde aquí");
+            this.botonMenuReagrupacion.setText("Mover ejercitos");
             this.inputCantidad.setVisible(true);
         }
-        else if(this.estadoActual.visibilizaReceptor(this.jugadorActual, unPais)){
+        else if(this.estadoActual.visibilizaDestino(this.jugadorActual, unPais)){
             this.botonMenuReagrupacion.setVisible(true);
             this.botonMenuReagrupacion.setText("Confirmar transferencia");
             this.botonCancelar.setVisible(true);

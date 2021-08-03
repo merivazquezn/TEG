@@ -53,13 +53,13 @@ public class EstadoReagrupar {
         }
     }
 
-    public boolean visibilizaReceptor(int numeroJugadorActual, Pais unPais){
-        if(this.recibeReceptor)
+    public boolean visibilizaDestino(int numeroJugadorActual, Pais unPais){
+        if(this.recibeDestino)
             return (this.origen.sonLimitrofes(unPais) && numeroJugadorActual == unPais.getJugador().getNumero());
         return false;
     }
 
-    public boolean visibilizaDador(int numeroJugadorActual, Pais unPais){
+    public boolean visibilizaOrigen(int numeroJugadorActual, Pais unPais){
         return (unPais.getCantidadEjercitos() > 1 && numeroJugadorActual == unPais.getJugador().getNumero());
     }
 
@@ -72,9 +72,8 @@ public class EstadoReagrupar {
     }
 
     public void resetear() {
-        this.destino = null;
-        this.origen = null;
-        this.recibeReceptor = false;
+        this.recibeDestino = false;
+        this.cantidad = 0;
     }
 
     public int maximaCantidadEjercitosTransferibles(Pais unPais){
