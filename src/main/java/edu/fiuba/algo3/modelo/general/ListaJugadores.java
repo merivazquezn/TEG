@@ -82,4 +82,16 @@ public class ListaJugadores {
         }
         return hayGanador;
     }
+
+    public Jugador jugadorGanador(Tablero tablero) {
+        //Devuelve el jugador que gano, o JugadorNulo si ninguno gano.
+        int i = 0;
+        while(i < listaJugadores.size()){
+            if(listaJugadores.get(i).jugadorGano(tablero)) {
+                return listaJugadores.get(i);
+            }
+            i++;
+        }
+        return new JugadorNulo();
+    }
 }

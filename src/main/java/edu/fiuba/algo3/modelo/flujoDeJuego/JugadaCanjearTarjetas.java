@@ -16,9 +16,9 @@ public class JugadaCanjearTarjetas implements Jugada{
         this.tarjeta2 = tarjeta2;
         this.tarjeta3 = tarjeta3;
     }
-    public void ejecutar(Tablero tablero, Ronda ronda){
-        ConjuntoTarjetas conjuntoTarjetas = new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, tablero.obtenerMazo());
 
+    public void ejecutar(Tablero tablero, Ronda ronda) {
+        ConjuntoTarjetas conjuntoTarjetas = new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, tablero.obtenerMazo());
 
         if (conjuntoTarjetas.sePudoCanjear())
             ronda.seRealizoCanje(conjuntoTarjetas);

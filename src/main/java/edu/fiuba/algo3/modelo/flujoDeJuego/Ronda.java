@@ -149,9 +149,9 @@ public class Ronda extends Observable {
         this.jugadorActual.reiniciarEstadoConquista();
     }
     public Jugador jugadorGanador(){
-        return null;
+        return this.listaJugadores.jugadorGanador(this.tablero);
     }
-    public void juegoTerminado(){
-
+    public boolean juegoTerminado(){
+        return this.listaJugadores.hayGanador(this.tablero);
     }
 }

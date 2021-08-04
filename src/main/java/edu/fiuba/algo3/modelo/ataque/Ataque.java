@@ -61,9 +61,10 @@ public class Ataque {
         if(this.cantEjercitoDefensor == 0){
             this.defensor.serConquistadoPor(this.atacante.getJugador());
             this.atacante.transferirEjercitosA(this.defensor, 1);
+            this.atacante.getJugador().conquisto();
+            return true; //conquisto
         }
-
-        return (this.cantEjercitoDefensor == 0);
+        return false; //no conquisto
     }
 
     public ArrayList<Integer> devolverValoresDadosAtacante(){

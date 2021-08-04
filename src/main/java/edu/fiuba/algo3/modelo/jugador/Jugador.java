@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.jugador;
 
 import edu.fiuba.algo3.modelo.general.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -21,12 +22,14 @@ public class Jugador {
     }
 
     public Jugador(Objetivo objetivo){
+        this.tarjetas = new ArrayList<Tarjeta>();
         listaPaises = new ArrayList<>();
         this.asignarAtributosDeJugadorValido();
         this.cantidadCanjes = new CeroCanjes();
         this.objetivoGeneral = new ObjetivoGeneral(this);
         this.objetivoPrivado = objetivo;
         this.conquisto = false;
+
     }
 
     protected void asignarAtributosDeJugadorValido(){
@@ -71,8 +74,15 @@ public class Jugador {
         return this.numeroJugador;
     }
 
+    private void eliminarTarjetas(ConjuntoTarjetas conjuntoTarjetas) {
+        ArrayList<Tarjeta> tarjetas = conjuntoTarjetas.getTarjetas();
+        for(Tarjeta tarjeta : tarjetas) {
+            this.tarjetas.remove(tarjeta);
+        }
+    }
+
     public void realizarCanje(ConjuntoTarjetas conjuntoTarjetas){
-        //this.eliminarTarjetas();
+        this.eliminarTarjetas(conjuntoTarjetas);
         this.cantidadCanjes = this.cantidadCanjes.siguiente();
     }
 
@@ -97,14 +107,19 @@ public class Jugador {
             this.tarjetas.add(mazo.entregarTarjeta());
     }
 
-
-
     public ArrayList<Tarjeta> obtenerTarjetas() {
         return this.tarjetas;
     }
 
     public void reiniciarEstadoConquista() {
         this.conquisto = false;
+    }
+    public void conquisto(){
+        this.conquisto = true;
+    }
+
+    public void agregarTarjeta(Tarjeta tarjeta) {
+        this.tarjetas.add(tarjeta);
     }
 
 

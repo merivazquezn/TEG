@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.modelo.ataque.CantidadInvalidaDeDadosError;
 
+import java.util.ArrayList;
+
 public class ConjuntoTarjetas {
     private Tarjeta tarjeta1;
     private Tarjeta tarjeta2;
@@ -28,4 +30,13 @@ public class ConjuntoTarjetas {
         }
         return false;
     }
+
+    public ArrayList<Tarjeta> getTarjetas() {
+        ArrayList<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
+        tarjetas.add(this.tarjeta1);
+        tarjetas.add(this.tarjeta2);
+        tarjetas.add(this.tarjeta3);
+        return tarjetas;
+    }
+
 }

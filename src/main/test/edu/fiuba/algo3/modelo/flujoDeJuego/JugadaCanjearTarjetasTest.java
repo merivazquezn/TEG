@@ -16,6 +16,8 @@ import java.util.HashMap;
 
 public class JugadaCanjearTarjetasTest {
 
+
+
     @Test
     public void test01seRealizaCanjeYLaRondaEsNotificada(){
         Pais unPais = new Pais("Argentina");
@@ -29,7 +31,7 @@ public class JugadaCanjearTarjetasTest {
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = mock(Ronda.class);
         jugada.ejecutar(tablero, ronda);
-        verify(ronda, times(1)).seRealizoCanje();
+        verify(ronda, times(1)).seRealizoCanje(any(ConjuntoTarjetas.class));
 
     }
 
@@ -46,7 +48,8 @@ public class JugadaCanjearTarjetasTest {
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         Ronda ronda = mock(Ronda.class);
         jugada.ejecutar(tablero, ronda);
-        verify(ronda, times(0)).seRealizoCanje();
+
+        verify(ronda, times(0)).seRealizoCanje(new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, new Mazo(new ArrayList<Tarjeta>(), new Randomizador())));
 
     }
 
