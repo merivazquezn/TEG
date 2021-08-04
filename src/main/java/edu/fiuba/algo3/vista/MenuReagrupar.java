@@ -37,7 +37,7 @@ public class MenuReagrupar extends StackPane implements Observer {
     private Pais paisActual;
 
     private EstadoReagrupar estadoActual;
-    private int CANTMAXIMAEJERCITOSTRANSFERIBLES;
+    private int cantidadMaximaTransferible;
 
     private void establecerImagenes() throws IOException {
         FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
@@ -96,7 +96,7 @@ public class MenuReagrupar extends StackPane implements Observer {
                 inputCantidad.setText("0");
             }
             newValue = inputCantidad.getText();
-            if(parseInt(newValue) < 0 || parseInt(newValue) > CANTMAXIMAEJERCITOSTRANSFERIBLES){
+            if(parseInt(newValue) < 0 || parseInt(newValue) > cantidadMaximaTransferible){
                 inputCantidad.setText("0");
             }
         });
@@ -112,15 +112,15 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.botonMenuReagrupacion.setVisible(false);
         this.inputCantidad.setVisible(false);
 
-        if(this.estadoActual.visibilizaOrigen(this.jugadorActual, unPais)){
-            this.botonMenuReagrupacion.setVisible(true);
-            this.botonMenuReagrupacion.setText("Mover ejercitos");
-            this.inputCantidad.setVisible(true);
-        }
-        else if(this.estadoActual.visibilizaDestino(this.jugadorActual, unPais)){
+        if(this.estadoActual.visibilizaDestino(this.jugadorActual, unPais)){
             this.botonMenuReagrupacion.setVisible(true);
             this.botonMenuReagrupacion.setText("Confirmar transferencia");
             this.botonCancelar.setVisible(true);
+        }
+        else if(this.estadoActual.visibilizaOrigen(this.jugadorActual, unPais)){
+            this.botonMenuReagrupacion.setVisible(true);
+            this.botonMenuReagrupacion.setText("Mover ejercitos");
+            this.inputCantidad.setVisible(true);
         }
     }
 
@@ -129,8 +129,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         String nombrePais = unPais.getNombre();
         this.paisActual = unPais;
 
-        if (!estadoActual.paisOrigenIngresado())
-            this.CANTMAXIMAEJERCITOSTRANSFERIBLES = unPais.getCantidadEjercitos()-1;
+        this.cantidadMaximaTransferible = unPais.getCantidadEjercitos()-1;
 
         this.setVisible(true);
         this.aparecer(evento.getSceneX(), evento.getSceneY());
