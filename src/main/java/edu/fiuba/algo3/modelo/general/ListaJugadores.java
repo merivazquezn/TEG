@@ -83,6 +83,7 @@ public class ListaJugadores {
         return hayGanador;
     }
 
+
     public Jugador jugadorGanador(Tablero tablero) {
         //Devuelve el jugador que gano, o JugadorNulo si ninguno gano.
         int i = 0;

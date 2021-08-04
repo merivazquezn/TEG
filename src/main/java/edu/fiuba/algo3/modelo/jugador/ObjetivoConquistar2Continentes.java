@@ -28,6 +28,7 @@ public class ObjetivoConquistar2Continentes implements Objetivo{
         return "Conquistar 2 continentes";
     }
 
+    //----
     public String descripcionObjetivo(){
         String descripcion = "Se deberá conquistar:\n";
         for (String continente : this.listaObjetivos) {

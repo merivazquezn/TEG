@@ -34,6 +34,8 @@ public class ObjetivoCantidadPorContinente implements Objetivo{
         return "Conquistar una cierta cantidad\n en cada continente";
     }
 
+
+    //----
     public String descripcionObjetivo(){
         String descripcion = "Se deberá conquistar:\n";
         for (HashMap.Entry<String, Integer> entry : this.objetivo.entrySet()) {

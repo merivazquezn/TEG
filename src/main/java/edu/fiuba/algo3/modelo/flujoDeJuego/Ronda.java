@@ -69,6 +69,8 @@ public class Ronda extends Observable {
         setChanged();
     }
 
+
+    //----
     public void seRealizoCanje(ConjuntoTarjetas conjuntoTarjetas){
         this.jugadorActual.realizarCanje(conjuntoTarjetas);
         this.cantidadAColocar += this.jugadorActual.cantidadAColocarPorCanje();
@@ -94,12 +96,14 @@ public class Ronda extends Observable {
         setChanged();
     }
 
+    //----
     public Jugador jugadorActual () { return this.jugadorActual; }
-
+    //----
     public String getNombreRonda() {
         return this.faseActual.getNombreRonda();
     }
 
+    //----
     public String accionARealizar(){
         return this.faseActual.accionARealizar(this.cantidadAColocar);
     }
@@ -108,14 +112,17 @@ public class Ronda extends Observable {
         return this.cantidadAColocar <= 0;
     }
 
+    //----
     public boolean puedeColocar(){
         return this.cantidadAColocar > 0;
     }
 
+    //----
     public boolean seProdujoConquista(){
         return this.seProdujoConquista;
     }
 
+    //----
     public boolean sePuedeReagrupar(){
         return this.sePuedeReagrupar;
     }
@@ -137,9 +144,12 @@ public class Ronda extends Observable {
         this.conquistado = pais;
     }
 
+    //----
     public Pais getConquistador() {
         return this.conquistador;
     }
+
+    //----
     public Pais getConquistado() {
         return this.conquistado;
     }
@@ -148,9 +158,14 @@ public class Ronda extends Observable {
         this.jugadorActual.habilitarTarjetaPorConquista(this.tablero.obtenerMazo());
         this.jugadorActual.reiniciarEstadoConquista();
     }
+
+    //----
     public Jugador jugadorGanador(){
         return this.listaJugadores.jugadorGanador(this.tablero);
     }
+
+
+    //----
     public boolean juegoTerminado(){
         return this.listaJugadores.hayGanador(this.tablero);
     }

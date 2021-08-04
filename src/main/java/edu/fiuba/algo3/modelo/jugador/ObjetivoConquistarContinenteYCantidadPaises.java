@@ -34,6 +34,7 @@ public class ObjetivoConquistarContinenteYCantidadPaises implements Objetivo{
         return "Conquistar una cierta cantidad en algunos\n continentes y 1 continente entero";
     }
 
+    //----
     public String descripcionObjetivo(){
         String descripcion = this.objetivo1.descripcionObjetivo();
         descripcion += this.objetivo2.descripcionObjetivo();

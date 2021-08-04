@@ -46,8 +46,8 @@ public class Ataque {
     }
 
 
-    public boolean conquisto(){
-        if(!this.atacante.sonLimitrofes(this.defensor))
+    public boolean conquisto() {
+        if (!this.atacante.sonLimitrofes(this.defensor))
             throw new AtaqueDePaisNoLimitrofeException();
         ArrayList<ConjuntoDados> conjuntos = this.constructor.obtenerConjuntosDados(this.cantEjercitoAtacantes, this.cantEjercitoDefensor);
         this.conjuntoAtacante = conjuntos.get(0);
@@ -58,14 +58,16 @@ public class Ataque {
         this.cantEjercitoAtacantes = this.atacante.eliminarEjercitos(resultados.get(0));
         this.cantEjercitoDefensor = this.defensor.eliminarEjercitos(resultados.get(1));
 
-        if(this.cantEjercitoDefensor == 0){
+        if (this.cantEjercitoDefensor == 0) {
             this.defensor.serConquistadoPor(this.atacante.getJugador());
             this.atacante.transferirEjercitosA(this.defensor, 1);
             this.atacante.getJugador().conquisto();
             return true; //conquisto
         }
         return false; //no conquisto
+
     }
+
 
     public ArrayList<Integer> devolverValoresDadosAtacante(){
         return this.conjuntoAtacante.devolverValoresDados();

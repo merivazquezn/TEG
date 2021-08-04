@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.jugador;
 
+import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Tablero;
+import edu.fiuba.algo3.vista.AsignadorDeColores;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.jugador.*;
@@ -11,8 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ObjetivoTest {
 
@@ -237,6 +238,72 @@ public class ObjetivoTest {
         Tablero tablero = mock(Tablero.class);
         Objetivo objetivo = new ObjetivoNulo();
         assertFalse(objetivo.haGanado(tablero));
+    }
+
+    @Test
+    public void test13ObjetivoCantidadPorContinenteDevuelveDescripcionCorrectamente() {
+        HashMap<String, Integer> hashObjetivo = new HashMap<>();
+
+        hashObjetivo.put("America del Norte", 5);
+        hashObjetivo.put("Europa", 2);
+
+        Objetivo objetivo = new ObjetivoCantidadPorContinente(hashObjetivo);
+
+        String stringEsperado1 = "Se deberá conquistar:\n" +
+                "5 paises en America del Norte.\n" +
+                "2 paises en Europa.\n";
+
+
+        String stringEsperado2 = "Se deberá conquistar:\n" +
+                "2 paises en Europa.\n" +
+                "5 paises en America del Norte.\n";
+
+        String stringObjetivo = objetivo.descripcionObjetivo();
+
+        if (!stringObjetivo.equals(stringEsperado1) && !stringObjetivo.equals(stringEsperado2)) {
+            String stringFail = "\n\"" + stringObjetivo + "\n\" debería ser igual a:\n\n\""
+                    + stringEsperado1 + "\n\" o \n\n\"" + stringEsperado2 + "\".";
+
+            fail(stringFail);
+        }
+
+        assertTrue(true);
+    }
+
+    @Test
+    public void test14ObjetivoDestruirDevuelveDescripcionCorrectamente() {
+        Objetivo objetivoNulo = new ObjetivoNulo();
+        Objetivo objetivo = new ObjetivoDestruir();
+
+        Jugador.reiniciarClase();
+
+        Jugador jugador = new Jugador(objetivoNulo);
+        Jugador jugadorADestruir = new Jugador(objetivoNulo);
+
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugador);
+        jugadores.add(jugadorADestruir);
+
+        objetivo.establecerJugadores(jugadores, 0);
+
+        String stringEsperado = "Se deberá destruir a:\n" +
+                AsignadorDeColores.jugadorActualSegunElNumero(jugadorADestruir.getNumero()) + "\n";
+
+        String stringObjetivo = objetivo.descripcionObjetivo();
+
+        if (!stringEsperado.equals(stringObjetivo)) {
+            fail(stringEsperado + " " + stringObjetivo);
+        }
+
+        assertTrue(true);
+    }
+
+
+    @Test
+    public void test15ObjetivoCOnquistarContinenteYCantidadPaisesDevuelveDescripcionCorrectamente() {
+
+
+
     }
 
 }

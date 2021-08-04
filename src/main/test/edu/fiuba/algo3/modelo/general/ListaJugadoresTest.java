@@ -10,8 +10,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ListaJugadoresTest {
 
@@ -111,5 +110,33 @@ public class ListaJugadoresTest {
         ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         assertFalse(listaJugadores.hayGanador(tablero));
+    }
+
+    @Test
+    public void test07Jugador1GanaYEsElJugadorGanador(){
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<Tarjeta>(), new Randomizador()));
+
+        ObjetivoGeneral objetivo = mock(ObjetivoGeneral.class);
+        listaObjetivos.add(objetivo);
+        listaObjetivos.add(objetivo);
+        ListaJugadores lista = new ListaJugadores(2, new Randomizador(), listaObjetivos);
+
+        when(objetivo.haGanado(tablero)).thenReturn(true);
+        assertFalse(lista.jugadorGanador(tablero).esNulo());
+    }
+
+
+
+    @Test
+    public void test08SeInicializaLaListaNoHayGanadoresElGanadorEsUnJugadorNulo(){
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
+        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
+        assertTrue(listaJugadores.jugadorGanador(tablero).esNulo());
+
     }
 }

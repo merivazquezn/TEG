@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.general;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import edu.fiuba.algo3.infraestructura.*;
 
 public class Mazo {
