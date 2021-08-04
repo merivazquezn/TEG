@@ -22,7 +22,7 @@ public class MenuObjetivo extends StackPane {
     private ImageView interfazObjetivo;
 
     public MenuObjetivo(Ronda ronda) throws IOException {
-        FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/vistaObjetivo.png");
+        FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/vistaDesplegable.png");
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.interfazObjetivo = new ImageView(imagenInterfaz);
         this.ronda = ronda;

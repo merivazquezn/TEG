@@ -36,6 +36,7 @@ public class App extends Application {
     private ControladorEjercito controladorEjercito;
     private VistaDados vistaDados;
     private MenuObjetivo menuObjetivo;
+    private MenuCartas menuCartas;
     private MenuReagrupar menuReagrupar;
     private MenuReagruparPorConquista menuReagruparPorConquista;
 
@@ -76,6 +77,7 @@ public class App extends Application {
         }
         this.vistaDados = new VistaDados(this.tablero);
         this.menuObjetivo = new MenuObjetivo(this.ronda);
+        this.menuCartas = new MenuCartas(this.ronda);
     }
 
     public void realizarJuego(Stage stage, int cantidadJugadores){
@@ -84,12 +86,13 @@ public class App extends Application {
             inicializarJuego(cantidadJugadores);
             inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
             Image imagenFondo = new Image(inputImagenFondo);
-            InterfazUsuario interfaz = new InterfazUsuario(this.ronda, this.menuObjetivo);
+            InterfazUsuario interfaz = new InterfazUsuario(this.ronda, this.menuObjetivo, this.menuCartas);
             this.ronda.addObserver(interfaz);
             this.ronda.addObserver(this.panelMenuColocacion);
             this.ronda.addObserver(this.panelMenuAtaque);
             this.ronda.addObserver(this.menuReagrupar);
             this.ronda.addObserver(this.menuReagruparPorConquista);
+            this.ronda.addObserver(this.menuCartas);
             this.tablero.addObserver(this.vistaDados);
             Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
