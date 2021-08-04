@@ -119,4 +119,15 @@ public class JugadorTest {
         }
         assertEquals(jugador.cantidadAColocarPorCanje(), 30);
     }
+
+    @Test
+    public void test08DespuesDeConquistaLaTarjetaSeAsignaAlJugadorConquistador(){
+        Mazo mazo = mock(Mazo.class);
+        Jugador jugador = new Jugador(new ObjetivoNulo());
+        Tarjeta tarjeta = new Tarjeta(new Pais("Arg"), new Signo(1));
+        when(mazo.entregarTarjeta()).thenReturn(tarjeta);
+        jugador.conquisto();
+        jugador.habilitarTarjetaPorConquista(mazo);
+        assertEquals(tarjeta.getJugador(), jugador);
+    }
 }

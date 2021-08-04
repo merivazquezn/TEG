@@ -52,5 +52,16 @@ public class JugadaCanjearTarjetasTest {
         verify(ronda, times(0)).seRealizoCanje(new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, new Mazo(new ArrayList<Tarjeta>(), new Randomizador())));
 
     }
+/*
+    @Test
+    public void test03NoSeRealizaLaJugadaConTarjetasIguales(){
+        Pais unPais = new Pais("Argentina");
+
+        Tarjeta tarjeta1 = new Tarjeta(unPais, new Signo(1));
+
+        Jugada jugada = new JugadaCanjearTarjetas(tarjeta1, tarjeta1, tarjeta1);
+        assertThrows();
+    }
+*/
 
 }

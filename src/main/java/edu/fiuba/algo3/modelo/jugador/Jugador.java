@@ -103,8 +103,11 @@ public class Jugador {
     }
 
     public void habilitarTarjetaPorConquista(Mazo mazo) {
-        if(this.conquisto)
-            this.tarjetas.add(mazo.entregarTarjeta());
+        if(this.conquisto){
+            Tarjeta tarjeta = mazo.entregarTarjeta();
+            tarjeta.asignarJugador(this);
+            this.tarjetas.add(tarjeta);
+        }
     }
 
     public ArrayList<Tarjeta> obtenerTarjetas() {
@@ -119,6 +122,7 @@ public class Jugador {
     }
 
     public void agregarTarjeta(Tarjeta tarjeta) {
+        tarjeta.asignarJugador(this);
         this.tarjetas.add(tarjeta);
     }
 

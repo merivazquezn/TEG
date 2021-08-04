@@ -6,6 +6,7 @@ public class FaseReagruparFinal implements Fase{
 
     public Fase siguienteFase(Ronda ronda) {
 
+        //TODO: habria que atrapar el error NoQuedanTarjetasException en el controlador; para mostrar un cartel de error;
         ronda.habilitarTarjetaPorConquista();
 
         if(ronda.estaAlFinalDeLaLista()) {

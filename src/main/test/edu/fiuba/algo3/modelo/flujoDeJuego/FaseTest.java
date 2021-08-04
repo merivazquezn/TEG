@@ -277,4 +277,20 @@ public class FaseTest {
         Fase siguienteFase = fase.siguienteFase(ronda);
         assertTrue(siguienteFase instanceof FaseReagruparFinal);
     }
+    @Test
+    public void test16FasesDevuelvenBienElNombre(){
+        Fase faseActual = new FaseAtaque();
+        assertEquals(faseActual.getNombreRonda(), "Ronda de Ataque");
+        faseActual = new FaseColocacion();
+        assertEquals(faseActual.getNombreRonda(), "Ronda Colocación");
+        faseActual = new FaseReagruparFinal();
+        assertEquals(faseActual.getNombreRonda(), "Fase Reagrupación");
+        faseActual = new FaseReagruparPorConquista();
+        assertEquals(faseActual.getNombreRonda(), "Fase Reagrupar");
+        faseActual = new FaseInicial3Fichas();
+        assertEquals(faseActual.getNombreRonda(), "Fase Inicial");
+        faseActual = new FaseInicial5Fichas();
+        assertEquals(faseActual.getNombreRonda(), "Fase Inicial");
+
+    }
 }

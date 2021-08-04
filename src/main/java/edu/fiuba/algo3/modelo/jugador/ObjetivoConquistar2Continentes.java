@@ -31,9 +31,15 @@ public class ObjetivoConquistar2Continentes implements Objetivo{
     //----
     public String descripcionObjetivo(){
         String descripcion = "Se deberá conquistar:\n";
-        for (String continente : this.listaObjetivos) {
-            descripcion += continente + ".\n";
-        }
+
+        String continente0 = this.listaObjetivos.get(0);
+        String continente1 = this.listaObjetivos.get(1);
+
+        descripcion += continente0 + ".\n";
+
+        if (!continente0.equals(continente1))
+            descripcion += continente1 + ".\n";
+
         return descripcion;
     }
 }

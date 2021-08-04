@@ -1,16 +1,11 @@
 package edu.fiuba.algo3.modelo.jugador;
 
-import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.vista.AsignadorDeColores;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.jugador.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -143,7 +138,7 @@ public class ObjetivoTest {
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
         jugadores.add(unJugador);
-        ArrayList<String> listaObjetivos = new ArrayList<String>();
+        ArrayList<String> listaObjetivos = new ArrayList<>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
         Objetivo objetivo = new ObjetivoConquistar2Continentes(listaObjetivos);
@@ -159,7 +154,7 @@ public class ObjetivoTest {
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
         jugadores.add(unJugador);
-        ArrayList<String> listaObjetivos = new ArrayList<String>();
+        ArrayList<String> listaObjetivos = new ArrayList<>();
         listaObjetivos.add("Europa");
         listaObjetivos.add("Asia");
         Objetivo objetivo = new ObjetivoConquistar2Continentes(listaObjetivos);
@@ -291,19 +286,51 @@ public class ObjetivoTest {
 
         String stringObjetivo = objetivo.descripcionObjetivo();
 
-        if (!stringEsperado.equals(stringObjetivo)) {
-            fail(stringEsperado + " " + stringObjetivo);
-        }
-
-        assertTrue(true);
+        assertEquals(stringEsperado, stringObjetivo);
     }
 
 
     @Test
     public void test15ObjetivoCOnquistarContinenteYCantidadPaisesDevuelveDescripcionCorrectamente() {
+        String continente = "Africa";
+        HashMap<String, Integer> hashObjetivo = new HashMap<>();
+        hashObjetivo.put("Oceania", 3);
 
+        Objetivo objetivo = new ObjetivoConquistarContinenteYCantidadPaises(continente, hashObjetivo);
 
+        String stringEsperado = "Se deberá conquistar:\n" +
+                "Africa.\n" +
+                "Se deberá conquistar:\n" +
+                "3 paises en Oceania.\n";
 
+        assertEquals(stringEsperado, objetivo.descripcionObjetivo());
+    }
+
+    @Test
+    public void test16ObjetivoConquistar2ContinentesDevuelveDescripcionCorrectamente() {
+        ArrayList<String> listaContinente = new ArrayList<>();
+        listaContinente.add("Asia");
+        listaContinente.add("Europa");
+
+        Objetivo objetivo = new ObjetivoConquistar2Continentes(listaContinente);
+
+        String stringEsperado = "Se deberá conquistar:\n" +
+                "Asia.\n" +
+                "Europa.\n";
+
+        assertEquals(stringEsperado, objetivo.descripcionObjetivo());
+    }
+
+    @Test
+    public void test17ObjetivoGeneralDevuelveDescripcionCorrectamente() {
+        Jugador.reiniciarClase();
+
+        Jugador jugador = new Jugador(new ObjetivoNulo());
+        Objetivo objetivo = new ObjetivoGeneral(jugador);
+
+        String stringEsperado = "Conquistar 30 paises\n";
+
+        assertEquals(stringEsperado, objetivo.descripcionObjetivo());
     }
 
 }
