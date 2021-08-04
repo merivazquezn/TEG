@@ -20,6 +20,10 @@ public class VistaDados extends StackPane implements Observer {
     private ArrayList<ImageView> dadosAtacante;
     private ArrayList<ImageView> dadosDefensor;
     private ArrayList<Image> imagenesDados;
+    private Image dadoGanador;
+    private Image dadoPerdedor;
+    private ArrayList<ImageView> resultadoDadosAtacante;
+    private ArrayList<ImageView> resultadoDadosDefensor;
     private Button botonCerrar;
     Tablero tablero;
 
@@ -33,12 +37,10 @@ public class VistaDados extends StackPane implements Observer {
         });
         this.botonCerrar.setTranslateX(220);
         this.botonCerrar.setTranslateY(-100);
+        this.getChildren().add(this.botonCerrar);
     }
 
-    public VistaDados(Tablero tablero) throws IOException {
-        this.tablero = tablero;
-        inicializarBotonCerrar();
-        this.setTranslateX(400);
+    private void inicializarImagenesDados() throws IOException{
         this.imagenesDados = new ArrayList<>();
         String rutaDado1 = "./src/imagenes/dado1.png";
         String rutaDado2 = "./src/imagenes/dado2.png";
@@ -64,30 +66,61 @@ public class VistaDados extends StackPane implements Observer {
         this.imagenesDados.add(imagenDado4);
         this.imagenesDados.add(imagenDado5);
         this.imagenesDados.add(imagenDado6);
+    }
+
+    private void inicializarInterfazDados() throws IOException{
         String rutaInterfazDado = "./src/imagenes/vistaDados.png";
         FileInputStream inputImagenInterfaz = new FileInputStream(rutaInterfazDado);
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.imagenInterfaz = new ImageView(imagenInterfaz);
         this.getChildren().add(this.imagenInterfaz);
-        this.getChildren().add(this.botonCerrar);
+    }
+
+    private void inicializarEtiquetasJugadores(){
+        Label etiquetaAtacante = new Label("Dados del atacante:");
+        etiquetaAtacante.setTranslateY(-60);
+        etiquetaAtacante.setTranslateX(-140);
+        Label etiquetaDefensor = new Label("Dados del defensor:");
+        etiquetaDefensor.setTranslateY(45);
+        etiquetaDefensor.setTranslateX(-140);
+        this.getChildren().add(etiquetaAtacante);
+        this.getChildren().add(etiquetaDefensor);
+    }
+
+    public VistaDados(Tablero tablero) throws IOException {
+        this.tablero = tablero;
+        inicializarImagenesDados();
+        inicializarInterfazDados();
+        inicializarBotonCerrar();
+        inicializarDados();
+        inicializarEtiquetasJugadores();
         this.setTranslateY(300);
         this.setTranslateX(450);
-        inicializarDados();
         this.setVisible(false);
     }
 
     private void inicializarDados(){
         this.dadosDefensor = new ArrayList<>();
         this.dadosAtacante = new ArrayList<>();
+        this.resultadoDadosDefensor = new ArrayList<>();
+        this.resultadoDadosAtacante = new ArrayList<>();
         for(int i=0; i < VistaDados.MAX_DADOS; i++){
             this.dadosAtacante.add(new ImageView());
             this.dadosAtacante.get(i).setTranslateX(-140+(i)*145);
             this.dadosAtacante.get(i).setTranslateY(-55);
+            this.resultadoDadosAtacante.add(new ImageView());
+            this.resultadoDadosAtacante.get(i).setTranslateX(-135+(i)*145);
+            this.resultadoDadosAtacante.get(i).setTranslateY(-60);
             this.dadosDefensor.add(new ImageView());
             this.dadosDefensor.get(i).setTranslateX(-140+(i)*145);
             this.dadosDefensor.get(i).setTranslateY(55);
+            this.resultadoDadosDefensor.add(new ImageView());
+            this.resultadoDadosDefensor.get(i).setTranslateX(-135+(i)*145);
+            this.resultadoDadosDefensor.get(i).setTranslateY(50);
             this.getChildren().add(this.dadosAtacante.get(i));
             this.getChildren().add(this.dadosDefensor.get(i));
+            this.getChildren().add(this.resultadoDadosAtacante.get(i));
+            this.getChildren().add(this.resultadoDadosDefensor.get(i));
         }
     }
 
@@ -95,7 +128,23 @@ public class VistaDados extends StackPane implements Observer {
         for(int i=0; i < VistaDados.MAX_DADOS; i++){
             this.dadosAtacante.get(i).setVisible(false);
             this.dadosDefensor.get(i).setVisible(false);
+            this.resultadoDadosAtacante.get(i).setVisible(false);
+            this.resultadoDadosDefensor.get(i).setVisible(false);
         }
+    }
+
+    private void establecerDadoDefensorGanador(int indice){
+        this.resultadoDadosDefensor.get(indice).setImage(dadoGanador);
+        this.resultadoDadosAtacante.get(indice).setImage(dadoPerdedor);
+        this.resultadoDadosAtacante.get(indice).setVisible(true);
+        this.resultadoDadosDefensor.get(indice).setVisible(true);
+    }
+
+    private void establecerDadoAtacanteGanador(int indice){
+        this.resultadoDadosAtacante.get(indice).setImage(dadoGanador);
+        this.resultadoDadosDefensor.get(indice).setImage(dadoPerdedor);
+        this.resultadoDadosAtacante.get(indice).setVisible(true);
+        this.resultadoDadosDefensor.get(indice).setVisible(true);
     }
 
     private void actualizarDados(ArrayList<Integer> valoresAtacante, ArrayList<Integer> valoresDefensor){
@@ -107,6 +156,10 @@ public class VistaDados extends StackPane implements Observer {
         for(int i=0; i < valoresDefensor.size() ; i++){
             this.dadosDefensor.get(i).setImage(this.imagenesDados.get(valoresDefensor.get(i)-1));
             this.dadosDefensor.get(i).setVisible(true);
+            if(valoresDefensor.get(i) >= valoresAtacante.get(i))
+                establecerDadoDefensorGanador(i);
+            else
+                establecerDadoAtacanteGanador(i);
         }
     }
 

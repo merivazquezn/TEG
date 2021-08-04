@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +17,7 @@ import java.util.Observer;
 
 public class InterfazUsuario extends StackPane implements Observer {
     private ImageView interfaz;
+    private ImageView interfazJuegoTerminado;
     private Label etiquetaNombreRonda;
     private Label etiquetaInformacionRonda;
     private Label etiquetaJugador;
@@ -26,6 +26,7 @@ public class InterfazUsuario extends StackPane implements Observer {
     private Button botonTerminarTurno;
     private Ronda ronda;
     private MenuObjetivo menuObjetivo;
+    private MenuCartas menuCartas;
 
     private void inicializarBotones(){
         this.botonObjetivo = new Button("Ver Objetivo");
@@ -39,13 +40,18 @@ public class InterfazUsuario extends StackPane implements Observer {
             this.menuObjetivo.aparecerMenu(e);
             e.consume();
         });
-
         this.botonCartas = new Button("Ver Cartas");
 
         this.botonCartas.setStyle("-fx-background-color: rgb(204, 51, 17);" +
                 "-fx-border-color: rgb(0, 0, 0);" +
                 "-fx-font-weight: bold;" +
                 "-fx-text-fill: rgb(255,255,255);");
+
+        this.botonCartas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            if(this.ronda.puedeColocar())
+                this.menuCartas.aparecerMenu(e);
+            e.consume();
+        });
 
         this.botonTerminarTurno = new Button("Terminar Turno");
 
@@ -98,26 +104,27 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.getChildren().add(this.etiquetaInformacionRonda);
     }
 
-    public InterfazUsuario(Ronda ronda, MenuObjetivo menuObjetivo){
+    public InterfazUsuario(Ronda ronda, MenuObjetivo menuObjetivo, MenuCartas menuCartas) throws IOException{
         this.ronda = ronda;
         this.menuObjetivo = menuObjetivo;
-        try{
-            FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
-            Image imagenInterfaz = new Image(inputImagenInterfaz);
-            this.interfaz = new ImageView(imagenInterfaz);
-            this.getChildren().add(this.interfaz);
-            this.setTranslateY(785);
-            this.setTranslateX(120);
-            inicializarBotones();
-            inicializarEtiquetas();
-        }
-        catch (IOException e){
-
-        }
+        this.menuCartas = menuCartas;
+        FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
+        Image imagenInterfaz = new Image(inputImagenInterfaz);
+        this.interfaz = new ImageView(imagenInterfaz);
+        FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/interfazJuegoFinalizado.png");
+        Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
+        this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
+        this.interfazJuegoTerminado.relocate(300,400);
+        this.getChildren().add(this.interfaz);
+        this.getChildren().add(this.interfazJuegoTerminado);
+        this.interfazJuegoTerminado.setVisible(false);
+        this.setTranslateY(785);
+        this.setTranslateX(120);
+        inicializarBotones();
+        inicializarEtiquetas();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
+    private void actualizarInformacionRonda(){
         String rondaActual = this.ronda.getNombreRonda();
         Jugador jugadorActual = this.ronda.jugadorActual();
         int numeroJugadorActual = jugadorActual.getNumero();
@@ -126,5 +133,28 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.etiquetaJugador.setText("Turno de "+ colorJugadorActual);
         String accionARealizarActual = this.ronda.accionARealizar();
         this.etiquetaInformacionRonda.setText(accionARealizarActual);
+    }
+
+    private void verificarJuegoTerminado(){
+        if(this.ronda.juegoTerminado()){
+            this.interfaz.setVisible(false);
+            this.etiquetaInformacionRonda.setVisible(false);
+            this.etiquetaJugador.setVisible(false);
+            this.etiquetaInformacionRonda.setVisible(false);
+            this.botonObjetivo.setVisible(false);
+            this.botonCartas.setVisible(false);
+            this.botonTerminarTurno.setVisible(false);
+            this.interfazJuegoTerminado.setVisible(true);
+            String ganador = AsignadorDeColores.jugadorActualSegunElNumero(this.ronda.jugadorGanador().getNumero());
+            Label jugadorGanador = new Label("Jugador ganador:\n" + ganador);
+            this.getChildren().add(jugadorGanador);
+            jugadorGanador.relocate(400, 400);
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        actualizarInformacionRonda();
+        verificarJuegoTerminado();
     }
 }

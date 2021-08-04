@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import javafx.beans.InvalidationListener;
+
 import java.util.Observable;
 
 public class Ronda extends Observable {
