@@ -1,7 +1,13 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 
 public class FaseReagruparFinal implements Fase{
+
+
+
     public Fase siguienteFase(Ronda ronda) {
+
+        ronda.habilitarTarjetaPorConquista();
+
         if(ronda.estaAlFinalDeLaLista()) {
             ronda.reiniciarLista();
             ronda.actualizarCantidadAColocar();

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.flujoDeJuego;
 
+import edu.fiuba.algo3.modelo.general.ConjuntoTarjetas;
 import edu.fiuba.algo3.modelo.general.ListaJugadores;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.general.Tablero;
@@ -68,8 +69,8 @@ public class Ronda extends Observable {
         setChanged();
     }
 
-    public void seRealizoCanje(){
-        this.jugadorActual.realizarCanje();
+    public void seRealizoCanje(ConjuntoTarjetas conjuntoTarjetas){
+        this.jugadorActual.realizarCanje(conjuntoTarjetas);
         this.cantidadAColocar += this.jugadorActual.cantidadAColocarPorCanje();
         setChanged();
     }
@@ -143,4 +144,14 @@ public class Ronda extends Observable {
         return this.conquistado;
     }
 
+    public void habilitarTarjetaPorConquista() {
+        this.jugadorActual.habilitarTarjetaPorConquista(this.tablero.obtenerMazo());
+        this.jugadorActual.reiniciarEstadoConquista();
+    }
+    public Jugador jugadorGanador(){
+        return null;
+    }
+    public void juegoTerminado(){
+
+    }
 }

@@ -13,6 +13,8 @@ public class Jugador {
     private CantidadCanjes cantidadCanjes;
     private Objetivo objetivoGeneral;
     private Objetivo objetivoPrivado;
+    private boolean conquisto;
+    private ArrayList<Tarjeta> tarjetas;
 
     static public void reiniciarClase(){
         Jugador.numeroDeJugadorSiguiente = 1;
@@ -24,6 +26,7 @@ public class Jugador {
         this.cantidadCanjes = new CeroCanjes();
         this.objetivoGeneral = new ObjetivoGeneral(this);
         this.objetivoPrivado = objetivo;
+        this.conquisto = false;
     }
 
     protected void asignarAtributosDeJugadorValido(){
@@ -68,7 +71,10 @@ public class Jugador {
         return this.numeroJugador;
     }
 
-    public void realizarCanje(){ this.cantidadCanjes = this.cantidadCanjes.siguiente();}
+    public void realizarCanje(ConjuntoTarjetas conjuntoTarjetas){
+        //this.eliminarTarjetas();
+        this.cantidadCanjes = this.cantidadCanjes.siguiente();
+    }
 
     public int cantidadAColocarPorCanje(){ return this.cantidadCanjes.cantidadAColocarPorCanje();}
 
@@ -85,5 +91,22 @@ public class Jugador {
     public String descripcionObjetivo(){
         return this.objetivoPrivado.descripcionObjetivo();
     }
+
+    public void habilitarTarjetaPorConquista(Mazo mazo) {
+        if(this.conquisto)
+            this.tarjetas.add(mazo.entregarTarjeta());
+    }
+
+
+
+    public ArrayList<Tarjeta> obtenerTarjetas() {
+        return this.tarjetas;
+    }
+
+    public void reiniciarEstadoConquista() {
+        this.conquisto = false;
+    }
+
+
 
 }

@@ -18,8 +18,10 @@ public class JugadaCanjearTarjetas implements Jugada{
     }
     public void ejecutar(Tablero tablero, Ronda ronda){
         ConjuntoTarjetas conjuntoTarjetas = new ConjuntoTarjetas(tarjeta1, tarjeta2, tarjeta3, tablero.obtenerMazo());
+
+
         if (conjuntoTarjetas.sePudoCanjear())
-            ronda.seRealizoCanje();
+            ronda.seRealizoCanje(conjuntoTarjetas);
     }
 
 
