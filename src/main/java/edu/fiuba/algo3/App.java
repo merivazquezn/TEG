@@ -37,6 +37,7 @@ public class App extends Application {
     private VistaDados vistaDados;
     private MenuObjetivo menuObjetivo;
     private MenuReagrupar menuReagrupar;
+    private MenuReagruparPorConquista menuReagruparPorConquista;
 
     public void inicializarJuego(int cantidadJugadores) throws IOException{
         String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
@@ -62,6 +63,7 @@ public class App extends Application {
         this.panelMenuColocacion = new MenuColocacion(this.ronda);
         this.menuReagrupar = new MenuReagrupar(this.ronda);
         this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion, this.menuReagrupar);
+        this.menuReagruparPorConquista = new MenuReagruparPorConquista(this.ronda);
         this.vistaEjercitos = new ArrayList<>();
         for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
             Pais unPais = entry.getKey();
@@ -87,6 +89,7 @@ public class App extends Application {
             this.ronda.addObserver(this.panelMenuColocacion);
             this.ronda.addObserver(this.panelMenuAtaque);
             this.ronda.addObserver(this.menuReagrupar);
+            this.ronda.addObserver(this.menuReagruparPorConquista);
             this.tablero.addObserver(this.vistaDados);
             Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
@@ -105,6 +108,7 @@ public class App extends Application {
             }
             panel.getChildren().add(this.panelMenuAtaque);
             panel.getChildren().add(this.panelMenuColocacion);
+            panel.getChildren().add(this.menuReagruparPorConquista);
             panel.getChildren().add(this.vistaDados);
             panel.getChildren().add(this.menuObjetivo);
             panel.getChildren().add(this.menuReagrupar);
