@@ -48,8 +48,7 @@ public class InterfazUsuario extends StackPane implements Observer {
                 "-fx-text-fill: rgb(255,255,255);");
 
         this.botonCartas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if(this.ronda.puedeColocar())
-                this.menuCartas.aparecerMenu(e);
+            this.menuCartas.aparecerMenu(e);
             e.consume();
         });
 
@@ -114,10 +113,9 @@ public class InterfazUsuario extends StackPane implements Observer {
         FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/interfazJuegoFinalizado.png");
         Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
         this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
-        this.interfazJuegoTerminado.relocate(300,400);
+        this.interfazJuegoTerminado.setTranslateY(-800);
+        //this.getChildren().add(this.interfazJuegoTerminado);
         this.getChildren().add(this.interfaz);
-        this.getChildren().add(this.interfazJuegoTerminado);
-        this.interfazJuegoTerminado.setVisible(false);
         this.setTranslateY(785);
         this.setTranslateX(120);
         inicializarBotones();
@@ -155,6 +153,6 @@ public class InterfazUsuario extends StackPane implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         actualizarInformacionRonda();
-        verificarJuegoTerminado();
+        //verificarJuegoTerminado();
     }
 }

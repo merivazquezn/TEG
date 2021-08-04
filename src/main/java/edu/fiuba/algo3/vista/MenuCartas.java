@@ -35,9 +35,12 @@ public class MenuCartas extends StackPane implements Observer {
         this.eleccionTarjeta1 = new ComboBox<>();
         this.eleccionTarjeta2 = new ComboBox<>();
         this.eleccionTarjeta3 = new ComboBox<>();
-        this.eleccionTarjeta1.setTranslateY(-90);
-        this.eleccionTarjeta2.setTranslateY(-40);
-        this.eleccionTarjeta3.setTranslateY(10);
+        this.eleccionTarjeta1.setTranslateY(-80);
+        this.eleccionTarjeta2.setTranslateY(-30);
+        this.eleccionTarjeta3.setTranslateY(20);
+        this.eleccionTarjeta1.setTranslateX(-50);
+        this.eleccionTarjeta2.setTranslateX(-50);
+        this.eleccionTarjeta3.setTranslateX(-50);
         this.getChildren().add(this.eleccionTarjeta1);
         this.getChildren().add(this.eleccionTarjeta2);
         this.getChildren().add(this.eleccionTarjeta3);
@@ -45,24 +48,28 @@ public class MenuCartas extends StackPane implements Observer {
 
     private void inicializarBotones(){
         this.activarTarjeta = new Button("Activar Tarjeta");
-        this.activarTarjeta.setTranslateY(-90);
-        this.activarTarjeta.setTranslateX(40);
+        this.activarTarjeta.setTranslateY(-80);
+        this.activarTarjeta.setTranslateX(60);
         this.activarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if(this.ronda.puedeColocar())
+            int tarjetaSeleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
+            if(this.ronda.puedeColocar() && tarjetaSeleccionada >= 0)
             {
-                ControladorMenuCartas.activarTarjeta(this.ronda, this.tarjetasDisponibles.get(this.eleccionTarjeta1.getSelectionModel().getSelectedIndex()));
+                ControladorMenuCartas.activarTarjeta(this.ronda, this.tarjetasDisponibles.get(tarjetaSeleccionada));
             }
             this.setVisible(false);
             e.consume();
         });
         this.canjearTarjetas = new Button("Canjear Tarjetas");
-        this.canjearTarjetas.setTranslateY(30);
+        this.canjearTarjetas.setTranslateY(70);
         this.canjearTarjetas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if(this.ronda.puedeColocar())
+            int tarjeta1Seleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
+            int tarjeta2Seleccionada = this.eleccionTarjeta2.getSelectionModel().getSelectedIndex();
+            int tarjeta3Seleccionada = this.eleccionTarjeta3.getSelectionModel().getSelectedIndex();
+            if(this.ronda.puedeColocar() && tarjeta1Seleccionada >= 0 && tarjeta2Seleccionada >= 0 && tarjeta3Seleccionada >= 0)
             {
-                Tarjeta tarjeta1 = this.tarjetasDisponibles.get(this.eleccionTarjeta1.getSelectionModel().getSelectedIndex());
-                Tarjeta tarjeta2 = this.tarjetasDisponibles.get(this.eleccionTarjeta2.getSelectionModel().getSelectedIndex());
-                Tarjeta tarjeta3 = this.tarjetasDisponibles.get(this.eleccionTarjeta3.getSelectionModel().getSelectedIndex());
+                Tarjeta tarjeta1 = this.tarjetasDisponibles.get(tarjeta1Seleccionada);
+                Tarjeta tarjeta2 = this.tarjetasDisponibles.get(tarjeta2Seleccionada);
+                Tarjeta tarjeta3 = this.tarjetasDisponibles.get(tarjeta3Seleccionada);
                 ControladorMenuCartas.canjearTarjetas(this.ronda, tarjeta1, tarjeta2, tarjeta3);
             }
             this.setVisible(false);
@@ -83,7 +90,7 @@ public class MenuCartas extends StackPane implements Observer {
         inicializarComboBox();
         inicializarBotones();
         this.getChildren().add(etiquetaCartasDisponibles);
-        this.puntoX = 160;
+        this.puntoX = 260;
         this.puntoY = 530;
         this.relocate(this.puntoX, this.puntoY);
         this.setVisible(false);
@@ -92,7 +99,7 @@ public class MenuCartas extends StackPane implements Observer {
     public void aparecerMenu(MouseEvent evento){
         if(this.isVisible()){
             ocultarMenu(evento);
-        }else{
+        }else if(this.ronda.puedeColocar()){
             this.setVisible(true);
         }
     }
@@ -108,15 +115,16 @@ public class MenuCartas extends StackPane implements Observer {
     }
 
     private void actualizarTarjetasDisponibles(){
-        this.eleccionTarjeta1.getItems().removeAll();
-        this.eleccionTarjeta2.getItems().removeAll();
-        this.eleccionTarjeta3.getItems().removeAll();
+        this.getChildren().remove(this.eleccionTarjeta1);
+        this.getChildren().remove(this.eleccionTarjeta2);
+        this.getChildren().remove(this.eleccionTarjeta3);
+        inicializarComboBox();
         for( Tarjeta tar : this.tarjetasDisponibles){
             String simbolo = stringPorSigno(tar.obtenerSigno().getIdentificador());
             String nombrePaisTarjeta = simbolo + " " + tar.getPais().getNombre();
-            eleccionTarjeta1.getItems().add(nombrePaisTarjeta);
-            eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
-            eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
+            this.eleccionTarjeta1.getItems().add(nombrePaisTarjeta);
+            this.eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
+            this.eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
         }
     }
 

@@ -66,6 +66,13 @@ public class VistaDados extends StackPane implements Observer {
         this.imagenesDados.add(imagenDado4);
         this.imagenesDados.add(imagenDado5);
         this.imagenesDados.add(imagenDado6);
+        String rutaDadoGanador = "./src/imagenes/tildeAfirmativo.png";
+        String rutaDadoPerdedor = "./src/imagenes/cruzNegadora.png";
+        FileInputStream inputImagenDadoGanador = new FileInputStream(rutaDadoGanador);
+        this.dadoGanador = new Image(inputImagenDadoGanador);
+        FileInputStream inputImagenDadoPerdedor = new FileInputStream(rutaDadoPerdedor);
+        this.dadoPerdedor = new Image(inputImagenDadoPerdedor);
+
     }
 
     private void inicializarInterfazDados() throws IOException{
@@ -78,10 +85,10 @@ public class VistaDados extends StackPane implements Observer {
 
     private void inicializarEtiquetasJugadores(){
         Label etiquetaAtacante = new Label("Dados del atacante:");
-        etiquetaAtacante.setTranslateY(-60);
+        etiquetaAtacante.setTranslateY(-100);
         etiquetaAtacante.setTranslateX(-140);
         Label etiquetaDefensor = new Label("Dados del defensor:");
-        etiquetaDefensor.setTranslateY(45);
+        etiquetaDefensor.setTranslateY(5);
         etiquetaDefensor.setTranslateX(-140);
         this.getChildren().add(etiquetaAtacante);
         this.getChildren().add(etiquetaDefensor);
@@ -109,14 +116,14 @@ public class VistaDados extends StackPane implements Observer {
             this.dadosAtacante.get(i).setTranslateX(-140+(i)*145);
             this.dadosAtacante.get(i).setTranslateY(-55);
             this.resultadoDadosAtacante.add(new ImageView());
-            this.resultadoDadosAtacante.get(i).setTranslateX(-135+(i)*145);
-            this.resultadoDadosAtacante.get(i).setTranslateY(-60);
+            this.resultadoDadosAtacante.get(i).setTranslateX(-170+(i)*145);
+            this.resultadoDadosAtacante.get(i).setTranslateY(-15);
             this.dadosDefensor.add(new ImageView());
             this.dadosDefensor.get(i).setTranslateX(-140+(i)*145);
             this.dadosDefensor.get(i).setTranslateY(55);
             this.resultadoDadosDefensor.add(new ImageView());
-            this.resultadoDadosDefensor.get(i).setTranslateX(-135+(i)*145);
-            this.resultadoDadosDefensor.get(i).setTranslateY(50);
+            this.resultadoDadosDefensor.get(i).setTranslateX(-170+(i)*145);
+            this.resultadoDadosDefensor.get(i).setTranslateY(95);
             this.getChildren().add(this.dadosAtacante.get(i));
             this.getChildren().add(this.dadosDefensor.get(i));
             this.getChildren().add(this.resultadoDadosAtacante.get(i));
@@ -134,15 +141,15 @@ public class VistaDados extends StackPane implements Observer {
     }
 
     private void establecerDadoDefensorGanador(int indice){
-        this.resultadoDadosDefensor.get(indice).setImage(dadoGanador);
-        this.resultadoDadosAtacante.get(indice).setImage(dadoPerdedor);
+        this.resultadoDadosDefensor.get(indice).setImage(this.dadoGanador);
+        this.resultadoDadosAtacante.get(indice).setImage(this.dadoPerdedor);
         this.resultadoDadosAtacante.get(indice).setVisible(true);
         this.resultadoDadosDefensor.get(indice).setVisible(true);
     }
 
     private void establecerDadoAtacanteGanador(int indice){
-        this.resultadoDadosAtacante.get(indice).setImage(dadoGanador);
-        this.resultadoDadosDefensor.get(indice).setImage(dadoPerdedor);
+        this.resultadoDadosAtacante.get(indice).setImage(this.dadoGanador);
+        this.resultadoDadosDefensor.get(indice).setImage(this.dadoPerdedor);
         this.resultadoDadosAtacante.get(indice).setVisible(true);
         this.resultadoDadosDefensor.get(indice).setVisible(true);
     }

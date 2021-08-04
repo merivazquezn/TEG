@@ -52,11 +52,14 @@ public class App extends Application {
 
         ArrayList<Objetivo> listaObjetivos = parser.getObjetivos();
 
+        ArrayList<Tarjeta> tarjetas = parser.getTarjetas();
+
         ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador(), listaObjetivos);
 
         RepartidorDePaises repartidorDePaises = new RepartidorDePaises(paises, listaJugadores);
         repartidorDePaises.repartirPaisesPorJugadores();
-        Mazo mazo = new Mazo(new ArrayList<>(), new Randomizador());
+
+        Mazo mazo = new Mazo(tarjetas, new Randomizador());
         this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
         this.ronda = new Ronda(tablero, listaJugadores);
 
@@ -115,6 +118,7 @@ public class App extends Application {
             panel.getChildren().add(this.vistaDados);
             panel.getChildren().add(this.menuObjetivo);
             panel.getChildren().add(this.menuReagrupar);
+            panel.getChildren().add(this.menuCartas);
 
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 this.panelMenuAtaque.ocultarMenu(e);
