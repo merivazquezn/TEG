@@ -1,50 +1,50 @@
-Francia,Europa,"Alemania;España;Italia",0,0
-Gran Bretaña,Europa,"Islandia;Alemania;España",0,0
-Tartaria,Asia,"Aral;Taymir;Siberia",0,0
-Mongolia,Asia,"Aral;Siberia;Iran;Gobi;China",0,0
-Zaire,Africa,"Madagascar;Sudafrica;Etiopia;Sahara",0,0
-Polonia,Europa,"Alemania;Rusia;Turquia;Egipto",0,0
-Oregon,América Del Norte,"Alaska;Yukon;Canada;Nueva York;California",0,0
-Etiopia,Africa,"Sahara;Egipto;Zaire;Sudafrica",0,0
-Chile,América Del Sur,"Argentina;Peru;Australia",0,0
-Australia,Oceanía,"Chile;Sumatra;Java;Borneo",0,0
-Kamtchatka,Asia,"Siberia;China;Japon;Alaska",0,0
-Egipto,Africa,"Polonia;Turquia;Israel;Madagascar;Etiopia;Sahara",0,0
-Turquia,Asia,"Egipto;Polonia;Rusia;Iran;Israel;Arabia",0,0
-Nueva York,América Del Norte,"Groenlandia;Canada;Oregon;California;Terranova",0,0
-Terranova,América Del Norte,"Labrador;Canada;Nueva York",0,0
-Iran,Asia,"Aral;Mongolia;Gobi;China;India;Turquia;Rusia",0,0
-Madagascar,Africa,"Egipto;Zaire",0,0
-Argentina,América Del Sur,"Chile;Peru;Brasil;Uruguay",0,0
-Israel,Asia,"Turquia;Arabia;Egipto",0,0
-Rusia,Europa,"Suecia;Aral;Iran;Turquia;Polonia",0,0
-Borneo,Oceanía,"Australia;Malasia",0,0
-California,América Del Norte,"Oregon;Nueva York;Mexico",0,0
-Taymir,Asia,"Tartaria;Siberia",0,0
-Aral,Asia,"Rusia;Iran;Mongolia;Siberia;Tartaria",0,0
-Siberia,Asia,"Aral;Tartaria;Taymir;Kamtchatka;China;Mongolia",0,0
-Canada,América Del Norte,"Yukon;Oregon;Nueva York;Terranova",0,0
-Sahara,Africa,"Brasil;España;Egipto;Etiopia;Zaire",0,0
-Yukon,América Del Norte,"Alaska;Canada;Oregon",0,0
-Uruguay,América Del Sur,"Argentina;Brasil",0,0
-Groenlandia,América Del Norte,"Labrador;Nueva York;Islandia",0,0
-Japon,Asia,"Kamtchatka;China",0,0
-Sumatra,Oceanía,"Australia;India",0,0
-Alaska,América Del Norte,"Yukon;Oregon;Kamtchatka",0,0
-Brasil,América Del Sur,"Colombia;Peru;Argentina;Uruguay;Sahara",0,0
-Gobi,Asia,"Mongolia;China;Iran",0,0
-Italia,Europa,"Alemania;Francia",0,0
-España,Europa,"Sahara;Francia;Gran Bretaña",0,0
-Colombia,América Del Sur,"Mexico;Peru;Brasil",0,0
-Suecia,Europa,"Rusia;Islandia",0,0
-Sudafrica,Africa,"Zaire;Etiopia",0,0
-Arabia,Asia,"Turquia;Israel",0,0
-India,Asia,"China;Malasia;Iran;Sumatra",0,0
-Java,Oceanía,"Australia",0,0
-Mexico,América Del Norte,"Colombia;California",0,0
-Peru,América Del Sur,"Colombia;Brasil;Chile;Argentina",0,0
-Alemania,Europa,"Polonia;Italia;Gran Bretaña;Francia",0,0
-China,Asia,"Kamtchatka;Siberia;Mongolia;Gobi;Iran;India;Malasia;Japon",0,0
-Labrador,América Del Norte,"Groenlandia;Terranova",0,0
-Islandia,Europa,"Groenlandia;Suecia;Gran Bretaña",0,0
-Malasia,Asia,"China;India;Borneo",0,0
+Sudafrica,Africa,"Madagascar;Mozambique;Angola;Antártida",429,457
+Mozambique,Africa,"Sudáfrica;Sudan;Angola",493,437
+Madagascar,Africa,"Sudan;Sudáfrica",514,495
+Angola,Africa,"Sudáfrica;Mozambique;Sudan;Congo",456,401
+Congo,Africa,"Angola;Mozambique;Sudan;Etiopia;Chad",491,355
+Chad,Africa,"Congo;Etiopia;Libia;Argelia;Mauritania",497,298
+Etiopia,Africa,"Libia;Egipto;Chad;Congo;Sudan",568,348
+Sudan,Africa,"Madagascar;Etiopia;Congo;Angola;Mozambique",547,397
+Egipto,Africa,"Libia;Etiopia;Arabia",597,307
+Mauritania,Africa,"Chad;Argelia;Brasil",456,230
+Argelia,Africa,"Chad;Mauritania;Libia;España",526,230
+Libia,Africa,"Chad;Argelia;Sudan;Egipto",560,266
+Arabia,Asia,"Turquía;Iran;Egipto",636,365
+Turquía,Asia,"Arabia;Iran;Rusia Central",667,315
+India,Asia,"China;Iran;Mongolia;Kazajistán;Sumatra",723,455
+Iran,Asia,"Arabia;Turquía;Kazajistán;India",689,380
+China,Asia,"Mongolia;India;Filipinas",821,478
+Kazajistán,Asia,"Iran;India;Mongolia;Volga;Siberia",733,375
+Mongolia,Asia,"China;India;Kazajistán;Siberia;Rusia Del Este",804,418
+Siberia,Asia,"Rusia Del Este;Mongolia;Kazajistán;Volga;Ural",816,339
+Volga,Asia,"Siberia;Kazajistán;Ural;Rusia Central",753,323
+Rusia Central,Asia,"Turquía;Volga;Ural",710,300
+Ural,Asia,"Rusia Central;Volga;Siberia",771,282
+Rusia Del Este,Asia,"Mongolia;Siberia;Java;Alaska",892,361
+España,Europa,"Francia;Argelia",590,172
+Europa Central,Europa,"Francia;Europa Del Este; Finlandia",667,217
+Europa Del Este,Europa,"Finlandia; Europa Central",690,255
+Francia,Europa,"España;Europa Central;Groenlandia",637,187
+Finlandia,Europa,"Europa Central;Europa Del Este",757,209
+Queensland,Oceanía,"Australia Central; Java;Argentina",1123,725
+Australia Central,Oceanía,"Queensland;Australia Del Oeste;Filipinas",976,729
+Australia Del Oeste,Oceanía,"Sumatra;Australia Central",833,751
+Sumatra,Oceanía,"Australia Del Oeste;India",769,595
+Java,Oceanía,"Queensland;Rusia Del Este",999,623
+Filipinas,Oceanía,"Australia Central;China",839,601
+Groenlandia,América Del Norte,"Alaska;Canadá;Francia",867,134
+Alaska,América Del Norte,"Groenlandia;California;Colorado;Michigan;Rusia Del Este",1070,189
+Mexico,América Del Norte,"California;Colorado;Texas;Colombia",1274,195
+California,América Del Norte,"Mexico;Colorado;Alaska",1164,214
+Canadá,América Del Norte,"Groenlandia;Nueva York;Michigan",1039,53
+Colorado,América Del Norte,"Alaska;Mexico;California;Texas;Michigan",1169,174
+Texas,América Del Norte,"Mexico;Colorado;Nueva York;Michigan",1257,128
+Nueva York,América Del Norte,"Canadá;Michigan;Texas",1250,60
+Michigan,América Del Norte,"Canadá;Nueva York;Texas;Colorado;Alaska",1140,105
+Antártida,América Del Sur,"Argentina;Uruguay;Sudáfrica",203,631
+Argentina,América Del Sur,"Antártida;Uruguay;Brasil;Perú;Queensland",141,362
+Uruguay,América Del Sur,"Argentina;Brasil",178,340
+Brasil,América Del Sur,"Argentina;Uruguay;Perú;Colombia;Mauritania",201,256
+Perú,América Del Sur,"Argentina;Brasil;Colombia",124,273
+Colombia,América Del Sur,"Brasil;Perú;Mexico",83,205

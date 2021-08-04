@@ -11,31 +11,14 @@ public class EstadoReagrupar {
     private Pais destino = null;
     private int cantidad = 0;
     private boolean recibeDestino = false;
-    private boolean puedeSerModificado = true;
 
     public EstadoReagrupar(Ronda ronda){
         this.ronda = ronda;
     }
 
-    public void limitarPaises(Pais unPais, Pais otroPais){
-        this.origen = unPais;
-        this.destino = otroPais;
-        this.puedeSerModificado = false;
-    }
-
-    public void noLimitarPaises(){
-        this.puedeSerModificado = true;
-    }
-
-    public boolean puedeSerModificado(){
-        return this.puedeSerModificado;
-    }
 
     public void agregarPais(Pais unPais, int cantidad){
-        if(!this.puedeSerModificado){
-            ControladorMenuReagrupar.realizarJugada(this.ronda, this.origen, this.destino, cantidad);
-            return;
-        }
+
         if(!recibeDestino) {
             if (unPais.getCantidadEjercitos() > 1){
                 this.destino = null;
@@ -67,19 +50,9 @@ public class EstadoReagrupar {
         return this.recibeDestino;
     }
 
-    public boolean elDestinoEs(Pais unPais){
-        return (unPais.equals(this.destino));
-    }
-
     public void resetear() {
         this.recibeDestino = false;
         this.cantidad = 0;
-    }
-
-    public int maximaCantidadEjercitosTransferibles(Pais unPais){
-        if(!this.puedeSerModificado)
-            return (this.origen.getCantidadEjercitos()-1);
-        return (unPais.getCantidadEjercitos()-1);
     }
 
 }

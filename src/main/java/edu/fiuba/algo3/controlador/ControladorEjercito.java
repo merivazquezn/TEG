@@ -23,21 +23,23 @@ public class ControladorEjercito {
 
     public void tocarPais(MouseEvent e, Pais unPais){
         if(this.ronda.puedeColocar()) {
-
             this.panelMenuColocacion.aparecerMenu(e,unPais);
-        }
-        else if(this.ronda.seProdujoConquista()){
-            this.panelMenuReagrupar.aparecerMenu(e,unPais);
-            Pais origen = this.ronda.getConquistador();
-            Pais destino = this.ronda.getConquistado();
-            this.panelMenuReagrupar.limitarPaises(origen, destino);
         }
         else if(this.ronda.sePuedeReagrupar()){
             this.panelMenuReagrupar.aparecerMenu(e,unPais);
-            this.panelMenuReagrupar.noEstaLimitado();
         }
         else{
             this.panelMenuAtaque.aparecerMenu(e,unPais);
+/*
+TODO: AGREGAR ALERTA TRANSFERENCIA EJERCITOS LUEGO DE CONQUISTA
+
+            if(this.ronda.seProdujoConquista()){
+                //
+                //this.panelMenuReagruparConquista.aparecerMenu(e,unPais);
+                Pais origen = this.ronda.getConquistador();
+                Pais destino = this.ronda.getConquistado();
+            }
+            */
         }
     }
 

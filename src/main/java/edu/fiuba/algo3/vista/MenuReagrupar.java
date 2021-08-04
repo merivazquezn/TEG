@@ -61,14 +61,6 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.imagenDesdeIzquierda.setVisible(false);
     }
 
-    public void limitarPaises(Pais origen, Pais destino){
-        this.estadoActual.limitarPaises(origen, destino);
-    }
-
-    public void noEstaLimitado(){
-        this.estadoActual.noLimitarPaises();
-    }
-
     public MenuReagrupar(Ronda ronda) throws IOException {
         establecerImagenes();
         this.ronda = ronda;
@@ -120,14 +112,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.botonMenuReagrupacion.setVisible(false);
         this.inputCantidad.setVisible(false);
 
-        if(!this.estadoActual.puedeSerModificado()){
-            if(this.estadoActual.elDestinoEs(unPais)){
-                this.botonMenuReagrupacion.setVisible(true);
-                this.botonMenuReagrupacion.setText("Confirmar transferencia");
-                this.inputCantidad.setVisible(true);
-            }
-        }
-        else if(this.estadoActual.visibilizaOrigen(this.jugadorActual, unPais)){
+        if(this.estadoActual.visibilizaOrigen(this.jugadorActual, unPais)){
             this.botonMenuReagrupacion.setVisible(true);
             this.botonMenuReagrupacion.setText("Mover ejercitos");
             this.inputCantidad.setVisible(true);
@@ -145,7 +130,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.paisActual = unPais;
 
         if (!estadoActual.paisOrigenIngresado())
-            this.CANTMAXIMAEJERCITOSTRANSFERIBLES = this.estadoActual.maximaCantidadEjercitosTransferibles(unPais);
+            this.CANTMAXIMAEJERCITOSTRANSFERIBLES = unPais.getCantidadEjercitos()-1;
 
         this.setVisible(true);
         this.aparecer(evento.getSceneX(), evento.getSceneY());
@@ -162,7 +147,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         else if(evento.getSceneX() < 100){
             this.imagenDesdeIzquierda.setVisible(true);
         }
-        else{
+        else {
             this.imagenDesdeAbajo.setVisible(true);
         }
     }
