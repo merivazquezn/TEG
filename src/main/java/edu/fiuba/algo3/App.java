@@ -39,6 +39,7 @@ public class App extends Application {
     private MenuCartas menuCartas;
     private MenuReagrupar menuReagrupar;
     private MenuReagruparPorConquista menuReagruparPorConquista;
+    private MenuJuegoTerminado menuJuegoTerminado;
 
     public void inicializarJuego(int cantidadJugadores) throws IOException{
         String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
@@ -68,6 +69,7 @@ public class App extends Application {
         this.menuReagrupar = new MenuReagrupar(this.ronda);
         this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion, this.menuReagrupar);
         this.menuReagruparPorConquista = new MenuReagruparPorConquista(this.ronda);
+        this.menuJuegoTerminado = new MenuJuegoTerminado(this.ronda);
         this.vistaEjercitos = new ArrayList<>();
         for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
             Pais unPais = entry.getKey();
@@ -96,6 +98,7 @@ public class App extends Application {
             this.ronda.addObserver(this.menuReagrupar);
             this.ronda.addObserver(this.menuReagruparPorConquista);
             this.ronda.addObserver(this.menuCartas);
+            this.ronda.addObserver(this.menuJuegoTerminado);
             this.tablero.addObserver(this.vistaDados);
             Pane panel = new Pane(interfaz);
             Scene scene = new Scene(panel, 1440, 819);
@@ -119,12 +122,14 @@ public class App extends Application {
             panel.getChildren().add(this.menuObjetivo);
             panel.getChildren().add(this.menuReagrupar);
             panel.getChildren().add(this.menuCartas);
+            panel.getChildren().add(this.menuJuegoTerminado);
 
             panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 this.panelMenuAtaque.ocultarMenu(e);
                 this.panelMenuColocacion.ocultarMenu(e);
                 this.menuObjetivo.ocultarMenu(e);
                 this.menuReagrupar.ocultarMenu(e);
+                this.menuCartas.ocultarMenu(e);
             });
             stage.setScene(scene);
             stage.centerOnScreen();

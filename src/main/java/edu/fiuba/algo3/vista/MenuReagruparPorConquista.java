@@ -72,6 +72,7 @@ public class MenuReagruparPorConquista extends StackPane implements Observer {
             this.paisOrigen = this.ronda.getConquistador();
             this.paisDestino = this.ronda.getConquistado();
             this.cantidadMaximaReagrupacion = this.paisOrigen.getCantidadEjercitos() - 1;
+            this.inputCantidad.setText("0");
         }
     }
 }

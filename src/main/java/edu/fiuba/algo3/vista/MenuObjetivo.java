@@ -14,8 +14,8 @@ import java.io.IOException;
 
 public class MenuObjetivo extends StackPane {
 
-    private double puntoX;
-    private double puntoY;
+    private static final double puntoX = 60;
+    private static final double puntoY = 530;
     private Ronda ronda;
     private Label nombreObjetivo;
     private Label descripcionObjetivo;
@@ -33,8 +33,6 @@ public class MenuObjetivo extends StackPane {
         this.getChildren().add(this.interfazObjetivo);
         this.getChildren().add(this.nombreObjetivo);
         this.getChildren().add(this.descripcionObjetivo);
-        this.puntoX = 60;
-        this.puntoY = 530;
         this.relocate(this.puntoX, this.puntoY);
     }
 

@@ -110,11 +110,6 @@ public class InterfazUsuario extends StackPane implements Observer {
         FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.interfaz = new ImageView(imagenInterfaz);
-        FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/interfazJuegoFinalizado.png");
-        Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
-        this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
-        this.interfazJuegoTerminado.setTranslateY(-800);
-        //this.getChildren().add(this.interfazJuegoTerminado);
         this.getChildren().add(this.interfaz);
         this.setTranslateY(785);
         this.setTranslateX(120);
@@ -142,17 +137,12 @@ public class InterfazUsuario extends StackPane implements Observer {
             this.botonObjetivo.setVisible(false);
             this.botonCartas.setVisible(false);
             this.botonTerminarTurno.setVisible(false);
-            this.interfazJuegoTerminado.setVisible(true);
-            String ganador = AsignadorDeColores.jugadorActualSegunElNumero(this.ronda.jugadorGanador().getNumero());
-            Label jugadorGanador = new Label("Jugador ganador:\n" + ganador);
-            this.getChildren().add(jugadorGanador);
-            jugadorGanador.relocate(400, 400);
         }
     }
 
     @Override
     public void update(Observable o, Object arg) {
         actualizarInformacionRonda();
-        //verificarJuegoTerminado();
+        verificarJuegoTerminado();
     }
 }

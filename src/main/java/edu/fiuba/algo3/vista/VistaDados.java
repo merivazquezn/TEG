@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.ControladorMenuColocacion;
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+import javax.sound.sampled.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,10 +33,28 @@ public class VistaDados extends StackPane implements Observer {
 
     static final int MAX_DADOS = 3;
 
+    private void ejecutarSonidoPelea(){
+        try {
+            IRandomizador randomizador = new Randomizador();
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/pelea1.wav"));
+            if(randomizador.generar(0, 2) == 1) {
+                audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/pelea2.wav"));
+            }
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void inicializarBotonCerrar(){
         this.botonCerrar = new Button("X");
         this.botonCerrar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             this.setVisible(false);
+            ejecutarSonidoPelea();
             e.consume();
         });
         this.botonCerrar.setTranslateX(220);
@@ -175,6 +197,20 @@ public class VistaDados extends StackPane implements Observer {
         ArrayList<Integer> valoresAtacante = this.tablero.getUltimosDadosAtacante();
         ArrayList<Integer> valoresDefensor = this.tablero.getUltimosDadosDefensor();
         actualizarDados(valoresAtacante, valoresDefensor);
+        try {
+            IRandomizador randomizador = new Randomizador();
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/dados2.wav"));
+            if(randomizador.generar(0, 2) == 1) {
+                audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/dados1.wav"));
+            }
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
         this.setVisible(true);
     }
 

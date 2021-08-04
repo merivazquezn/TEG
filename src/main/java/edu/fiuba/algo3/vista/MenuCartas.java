@@ -20,8 +20,8 @@ import java.util.Observer;
 
 public class MenuCartas extends StackPane implements Observer {
 
-    private double puntoX;
-    private double puntoY;
+    private static final double puntoX = 260;
+    private static final double puntoY = 530;
     private Ronda ronda;
     private ImageView interfazCartas;
     private Button activarTarjeta;
@@ -38,9 +38,9 @@ public class MenuCartas extends StackPane implements Observer {
         this.eleccionTarjeta1.setTranslateY(-80);
         this.eleccionTarjeta2.setTranslateY(-30);
         this.eleccionTarjeta3.setTranslateY(20);
-        this.eleccionTarjeta1.setTranslateX(-50);
-        this.eleccionTarjeta2.setTranslateX(-50);
-        this.eleccionTarjeta3.setTranslateX(-50);
+        this.eleccionTarjeta1.setTranslateX(-70);
+        this.eleccionTarjeta2.setTranslateX(-70);
+        this.eleccionTarjeta3.setTranslateX(-70);
         this.getChildren().add(this.eleccionTarjeta1);
         this.getChildren().add(this.eleccionTarjeta2);
         this.getChildren().add(this.eleccionTarjeta3);
@@ -49,7 +49,7 @@ public class MenuCartas extends StackPane implements Observer {
     private void inicializarBotones(){
         this.activarTarjeta = new Button("Activar Tarjeta");
         this.activarTarjeta.setTranslateY(-80);
-        this.activarTarjeta.setTranslateX(60);
+        this.activarTarjeta.setTranslateX(100);
         this.activarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int tarjetaSeleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
             if(this.ronda.puedeColocar() && tarjetaSeleccionada >= 0)
@@ -90,8 +90,6 @@ public class MenuCartas extends StackPane implements Observer {
         inicializarComboBox();
         inicializarBotones();
         this.getChildren().add(etiquetaCartasDisponibles);
-        this.puntoX = 260;
-        this.puntoY = 530;
         this.relocate(this.puntoX, this.puntoY);
         this.setVisible(false);
     }
