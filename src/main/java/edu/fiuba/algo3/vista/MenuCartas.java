@@ -112,7 +112,8 @@ public class MenuCartas extends StackPane implements Observer {
         this.eleccionTarjeta2.getItems().removeAll();
         this.eleccionTarjeta3.getItems().removeAll();
         for( Tarjeta tar : this.tarjetasDisponibles){
-            String nombrePaisTarjeta = tar.getPais().getNombre();
+            String simbolo = stringPorSigno(tar.obtenerSigno().getIdentificador());
+            String nombrePaisTarjeta = simbolo + " " + tar.getPais().getNombre();
             eleccionTarjeta1.getItems().add(nombrePaisTarjeta);
             eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
             eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
@@ -125,6 +126,19 @@ public class MenuCartas extends StackPane implements Observer {
         Jugador jugadorActual = this.ronda.jugadorActual();
         this.tarjetasDisponibles = jugadorActual.obtenerTarjetas();
         actualizarTarjetasDisponibles();
+    }
+
+    public String stringPorSigno(int identificadorSigno){
+        switch(identificadorSigno){
+            case 0:
+                return "#";
+            case 1:
+                return "-";
+            case 2:
+                return "+";
+            default:
+                return "*";
+        }
     }
 
 }
