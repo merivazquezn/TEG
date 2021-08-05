@@ -154,12 +154,7 @@ public class App extends Application {
         " realizar ataques y defenderse de ataques adversarios, y agrupar y desplazar ejercitos.\n" +
         " La conquista de nuevos territorios le permitira aumentar el numero de ejercitos a su disposicion\n" +
         "otorgandole mayores chances para triunfar en los combates.\n";
-<<<<<<< Updated upstream
-        
-=======
 
-
->>>>>>> Stashed changes
         var mensajeDescripcion1 = new Label(mensajeDescripcion);
         var mensajeCantidadJugadores = new Label("Cantidad de jugadores:");
         mensajeCantidadJugadores.setStyle("-fx-font: 22 arial;");
