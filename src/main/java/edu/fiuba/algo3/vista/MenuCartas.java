@@ -2,8 +2,11 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.ControladorMenuCartas;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
+import edu.fiuba.algo3.modelo.general.ConjuntoTarjetas;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -41,6 +44,9 @@ public class MenuCartas extends StackPane implements Observer {
         this.eleccionTarjeta1.setTranslateX(-70);
         this.eleccionTarjeta2.setTranslateX(-70);
         this.eleccionTarjeta3.setTranslateX(-70);
+        this.eleccionTarjeta1.valueProperty().addListener((observableValue, s, t1) -> seProdujoCambioDeElecciones());
+        this.eleccionTarjeta2.valueProperty().addListener((observableValue, s, t1) -> seProdujoCambioDeElecciones());
+        this.eleccionTarjeta3.valueProperty().addListener((observableValue, s, t1) -> seProdujoCambioDeElecciones());
         this.getChildren().add(this.eleccionTarjeta1);
         this.getChildren().add(this.eleccionTarjeta2);
         this.getChildren().add(this.eleccionTarjeta3);
@@ -75,6 +81,7 @@ public class MenuCartas extends StackPane implements Observer {
             this.setVisible(false);
             e.consume();
         });
+        this.canjearTarjetas.setVisible(false);
         this.getChildren().add(this.activarTarjeta);
         this.getChildren().add(this.canjearTarjetas);
     }
@@ -124,6 +131,10 @@ public class MenuCartas extends StackPane implements Observer {
             this.eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
             this.eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
         }
+        this.eleccionTarjeta1.getSelectionModel().selectFirst();
+        this.eleccionTarjeta2.getSelectionModel().selectFirst();
+        this.eleccionTarjeta3.getSelectionModel().selectFirst();
+        seProdujoCambioDeElecciones();
     }
 
     @Override
@@ -144,6 +155,24 @@ public class MenuCartas extends StackPane implements Observer {
                 return "+";
             default:
                 return "*";
+        }
+    }
+
+    private void seProdujoCambioDeElecciones(){
+        this.canjearTarjetas.setVisible(false);
+        if(this.tarjetasDisponibles.size() < 3){
+            return;
+        }
+        int tarjeta1Seleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
+        int tarjeta2Seleccionada = this.eleccionTarjeta2.getSelectionModel().getSelectedIndex();
+        int tarjeta3Seleccionada = this.eleccionTarjeta3.getSelectionModel().getSelectedIndex();
+        if(tarjeta1Seleccionada < 0 || tarjeta2Seleccionada < 0 || tarjeta3Seleccionada < 0)
+            return;
+        Tarjeta tarjeta1 = this.tarjetasDisponibles.get(tarjeta1Seleccionada);
+        Tarjeta tarjeta2 = this.tarjetasDisponibles.get(tarjeta2Seleccionada);
+        Tarjeta tarjeta3 = this.tarjetasDisponibles.get(tarjeta3Seleccionada);
+        if (ConjuntoTarjetas.sonCanjeables(tarjeta1, tarjeta2, tarjeta3)) {
+            this.canjearTarjetas.setVisible(true);
         }
     }
 

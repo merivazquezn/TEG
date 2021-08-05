@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.general;
 
 import edu.fiuba.algo3.modelo.ataque.CantidadInvalidaDeDadosError;
+import edu.fiuba.algo3.modelo.flujoDeJuego.TarjetasRepetidasException;
 
 import java.util.ArrayList;
 
@@ -16,15 +17,18 @@ public class ConjuntoTarjetas {
         this.tarjeta3 = tarjeta3;
         this.mazo = mazo;
     }
-    private boolean sonCanjeables(){
-        boolean sonDeMismoSigno = (this.tarjeta1.mismoSignoQue(this.tarjeta2) && this.tarjeta1.mismoSignoQue(this.tarjeta3));
-        boolean sonDeSignosDistintos = (!this.tarjeta1.mismoSignoQue(this.tarjeta2) && !this.tarjeta1.mismoSignoQue(this.tarjeta3) && !this.tarjeta2.mismoSignoQue(this.tarjeta3));
+
+    public static boolean sonCanjeables(Tarjeta tarjeta1, Tarjeta tarjeta2, Tarjeta tarjeta3){
+        if(tarjeta1 == tarjeta2 || tarjeta1 == tarjeta3 || tarjeta2 == tarjeta3)
+            return false;
+        boolean sonDeMismoSigno = (tarjeta1.mismoSignoQue(tarjeta2) && tarjeta1.mismoSignoQue(tarjeta3));
+        boolean sonDeSignosDistintos = (!tarjeta1.mismoSignoQue(tarjeta2) && !tarjeta1.mismoSignoQue(tarjeta3) && !tarjeta2.mismoSignoQue(tarjeta3));
 
         return (sonDeMismoSigno || sonDeSignosDistintos);
     }
 
     public boolean sePudoCanjear(){
-        if(this.sonCanjeables()){
+        if(ConjuntoTarjetas.sonCanjeables(this.tarjeta1, this.tarjeta2, this.tarjeta3)){
             this.mazo.agregarTarjetas(this.tarjeta1, this.tarjeta2, this.tarjeta3);
             return true;
         }

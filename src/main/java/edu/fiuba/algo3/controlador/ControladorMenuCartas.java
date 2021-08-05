@@ -16,6 +16,8 @@ public class ControladorMenuCartas {
         Jugada jugada = new JugadaActivarTarjetas(unaTarjeta);
         ronda.realizarJugada(jugada);
         ronda.notifyObservers();
+        Pais pais = unaTarjeta.getPais();
+        pais.notifyObservers();
     }
 
 }

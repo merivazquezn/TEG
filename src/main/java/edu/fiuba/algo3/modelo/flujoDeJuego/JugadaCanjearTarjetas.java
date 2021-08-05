@@ -12,8 +12,6 @@ public class JugadaCanjearTarjetas implements Jugada{
     private Tarjeta tarjeta3;
 
     public JugadaCanjearTarjetas(Tarjeta tarjeta1, Tarjeta tarjeta2, Tarjeta tarjeta3){
-        if(tarjeta1 == tarjeta2 || tarjeta1 == tarjeta3 || tarjeta2 == tarjeta3)
-            throw new TarjetasRepetidasException();
         this.tarjeta1 = tarjeta1;
         this.tarjeta2 = tarjeta2;
         this.tarjeta3 = tarjeta3;
