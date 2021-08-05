@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.general;
 
 
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.jugador.JugadorNoTieneElPaisException;
@@ -9,6 +10,9 @@ import edu.fiuba.algo3.modelo.general.Tarjeta;
 
 import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -157,6 +161,31 @@ public class TarjetaTest {
         assertEquals(pais.getCantidadEjercitos(), 3);
         tarjeta.activar();
         assertEquals(pais.getCantidadEjercitos(), 3);
-
     }
+    @Test
+    public void test12tarjetaSeActivaSeLaAgregaAlMazoYLuegoSeLaPuedeVolverAActivar() {
+
+        Pais pais = new Pais("Argentina");
+        Pais otroPais = new Pais("chile");
+        Pais otroPaisMas = new Pais("Uruguay");
+
+        Tarjeta tarjeta1 = new Tarjeta(pais, new Signo(0));
+        Tarjeta tarjeta2 = new Tarjeta(otroPais, new Signo(0));
+        Tarjeta tarjeta3 = new Tarjeta(otroPaisMas, new Signo(0));
+
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
+        ArrayList<Tarjeta> listaTarjetas = new ArrayList<>();
+        listaTarjetas.add(tarjeta1);
+        listaTarjetas.add(tarjeta2);
+        listaTarjetas.add(tarjeta3);
+        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+        pais.asignarJugador(jugador);
+        tarjeta1.asignarJugador(jugador);
+        tarjeta1.activar();
+        assertEquals(pais.getCantidadEjercitos(), 3);
+
+        tarjeta1.activar();
+        assertEquals(pais.getCantidadEjercitos(), 3);
+    }
+
 }
