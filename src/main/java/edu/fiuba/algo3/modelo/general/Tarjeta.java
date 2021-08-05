@@ -10,12 +10,14 @@ public class Tarjeta {
     private final Pais pais;
     private Jugador jugador;
     private Signo signo;
+    private boolean fueActivada;
 
 
     public Tarjeta(Pais pais, Signo signo) {
         this.pais = pais;
         this.jugador = new JugadorNulo();
         this.signo = signo;
+        this.fueActivada = false;
     }
 
     public void asignarJugador(Jugador jugador) {
@@ -27,7 +29,9 @@ public class Tarjeta {
         if(!this.pais.esDeJugador(this.jugador)) {
             throw new JugadorNoTieneElPaisException();
         }
-        pais.colocarEjercitos(2);
+        if(!this.fueActivada)
+            pais.colocarEjercitos(2);
+        this.fueActivada = true;
     }
 
     public boolean mismoSignoQue(Tarjeta tarjeta) {
@@ -43,6 +47,13 @@ public class Tarjeta {
     }
 
     public Jugador getJugador() { return this.jugador; }
+
+    public void desactivar(){
+        this.fueActivada = false;
+    }
+    public boolean fueActivada(){
+        return this.fueActivada;
+    }
 }
 
 

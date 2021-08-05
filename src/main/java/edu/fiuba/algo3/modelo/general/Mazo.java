@@ -27,6 +27,9 @@ public class Mazo {
         this.listaTarjetas.add(t1);
         this.listaTarjetas.add(t2);
         this.listaTarjetas.add(t3);
+        t1.desactivar();
+        t2.desactivar();
+        t3.desactivar();
     }
 
 }

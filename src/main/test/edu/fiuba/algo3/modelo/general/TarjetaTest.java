@@ -145,4 +145,18 @@ public class TarjetaTest {
         assertTrue(tarjeta1.mismoSignoQue(tarjeta3));
     }
 
+    @Test
+    public void test11tarjetaSeActivaYCuandoSeLaQuiereVolverAActivarNoSeAgreganEjercitosAlPais() {
+
+        Pais pais = new Pais("Argentina");
+        Tarjeta tarjeta = new Tarjeta(pais, new Signo(0));
+        Jugador jugador = new Jugador(new ObjetivoDestruir());
+        pais.asignarJugador(jugador);
+        tarjeta.asignarJugador(jugador);
+        tarjeta.activar();
+        assertEquals(pais.getCantidadEjercitos(), 3);
+        tarjeta.activar();
+        assertEquals(pais.getCantidadEjercitos(), 3);
+
+    }
 }
