@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.general.Pais;
 
 public class ControladorMenuColocacion {
     public static void realizarJugada(Ronda ronda, Pais unPais, int cantidadAColocar){
-
         Jugada jugada = new JugadaColocar(unPais, cantidadAColocar);
         ronda.realizarJugada(jugada);
         ronda.notifyObservers();

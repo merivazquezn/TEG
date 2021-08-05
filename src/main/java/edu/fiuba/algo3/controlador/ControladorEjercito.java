@@ -30,16 +30,6 @@ public class ControladorEjercito {
         }
         else{
             this.panelMenuAtaque.aparecerMenu(e,unPais);
-/*
-TODO: AGREGAR ALERTA TRANSFERENCIA EJERCITOS LUEGO DE CONQUISTA
-
-            if(this.ronda.seProdujoConquista()){
-                //
-                //this.panelMenuReagruparConquista.aparecerMenu(e,unPais);
-                Pais origen = this.ronda.getConquistador();
-                Pais destino = this.ronda.getConquistado();
-            }
-            */
         }
     }
 

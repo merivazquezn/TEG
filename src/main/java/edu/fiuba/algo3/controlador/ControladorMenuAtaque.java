@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.general.Pais;
 public class ControladorMenuAtaque {
 
     public static void realizarJugada(Ronda ronda, Pais atacante, Pais defensor){
-
         Jugada jugada = new JugadaAtacar(atacante, defensor);
         ronda.realizarJugada(jugada);
         ronda.notifyObservers();
