@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,6 +33,26 @@ public class MenuAtaque extends StackPane implements Observer {
     private int jugadorActual;
 
     private void establecerImagenes() throws IOException{
+        inicializarVisionDeImagenes();
+
+        agregarVisionDeImagenesAlMenu();
+
+        ocultarVisionDeImagenes();
+    }
+
+    private void ocultarVisionDeImagenes() {
+        this.imagenDesdeAbajo.setVisible(false);
+        this.imagenDesdeArriba.setVisible(false);
+        this.imagenDesdeIzquierda.setVisible(false);
+    }
+
+    private void agregarVisionDeImagenesAlMenu() {
+        this.getChildren().add(this.imagenDesdeAbajo);
+        this.getChildren().add(this.imagenDesdeIzquierda);
+        this.getChildren().add(this.imagenDesdeArriba);
+    }
+
+    private void inicializarVisionDeImagenes() throws FileNotFoundException {
         FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
         FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");
         FileInputStream inputMenuAtaqueArriba = new FileInputStream("./src/imagenes/desplegableArriba.png");
@@ -43,14 +64,6 @@ public class MenuAtaque extends StackPane implements Observer {
         this.imagenDesdeAbajo = new ImageView(imagenMenuAtaqueAbajo);
         this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
         this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
-
-        this.getChildren().add(this.imagenDesdeAbajo);
-        this.getChildren().add(this.imagenDesdeIzquierda);
-        this.getChildren().add(this.imagenDesdeArriba);
-
-        this.imagenDesdeAbajo.setVisible(false);
-        this.imagenDesdeArriba.setVisible(false);
-        this.imagenDesdeIzquierda.setVisible(false);
     }
 
     public MenuAtaque(Ronda ronda) throws IOException {
@@ -105,9 +118,7 @@ public class MenuAtaque extends StackPane implements Observer {
         this.aparecer(evento.getSceneX(), evento.getSceneY());
         this.paisActual = unPais;
         this.etiquetaMenuAtaque.setText(nombrePais);
-        this.imagenDesdeAbajo.setVisible(false);
-        this.imagenDesdeArriba.setVisible(false);
-        this.imagenDesdeIzquierda.setVisible(false);
+        ocultarVisionDeImagenes();
         establecerBotonesVisibles(unPais);
         if(evento.getSceneY() < 100){
             this.imagenDesdeArriba.setVisible(true);
