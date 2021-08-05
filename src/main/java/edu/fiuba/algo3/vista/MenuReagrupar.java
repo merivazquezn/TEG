@@ -19,55 +19,25 @@ import java.util.Observer;
 
 import static java.lang.Integer.parseInt;
 
-public class MenuReagrupar extends StackPane implements Observer {
-    private double puntoX;
-    private double puntoY;
+public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
     private Label etiquetaMenuReagrupacion;
     private Button botonMenuReagrupacion;
     private Button botonCancelar;
 
     private TextField inputCantidad;
 
-    private ImageView imagenDesdeAbajo;
-    private ImageView imagenDesdeIzquierda;
-    private ImageView imagenDesdeArriba;
-
-    private Ronda ronda;
     private int jugadorActual;
     private Pais paisActual;
 
     private EstadoReagrupar estadoActual;
     private int cantidadMaximaTransferible;
 
-    private void establecerImagenes() throws IOException {
-        FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
-        FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");
-        FileInputStream inputMenuAtaqueArriba = new FileInputStream("./src/imagenes/desplegableArriba.png");
-
-        Image imagenMenuAtaqueAbajo = new Image(inputMenuAtaqueAbajo);
-        Image imagenMenuAtaqueIzquierda = new Image(inputMenuAtaqueIzquierda);
-        Image imagenMenuAtaqueArriba = new Image(inputMenuAtaqueArriba);
-
-        this.imagenDesdeAbajo = new ImageView(imagenMenuAtaqueAbajo);
-        this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
-        this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
-
-        this.getChildren().add(this.imagenDesdeAbajo);
-        this.getChildren().add(this.imagenDesdeIzquierda);
-        this.getChildren().add(this.imagenDesdeArriba);
-
-        this.imagenDesdeAbajo.setVisible(false);
-        this.imagenDesdeArriba.setVisible(false);
-        this.imagenDesdeIzquierda.setVisible(false);
-    }
-
     public MenuReagrupar(Ronda ronda) throws IOException {
-        establecerImagenes();
-        this.ronda = ronda;
+        super(ronda, 0, 0);
         this.estadoActual = new EstadoReagrupar(ronda);
         this.jugadorActual = ronda.jugadorActual().getNumero();
         this.etiquetaMenuReagrupacion = new Label("");
-        this.etiquetaMenuReagrupacion.setStyle("-fx-font: 22 arial;");
+        this.etiquetaMenuReagrupacion.setStyle("-fx-text-fill: #f2f2e9; -fx-font-size: 22; -fx-font-weight: bold;");
         this.etiquetaMenuReagrupacion.setTranslateY(-35);
 
         this.botonMenuReagrupacion = new Button("Mover ejercitos");
@@ -80,6 +50,8 @@ public class MenuReagrupar extends StackPane implements Observer {
 
         this.botonCancelar = new Button("Cancelar reagrupacion");
         this.botonCancelar.setTranslateY(25);
+        this.botonCancelar.setStyle("-fx-font-size: 10; -fx-background-color: #f2f2e9;");
+        this.botonCancelar.setMaxWidth(120);
         this.botonCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.resetear();
             this.setVisible(false);
@@ -104,7 +76,6 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.getChildren().add(this.botonMenuReagrupacion);
         this.getChildren().add(this.botonCancelar);
         this.getChildren().add(this.inputCantidad);
-        this.setVisible(false);
     }
 
     public void establecerBotonesVisibles(Pais unPais) {
@@ -135,46 +106,7 @@ public class MenuReagrupar extends StackPane implements Observer {
         this.aparecer(evento.getSceneX(), evento.getSceneY());
         this.etiquetaMenuReagrupacion.setText(nombrePais);
 
-        this.imagenDesdeAbajo.setVisible(false);
-        this.imagenDesdeArriba.setVisible(false);
-        this.imagenDesdeIzquierda.setVisible(false);
-
         establecerBotonesVisibles(unPais);
-        if(evento.getSceneY() < 100){
-            this.imagenDesdeArriba.setVisible(true);
-        }
-        else if(evento.getSceneX() < 100){
-            this.imagenDesdeIzquierda.setVisible(true);
-        }
-        else {
-            this.imagenDesdeAbajo.setVisible(true);
-        }
-    }
-
-    public void ocultarMenu(MouseEvent evento){
-        if(this.isVisible()){
-            if(!this.adentro(evento.getSceneX(), evento.getSceneY())){
-                this.setVisible(false);
-            }
-        }
-    }
-
-    public void aparecer( double mx, double my){
-        if(my < 100){
-            relocate(mx-100, my+10);
-        }
-        else if(mx < 100){
-            relocate(mx, my-50);
-        }
-        else{
-            relocate(mx-100, my-110);
-        }
-        this.puntoX = mx;
-        this.puntoY = my;
-    }
-
-    public boolean adentro(double mx, double my){
-        return(mx >= this.puntoX-100 && mx <= this.puntoX+100 && my >= this.puntoY-100 && my <= this.puntoY);
     }
 
     @Override

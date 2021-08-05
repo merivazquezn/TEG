@@ -11,20 +11,16 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class MenuJuegoTerminado extends StackPane implements Observer {
+public class MenuJuegoTerminado extends VistaMenu implements Observer {
 
-    private Ronda ronda;
     private ImageView interfazJuegoTerminado;
 
     public MenuJuegoTerminado(Ronda ronda) throws IOException {
-        this.ronda = ronda;
+        super(ronda, 500, 300);
         FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/interfazJuegoFinalizado.png");
         Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
         this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
         this.getChildren().add(this.interfazJuegoTerminado);
-        this.setTranslateX(300);
-        this.setTranslateY(100);
-        this.setVisible(false);
     }
 
     @Override
@@ -36,5 +32,9 @@ public class MenuJuegoTerminado extends StackPane implements Observer {
             this.getChildren().add(jugadorGanador);
             jugadorGanador.relocate(400, 400);
         }
+    }
+
+    public boolean adentro(double mx, double my){
+        return true;
     }
 }

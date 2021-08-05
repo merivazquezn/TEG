@@ -16,58 +16,18 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class MenuAtaque extends StackPane implements Observer {
-    private double puntoX;
-    private double puntoY;
+public class MenuAtaque extends VistaMenuDesplegable implements Observer {
     private Label etiquetaMenuAtaque;
     private Button botonMenuAtaque;
     private Button botonCancelar;
-    private ImageView imagenDesdeAbajo;
-    private ImageView imagenDesdeIzquierda;
-    private ImageView imagenDesdeArriba;
 
     private EstadoAtaque estadoActual;
 
     private Pais paisActual;
-    private Ronda ronda;
     private int jugadorActual;
 
-    private void establecerImagenes() throws IOException{
-        inicializarVisionDeImagenes();
-
-        agregarVisionDeImagenesAlMenu();
-
-        ocultarVisionDeImagenes();
-    }
-
-    private void ocultarVisionDeImagenes() {
-        this.imagenDesdeAbajo.setVisible(false);
-        this.imagenDesdeArriba.setVisible(false);
-        this.imagenDesdeIzquierda.setVisible(false);
-    }
-
-    private void agregarVisionDeImagenesAlMenu() {
-        this.getChildren().add(this.imagenDesdeAbajo);
-        this.getChildren().add(this.imagenDesdeIzquierda);
-        this.getChildren().add(this.imagenDesdeArriba);
-    }
-
-    private void inicializarVisionDeImagenes() throws FileNotFoundException {
-        FileInputStream inputMenuAtaqueAbajo = new FileInputStream("./src/imagenes/desplegableAbajo.png");
-        FileInputStream inputMenuAtaqueIzquierda = new FileInputStream("./src/imagenes/desplegableIzquierda.png");
-        FileInputStream inputMenuAtaqueArriba = new FileInputStream("./src/imagenes/desplegableArriba.png");
-
-        Image imagenMenuAtaqueAbajo = new Image(inputMenuAtaqueAbajo);
-        Image imagenMenuAtaqueIzquierda = new Image(inputMenuAtaqueIzquierda);
-        Image imagenMenuAtaqueArriba = new Image(inputMenuAtaqueArriba);
-
-        this.imagenDesdeAbajo = new ImageView(imagenMenuAtaqueAbajo);
-        this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
-        this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
-    }
-
     public MenuAtaque(Ronda ronda) throws IOException {
-        establecerImagenes();
+        super(ronda, 0, 0);
         this.ronda = ronda;
         this.estadoActual = new EstadoAtaque(ronda);
         this.etiquetaMenuAtaque = new Label("");
@@ -75,14 +35,16 @@ public class MenuAtaque extends StackPane implements Observer {
         this.etiquetaMenuAtaque.setTranslateY(-35);
         this.botonMenuAtaque = new Button("Realizar ataque");
         this.botonMenuAtaque.setTranslateY(-5);
-        this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
+        this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
+        this.botonMenuAtaque.setMaxWidth(130);
         this.botonMenuAtaque.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.agregarPais(this.jugadorActual, this.paisActual);
             this.setVisible(false);
             e.consume();
         });
         this.botonCancelar = new Button("Cancelar ataque");
-        this.botonCancelar.setStyle("-fx-background-color: rgb(209, 209, 201);");
+        this.botonCancelar.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
+        this.botonCancelar.setMaxWidth(130);
         this.botonCancelar.setTranslateY(25);
         this.botonCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.resetear();
@@ -92,7 +54,6 @@ public class MenuAtaque extends StackPane implements Observer {
         this.getChildren().add(this.etiquetaMenuAtaque);
         this.getChildren().add(this.botonMenuAtaque);
         this.getChildren().add(this.botonCancelar);
-        this.setVisible(false);
     }
 
     public void establecerBotonesVisibles(Pais unPais){
@@ -101,13 +62,13 @@ public class MenuAtaque extends StackPane implements Observer {
         if(this.estadoActual.visibilizaAtacante(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
             this.botonMenuAtaque.setText("Realizar ataque desde aquí");
-
-            this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
+            this.botonMenuAtaque.setMaxWidth(160);
+            this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
         }
         else if(this.estadoActual.visibilizaDefensor(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
             this.botonMenuAtaque.setText("Confirmar ataque");
-            this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
+            this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
             this.botonCancelar.setVisible(true);
         }
     }
@@ -118,43 +79,8 @@ public class MenuAtaque extends StackPane implements Observer {
         this.aparecer(evento.getSceneX(), evento.getSceneY());
         this.paisActual = unPais;
         this.etiquetaMenuAtaque.setText(nombrePais);
-        ocultarVisionDeImagenes();
+        this.etiquetaMenuAtaque.setStyle("-fx-text-fill: #f2f2e9; -fx-font-size: 16; -fx-font-weight: bold;");
         establecerBotonesVisibles(unPais);
-        if(evento.getSceneY() < 100){
-            this.imagenDesdeArriba.setVisible(true);
-        }
-        else if(evento.getSceneX() < 100){
-            this.imagenDesdeIzquierda.setVisible(true);
-        }
-        else{
-            this.imagenDesdeAbajo.setVisible(true);
-        }
-    }
-
-    public void ocultarMenu(MouseEvent evento){
-        if(this.isVisible()){
-            if(!this.adentro(evento.getSceneX(), evento.getSceneY())){
-                this.setVisible(false);
-            }
-        }
-    }
-
-    public void aparecer( double mx, double my){
-        if(my < 100){
-            relocate(mx-100, my+10);
-        }
-        else if(mx < 100){
-            relocate(mx, my-50);
-        }
-        else{
-            relocate(mx-100, my-110);
-        }
-        this.puntoX = mx;
-        this.puntoY = my;
-    }
-
-    public boolean adentro(double mx, double my){
-        return(mx >= this.puntoX-100 && mx <= this.puntoX+100 && my >= this.puntoY-100 && my <= this.puntoY);
     }
 
     @Override

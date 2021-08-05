@@ -26,11 +26,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class MenuCartas extends StackPane implements Observer {
+public class MenuCartas extends VistaMenu implements Observer {
 
-    private static final double puntoX = 260;
-    private static final double puntoY = 530;
-    private Ronda ronda;
     private ImageView interfazCartas;
     private Button activarTarjeta;
     private Button canjearTarjetas;
@@ -121,6 +118,7 @@ public class MenuCartas extends StackPane implements Observer {
     }
 
     public MenuCartas(Ronda ronda) throws IOException {
+        super(ronda, 260, 530);
         inicializarInterfaz();
         inicializarCaracteristicasMenuCartas(ronda);
         inicializarEtiquetaCartasDisponibles();
@@ -155,13 +153,7 @@ public class MenuCartas extends StackPane implements Observer {
         }
     }
 
-    public void ocultarMenu(MouseEvent evento){
-        if(!this.adentro(evento.getSceneX(), evento.getSceneY())){
-            this.setVisible(false);
-        }
-    }
-
-    private boolean adentro(double mx, double my){
+    public boolean adentro(double mx, double my){
         return(mx >= this.puntoX && mx <= this.puntoX+100 && my >= this.puntoY && my <= this.puntoY+200);
     }
 

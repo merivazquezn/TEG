@@ -154,12 +154,20 @@ public class App extends Application {
         " realizar ataques y defenderse de ataques adversarios, y agrupar y desplazar ejercitos.\n" +
         " La conquista de nuevos territorios le permitira aumentar el numero de ejercitos a su disposicion\n" +
         "otorgandole mayores chances para triunfar en los combates.\n";
+<<<<<<< Updated upstream
         
+=======
+
+
+>>>>>>> Stashed changes
         var mensajeDescripcion1 = new Label(mensajeDescripcion);
         var mensajeCantidadJugadores = new Label("Cantidad de jugadores:");
         mensajeCantidadJugadores.setStyle("-fx-font: 22 arial;");
         Button botonInicio = new Button("Confirmar e Iniciar");
         TextField cantidadJugadores = new TextField("2");
+        cantidadJugadores.setStyle("-fx-background-color: #f2f2e9; fx-border-width: 2px; fx-border-color: black;");
+        cantidadJugadores.setMaxWidth(150);
+
         cantidadJugadores.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,

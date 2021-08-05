@@ -39,7 +39,7 @@ public class VistaEjercito implements Observer {
 
     public void setCenterX(double cX){
         this.circuloEjercito.setCenterX(cX);
-        this.cantidadEjercito.setTranslateX(cX-4);
+        this.cantidadEjercito.setTranslateX(cX-5);
     }
 
     public void setCenterY(double cY){

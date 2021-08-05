@@ -12,24 +12,21 @@ import javafx.scene.layout.StackPane;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class MenuObjetivo extends StackPane {
-
-    private static final double puntoX = 60;
-    private static final double puntoY = 530;
-    private Ronda ronda;
+public class MenuObjetivo extends VistaMenu {
     private Label nombreObjetivo;
     private Label descripcionObjetivo;
     private ImageView interfazObjetivo;
 
     public MenuObjetivo(Ronda ronda) throws IOException {
+        super(ronda, 60, 530);
         FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/vistaDesplegable.png");
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.interfazObjetivo = new ImageView(imagenInterfaz);
-        this.ronda = ronda;
         this.nombreObjetivo = new Label("");
+        this.nombreObjetivo.setStyle("-fx-text-fill: #f2f2e9; -fx-font-weight: bold;");
         this.descripcionObjetivo = new Label("");
+        this.descripcionObjetivo.setStyle("-fx-text-fill: #f2f2e9;");
         this.nombreObjetivo.setTranslateY(-100);
-        this.setVisible(false);
         this.getChildren().add(this.interfazObjetivo);
         this.getChildren().add(this.nombreObjetivo);
         this.getChildren().add(this.descripcionObjetivo);
@@ -47,13 +44,7 @@ public class MenuObjetivo extends StackPane {
         }
     }
 
-    public void ocultarMenu(MouseEvent evento){
-        if(!this.adentro(evento.getSceneX(), evento.getSceneY())){
-            this.setVisible(false);
-        }
-    }
-
-    private boolean adentro(double mx, double my){
+    public boolean adentro(double mx, double my){
         return(mx >= this.puntoX && mx <= this.puntoX+100 && my >= this.puntoY && my <= this.puntoY+200);
     }
 

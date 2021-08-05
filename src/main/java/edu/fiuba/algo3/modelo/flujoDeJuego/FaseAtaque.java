@@ -12,6 +12,6 @@ public class FaseAtaque implements Fase{
     }
 
     public String accionARealizar(int cantidadAColocar){
-        return "Seleccione un país para atacar.";
+        return "Seleccione un país para atacar";
     }
 }
