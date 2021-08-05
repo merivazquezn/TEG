@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.ControladorMenuCartas;
+import edu.fiuba.algo3.infraestructura.IRandomizador;
+import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.ConjuntoTarjetas;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
@@ -15,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+import javax.sound.sampled.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +37,19 @@ public class MenuCartas extends StackPane implements Observer {
     private ComboBox<String> eleccionTarjeta1;
     private ComboBox<String> eleccionTarjeta2;
     private ComboBox<String> eleccionTarjeta3;
+
+    private void ejecutarSonidoCanjeo(){
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/canjeo.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void inicializarComboBox(){
         this.eleccionTarjeta1 = new ComboBox<>();
@@ -59,9 +76,7 @@ public class MenuCartas extends StackPane implements Observer {
         this.activarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int tarjetaSeleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
             if(this.ronda.puedeColocar() && tarjetaSeleccionada >= 0)
-            {
                 ControladorMenuCartas.activarTarjeta(this.ronda, this.tarjetasDisponibles.get(tarjetaSeleccionada));
-            }
             this.setVisible(false);
             e.consume();
         });
@@ -77,6 +92,7 @@ public class MenuCartas extends StackPane implements Observer {
                 Tarjeta tarjeta2 = this.tarjetasDisponibles.get(tarjeta2Seleccionada);
                 Tarjeta tarjeta3 = this.tarjetasDisponibles.get(tarjeta3Seleccionada);
                 ControladorMenuCartas.canjearTarjetas(this.ronda, tarjeta1, tarjeta2, tarjeta3);
+                ejecutarSonidoCanjeo();
             }
             this.setVisible(false);
             e.consume();
