@@ -64,6 +64,7 @@ public class MenuColocacion extends StackPane implements Observer {
         this.etiquetaMenuColocacion.setTranslateY(-35);
         this.botonMenuColocacion = new Button("Colocar ejercitos");
         this.botonMenuColocacion.setTranslateY(20);
+        this.botonMenuColocacion.setStyle("-fx-background-color: #f2f2e9;");
         this.botonMenuColocacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             ControladorMenuColocacion.realizarJugada(this.ronda, this.paisActual, parseInt(this.inputCantidad.getText()));
             this.setVisible(false);
@@ -83,6 +84,7 @@ public class MenuColocacion extends StackPane implements Observer {
                 inputCantidad.setText("0");
             }
         });
+        this.inputCantidad.setStyle("-fx-background-color: #f2f2e9;");
         this.getChildren().add(this.etiquetaMenuColocacion);
         this.getChildren().add(this.botonMenuColocacion);
         this.getChildren().add(this.inputCantidad);

@@ -62,12 +62,14 @@ public class MenuAtaque extends StackPane implements Observer {
         this.etiquetaMenuAtaque.setTranslateY(-35);
         this.botonMenuAtaque = new Button("Realizar ataque");
         this.botonMenuAtaque.setTranslateY(-5);
+        this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
         this.botonMenuAtaque.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.agregarPais(this.jugadorActual, this.paisActual);
             this.setVisible(false);
             e.consume();
         });
         this.botonCancelar = new Button("Cancelar ataque");
+        this.botonCancelar.setStyle("-fx-background-color: rgb(209, 209, 201);");
         this.botonCancelar.setTranslateY(25);
         this.botonCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             estadoActual.resetear();
@@ -86,10 +88,13 @@ public class MenuAtaque extends StackPane implements Observer {
         if(this.estadoActual.visibilizaAtacante(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
             this.botonMenuAtaque.setText("Realizar ataque desde aquí");
+
+            this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
         }
         else if(this.estadoActual.visibilizaDefensor(this.jugadorActual, unPais)){
             this.botonMenuAtaque.setVisible(true);
             this.botonMenuAtaque.setText("Confirmar ataque");
+            this.botonMenuAtaque.setStyle("-fx-background-color: rgb(209, 209, 201);");
             this.botonCancelar.setVisible(true);
         }
     }
