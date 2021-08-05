@@ -174,18 +174,40 @@ public class TarjetaTest {
         Tarjeta tarjeta3 = new Tarjeta(otroPaisMas, new Signo(0));
 
         Jugador jugador = new Jugador(new ObjetivoDestruir());
+
         ArrayList<Tarjeta> listaTarjetas = new ArrayList<>();
         listaTarjetas.add(tarjeta1);
         listaTarjetas.add(tarjeta2);
         listaTarjetas.add(tarjeta3);
-        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+
         pais.asignarJugador(jugador);
+        otroPais.asignarJugador(jugador);
+        otroPaisMas.asignarJugador(jugador);
         tarjeta1.asignarJugador(jugador);
+        tarjeta2.asignarJugador(jugador);
+        tarjeta3.asignarJugador(jugador);
         tarjeta1.activar();
+        tarjeta2.activar();
+        tarjeta3.activar();
+
         assertEquals(pais.getCantidadEjercitos(), 3);
+        assertEquals(otroPais.getCantidadEjercitos(), 3);
+        assertEquals(otroPaisMas.getCantidadEjercitos(), 3);
+
+        Mazo mazo = new Mazo(listaTarjetas, new Randomizador());
+        mazo.agregarTarjetas(tarjeta1, tarjeta2, tarjeta3);
+
+        tarjeta1 = mazo.entregarTarjeta();
+        tarjeta2 = mazo.entregarTarjeta();
+        tarjeta3 = mazo.entregarTarjeta();
 
         tarjeta1.activar();
-        assertEquals(pais.getCantidadEjercitos(), 3);
+        tarjeta2.activar();
+        tarjeta3.activar();
+
+        assertEquals(pais.getCantidadEjercitos(), 5);
+        assertEquals(otroPais.getCantidadEjercitos(), 5);
+        assertEquals(otroPaisMas.getCantidadEjercitos(), 5);
     }
 
 }
