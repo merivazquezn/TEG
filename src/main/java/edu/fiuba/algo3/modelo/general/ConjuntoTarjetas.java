@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo.general;
 
-import edu.fiuba.algo3.modelo.ataque.CantidadInvalidaDeDadosError;
-import edu.fiuba.algo3.modelo.flujoDeJuego.TarjetasRepetidasException;
-
 import java.util.ArrayList;
 
 public class ConjuntoTarjetas {

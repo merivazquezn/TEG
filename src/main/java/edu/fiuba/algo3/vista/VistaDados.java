@@ -185,6 +185,8 @@ public class VistaDados extends StackPane implements Observer {
         for(int i=0; i < valoresDefensor.size() ; i++){
             this.dadosDefensor.get(i).setImage(this.imagenesDados.get(valoresDefensor.get(i)-1));
             this.dadosDefensor.get(i).setVisible(true);
+        }
+        for(int i=0; i < valoresAtacante.size() && i < valoresDefensor.size();i++){
             if(valoresDefensor.get(i) >= valoresAtacante.get(i))
                 establecerDadoDefensorGanador(i);
             else
