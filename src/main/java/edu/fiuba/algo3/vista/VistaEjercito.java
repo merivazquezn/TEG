@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -17,24 +18,38 @@ public class VistaEjercito implements Observer {
     private Label cantidadEjercito;
     private Pais paisAsociado;
 
-    public VistaEjercito(Pais unPais, ControladorEjercito controlador){
+    public VistaEjercito(Pais unPais){
         this.paisAsociado = unPais;
-        this.circuloEjercito = new Circle();
+        int numeroColorPais = this.paisAsociado.getJugador().getNumero();
+        Color colorPais = AsignadorDeColores.colorEjercitoSegunElNumero(numeroColorPais);
+        Color colorEtiquetaPais = AsignadorDeColores.colorEtiquetaSegunElNumero(numeroColorPais);
+        inicializarCirculo(colorPais);
+        inicializarEtiqueta(unPais, colorEtiquetaPais);
+        agregarAccionAlClickear();
+    }
+
+    private void inicializarEtiqueta(Pais unPais, Color colorEtiquetaPais) {
         this.cantidadEjercito = new Label("" + unPais.getCantidadEjercitos());
+        this.cantidadEjercito.setTextFill(colorEtiquetaPais);
+    }
+
+    private void inicializarCirculo(Color colorPais) {
+        this.circuloEjercito = new Circle();
+        this.circuloEjercito.setRadius(10.0f);
+        this.circuloEjercito.setFill(colorPais);
+    }
+
+    private void agregarAccionAlClickear() {
         this.cantidadEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            ControladorEjercito controlador = ControladorEjercito.obtenerInstancia();
             controlador.tocarPais(e, this.paisAsociado);
             e.consume();
         });
         this.circuloEjercito.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            ControladorEjercito controlador = ControladorEjercito.obtenerInstancia();
             controlador.tocarPais(e, this.paisAsociado);
             e.consume();
         });
-        this.circuloEjercito.setRadius(10.0f);
-        int numeroColorPais = this.paisAsociado.getJugador().getNumero();
-        Color colorPais = AsignadorDeColores.colorEjercitoSegunElNumero(numeroColorPais);
-        Color colorEtiquetaPais = AsignadorDeColores.colorEtiquetaSegunElNumero(numeroColorPais);
-        this.cantidadEjercito.setTextFill(colorEtiquetaPais);
-        this.circuloEjercito.setFill(colorPais);
     }
 
     public void setCenterX(double cX){

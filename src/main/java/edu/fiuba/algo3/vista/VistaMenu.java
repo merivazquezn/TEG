@@ -14,6 +14,7 @@ public abstract class VistaMenu extends StackPane {
         this.ronda = ronda;
         this.puntoX = puntoX;
         this.puntoY = puntoY;
+        relocate(this.puntoX, this.puntoY);
         this.setVisible(false);
     }
 

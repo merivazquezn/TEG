@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.controlador.ControladorMenuColocacion;
 import edu.fiuba.algo3.infraestructura.IRandomizador;
 import edu.fiuba.algo3.infraestructura.Randomizador;
+import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,12 +15,14 @@ import javafx.scene.layout.StackPane;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 public class VistaDados extends StackPane implements Observer {
+    private static VistaDados instancia;
     private ImageView imagenInterfaz;
     private ArrayList<ImageView> dadosAtacante;
     private ArrayList<ImageView> dadosDefensor;
@@ -35,14 +38,7 @@ public class VistaDados extends StackPane implements Observer {
 
     private void ejecutarSonidoPelea(){
         try {
-            IRandomizador randomizador = new Randomizador();
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/pelea1.wav"));
-            if(randomizador.generar(0, 2) == 1) {
-                audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/pelea2.wav"));
-            }
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInput);
-            clip.start();
+            reproducirSonido("./src/sonidos/pelea1.wav", "./src/sonidos/pelea2.wav");
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException | LineUnavailableException e) {
@@ -88,13 +84,17 @@ public class VistaDados extends StackPane implements Observer {
         this.imagenesDados.add(imagenDado4);
         this.imagenesDados.add(imagenDado5);
         this.imagenesDados.add(imagenDado6);
+        inicializarImagenesGanoOPerdio();
+
+    }
+
+    private void inicializarImagenesGanoOPerdio() throws FileNotFoundException {
         String rutaDadoGanador = "./src/imagenes/tildeAfirmativo.png";
         String rutaDadoPerdedor = "./src/imagenes/cruzNegadora.png";
         FileInputStream inputImagenDadoGanador = new FileInputStream(rutaDadoGanador);
         this.dadoGanador = new Image(inputImagenDadoGanador);
         FileInputStream inputImagenDadoPerdedor = new FileInputStream(rutaDadoPerdedor);
         this.dadoPerdedor = new Image(inputImagenDadoPerdedor);
-
     }
 
     private void inicializarInterfazDados() throws IOException{
@@ -128,29 +128,43 @@ public class VistaDados extends StackPane implements Observer {
         this.setVisible(false);
     }
 
+    public static void crearInstancia(Tablero tablero) throws IOException{
+        if(instancia == null){
+            instancia = new VistaDados(tablero);
+        }
+    }
+
+    public static VistaDados obtenerInstancia(){
+        return instancia;
+    }
+
     private void inicializarDados(){
         this.dadosDefensor = new ArrayList<>();
         this.dadosAtacante = new ArrayList<>();
         this.resultadoDadosDefensor = new ArrayList<>();
         this.resultadoDadosAtacante = new ArrayList<>();
         for(int i=0; i < VistaDados.MAX_DADOS; i++){
-            this.dadosAtacante.add(new ImageView());
-            this.dadosAtacante.get(i).setTranslateX(-140+(i)*145);
-            this.dadosAtacante.get(i).setTranslateY(-55);
-            this.resultadoDadosAtacante.add(new ImageView());
-            this.resultadoDadosAtacante.get(i).setTranslateX(-170+(i)*145);
-            this.resultadoDadosAtacante.get(i).setTranslateY(-15);
-            this.dadosDefensor.add(new ImageView());
-            this.dadosDefensor.get(i).setTranslateX(-140+(i)*145);
-            this.dadosDefensor.get(i).setTranslateY(55);
-            this.resultadoDadosDefensor.add(new ImageView());
-            this.resultadoDadosDefensor.get(i).setTranslateX(-170+(i)*145);
-            this.resultadoDadosDefensor.get(i).setTranslateY(95);
-            this.getChildren().add(this.dadosAtacante.get(i));
-            this.getChildren().add(this.dadosDefensor.get(i));
-            this.getChildren().add(this.resultadoDadosAtacante.get(i));
-            this.getChildren().add(this.resultadoDadosDefensor.get(i));
+            inicializarDadoEnIndice(i);
         }
+    }
+
+    private void inicializarDadoEnIndice(int i) {
+        this.dadosAtacante.add(new ImageView());
+        this.dadosAtacante.get(i).setTranslateX(-140+ i *145);
+        this.dadosAtacante.get(i).setTranslateY(-55);
+        this.resultadoDadosAtacante.add(new ImageView());
+        this.resultadoDadosAtacante.get(i).setTranslateX(-170+ i *145);
+        this.resultadoDadosAtacante.get(i).setTranslateY(-15);
+        this.dadosDefensor.add(new ImageView());
+        this.dadosDefensor.get(i).setTranslateX(-140+ i *145);
+        this.dadosDefensor.get(i).setTranslateY(55);
+        this.resultadoDadosDefensor.add(new ImageView());
+        this.resultadoDadosDefensor.get(i).setTranslateX(-170+ i *145);
+        this.resultadoDadosDefensor.get(i).setTranslateY(95);
+        this.getChildren().add(this.dadosAtacante.get(i));
+        this.getChildren().add(this.dadosDefensor.get(i));
+        this.getChildren().add(this.resultadoDadosAtacante.get(i));
+        this.getChildren().add(this.resultadoDadosDefensor.get(i));
     }
 
     private void ocultarDados(){
@@ -178,19 +192,35 @@ public class VistaDados extends StackPane implements Observer {
 
     private void actualizarDados(ArrayList<Integer> valoresAtacante, ArrayList<Integer> valoresDefensor){
         ocultarDados();
-        for(int i=0; i < valoresAtacante.size() ; i++){
-            this.dadosAtacante.get(i).setImage(this.imagenesDados.get(valoresAtacante.get(i)-1));
-            this.dadosAtacante.get(i).setVisible(true);
+        actualizarDadosAtacante(valoresAtacante, this.dadosAtacante);
+        actualizarDadosDefensor(valoresDefensor, this.dadosDefensor);
+        actualizarTildesYCruces(valoresAtacante, valoresDefensor);
+    }
+
+    private void actualizarTildesYCruces(ArrayList<Integer> valoresAtacante, ArrayList<Integer> valoresDefensor) {
+        for(int i = 0; i < valoresAtacante.size() && i < valoresDefensor.size(); i++){
+            establecerGanadorYPerdedor(valoresAtacante, valoresDefensor, i);
         }
-        for(int i=0; i < valoresDefensor.size() ; i++){
-            this.dadosDefensor.get(i).setImage(this.imagenesDados.get(valoresDefensor.get(i)-1));
-            this.dadosDefensor.get(i).setVisible(true);
+    }
+
+    private void establecerGanadorYPerdedor(ArrayList<Integer> valoresAtacante, ArrayList<Integer> valoresDefensor, int i) {
+        if(valoresDefensor.get(i) >= valoresAtacante.get(i))
+            establecerDadoDefensorGanador(i);
+        else
+            establecerDadoAtacanteGanador(i);
+    }
+
+    private void actualizarDadosDefensor(ArrayList<Integer> valoresDefensor, ArrayList<ImageView> dadosDefensor) {
+        for (int i = 0; i < valoresDefensor.size(); i++) {
+            dadosDefensor.get(i).setImage(this.imagenesDados.get(valoresDefensor.get(i) - 1));
+            dadosDefensor.get(i).setVisible(true);
         }
-        for(int i=0; i < valoresAtacante.size() && i < valoresDefensor.size();i++){
-            if(valoresDefensor.get(i) >= valoresAtacante.get(i))
-                establecerDadoDefensorGanador(i);
-            else
-                establecerDadoAtacanteGanador(i);
+    }
+
+    private void actualizarDadosAtacante(ArrayList<Integer> valoresAtacante, ArrayList<ImageView> dadosAtacante) {
+        for (int i = 0; i < valoresAtacante.size(); i++) {
+            dadosAtacante.get(i).setImage(this.imagenesDados.get(valoresAtacante.get(i) - 1));
+            dadosAtacante.get(i).setVisible(true);
         }
     }
 
@@ -200,20 +230,24 @@ public class VistaDados extends StackPane implements Observer {
         ArrayList<Integer> valoresDefensor = this.tablero.getUltimosDadosDefensor();
         actualizarDados(valoresAtacante, valoresDefensor);
         try {
-            IRandomizador randomizador = new Randomizador();
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/dados2.wav"));
-            if(randomizador.generar(0, 2) == 1) {
-                audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/dados1.wav"));
-            }
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInput);
-            clip.start();
+            reproducirSonido("./src/sonidos/dados2.wav", "./src/sonidos/dados1.wav");
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
         this.setVisible(true);
+    }
+
+    private void reproducirSonido(String s, String s2) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        IRandomizador randomizador = new Randomizador();
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(s));
+        if (randomizador.generar(0, 2) == 1) {
+            audioInput = AudioSystem.getAudioInputStream(new File(s2));
+        }
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInput);
+        clip.start();
     }
 
 

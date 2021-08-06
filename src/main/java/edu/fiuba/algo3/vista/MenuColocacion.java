@@ -23,6 +23,7 @@ import java.util.Observer;
 import static java.lang.Integer.parseInt;
 
 public class MenuColocacion extends VistaMenuDesplegable implements Observer {
+    private static MenuColocacion instancia;
     private Label etiquetaMenuColocacion;
     private Button botonMenuColocacion;
     private TextField inputCantidad;
@@ -30,13 +31,27 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
     private int jugadorActual;
     private Pais paisActual;
 
-    public MenuColocacion(Ronda ronda) throws IOException {
+    private MenuColocacion(Ronda ronda) throws IOException {
         super(ronda, 0, 0);
+        establecerParametrosIniciales(ronda);
+        inicializarEtiquetaMenuColocacion();
+        inicializarBotonMenuColocacion();
+        inicializarInput();
+        agregarElementosAlMenu();
+    }
+
+    private void establecerParametrosIniciales(Ronda ronda) {
         this.jugadorActual = ronda.jugadorActual().getNumero();
         this.maximaCantidadAColocar = this.ronda.cantidadAColocar();
+    }
+
+    private void inicializarEtiquetaMenuColocacion() {
         this.etiquetaMenuColocacion = new Label("");
         this.etiquetaMenuColocacion.setStyle("-fx-font: 22 arial;");
         this.etiquetaMenuColocacion.setTranslateY(-35);
+    }
+
+    private void inicializarBotonMenuColocacion() {
         this.botonMenuColocacion = new Button("Colocar ejercitos");
         this.botonMenuColocacion.setTranslateY(20);
         this.botonMenuColocacion.setStyle("-fx-font-size: 10; -fx-background-color: #f2f2e9;");
@@ -46,12 +61,21 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
             this.setVisible(false);
             e.consume();
         });
+    }
+
+    private void inicializarInput() {
         this.inputCantidad = new TextField();
         this.inputCantidad.setTranslateY(-10);
         this.inputCantidad.setPrefWidth(50);
         this.inputCantidad.setMaxWidth(50);
         this.inputCantidad.setMaxHeight(8);
         this.inputCantidad.setAlignment(Pos.CENTER);
+        establecerParametrosValidosAlInput();
+        this.inputCantidad.setStyle("-fx-background-color: #f2f2e9;");
+        this.inputCantidad.setMaxWidth(35);
+    }
+
+    private void establecerParametrosValidosAlInput() {
         this.inputCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 inputCantidad.setText("0");
@@ -61,11 +85,22 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
                 inputCantidad.setText("0");
             }
         });
-        this.inputCantidad.setStyle("-fx-background-color: #f2f2e9;");
-        this.inputCantidad.setMaxWidth(35);
+    }
+
+    private void agregarElementosAlMenu() {
         this.getChildren().add(this.etiquetaMenuColocacion);
         this.getChildren().add(this.botonMenuColocacion);
         this.getChildren().add(this.inputCantidad);
+    }
+
+    public static void crearInstancia(Ronda ronda) throws IOException{
+        if(instancia == null){
+            instancia = new MenuColocacion(ronda);
+        }
+    }
+
+    public static MenuColocacion obtenerInstancia(){
+        return instancia;
     }
 
     private void verificarJugadorActual(Pais unPais){

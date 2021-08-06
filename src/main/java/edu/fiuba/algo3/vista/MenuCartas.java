@@ -1,21 +1,16 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.ControladorMenuCartas;
-import edu.fiuba.algo3.infraestructura.IRandomizador;
-import edu.fiuba.algo3.infraestructura.Randomizador;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.ConjuntoTarjetas;
 import edu.fiuba.algo3.modelo.general.Tarjeta;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -28,6 +23,7 @@ import java.util.Observer;
 
 public class MenuCartas extends VistaMenu implements Observer {
 
+    private static MenuCartas instancia;
     private ImageView interfazCartas;
     private Button activarTarjeta;
     private Button canjearTarjetas;
@@ -77,14 +73,18 @@ public class MenuCartas extends VistaMenu implements Observer {
         this.activarTarjeta.setTranslateY(-80);
         this.activarTarjeta.setTranslateX(100);
         this.activarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            int tarjetaSeleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
-            if(this.ronda.puedeColocar() && tarjetaSeleccionada >= 0)
-                ControladorMenuCartas.activarTarjeta(this.ronda, this.tarjetasDisponibles.get(tarjetaSeleccionada));
-            this.setVisible(false);
-            e.consume();
+            clickearBotonActivarTarjeta(e);
         });
         this.activarTarjeta.setVisible(false);
         this.getChildren().add(this.activarTarjeta);
+    }
+
+    private void clickearBotonActivarTarjeta(MouseEvent e) {
+        int tarjetaSeleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
+        if(this.ronda.puedeColocar() && tarjetaSeleccionada >= 0)
+            ControladorMenuCartas.activarTarjeta(this.ronda, this.tarjetasDisponibles.get(tarjetaSeleccionada));
+        this.setVisible(false);
+        e.consume();
     }
 
     private void inicializarBotonCanjearTarjetas() {
@@ -97,16 +97,29 @@ public class MenuCartas extends VistaMenu implements Observer {
         this.getChildren().add(this.canjearTarjetas);
     }
 
+    public static void crearInstancia(Ronda ronda) throws IOException{
+        if(instancia == null){
+            instancia = new MenuCartas(ronda);
+        }
+    }
+
+    public static MenuCartas obtenerInstancia(){
+        return instancia;
+    }
+
     private void clickearBotonCanjearTarjetas(MouseEvent e) {
         int tarjeta1Seleccionada = this.eleccionTarjeta1.getSelectionModel().getSelectedIndex();
         int tarjeta2Seleccionada = this.eleccionTarjeta2.getSelectionModel().getSelectedIndex();
         int tarjeta3Seleccionada = this.eleccionTarjeta3.getSelectionModel().getSelectedIndex();
-        if(this.ronda.puedeColocar() && tarjeta1Seleccionada >= 0 && tarjeta2Seleccionada >= 0 && tarjeta3Seleccionada >= 0)
-        {
+        if(sePuedeCanjear(tarjeta1Seleccionada, tarjeta2Seleccionada, tarjeta3Seleccionada)) {
             ejecutarCanjeoDeTarjetas(tarjeta1Seleccionada, tarjeta2Seleccionada, tarjeta3Seleccionada);
         }
         this.setVisible(false);
         e.consume();
+    }
+
+    private boolean sePuedeCanjear(int tarjeta1Seleccionada, int tarjeta2Seleccionada, int tarjeta3Seleccionada) {
+        return this.ronda.puedeColocar() && tarjeta1Seleccionada >= 0 && tarjeta2Seleccionada >= 0 && tarjeta3Seleccionada >= 0;
     }
 
     private void ejecutarCanjeoDeTarjetas(int tarjeta1Seleccionada, int tarjeta2Seleccionada, int tarjeta3Seleccionada) {
@@ -117,7 +130,7 @@ public class MenuCartas extends VistaMenu implements Observer {
         ejecutarSonidoCanjeo();
     }
 
-    public MenuCartas(Ronda ronda) throws IOException {
+    private MenuCartas(Ronda ronda) throws IOException {
         super(ronda, 260, 530);
         inicializarInterfaz();
         inicializarCaracteristicasMenuCartas(ronda);
@@ -167,12 +180,16 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private void agregarTarjetasDisponiblesAEleccionDeTarjetas() {
         for( Tarjeta tar : this.tarjetasDisponibles){
-            String simbolo = stringPorSigno(tar.obtenerSigno().getIdentificador());
-            String nombrePaisTarjeta = simbolo + " " + tar.getPais().getNombre();
-            this.eleccionTarjeta1.getItems().add(nombrePaisTarjeta);
-            this.eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
-            this.eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
+            agregarTarjetaAEleeccionTarjeta(tar);
         }
+    }
+
+    private void agregarTarjetaAEleeccionTarjeta(Tarjeta tar) {
+        String simbolo = stringPorSigno(tar.obtenerSigno().getIdentificador());
+        String nombrePaisTarjeta = simbolo + " " + tar.getPais().getNombre();
+        this.eleccionTarjeta1.getItems().add(nombrePaisTarjeta);
+        this.eleccionTarjeta2.getItems().add(nombrePaisTarjeta);
+        this.eleccionTarjeta3.getItems().add(nombrePaisTarjeta);
     }
 
     private void seleccionarPrimerElementoDeEleccionDeTarjetas() {
@@ -213,7 +230,7 @@ public class MenuCartas extends VistaMenu implements Observer {
         if(tarjeta1Seleccionada < 0)
             return;
         Tarjeta tarjeta1 = this.tarjetasDisponibles.get(tarjeta1Seleccionada);
-        if(!tarjeta1.fueActivada() && tarjeta1.getJugador() == ronda.jugadorActual())
+        if(!tarjeta1.fueActivada() && tarjeta1.getJugador() == this.ronda.jugadorActual())
             this.activarTarjeta.setVisible(true);
     }
 

@@ -17,6 +17,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class MenuAtaque extends VistaMenuDesplegable implements Observer {
+    private static MenuAtaque instancia;
     private Label etiquetaMenuAtaque;
     private Button botonMenuAtaque;
     private Button botonCancelar;
@@ -26,13 +27,22 @@ public class MenuAtaque extends VistaMenuDesplegable implements Observer {
     private Pais paisActual;
     private int jugadorActual;
 
-    public MenuAtaque(Ronda ronda) throws IOException {
+    private MenuAtaque(Ronda ronda) throws IOException {
         super(ronda, 0, 0);
-        this.ronda = ronda;
         this.estadoActual = new EstadoAtaque(ronda);
+        inicializarEtiquetaMenuAtaque();
+        inicializarBotonMenuAtaque();
+        inicializarBotonCancelar();
+        agregarElementosAlMenu();
+    }
+
+    private void inicializarEtiquetaMenuAtaque() {
         this.etiquetaMenuAtaque = new Label("");
         this.etiquetaMenuAtaque.setStyle("-fx-font: 22 arial;");
         this.etiquetaMenuAtaque.setTranslateY(-35);
+    }
+
+    private void inicializarBotonMenuAtaque() {
         this.botonMenuAtaque = new Button("Realizar ataque");
         this.botonMenuAtaque.setTranslateY(-5);
         this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
@@ -42,6 +52,9 @@ public class MenuAtaque extends VistaMenuDesplegable implements Observer {
             this.setVisible(false);
             e.consume();
         });
+    }
+
+    private void inicializarBotonCancelar() {
         this.botonCancelar = new Button("Cancelar ataque");
         this.botonCancelar.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
         this.botonCancelar.setMaxWidth(130);
@@ -51,26 +64,47 @@ public class MenuAtaque extends VistaMenuDesplegable implements Observer {
             this.setVisible(false);
             e.consume();
         });
+    }
+
+    private void agregarElementosAlMenu() {
         this.getChildren().add(this.etiquetaMenuAtaque);
         this.getChildren().add(this.botonMenuAtaque);
         this.getChildren().add(this.botonCancelar);
+    }
+
+    public static void crearInstancia(Ronda ronda) throws IOException{
+        if(instancia == null){
+            instancia = new MenuAtaque(ronda);
+        }
+    }
+
+    public static MenuAtaque obtenerInstancia(){
+        return instancia;
     }
 
     public void establecerBotonesVisibles(Pais unPais){
         this.botonCancelar.setVisible(false);
         this.botonMenuAtaque.setVisible(false);
         if(this.estadoActual.visibilizaAtacante(this.jugadorActual, unPais)){
-            this.botonMenuAtaque.setVisible(true);
-            this.botonMenuAtaque.setText("Realizar ataque desde aquí");
-            this.botonMenuAtaque.setMaxWidth(160);
-            this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
+            visibilizarAtacante();
         }
         else if(this.estadoActual.visibilizaDefensor(this.jugadorActual, unPais)){
-            this.botonMenuAtaque.setVisible(true);
-            this.botonMenuAtaque.setText("Confirmar ataque");
-            this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
-            this.botonCancelar.setVisible(true);
+            visibilizarDefensor();
         }
+    }
+
+    private void visibilizarDefensor() {
+        this.botonMenuAtaque.setVisible(true);
+        this.botonMenuAtaque.setText("Confirmar ataque");
+        this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
+        this.botonCancelar.setVisible(true);
+    }
+
+    private void visibilizarAtacante() {
+        this.botonMenuAtaque.setVisible(true);
+        this.botonMenuAtaque.setText("Realizar ataque desde aquí");
+        this.botonMenuAtaque.setMaxWidth(160);
+        this.botonMenuAtaque.setStyle("-fx-background-color: #f2f2e9; -fx-font-size: 10;");
     }
 
     public void aparecerMenu(MouseEvent evento, Pais unPais){

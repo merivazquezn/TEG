@@ -11,13 +11,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 public class InterfazUsuario extends StackPane implements Observer {
     private ImageView interfaz;
-    private ImageView interfazJuegoTerminado;
     private Label etiquetaNombreRonda;
     private Label etiquetaInformacionRonda;
     private Label etiquetaJugador;
@@ -25,33 +25,16 @@ public class InterfazUsuario extends StackPane implements Observer {
     private Button botonCartas;
     private Button botonTerminarTurno;
     private Ronda ronda;
-    private MenuObjetivo menuObjetivo;
-    private MenuCartas menuCartas;
 
     private void inicializarBotones(){
-        this.botonObjetivo = new Button("Ver Objetivo");
+        inicializarBotonObjetivo();
 
-        this.botonObjetivo.setStyle("-fx-background-color: rgb(204, 51, 17);" +
-                "-fx-border-color: rgb(0, 0, 0);" +
-                "-fx-font-weight: bold;"+
-                "-fx-text-fill: rgb(255,255,255);");
+        inicializarBotonCartas();
 
-        this.botonObjetivo.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            this.menuObjetivo.aparecerMenu(e);
-            e.consume();
-        });
-        this.botonCartas = new Button("Ver Cartas");
+        inicializarBotonTerminarTurno();
+    }
 
-        this.botonCartas.setStyle("-fx-background-color: rgb(204, 51, 17);" +
-                "-fx-border-color: rgb(0, 0, 0);" +
-                "-fx-font-weight: bold;" +
-                "-fx-text-fill: rgb(255,255,255);");
-
-        this.botonCartas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            this.menuCartas.aparecerMenu(e);
-            e.consume();
-        });
-
+    private void inicializarBotonTerminarTurno() {
         this.botonTerminarTurno = new Button("Terminar Turno");
 
         this.botonTerminarTurno.setStyle("-fx-background-color: rgb(204, 51, 17);" +
@@ -63,16 +46,61 @@ public class InterfazUsuario extends StackPane implements Observer {
             ControladorInterfaz.finalizarTurno(this.ronda);
             e.consume();
         });
+        this.botonTerminarTurno.setTranslateX(-150);
+    }
+
+    private void inicializarBotonCartas() {
+        this.botonCartas = new Button("Ver Cartas");
+
+        this.botonCartas.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: rgb(255,255,255);");
+
+        MenuCartas menuCartas = MenuCartas.obtenerInstancia();
+        this.botonCartas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            menuCartas.aparecerMenu(e);
+            e.consume();
+        });
+        this.botonCartas.setTranslateX(-250);
+    }
+
+    private void inicializarBotonObjetivo() {
+        this.botonObjetivo = new Button("Ver Objetivo");
+
+        this.botonObjetivo.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;"+
+                "-fx-text-fill: rgb(255,255,255);");
+
+        MenuObjetivo menuObjetivo = MenuObjetivo.obtenerInstancia();
+        this.botonObjetivo.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            menuObjetivo.aparecerMenu(e);
+            e.consume();
+        });
 
         this.botonObjetivo.setTranslateX(-500);
-        this.botonCartas.setTranslateX(-250);
-        this.botonTerminarTurno.setTranslateX(-150);
+    }
+
+    private void agregarElementosAlMenu() {
+        this.getChildren().add(this.interfaz);
         this.getChildren().add(this.botonObjetivo);
         this.getChildren().add(this.botonCartas);
         this.getChildren().add(this.botonTerminarTurno);
+        this.getChildren().add(this.etiquetaNombreRonda);
+        this.getChildren().add(this.etiquetaJugador);
+        this.getChildren().add(this.etiquetaInformacionRonda);
     }
 
     private void inicializarEtiquetas(){
+        inicializarEtiquetaNombreRonda();
+
+        inicializarEtiquetaJugador();
+
+        inicializarEtiquetaInformacionRonda();
+    }
+
+    private void inicializarEtiquetaNombreRonda() {
         String nombreRonda = this.ronda.getNombreRonda();
         this.etiquetaNombreRonda = new Label(nombreRonda);
         this.etiquetaNombreRonda.setTranslateX(210);
@@ -80,7 +108,9 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.etiquetaNombreRonda.setStyle(
                 "-fx-font-weight: bold;"+
                 "-fx-text-fill: rgb(255,255,255);");
+    }
 
+    private void inicializarEtiquetaJugador() {
         Jugador jugadorActual = this.ronda.jugadorActual();
         int numeroJugadorActual = jugadorActual.getNumero();
         String colorJugadorActual = AsignadorDeColores.jugadorActualSegunElNumero(numeroJugadorActual);
@@ -89,7 +119,9 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.etiquetaJugador.setStyle(
                 "-fx-font-weight: bold;"+
                 "-fx-text-fill: rgb(255,255,255);");
+    }
 
+    private void inicializarEtiquetaInformacionRonda() {
         String informacionRonda = this.ronda.accionARealizar();
         this.etiquetaInformacionRonda = new Label(informacionRonda);
         this.etiquetaInformacionRonda.setTranslateX(400);
@@ -97,24 +129,26 @@ public class InterfazUsuario extends StackPane implements Observer {
         this.etiquetaInformacionRonda.setStyle(
                 "-fx-font-weight: bold;"+
                 "-fx-text-fill: rgb(255,255,255);");
-
-        this.getChildren().add(this.etiquetaNombreRonda);
-        this.getChildren().add(this.etiquetaJugador);
-        this.getChildren().add(this.etiquetaInformacionRonda);
     }
 
-    public InterfazUsuario(Ronda ronda, MenuObjetivo menuObjetivo, MenuCartas menuCartas) throws IOException{
+    public InterfazUsuario(Ronda ronda) throws IOException{
+        establecerParametrosInterfaz(ronda);
+        inicializarInterfaz();
+        inicializarBotones();
+        inicializarEtiquetas();
+        agregarElementosAlMenu();
+    }
+
+    private void establecerParametrosInterfaz(Ronda ronda) {
         this.ronda = ronda;
-        this.menuObjetivo = menuObjetivo;
-        this.menuCartas = menuCartas;
+        this.setTranslateY(785);
+        this.setTranslateX(120);
+    }
+
+    private void inicializarInterfaz() throws FileNotFoundException {
         FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.interfaz = new ImageView(imagenInterfaz);
-        this.getChildren().add(this.interfaz);
-        this.setTranslateY(785);
-        this.setTranslateX(120);
-        inicializarBotones();
-        inicializarEtiquetas();
     }
 
     private void actualizarInformacionRonda(){
@@ -130,14 +164,18 @@ public class InterfazUsuario extends StackPane implements Observer {
 
     private void verificarJuegoTerminado(){
         if(this.ronda.juegoTerminado()){
-            this.interfaz.setVisible(false);
-            this.etiquetaInformacionRonda.setVisible(false);
-            this.etiquetaJugador.setVisible(false);
-            this.etiquetaInformacionRonda.setVisible(false);
-            this.botonObjetivo.setVisible(false);
-            this.botonCartas.setVisible(false);
-            this.botonTerminarTurno.setVisible(false);
+            ocultarElementos();
         }
+    }
+
+    private void ocultarElementos() {
+        this.interfaz.setVisible(false);
+        this.etiquetaInformacionRonda.setVisible(false);
+        this.etiquetaJugador.setVisible(false);
+        this.etiquetaInformacionRonda.setVisible(false);
+        this.botonObjetivo.setVisible(false);
+        this.botonCartas.setVisible(false);
+        this.botonTerminarTurno.setVisible(false);
     }
 
     @Override

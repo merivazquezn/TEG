@@ -7,29 +7,40 @@ import edu.fiuba.algo3.vista.MenuColocacion;
 import edu.fiuba.algo3.vista.MenuReagrupar;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
+import java.io.IOException;
+
 public class ControladorEjercito {
 
-    Ronda ronda;
-    MenuAtaque panelMenuAtaque;
-    MenuColocacion panelMenuColocacion;
-    MenuReagrupar panelMenuReagrupar;
+    private static ControladorEjercito instancia;
+    private Ronda ronda;
 
-    public ControladorEjercito(Ronda ronda, MenuAtaque panelMenuAtaque, MenuColocacion panelMenuColocacion, MenuReagrupar panelMenuReagrupar){
+    public ControladorEjercito(Ronda ronda){
         this.ronda = ronda;
-        this.panelMenuAtaque = panelMenuAtaque;
-        this.panelMenuColocacion = panelMenuColocacion;
-        this.panelMenuReagrupar = panelMenuReagrupar;
+    }
+
+    public static void crearInstancia(Ronda ronda) throws IOException {
+        if(instancia == null){
+            instancia = new ControladorEjercito(ronda);
+        }
+    }
+
+    public static ControladorEjercito obtenerInstancia(){
+        return instancia;
     }
 
     public void tocarPais(MouseEvent e, Pais unPais){
         if(this.ronda.puedeColocar()) {
-            this.panelMenuColocacion.aparecerMenu(e,unPais);
+            MenuColocacion menuColocacion = MenuColocacion.obtenerInstancia();
+            menuColocacion.aparecerMenu(e,unPais);
         }
         else if(this.ronda.sePuedeReagrupar()){
-            this.panelMenuReagrupar.aparecerMenu(e,unPais);
+            MenuReagrupar menuReagrupar = MenuReagrupar.obtenerInstancia();
+            menuReagrupar.aparecerMenu(e,unPais);
         }
         else{
-            this.panelMenuAtaque.aparecerMenu(e,unPais);
+            MenuAtaque menuAtaque = MenuAtaque.obtenerInstancia();
+            menuAtaque.aparecerMenu(e,unPais);
         }
     }
 

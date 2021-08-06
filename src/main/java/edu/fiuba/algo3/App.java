@@ -9,8 +9,6 @@ import edu.fiuba.algo3.modelo.general.*;
 import edu.fiuba.algo3.modelo.jugador.Objetivo;
 import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,34 +23,24 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class App extends Application {
 
     private Tablero tablero;
     private Ronda ronda;
     private ArrayList<VistaEjercito> vistaEjercitos;
-    private MenuAtaque panelMenuAtaque;
-    private MenuColocacion panelMenuColocacion;
-    private ControladorEjercito controladorEjercito;
-    private VistaDados vistaDados;
-    private MenuObjetivo menuObjetivo;
-    private MenuCartas menuCartas;
-    private MenuReagrupar menuReagrupar;
-    private MenuReagruparPorConquista menuReagruparPorConquista;
-    private MenuJuegoTerminado menuJuegoTerminado;
 
     public void inicializarJuego(int cantidadJugadores) throws IOException{
-        String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-        String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-        String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+        Parser parser = inicializarParser();
+        cargarInformacionDelJuego(cantidadJugadores, parser);
+    }
 
-        Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
+    private void cargarInformacionDelJuego(int cantidadJugadores, Parser parser) throws IOException{
         HashMap<String, Continente> continentes = parser.getContinentes();
         HashMap<String, Pais> paises = parser.getPaisesParaTablero();
         HashMap<Pais, int[]> vistaPaises = parser.getPaisesParaVista();
-
         ArrayList<Objetivo> listaObjetivos = parser.getObjetivos();
-
         ArrayList<Tarjeta> tarjetas = parser.getTarjetas();
 
         ListaJugadores listaJugadores = new ListaJugadores(cantidadJugadores, new Randomizador(), listaObjetivos);
@@ -62,91 +50,163 @@ public class App extends Application {
 
         Mazo mazo = new Mazo(tarjetas, new Randomizador());
         this.tablero = new Tablero(continentes,new ConstructorDeConjuntoDados(new Randomizador()), mazo);
-        this.ronda = new Ronda(tablero, listaJugadores);
-
-        this.panelMenuAtaque = new MenuAtaque(this.ronda);
-        this.panelMenuColocacion = new MenuColocacion(this.ronda);
-        this.menuReagrupar = new MenuReagrupar(this.ronda);
-        this.controladorEjercito = new ControladorEjercito(ronda, this.panelMenuAtaque, this.panelMenuColocacion, this.menuReagrupar);
-        this.menuReagruparPorConquista = new MenuReagruparPorConquista(this.ronda);
-        this.menuJuegoTerminado = new MenuJuegoTerminado(this.ronda);
+        this.ronda = new Ronda(this.tablero, listaJugadores);
+        ControladorEjercito.crearInstancia(this.ronda);
+        crearInstanciasDeMenus();
         this.vistaEjercitos = new ArrayList<>();
         for (HashMap.Entry<Pais, int[]> entry : vistaPaises.entrySet()) {
-            Pais unPais = entry.getKey();
-            int[] coordenadas = entry.getValue();
-            VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais, this.controladorEjercito);
-            nuevaVistaEjercito.setCenterX(coordenadas[0]);
-            nuevaVistaEjercito.setCenterY(coordenadas[1]);
-            unPais.addObserver(nuevaVistaEjercito);
-            this.vistaEjercitos.add(nuevaVistaEjercito);
-        }
-        this.vistaDados = new VistaDados(this.tablero);
-        this.menuObjetivo = new MenuObjetivo(this.ronda);
-        this.menuCartas = new MenuCartas(this.ronda);
-    }
-
-    public void realizarJuego(Stage stage, int cantidadJugadores){
-        FileInputStream inputImagenFondo;
-        try {
-            inicializarJuego(cantidadJugadores);
-            inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
-            Image imagenFondo = new Image(inputImagenFondo);
-            InterfazUsuario interfaz = new InterfazUsuario(this.ronda, this.menuObjetivo, this.menuCartas);
-            this.ronda.addObserver(interfaz);
-            this.ronda.addObserver(this.panelMenuColocacion);
-            this.ronda.addObserver(this.panelMenuAtaque);
-            this.ronda.addObserver(this.menuReagrupar);
-            this.ronda.addObserver(this.menuReagruparPorConquista);
-            this.ronda.addObserver(this.menuCartas);
-            this.ronda.addObserver(this.menuJuegoTerminado);
-            this.tablero.addObserver(this.vistaDados);
-            Pane panel = new Pane(interfaz);
-            Scene scene = new Scene(panel, 1440, 819);
-
-            BackgroundImage backgroundimage = new BackgroundImage(imagenFondo,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background background = new Background(backgroundimage);
-            panel.setBackground(background);
-
-            for (VistaEjercito vistaEjercito : this.vistaEjercitos) {
-                panel.getChildren().add(vistaEjercito.getCirculoEjercito());
-                panel.getChildren().add(vistaEjercito.getEtiquetaEjercito());
-            }
-            panel.getChildren().add(this.panelMenuAtaque);
-            panel.getChildren().add(this.panelMenuColocacion);
-            panel.getChildren().add(this.menuReagruparPorConquista);
-            panel.getChildren().add(this.vistaDados);
-            panel.getChildren().add(this.menuObjetivo);
-            panel.getChildren().add(this.menuReagrupar);
-            panel.getChildren().add(this.menuCartas);
-            panel.getChildren().add(this.menuJuegoTerminado);
-
-            panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                this.panelMenuAtaque.ocultarMenu(e);
-                this.panelMenuColocacion.ocultarMenu(e);
-                this.menuObjetivo.ocultarMenu(e);
-                this.menuReagrupar.ocultarMenu(e);
-                this.menuCartas.ocultarMenu(e);
-            });
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
+            crearVistaEjercito(entry);
         }
     }
 
-    public void pedirCantidadJugadores(Stage stage){
+    private void crearInstanciasDeMenus() throws IOException {
+        MenuAtaque.crearInstancia(this.ronda);
+        MenuColocacion.crearInstancia(this.ronda);
+        MenuReagrupar.crearInstancia(this.ronda);
+        MenuReagruparPorConquista.crearInstancia(this.ronda);
+        MenuJuegoTerminado.crearInstancia(this.ronda);
+        VistaDados.crearInstancia(this.tablero);
+        MenuObjetivo.crearInstancia(this.ronda);
+        MenuCartas.crearInstancia(this.ronda);
+    }
+
+    private void crearVistaEjercito(Map.Entry<Pais, int[]> entry) {
+        Pais unPais = entry.getKey();
+        int[] coordenadas = entry.getValue();
+        VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais);
+        nuevaVistaEjercito.setCenterX(coordenadas[0]);
+        nuevaVistaEjercito.setCenterY(coordenadas[1]);
+        unPais.addObserver(nuevaVistaEjercito);
+        this.vistaEjercitos.add(nuevaVistaEjercito);
+    }
+
+    private Parser inicializarParser() {
+        String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
+        String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
+        String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+
+        return new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
+    }
+
+    public void realizarJuego(Stage stage, int cantidadJugadores) throws IOException{
+        inicializarJuego(cantidadJugadores);
+        InterfazUsuario interfaz = new InterfazUsuario(this.ronda);
+        this.ronda.addObserver(interfaz);
+        Pane panel = new Pane(interfaz);
+        Scene scene = new Scene(panel, 1440, 819);
+
+        establecerBackground(panel);
+        agregarVistasAlPanelPrincipal(panel);
+        
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    private void agregarVistasAlPanelPrincipal(Pane panel) {
+        agregarVistaDeEjercitos(panel);
+        MenuColocacion menuColocacion = MenuColocacion.obtenerInstancia();
+        MenuAtaque menuAtaque = MenuAtaque.obtenerInstancia();
+        MenuReagrupar menuReagrupar = MenuReagrupar.obtenerInstancia();
+        MenuReagruparPorConquista menuReagruparPorConquista = MenuReagruparPorConquista.obtenerInstancia();
+        MenuCartas menuCartas = MenuCartas.obtenerInstancia();
+        MenuJuegoTerminado menuJuegoTerminado = MenuJuegoTerminado.obtenerInstancia();
+        VistaDados vistaDados = VistaDados.obtenerInstancia();
+        MenuObjetivo menuObjetivo = MenuObjetivo.obtenerInstancia();
+        agregarObservadores(menuColocacion, menuAtaque, menuReagrupar, menuReagruparPorConquista, menuCartas, menuJuegoTerminado, vistaDados);
+        panel.getChildren().add(menuAtaque);
+        panel.getChildren().add(menuColocacion);
+        panel.getChildren().add(menuReagruparPorConquista);
+        panel.getChildren().add(vistaDados);
+        panel.getChildren().add(menuObjetivo);
+        panel.getChildren().add(menuReagrupar);
+        panel.getChildren().add(menuCartas);
+        panel.getChildren().add(menuJuegoTerminado);
+
+        panel.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            menuAtaque.ocultarMenu(e);
+            menuColocacion.ocultarMenu(e);
+            menuObjetivo.ocultarMenu(e);
+            menuReagrupar.ocultarMenu(e);
+            menuCartas.ocultarMenu(e);
+        });
+    }
+
+    private void agregarObservadores(MenuColocacion menuColocacion, MenuAtaque menuAtaque, MenuReagrupar menuReagrupar, MenuReagruparPorConquista menuReagruparPorConquista, MenuCartas menuCartas, MenuJuegoTerminado menuJuegoTerminado, VistaDados vistaDados) {
+        this.ronda.addObserver(menuColocacion);
+        this.ronda.addObserver(menuAtaque);
+        this.ronda.addObserver(menuReagrupar);
+        this.ronda.addObserver(menuReagruparPorConquista);
+        this.ronda.addObserver(menuCartas);
+        this.ronda.addObserver(menuJuegoTerminado);
+        this.tablero.addObserver(vistaDados);
+    }
+
+    private void establecerBackground(Pane panel) throws FileNotFoundException {
+        FileInputStream inputImagenFondo = new FileInputStream("./src/imagenes/background.png");
+        Image imagenFondo = new Image(inputImagenFondo);
+        BackgroundImage backgroundimage = new BackgroundImage(imagenFondo,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundimage);
+        panel.setBackground(background);
+    }
+
+    private void agregarVistaDeEjercitos(Pane panel) {
+        for (VistaEjercito vistaEjercito : this.vistaEjercitos) {
+            panel.getChildren().add(vistaEjercito.getCirculoEjercito());
+            panel.getChildren().add(vistaEjercito.getEtiquetaEjercito());
+        }
+    }
+
+    public void iniciarMenuPrincipal(Stage stage){
         stage.setResizable(false);
         stage.setTitle("A.L.T.E.G.O");
+        Label titulo = obtenerTitulo();
+        Label mensajeDescripcion = obtenerEtiquetaDescripcion();
+        Label mensajeCantidadJugadores = obtenerMensajeCantidadJugadores("Cantidad de jugadores:", "-fx-font: 22 arial;", 70);
+        TextField cantidadJugadores = obtenerInputCantidadDeJugadores();
+        Button botonInicio = obtenerBotonDeInicio(stage, cantidadJugadores);
+        StackPane panelBienvenida = new StackPane(titulo, mensajeDescripcion, mensajeCantidadJugadores, cantidadJugadores, botonInicio);
+
+        var scene = new Scene(panelBienvenida, 640, 480);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Label obtenerMensajeCantidadJugadores(String s, String s2, int i) {
+        var mensajeCantidadJugadores = new Label(s);
+        mensajeCantidadJugadores.setStyle(s2);
+        mensajeCantidadJugadores.setTranslateY(i);
+        return mensajeCantidadJugadores;
+    }
+
+    private Label obtenerTitulo() {
         var mensajeTitulo = new Label("Bienvenido a  A.L.T.E.G.O");
         mensajeTitulo.setStyle("-fx-font: 24 arial;");
+        mensajeTitulo.setTranslateY(-200);
+        return mensajeTitulo;
+    }
 
+    private Button obtenerBotonDeInicio(Stage stage, TextField cantidadJugadores) {
+        Button botonInicio = new Button("Confirmar e Iniciar");
+        botonInicio.setTranslateY(150);
+        botonInicio.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+
+        EventHandler<ActionEvent> eventoBoton = e -> {
+            try {
+                realizarJuego(stage, Integer.parseInt(cantidadJugadores.getText()));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        };
+        botonInicio.setOnAction(eventoBoton);
+        return botonInicio;
+    }
+
+    private Label obtenerEtiquetaDescripcion() {
         String mensajeDescripcion = "El juego propone un conflicto belico que tiene lugar sobre un planisferio dividido en 50 paises.\n" +
         " Para empezar se reparten los 50 paises entre los jugadores, quienes ocupan sus dominios con ejercitos.\n" +
         " Cada jugador tiene un objetivo secreto a cumplir, que se le asigna al azar y que el resto de los jugadores desconocen.\n"+
@@ -156,48 +216,37 @@ public class App extends Application {
         "otorgandole mayores chances para triunfar en los combates.\n";
 
         var mensajeDescripcion1 = new Label(mensajeDescripcion);
-        var mensajeCantidadJugadores = new Label("Cantidad de jugadores:");
-        mensajeCantidadJugadores.setStyle("-fx-font: 22 arial;");
-        Button botonInicio = new Button("Confirmar e Iniciar");
+        mensajeDescripcion1.setTranslateY(-100);
+        return mensajeDescripcion1;
+    }
+
+    private TextField obtenerInputCantidadDeJugadores() {
         TextField cantidadJugadores = new TextField("2");
         cantidadJugadores.setStyle("-fx-background-color: #f2f2e9; fx-border-width: 2px; fx-border-color: black;");
         cantidadJugadores.setMaxWidth(150);
-
-        cantidadJugadores.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    cantidadJugadores.setText("2");
-                }
-                newValue = cantidadJugadores.getText();
-                if(Integer.parseInt(newValue) < 2 || Integer.parseInt(newValue) > 6){
-                    cantidadJugadores.setText("2");
-                }
-            }
-        });
         cantidadJugadores.setPrefWidth(50);
         cantidadJugadores.setMaxWidth(50);
         cantidadJugadores.setAlignment(Pos.CENTER);
-        StackPane panelBienvenida = new StackPane(mensajeTitulo, mensajeDescripcion1, mensajeCantidadJugadores, cantidadJugadores, botonInicio);
-        mensajeDescripcion1.setTranslateY(-100);
-        mensajeTitulo.setTranslateY(-200);
-        mensajeCantidadJugadores.setTranslateY(70);
         cantidadJugadores.setTranslateY(100);
-        botonInicio.setTranslateY(150);
-        botonInicio.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        establecerParametroPermitidoDeCantidadDeJugadores(cantidadJugadores);
+        return cantidadJugadores;
+    }
 
-        EventHandler<ActionEvent> eventoBoton = e -> realizarJuego(stage, Integer.parseInt(cantidadJugadores.getText()));
-        botonInicio.setOnAction(eventoBoton);
-
-        var scene = new Scene(panelBienvenida, 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    private void establecerParametroPermitidoDeCantidadDeJugadores(TextField cantidadJugadores) {
+        cantidadJugadores.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                cantidadJugadores.setText("2");
+            }
+            newValue = cantidadJugadores.getText();
+            if(Integer.parseInt(newValue) < 2 || Integer.parseInt(newValue) > 6){
+                cantidadJugadores.setText("2");
+            }
+        });
     }
 
     @Override
     public void start(Stage stage) {
-        pedirCantidadJugadores(stage);
+        iniciarMenuPrincipal(stage);
     }
 
     public static void main(String[] args) {
