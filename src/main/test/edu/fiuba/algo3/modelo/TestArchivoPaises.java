@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestArchivoPaises {
     @Test
     public void test01CadaParDePaisesSonONoLimitrofesEntreSi() {
-        String rutaPaises = "./src/main/java/edu/fiuba/algo3/infraestructura/paises.csv";
-        String rutaObjetivos = "./src/main/java/edu/fiuba/algo3/infraestructura/objetivos.csv";
-        String rutatarjetas = "./src/main/java/edu/fiuba/algo3/infraestructura/cartas.csv";
+        String rutaPaises = "./src/data/paises.csv";
+        String rutaObjetivos = "./src/data/objetivos.csv";
+        String rutatarjetas = "./src/data/cartas.csv";
 
         Parser parser = new Parser(rutaPaises, rutaObjetivos, rutatarjetas);
         HashMap<String, Pais> paises = parser.getPaisesParaTablero();
@@ -25,7 +25,6 @@ public class TestArchivoPaises {
             for (Pais pais2 : paises.values()) {
 
                 if (pais1.sonLimitrofes(pais2) != pais2.sonLimitrofes(pais1)) {
-                    System.out.println(pais1.getNombre() + " " + pais2.getNombre());
                     pasoCorrecto = false;
                 }
             }

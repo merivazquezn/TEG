@@ -143,11 +143,11 @@ public class Parser {
         HashMap<String, Pais> paises = new HashMap<String, Pais>();
 
         HashMap<String, ArrayList<Pais>> hashContinentesConPaises = new HashMap<String, ArrayList<Pais>>();
-        hashContinentesConPaises.put("América Del Sur", new ArrayList());
+        hashContinentesConPaises.put("America Del Sur", new ArrayList());
         hashContinentesConPaises.put("Europa", new ArrayList());
-        hashContinentesConPaises.put("América Del Norte", new ArrayList());
+        hashContinentesConPaises.put("America Del Norte", new ArrayList());
         hashContinentesConPaises.put("Asia", new ArrayList());
-        hashContinentesConPaises.put("Oceanía", new ArrayList());
+        hashContinentesConPaises.put("Oceania", new ArrayList());
         hashContinentesConPaises.put("Africa", new ArrayList());
 
 
@@ -184,12 +184,12 @@ public class Parser {
         HashMap<String, Continente> hashContinentes = new HashMap<String, Continente>();
 
         HashMap<String, Integer> ejercitosPorContinentes = new HashMap<String, Integer>();
-        ejercitosPorContinentes.put("América Del Sur", 3);
-        ejercitosPorContinentes.put("América Del Norte", 5);
+        ejercitosPorContinentes.put("America Del Sur", 3);
+        ejercitosPorContinentes.put("America Del Norte", 5);
         ejercitosPorContinentes.put("Europa", 5);
         ejercitosPorContinentes.put("Asia", 7);
         ejercitosPorContinentes.put("Africa", 3);
-        ejercitosPorContinentes.put("Oceanía", 2);
+        ejercitosPorContinentes.put("Oceania", 2);
 
         hashContinentesConPaises.forEach((key,value) -> {
                     String nombreContinente = key;
@@ -211,16 +211,16 @@ public class Parser {
     public static Signo obtenerSigno(String stringSigno) {
 
         switch (stringSigno) {
-            case "barco":
+            case "Barco":
                 return new Signo(0);
 
-            case "globo":
+            case "Globo":
                 return new Signo(1);
 
-            case "cañon":
+            case "Canion":
                 return new Signo(2);
 
-            case "comodin":
+            case "Comodin":
                 return new SignoComodin();
         }
 
@@ -235,8 +235,7 @@ public class Parser {
 
         for (ArrayList<String> linea : datosTarjetrasCompleto) {
             Pais paisActual = paises.get(linea.get(0));
-            Signo signoActual = Parser.obtenerSigno(linea.get(1).toLowerCase());
-
+            Signo signoActual = Parser.obtenerSigno(linea.get(1));
 
             arrayTarjetas.add(new Tarjeta(paisActual, signoActual));
         }
@@ -244,14 +243,12 @@ public class Parser {
         return arrayTarjetas;
     }
 
-    //cambiar a retorno de Objetivo
     private static Objetivo seleccionarSegunNombreObjetivo(String nombreObjetivo, ArrayList<String> linea) {
 
         Objetivo objetivo = null;
 
         switch(nombreObjetivo) {
             case "cantidad_por_continente":
-                //(Jugador unJugador, HashMap<String, Integer> objetivo)
                 HashMap<String, Integer> hashCantidades = new HashMap<String, Integer>();
                 String nombreContinenteActual = "";
                 for(int i=1; i < linea.size(); i++) {
@@ -277,7 +274,6 @@ public class Parser {
                 break;
 
             case "conquistar_continentes_y_cantidad_paises":
-                // Jugador unJugador, String continente, HashMap<String, Integer> listaObjetivos2)
 
                 String nombreContinente = linea.get(1);
                 HashMap<String, Integer> hashContinentesConCantidad = new HashMap<String, Integer>();

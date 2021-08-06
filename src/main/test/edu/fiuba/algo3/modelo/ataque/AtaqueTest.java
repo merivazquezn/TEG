@@ -197,9 +197,7 @@ public class AtaqueTest {
         paisDefensor.colocarEjercitos(3);
         paisAtacante.agregarLimitrofe(paisLimitrofeArgentina);
 
-        long start2 = System.currentTimeMillis();
         ConjuntoDados atacante = mock(ConjuntoDados.class);
-        long end2 = System.currentTimeMillis();
 
         ConjuntoDados defensor = mock(ConjuntoDados.class);
 
@@ -224,9 +222,6 @@ public class AtaqueTest {
         assertThrows(AtaqueDePaisNoLimitrofeException.class, () -> {
             ataque.conquisto();
         });
-
-
-        System.out.println(end2-start2 + "ms");
     }
 
 }
