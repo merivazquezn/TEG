@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Observable;
@@ -58,6 +60,15 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
         this.botonMenuColocacion.setMaxWidth(90);
         this.botonMenuColocacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             ControladorMenuColocacion.realizarJugada(this.ronda, this.paisActual, parseInt(this.inputCantidad.getText()));
+
+            try {
+                Reproductor.reproducirSonido("./src/sonidos/soldier_deploy.wav");
+            } catch (UnsupportedAudioFileException error) {
+                error.printStackTrace();
+            } catch (IOException | LineUnavailableException error) {
+                error.printStackTrace();
+            }
+
             this.setVisible(false);
             e.consume();
         });

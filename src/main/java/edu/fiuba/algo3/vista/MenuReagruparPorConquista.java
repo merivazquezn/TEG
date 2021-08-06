@@ -11,9 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -80,6 +83,15 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
     private void clickearBotonAceptar(MouseEvent e) {
         ControladorMenuReagrupar.realizarJugada(this.ronda, this.paisOrigen, this.paisDestino, parseInt(this.inputCantidad.getText()));
         this.ronda.terminar();
+
+        try {
+            Reproductor.reproducirSonido("./src/sonidos/soldier_deploy.wav");
+        } catch (UnsupportedAudioFileException error) {
+            error.printStackTrace();
+        } catch (IOException | LineUnavailableException error) {
+            error.printStackTrace();
+        }
+
         this.ronda.notifyObservers();
         this.paisDestino.notifyObservers();
         this.paisOrigen.notifyObservers();

@@ -36,10 +36,11 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private void ejecutarSonidoCanjeo(){
         try {
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/canjeo.wav"));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInput);
-            clip.start();
+            Reproductor.reproducirSonido("./src/sonidos/canjeo.wav");
+            //AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("./src/sonidos/canjeo.wav"));
+            //Clip clip = AudioSystem.getClip();
+            //clip.open(audioInput);
+            //clip.start();
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException | LineUnavailableException e) {

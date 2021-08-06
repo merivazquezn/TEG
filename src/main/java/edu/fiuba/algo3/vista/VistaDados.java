@@ -36,7 +36,11 @@ public class VistaDados extends StackPane implements Observer {
 
     private void ejecutarSonidoPelea(){
         try {
-            reproducirSonido("./src/sonidos/pelea1.wav", "./src/sonidos/pelea2.wav");
+            ArrayList<String> sonidosPelea = new ArrayList<>();
+            sonidosPelea.add("./src/sonidos/pelea1.wav");
+            sonidosPelea.add("./src/sonidos/pelea2.wav");
+
+            Reproductor.reproducirSonido(sonidosPelea);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException | LineUnavailableException e) {
@@ -228,7 +232,12 @@ public class VistaDados extends StackPane implements Observer {
         ArrayList<Integer> valoresDefensor = this.tablero.getUltimosDadosDefensor();
         actualizarDados(valoresAtacante, valoresDefensor);
         try {
-            reproducirSonido("./src/sonidos/dados2.wav", "./src/sonidos/dados1.wav");
+            ArrayList<String> sonidosDados = new ArrayList<>();
+            sonidosDados.add("./src/sonidos/dados2.wav");
+            sonidosDados.add("./src/sonidos/dados1.wav");
+
+            Reproductor.reproducirSonido(sonidosDados);
+            //reproducirSonido("./src/sonidos/dados2.wav", "./src/sonidos/dados1.wav");
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException | LineUnavailableException e) {
@@ -237,7 +246,7 @@ public class VistaDados extends StackPane implements Observer {
         this.setVisible(true);
     }
 
-    private void reproducirSonido(String s, String s2) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    /*private void reproducirSonido(String s, String s2) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         IRandomizador randomizador = new Randomizador();
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(s));
         if (randomizador.generar(0, 2) == 1) {
@@ -247,6 +256,8 @@ public class VistaDados extends StackPane implements Observer {
         clip.open(audioInput);
         clip.start();
     }
+
+     */
 
 
 }
