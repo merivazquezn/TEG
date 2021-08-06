@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,16 +14,36 @@ import java.io.IOException;
 
 public class MenuObjetivo extends VistaMenu {
     private static MenuObjetivo instancia;
-    private Label nombreObjetivo;
-    private Label descripcionObjetivo;
+    private Label etiquetaNombreObjetivo;
+    private Label etiquetaDescripcionObjetivo;
     private ImageView interfazObjetivo;
+    private Button botonRevelar;
 
     private MenuObjetivo(Ronda ronda) throws IOException {
         super(ronda, 60, 530);
         inicializarInterfaz();
+        inicializarBotonRevelar();
+        inicializarEtiquetas();
+        agregarElementosAlMenu();
+    }
+
+    private void inicializarBotonRevelar(){
+        this.botonRevelar = new Button("Revelar Objetivo");
+        this.botonRevelar.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: rgb(255,255,255);");
+        this.botonRevelar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            this.etiquetaNombreObjetivo.setVisible(true);
+            this.etiquetaDescripcionObjetivo.setVisible(true);
+            this.botonRevelar.setVisible(false);
+            e.consume();
+        });
+    }
+
+    private void inicializarEtiquetas() {
         inicializarEtiquetaNombreObjetivo();
         inicializarEtiquetaDescripcionObjetivo();
-        agregarElementosAlMenu();
     }
 
     private void inicializarInterfaz() throws FileNotFoundException {
@@ -32,20 +53,21 @@ public class MenuObjetivo extends VistaMenu {
     }
 
     private void inicializarEtiquetaNombreObjetivo() {
-        this.nombreObjetivo = new Label("");
-        this.nombreObjetivo.setStyle("-fx-text-fill: #f2f2e9; -fx-font-weight: bold;");
-        this.nombreObjetivo.setTranslateY(-100);
+        this.etiquetaNombreObjetivo = new Label("");
+        this.etiquetaNombreObjetivo.setStyle("-fx-text-fill: #f2f2e9; -fx-font-weight: bold;");
+        this.etiquetaNombreObjetivo.setTranslateY(-100);
     }
 
     private void inicializarEtiquetaDescripcionObjetivo() {
-        this.descripcionObjetivo = new Label("");
-        this.descripcionObjetivo.setStyle("-fx-text-fill: #f2f2e9;");
+        this.etiquetaDescripcionObjetivo = new Label("");
+        this.etiquetaDescripcionObjetivo.setStyle("-fx-text-fill: #f2f2e9;");
     }
 
     private void agregarElementosAlMenu() {
         this.getChildren().add(this.interfazObjetivo);
-        this.getChildren().add(this.nombreObjetivo);
-        this.getChildren().add(this.descripcionObjetivo);
+        this.getChildren().add(this.etiquetaNombreObjetivo);
+        this.getChildren().add(this.etiquetaDescripcionObjetivo);
+        this.getChildren().add(this.botonRevelar);
     }
 
     public static void crearInstancia(Ronda ronda) throws IOException{
@@ -64,13 +86,16 @@ public class MenuObjetivo extends VistaMenu {
         }else{
             Jugador jugadorActual = this.ronda.jugadorActual();
             this.setVisible(true);
-            this.nombreObjetivo.setText(jugadorActual.nombreObjetivo());
-            this.descripcionObjetivo.setText(jugadorActual.descripcionObjetivo());
+            this.etiquetaNombreObjetivo.setText(jugadorActual.nombreObjetivo());
+            this.etiquetaDescripcionObjetivo.setText(jugadorActual.descripcionObjetivo());
+            this.etiquetaNombreObjetivo.setVisible(false);
+            this.etiquetaDescripcionObjetivo.setVisible(false);
+            this.botonRevelar.setVisible(true);
         }
     }
 
     public boolean adentro(double mx, double my){
-        return(mx >= this.puntoX && mx <= this.puntoX+100 && my >= this.puntoY && my <= this.puntoY+200);
+        return(mx >= this.puntoX && mx <= this.puntoX+300 && my >= this.puntoY && my <= this.puntoY+250);
     }
 
 }

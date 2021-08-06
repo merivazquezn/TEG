@@ -161,9 +161,12 @@ public class App extends Application {
         }
     }
 
-    public void iniciarMenuPrincipal(Stage stage){
+    public void iniciarMenuPrincipal(Stage stage) throws IOException{
         stage.setResizable(false);
         stage.setTitle("A.L.T.E.G.O");
+        FileInputStream inputImagenIcono = new FileInputStream("./src/imagenes/icono.png");
+        Image imagenIcono = new Image(inputImagenIcono);
+        stage.getIcons().add(imagenIcono);
         Label titulo = obtenerTitulo();
         Label mensajeDescripcion = obtenerEtiquetaDescripcion();
         Label mensajeCantidadJugadores = obtenerMensajeCantidadJugadores("Cantidad de jugadores:", "-fx-font: 22 arial;", 70);
@@ -246,7 +249,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        iniciarMenuPrincipal(stage);
+        try {
+            iniciarMenuPrincipal(stage);
+        }
+        catch (IOException e){
+            System.out.println(e.getStackTrace());
+        }
     }
 
     public static void main(String[] args) {

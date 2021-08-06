@@ -25,8 +25,10 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private static MenuCartas instancia;
     private ImageView interfazCartas;
-    private Button activarTarjeta;
-    private Button canjearTarjetas;
+    private Button botonActivarTarjeta;
+    private Button botonCanjearTarjetas;
+    private Button botonInformacionExtra;
+    private Label etiquetaInformacionExtra;
     private ArrayList<Tarjeta> tarjetasDisponibles;
     private ComboBox<String> eleccionTarjeta1;
     private ComboBox<String> eleccionTarjeta2;
@@ -66,17 +68,39 @@ public class MenuCartas extends VistaMenu implements Observer {
     private void inicializarBotones(){
         inicializarBotonActivarTarjeta();
         inicializarBotonCanjearTarjetas();
+        inicializarBotonInformacionExtra();
     }
 
     private void inicializarBotonActivarTarjeta() {
-        this.activarTarjeta = new Button("Activar Tarjeta");
-        this.activarTarjeta.setTranslateY(-80);
-        this.activarTarjeta.setTranslateX(100);
-        this.activarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.botonActivarTarjeta = new Button("Activar Tarjeta");
+        this.botonActivarTarjeta.setTranslateY(-80);
+        this.botonActivarTarjeta.setTranslateX(100);
+        this.botonActivarTarjeta.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             clickearBotonActivarTarjeta(e);
         });
-        this.activarTarjeta.setVisible(false);
-        this.getChildren().add(this.activarTarjeta);
+        this.botonActivarTarjeta.setVisible(false);
+        this.getChildren().add(this.botonActivarTarjeta);
+    }
+
+    private void inicializarBotonInformacionExtra() {
+        this.botonInformacionExtra = new Button("?");
+        this.botonInformacionExtra.setTranslateY(105);
+        this.botonInformacionExtra.setTranslateX(-120);
+        this.botonInformacionExtra.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            if(this.etiquetaInformacionExtra.isVisible())
+                this.etiquetaInformacionExtra.setVisible(false);
+            else
+                this.etiquetaInformacionExtra.setVisible(true);
+        });
+        this.getChildren().add(this.botonInformacionExtra);
+    }
+
+    private void inicializarEtiquetaInformacionExtra() {
+        this.etiquetaInformacionExtra = new Label("El simbolo * es comodín");
+        this.etiquetaInformacionExtra.setTranslateY(105);
+        this.etiquetaInformacionExtra.setTranslateX(-40);
+        this.etiquetaInformacionExtra.setVisible(false);
+        this.getChildren().add(this.etiquetaInformacionExtra);
     }
 
     private void clickearBotonActivarTarjeta(MouseEvent e) {
@@ -88,13 +112,13 @@ public class MenuCartas extends VistaMenu implements Observer {
     }
 
     private void inicializarBotonCanjearTarjetas() {
-        this.canjearTarjetas = new Button("Canjear Tarjetas");
-        this.canjearTarjetas.setTranslateY(70);
-        this.canjearTarjetas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.botonCanjearTarjetas = new Button("Canjear Tarjetas");
+        this.botonCanjearTarjetas.setTranslateY(70);
+        this.botonCanjearTarjetas.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             clickearBotonCanjearTarjetas(e);
         });
-        this.canjearTarjetas.setVisible(false);
-        this.getChildren().add(this.canjearTarjetas);
+        this.botonCanjearTarjetas.setVisible(false);
+        this.getChildren().add(this.botonCanjearTarjetas);
     }
 
     public static void crearInstancia(Ronda ronda) throws IOException{
@@ -137,6 +161,7 @@ public class MenuCartas extends VistaMenu implements Observer {
         inicializarEtiquetaCartasDisponibles();
         inicializarComboBox();
         inicializarBotones();
+        inicializarEtiquetaInformacionExtra();
     }
 
     private void inicializarCaracteristicasMenuCartas(Ronda ronda) {
@@ -147,7 +172,7 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private void inicializarEtiquetaCartasDisponibles() {
         Label etiquetaCartasDisponibles = new Label("Tarjetas Disponibles:");
-        etiquetaCartasDisponibles.setTranslateY(-100);
+        etiquetaCartasDisponibles.setTranslateY(-105);
         this.getChildren().add(etiquetaCartasDisponibles);
     }
 
@@ -163,11 +188,12 @@ public class MenuCartas extends VistaMenu implements Observer {
             ocultarMenu(evento);
         }else if(this.ronda.puedeColocar()){
             this.setVisible(true);
+            this.etiquetaInformacionExtra.setVisible(false);
         }
     }
 
     public boolean adentro(double mx, double my){
-        return(mx >= this.puntoX && mx <= this.puntoX+100 && my >= this.puntoY && my <= this.puntoY+200);
+        return(mx >= this.puntoX && mx <= this.puntoX+300 && my >= this.puntoY && my <= this.puntoY+250);
     }
 
     private void actualizarTarjetasDisponibles(){
@@ -231,7 +257,7 @@ public class MenuCartas extends VistaMenu implements Observer {
             return;
         Tarjeta tarjeta1 = this.tarjetasDisponibles.get(tarjeta1Seleccionada);
         if(!tarjeta1.fueActivada() && tarjeta1.getJugador() == this.ronda.jugadorActual())
-            this.activarTarjeta.setVisible(true);
+            this.botonActivarTarjeta.setVisible(true);
     }
 
     private void verificarCanjeabilidadDeTarjetas(){
@@ -250,13 +276,13 @@ public class MenuCartas extends VistaMenu implements Observer {
         Tarjeta tarjeta2 = this.tarjetasDisponibles.get(tarjeta2Seleccionada);
         Tarjeta tarjeta3 = this.tarjetasDisponibles.get(tarjeta3Seleccionada);
         if (ConjuntoTarjetas.sonCanjeables(tarjeta1, tarjeta2, tarjeta3)) {
-            this.canjearTarjetas.setVisible(true);
+            this.botonCanjearTarjetas.setVisible(true);
         }
     }
 
     private void seProdujoCambioDeElecciones(){
-        this.canjearTarjetas.setVisible(false);
-        this.activarTarjeta.setVisible(false);
+        this.botonCanjearTarjetas.setVisible(false);
+        this.botonActivarTarjeta.setVisible(false);
         verificarActivacionDeTarjeta();
         verificarCanjeabilidadDeTarjetas();
     }

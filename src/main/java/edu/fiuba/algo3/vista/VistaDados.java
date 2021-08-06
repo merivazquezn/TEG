@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.ControladorMenuColocacion;
 import edu.fiuba.algo3.infraestructura.IRandomizador;
 import edu.fiuba.algo3.infraestructura.Randomizador;
-import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
 import edu.fiuba.algo3.modelo.general.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,12 +25,12 @@ public class VistaDados extends StackPane implements Observer {
     private ArrayList<ImageView> dadosAtacante;
     private ArrayList<ImageView> dadosDefensor;
     private ArrayList<Image> imagenesDados;
-    private Image dadoGanador;
-    private Image dadoPerdedor;
+    private Image imagenTickGanador;
+    private Image imagenCruzPerdedor;
     private ArrayList<ImageView> resultadoDadosAtacante;
     private ArrayList<ImageView> resultadoDadosDefensor;
     private Button botonCerrar;
-    Tablero tablero;
+    private Tablero tablero;
 
     static final int MAX_DADOS = 3;
 
@@ -92,9 +90,9 @@ public class VistaDados extends StackPane implements Observer {
         String rutaDadoGanador = "./src/imagenes/tildeAfirmativo.png";
         String rutaDadoPerdedor = "./src/imagenes/cruzNegadora.png";
         FileInputStream inputImagenDadoGanador = new FileInputStream(rutaDadoGanador);
-        this.dadoGanador = new Image(inputImagenDadoGanador);
+        this.imagenTickGanador = new Image(inputImagenDadoGanador);
         FileInputStream inputImagenDadoPerdedor = new FileInputStream(rutaDadoPerdedor);
-        this.dadoPerdedor = new Image(inputImagenDadoPerdedor);
+        this.imagenCruzPerdedor = new Image(inputImagenDadoPerdedor);
     }
 
     private void inicializarInterfazDados() throws IOException{
@@ -177,15 +175,15 @@ public class VistaDados extends StackPane implements Observer {
     }
 
     private void establecerDadoDefensorGanador(int indice){
-        this.resultadoDadosDefensor.get(indice).setImage(this.dadoGanador);
-        this.resultadoDadosAtacante.get(indice).setImage(this.dadoPerdedor);
+        this.resultadoDadosDefensor.get(indice).setImage(this.imagenTickGanador);
+        this.resultadoDadosAtacante.get(indice).setImage(this.imagenCruzPerdedor);
         this.resultadoDadosAtacante.get(indice).setVisible(true);
         this.resultadoDadosDefensor.get(indice).setVisible(true);
     }
 
     private void establecerDadoAtacanteGanador(int indice){
-        this.resultadoDadosAtacante.get(indice).setImage(this.dadoGanador);
-        this.resultadoDadosDefensor.get(indice).setImage(this.dadoPerdedor);
+        this.resultadoDadosAtacante.get(indice).setImage(this.imagenTickGanador);
+        this.resultadoDadosDefensor.get(indice).setImage(this.imagenCruzPerdedor);
         this.resultadoDadosAtacante.get(indice).setVisible(true);
         this.resultadoDadosDefensor.get(indice).setVisible(true);
     }
