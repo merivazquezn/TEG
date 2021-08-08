@@ -109,9 +109,11 @@ public class VistaDados extends StackPane implements Observer {
 
     private void inicializarEtiquetasJugadores(){
         Label etiquetaAtacante = new Label("Dados del atacante:");
+        etiquetaAtacante.setStyle("-fx-text-fill:  #f2f2e9");
         etiquetaAtacante.setTranslateY(-100);
         etiquetaAtacante.setTranslateX(-140);
         Label etiquetaDefensor = new Label("Dados del defensor:");
+        etiquetaDefensor.setStyle("-fx-text-fill: #f2f2e9");
         etiquetaDefensor.setTranslateY(5);
         etiquetaDefensor.setTranslateX(-140);
         this.getChildren().add(etiquetaAtacante);

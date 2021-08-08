@@ -236,15 +236,21 @@ public class App extends Application {
     }
 
     private void establecerParametroPermitidoDeCantidadDeJugadores(TextField cantidadJugadores) {
-        cantidadJugadores.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                cantidadJugadores.setText("2");
-            }
-            newValue = cantidadJugadores.getText();
-            if(Integer.parseInt(newValue) < 2 || Integer.parseInt(newValue) > 6){
-                cantidadJugadores.setText("2");
-            }
-        });
+
+
+            cantidadJugadores.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*")) {
+                    cantidadJugadores.setText("2");
+                }
+                
+                try {
+                    newValue = cantidadJugadores.getText();
+                    if(Integer.parseInt(newValue) < 2 || Integer.parseInt(newValue) > 6){
+                        cantidadJugadores.setText("2");
+                    }
+                } catch(NumberFormatException e) {
+                }
+                });
     }
 
     @Override
