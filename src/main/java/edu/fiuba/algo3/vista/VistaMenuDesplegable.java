@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public abstract class VistaMenuDesplegable extends VistaMenu{
+public abstract class   VistaMenuDesplegable extends VistaMenu{
 
     protected ImageView imagenDesdeAbajo;
     protected ImageView imagenDesdeIzquierda;
@@ -43,6 +43,8 @@ public abstract class VistaMenuDesplegable extends VistaMenu{
         this.imagenDesdeIzquierda = new ImageView(imagenMenuAtaqueIzquierda);
         this.imagenDesdeArriba = new ImageView(imagenMenuAtaqueArriba);
     }
+
+
 
     public VistaMenuDesplegable(Ronda ronda, double puntoX, double puntoY) throws IOException{
         super(ronda, puntoX, puntoY);

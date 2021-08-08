@@ -46,7 +46,7 @@ public class InterfazUsuario extends StackPane implements Observer {
             ControladorInterfaz.finalizarTurno(this.ronda);
             e.consume();
         });
-        this.botonTerminarTurno.setTranslateX(-150);
+        this.botonTerminarTurno.setTranslateX(-175);
     }
 
     private void inicializarBotonCartas() {
@@ -62,7 +62,7 @@ public class InterfazUsuario extends StackPane implements Observer {
             menuCartas.aparecerMenu(e);
             e.consume();
         });
-        this.botonCartas.setTranslateX(-250);
+        this.botonCartas.setTranslateX(-350);
     }
 
     private void inicializarBotonObjetivo() {
