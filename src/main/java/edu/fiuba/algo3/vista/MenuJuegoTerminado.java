@@ -2,11 +2,12 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
-import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 import java.io.FileInputStream;
@@ -19,14 +20,14 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
 
     private static MenuJuegoTerminado instancia;
     private ImageView interfazJuegoTerminado;
-    private Button botonVolverAlMenu;
+    //private Button botonVolverAlMenu;
 
 
     private MenuJuegoTerminado(Ronda ronda) throws IOException {
         super(ronda, 300, 100);
         inicializarInterfaz();
         this.getChildren().add(this.interfazJuegoTerminado);
-        this.getChildren().add(this.botonVolverAlMenu);
+        //this.getChildren().add(this.botonVolverAlMenu);
     }
 
 
@@ -34,8 +35,23 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
         FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/juegoTerminado.png");
         Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
         this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
+        /*
         this.botonVolverAlMenu = new Button("Menú Principal");
+        this.botonVolverAlMenu.setStyle("-fx-background-color: rgb(204, 51, 17);" +
+                "-fx-border-color: rgb(0, 0, 0);" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: rgb(255,255,255);");
 
+        this.botonVolverAlMenu.setTranslateX(0);
+        this.botonVolverAlMenu.setTranslateY(200);
+
+        this.botonVolverAlMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
+            App.empezarDevuelta();
+            e.consume();
+        });
+        //this.botonVolverAlMenu.setTranslateX(75);
+        */
     }
 
 

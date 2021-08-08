@@ -261,6 +261,10 @@ public class App extends Application {
                 });
     }
 
+    public static void empezarDevuelta() {
+        launch();
+    }
+
     @Override
     public void start(Stage stage) {
         try {
