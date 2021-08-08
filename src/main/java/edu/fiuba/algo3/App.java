@@ -97,7 +97,9 @@ public class App extends Application {
 
         establecerBackground(panel);
         agregarVistasAlPanelPrincipal(panel);
-        
+
+        Reproductor.reproducirNuevaMusica("./src/sonidos/teg_soundtrack.wav");
+
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
@@ -164,16 +166,19 @@ public class App extends Application {
     public void iniciarMenuPrincipal(Stage stage) throws IOException{
         stage.setResizable(false);
         stage.setTitle("A.L.T.E.G.O");
+        Reproductor.reproducirNuevaMusica("./src/sonidos/menu_principal.wav");
         FileInputStream inputImagenIcono = new FileInputStream("./src/imagenes/icono.png");
         Image imagenIcono = new Image(inputImagenIcono);
         stage.getIcons().add(imagenIcono);
         Label titulo = obtenerTitulo();
         Label mensajeDescripcion = obtenerEtiquetaDescripcion();
-        Label mensajeCantidadJugadores = obtenerMensajeCantidadJugadores("Cantidad de jugadores:", "-fx-font: 22 arial;", 70);
+        mensajeDescripcion.setStyle("-fx-font: 12 arial; -fx-text-fill: white");
+
+        Label mensajeCantidadJugadores = obtenerMensajeCantidadJugadores("Cantidad de jugadores:", "-fx-font: 22 arial; -fx-text-fill: white", 70);
         TextField cantidadJugadores = obtenerInputCantidadDeJugadores();
         Button botonInicio = obtenerBotonDeInicio(stage, cantidadJugadores);
         StackPane panelBienvenida = new StackPane(titulo, mensajeDescripcion, mensajeCantidadJugadores, cantidadJugadores, botonInicio);
-
+        panelBienvenida.setStyle("-fx-background-color: black;");
         var scene = new Scene(panelBienvenida, 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -188,7 +193,7 @@ public class App extends Application {
 
     private Label obtenerTitulo() {
         var mensajeTitulo = new Label("Bienvenido a  A.L.T.E.G.O");
-        mensajeTitulo.setStyle("-fx-font: 24 arial;");
+        mensajeTitulo.setStyle("-fx-font: 36 arial; -fx-text-fill: white; -fx-font-weight: bold;");
         mensajeTitulo.setTranslateY(-200);
         return mensajeTitulo;
     }
@@ -196,10 +201,11 @@ public class App extends Application {
     private Button obtenerBotonDeInicio(Stage stage, TextField cantidadJugadores) {
         Button botonInicio = new Button("Confirmar e Iniciar");
         botonInicio.setTranslateY(150);
-        botonInicio.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        botonInicio.setStyle("-fx-font: 22 arial; -fx-base: red; -fx-text-fill: white");
 
         EventHandler<ActionEvent> eventoBoton = e -> {
             try {
+
                 realizarJuego(stage, Integer.parseInt(cantidadJugadores.getText()));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -210,13 +216,15 @@ public class App extends Application {
     }
 
     private Label obtenerEtiquetaDescripcion() {
-        String mensajeDescripcion = "El juego propone un conflicto belico que tiene lugar sobre un planisferio dividido en 50 paises.\n" +
-        " Para empezar se reparten los 50 paises entre los jugadores, quienes ocupan sus dominios con ejercitos.\n" +
+
+        String mensajeDescripcion = "El juego propone un conflicto bélico que tiene lugar sobre un planisferio dividido en 50 países.\n" +
+        " Para empezar se reparten los 50 países entre los jugadores, quienes ocupan sus dominios con ejércitos.\n" +
         " Cada jugador tiene un objetivo secreto a cumplir, que se le asigna al azar y que el resto de los jugadores desconocen.\n"+
-        " Para cumplir el objetivo, el jugador deberia ampliar sus dominios y reordenar sus fuerzas, lo que exigira\n" +
-        " realizar ataques y defenderse de ataques adversarios, y agrupar y desplazar ejercitos.\n" +
-        " La conquista de nuevos territorios le permitira aumentar el numero de ejercitos a su disposicion\n" +
-        "otorgandole mayores chances para triunfar en los combates.\n";
+        " Para cumplir el objetivo, el jugador debería ampliar sus dominios y reordenar sus fuerzas, lo que exigirá\n" +
+        " realizar ataques y defenderse de ataques adversarios, y agrupar y desplazar ejércitos.\n" +
+        " La conquista de nuevos territorios le permitirá aumentar el número de ejércitos a su disposición\n" +
+        "otorgándole mayores chances para triunfar en los combates.\n";
+
 
         var mensajeDescripcion1 = new Label(mensajeDescripcion);
         mensajeDescripcion1.setTranslateY(-100);

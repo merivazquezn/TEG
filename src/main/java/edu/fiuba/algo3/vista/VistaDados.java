@@ -55,6 +55,7 @@ public class VistaDados extends StackPane implements Observer {
             ejecutarSonidoPelea();
             e.consume();
         });
+        this.botonCerrar.setStyle("-fx-background-color: #f2f2e9;");
         this.botonCerrar.setTranslateX(220);
         this.botonCerrar.setTranslateY(-100);
         this.getChildren().add(this.botonCerrar);

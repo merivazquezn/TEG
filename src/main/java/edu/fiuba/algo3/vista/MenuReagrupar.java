@@ -57,6 +57,7 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
     private void inicializarBotonReagrupacion() {
         this.botonMenuReagrupacion = new Button("Mover ejercitos");
         this.botonMenuReagrupacion.setTranslateY(-10);
+        this.botonMenuReagrupacion.setStyle("-fx-font-size: 10; -fx-background-color: #f2f2e9;");
         this.botonMenuReagrupacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             this.estadoActual.agregarPais(this.paisActual, parseInt(this.inputCantidad.getText()));
             this.setVisible(false);
@@ -91,9 +92,15 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
                 inputCantidad.setText("0");
             }
             newValue = inputCantidad.getText();
-            if(parseInt(newValue) < 0 || parseInt(newValue) > cantidadMaximaTransferible){
-                inputCantidad.setText("0");
+
+            try {
+                if(parseInt(newValue) < 0 || parseInt(newValue) > cantidadMaximaTransferible){
+                    inputCantidad.setText("0");
+                }
+            } catch (NumberFormatException e) {
+
             }
+
         });
     }
 

@@ -92,9 +92,15 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
                 inputCantidad.setText("0");
             }
             newValue = inputCantidad.getText();
-            if(parseInt(newValue) < 0 || parseInt(newValue) > maximaCantidadAColocar){
-                inputCantidad.setText("0");
+
+            try {
+                if(parseInt(newValue) < 0 || parseInt(newValue) > maximaCantidadAColocar){
+                    inputCantidad.setText("0");
+                }
+            } catch(NumberFormatException e) {
+
             }
+
         });
     }
 

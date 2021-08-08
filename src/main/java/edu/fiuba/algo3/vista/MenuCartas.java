@@ -98,6 +98,7 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private void inicializarEtiquetaInformacionExtra() {
         this.etiquetaInformacionExtra = new Label("El simbolo * es comodín");
+        this.etiquetaInformacionExtra.setStyle("-fx-text-fill: #f2f2e9");
         this.etiquetaInformacionExtra.setTranslateY(105);
         this.etiquetaInformacionExtra.setTranslateX(-40);
         this.etiquetaInformacionExtra.setVisible(false);
@@ -173,6 +174,7 @@ public class MenuCartas extends VistaMenu implements Observer {
 
     private void inicializarEtiquetaCartasDisponibles() {
         Label etiquetaCartasDisponibles = new Label("Tarjetas Disponibles:");
+        etiquetaCartasDisponibles.setStyle("-fx-text-fill: #f2f2e9");
         etiquetaCartasDisponibles.setTranslateY(-105);
         this.getChildren().add(etiquetaCartasDisponibles);
     }

@@ -50,6 +50,7 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
         this.setVisible(true);
         String ganador = AsignadorDeColores.jugadorActualSegunElNumero(this.ronda.jugadorGanador().getNumero());
         Label jugadorGanador = new Label("Jugador ganador:\n" + ganador);
+        jugadorGanador.setStyle("-fx-text-fill: #f2f2e9");
         this.getChildren().add(jugadorGanador);
         jugadorGanador.relocate(400, 400);
     }
