@@ -153,7 +153,7 @@ public class VistaDados extends StackPane implements Observer {
     private void inicializarDadoEnIndice(int i) {
         this.dadosAtacante.add(new ImageView());
         this.dadosAtacante.get(i).setTranslateX(-140+ i *145);
-        this.dadosAtacante.get(i).setTranslateY(-55);
+        this.dadosAtacante.get(i).setTranslateY(-51);
         this.resultadoDadosAtacante.add(new ImageView());
         this.resultadoDadosAtacante.get(i).setTranslateX(-170+ i *145);
         this.resultadoDadosAtacante.get(i).setTranslateY(-15);
