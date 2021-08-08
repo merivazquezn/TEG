@@ -24,7 +24,7 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
     }
 
     private void inicializarInterfaz() throws FileNotFoundException {
-        FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/interfazJuegoFinalizado.png");
+        FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/juegoTerminado.png");
         Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
         this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
     }
@@ -48,9 +48,10 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
 
     private void visibilizarMenu() {
         this.setVisible(true);
+        Reproductor.reproducirNuevaMusica("./src/sonidos/the-shire.wav");
         String ganador = AsignadorDeColores.jugadorActualSegunElNumero(this.ronda.jugadorGanador().getNumero());
-        Label jugadorGanador = new Label("Jugador ganador:\n" + ganador);
-        jugadorGanador.setStyle("-fx-text-fill: #f2f2e9");
+        Label jugadorGanador = new Label("Jugador Ganador:\n" + ganador);
+        jugadorGanador.setStyle("-fx-font: 46 arial; -fx-text-fill: black; -fx-font-weight: bold;");
         this.getChildren().add(jugadorGanador);
         jugadorGanador.relocate(400, 400);
     }
