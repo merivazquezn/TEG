@@ -98,11 +98,11 @@ public class App extends Application {
         establecerBackground(panel);
         agregarVistasAlPanelPrincipal(panel);
 
-        Reproductor.reproducirNuevaMusica("./src/sonidos/teg_soundtrack.wav");
-
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
+        Reproductor.reproducirNuevaMusica("./src/sonidos/teg_soundtrack.wav");
     }
 
     private void agregarVistasAlPanelPrincipal(Pane panel) {

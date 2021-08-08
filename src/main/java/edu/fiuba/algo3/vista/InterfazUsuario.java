@@ -149,6 +149,8 @@ public class InterfazUsuario extends StackPane implements Observer {
         FileInputStream inputImagenInterfaz = new FileInputStream("./src/imagenes/menuUsuario.png");
         Image imagenInterfaz = new Image(inputImagenInterfaz);
         this.interfaz = new ImageView(imagenInterfaz);
+
+
     }
 
     private void actualizarInformacionRonda(){

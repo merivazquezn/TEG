@@ -20,9 +20,10 @@ public class Reproductor {
         AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(rutaMusica));
 
         musica = AudioSystem.getClip();
-        musica.loop(Clip.LOOP_CONTINUOUSLY);
-
         musica.open(audioInput);
+
+        musica.loop(Clip.LOOP_CONTINUOUSLY);
+        //musica.loop(Integer.MAX_VALUE);
         musica.start();
     }
 

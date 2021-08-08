@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.flujoDeJuego.Ronda;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,18 +19,25 @@ public class MenuJuegoTerminado extends VistaMenu implements Observer {
 
     private static MenuJuegoTerminado instancia;
     private ImageView interfazJuegoTerminado;
+    private Button botonVolverAlMenu;
+
 
     private MenuJuegoTerminado(Ronda ronda) throws IOException {
         super(ronda, 300, 100);
         inicializarInterfaz();
         this.getChildren().add(this.interfazJuegoTerminado);
+        this.getChildren().add(this.botonVolverAlMenu);
     }
+
 
     private void inicializarInterfaz() throws FileNotFoundException {
         FileInputStream inputInterfazJuegoTerminado = new FileInputStream("./src/imagenes/juegoTerminado.png");
         Image imagenInterfazJuegoTerminado = new Image(inputInterfazJuegoTerminado);
         this.interfazJuegoTerminado = new ImageView(imagenInterfazJuegoTerminado);
+        this.botonVolverAlMenu = new Button("Menú Principal");
+
     }
+
 
     public static void crearInstancia(Ronda ronda) throws IOException{
         if(instancia == null){
