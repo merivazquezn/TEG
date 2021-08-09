@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.general.Pais;
 public class FaseRecibeOrigen implements FaseEstadoReagrupacion{
 
     public FaseEstadoReagrupacion agregarPais(Ronda ronda, Pais unPais, int cantidad) {
-        if (unPais.getCantidadEjercitos() > 1){
+        if (unPais.getCantidadEjercitos() > cantidad && cantidad > 0){
             return new FaseRecibeDestino(unPais, cantidad);
         }
         return this;

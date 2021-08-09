@@ -59,7 +59,15 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
         this.botonMenuReagrupacion.setTranslateY(-10);
         this.botonMenuReagrupacion.setStyle("-fx-font-size: 10; -fx-background-color: #f2f2e9;");
         this.botonMenuReagrupacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            this.estadoActual.agregarPais(this.paisActual, parseInt(this.inputCantidad.getText()));
+
+            int cantSoldadosADesplazar;
+            if (this.inputCantidad.getText().isEmpty()) {
+                cantSoldadosADesplazar = 0;
+            } else {
+                cantSoldadosADesplazar = parseInt(this.inputCantidad.getText());
+            }
+
+            this.estadoActual.agregarPais(this.paisActual, cantSoldadosADesplazar);
             this.setVisible(false);
             e.consume();
         });

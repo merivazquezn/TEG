@@ -81,11 +81,19 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
     }
 
     private void clickearBotonAceptar(MouseEvent e) {
-        ControladorMenuReagrupar.realizarJugada(this.ronda, this.paisOrigen, this.paisDestino, parseInt(this.inputCantidad.getText()));
+        if (this.inputCantidad.getText().isEmpty()) {
+            e.consume();
+            return;
+        }
+
+        int cantSoldadosTransferir = parseInt(this.inputCantidad.getText());
+
+        ControladorMenuReagrupar.realizarJugada(this.ronda, this.paisOrigen, this.paisDestino, cantSoldadosTransferir);
         this.ronda.terminar();
 
         try {
-            Reproductor.reproducirSonido("./src/sonidos/soldier_deploy.wav");
+            if (cantSoldadosTransferir > 0)
+                Reproductor.reproducirSonido("./src/sonidos/soldier_deploy.wav");
         } catch (UnsupportedAudioFileException error) {
             error.printStackTrace();
         } catch (IOException | LineUnavailableException error) {

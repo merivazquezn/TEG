@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
 public class MenuColocacion extends VistaMenuDesplegable implements Observer {
@@ -59,7 +60,19 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
         this.botonMenuColocacion.setStyle("-fx-font-size: 10; -fx-background-color: #f2f2e9;");
         this.botonMenuColocacion.setMaxWidth(90);
         this.botonMenuColocacion.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            ControladorMenuColocacion.realizarJugada(this.ronda, this.paisActual, parseInt(this.inputCantidad.getText()));
+            if (this.inputCantidad.getText().isEmpty()) {
+                e.consume();
+                return;
+            }
+
+            int ejercitosAColocar = parseInt(this.inputCantidad.getText());
+
+            if (ejercitosAColocar <= 0 || ejercitosAColocar > maximaCantidadAColocar) {
+                e.consume();
+                return;
+            }
+
+            ControladorMenuColocacion.realizarJugada(this.ronda, this.paisActual, ejercitosAColocar);
 
             try {
                 Reproductor.reproducirSonido("./src/sonidos/soldier_deploy.wav");
