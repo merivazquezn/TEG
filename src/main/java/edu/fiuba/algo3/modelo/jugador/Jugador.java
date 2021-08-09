@@ -126,6 +126,10 @@ public class Jugador {
         this.tarjetas.add(tarjeta);
     }
 
+    public boolean fueDerrotado() {
+        return !jugadorQueLoDerroto.esNulo();
+    }
+
 
 
 }

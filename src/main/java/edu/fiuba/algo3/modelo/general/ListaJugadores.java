@@ -49,6 +49,11 @@ public class ListaJugadores {
 
         Jugador jugadorActual = listaJugadores.get(indiceActual);
         indiceActual++;
+
+        if (jugadorActual.fueDerrotado()) {
+            return this.siguiente();
+        }
+
         return jugadorActual;
     }
 

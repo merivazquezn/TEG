@@ -8,7 +8,7 @@ public class AsignadorDeColores {
 
     public static final Color AZUL = Color.rgb(0, 119, 187);
     public static final Color ROJO = Color.rgb(204, 51, 17);
-    public static final Color AMARILLO = Color.rgb(238, 119, 51);
+    public static final Color AMARILLO = Color.rgb(255, 255, 0);
     public static final Color VERDE = Color.rgb(0, 153, 136);
     public static final Color ROSA = Color.rgb(238, 51, 119);
     public static final Color NEGRO = Color.rgb(0, 0, 0);
