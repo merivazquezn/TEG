@@ -20,11 +20,11 @@ Mongolia,Asia,"China;India;Kazajistan;Siberia;Rusia Del Este",804,418
 Siberia,Asia,"Rusia Del Este;Mongolia;Kazajistan;Volga;Ural",816,339
 Volga,Asia,"Siberia;Kazajistan;Ural;Rusia Central",753,323
 Rusia Central,Asia,"Turquia;Volga;Ural;Europa Del Este",710,300
-Ural,Asia,"Rusia Central;Volga;Siberia",771,282
+Ural,Asia,"Rusia Central;Volga;Siberia;Europa Del Este",771,282
 Rusia Del Este,Asia,"Mongolia;Siberia;Java;Alaska",892,361
 España,Europa,"Francia;Argelia",590,172
 Europa Central,Europa,"Francia;Europa Del Este;Finlandia",667,217
-Europa Del Este,Europa,"Finlandia;Europa Central;Rusia Central",690,255
+Europa Del Este,Europa,"Finlandia;Europa Central;Rusia Central;Ural",690,255
 Francia,Europa,"España;Europa Central;Groenlandia",637,187
 Finlandia,Europa,"Europa Central;Europa Del Este",757,209
 Queensland,Oceania,"Australia Central;Java;Argentina",1123,725
