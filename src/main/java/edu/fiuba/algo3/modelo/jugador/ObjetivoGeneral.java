@@ -33,4 +33,8 @@ public class ObjetivoGeneral implements Objetivo{
         return "Conquistar " + cantidadPaisesParaGanar + " paises\n";
     }
 
+    public static void resetearObjetivo() {
+        cantidadPaisesParaGanar = 30;
+    }
+
 }

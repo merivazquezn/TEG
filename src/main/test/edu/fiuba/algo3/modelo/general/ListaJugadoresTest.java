@@ -114,13 +114,15 @@ public class ListaJugadoresTest {
 
     @Test
     public void test07Jugador1GanaYEsElJugadorGanador(){
+        ObjetivoGeneral.resetearObjetivo();
         ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
         Tablero tablero = new Tablero(new HashMap<String, Continente>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<Tarjeta>(), new Randomizador()));
 
         ObjetivoGeneral objetivo = mock(ObjetivoGeneral.class);
         listaObjetivos.add(objetivo);
         listaObjetivos.add(objetivo);
-        ListaJugadores lista = new ListaJugadores(2, new Randomizador(), listaObjetivos);
+        listaObjetivos.add(objetivo);
+        ListaJugadores lista = new ListaJugadores(3, new Randomizador(), listaObjetivos);
 
         when(objetivo.haGanado(tablero)).thenReturn(true);
         assertFalse(lista.jugadorGanador(tablero).esNulo());

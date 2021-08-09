@@ -13,9 +13,33 @@ import static org.mockito.Mockito.*;
 public class ObjetivoTest {
 
     @Test
-    public void test01unJugadorCon30PaisesCumpleElObjetivoGeneral(){
+    public void test00unJugadorCon40PaisesJugandoDeA2CumpleElObjetivoGeneral() {
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
+        ObjetivoGeneral.cambiarCantidadPaisesParaDosJugadores();
+        Objetivo objetivo = new ObjetivoGeneral(unJugador);
+        when(unJugador.cantidadPaises()).thenReturn(40);
+        assertTrue(objetivo.haGanado(tablero));
+    }
+
+    @Test
+    public void test0p5unJugadorCon39PaisesJugandoDeA2NoCumpleElObjetivoGeneral() {
+        ObjetivoGeneral.resetearObjetivo();
+        Tablero tablero = mock(Tablero.class);
+        Jugador unJugador = mock(Jugador.class);
+        ObjetivoGeneral.cambiarCantidadPaisesParaDosJugadores();
+        Objetivo objetivo = new ObjetivoGeneral(unJugador);
+        when(unJugador.cantidadPaises()).thenReturn(39);
+        assertFalse(objetivo.haGanado(tablero));
+    }
+
+    @Test
+    public void test01unJugadorCon30PaisesCumpleElObjetivoGeneral(){
+        ObjetivoGeneral.resetearObjetivo();
+        Tablero tablero = mock(Tablero.class);
+        Jugador unJugador = mock(Jugador.class);
+        ObjetivoGeneral.resetearObjetivo();
         Objetivo objetivo = new ObjetivoGeneral(unJugador);
         when(unJugador.cantidadPaises()).thenReturn(30);
         assertTrue(objetivo.haGanado(tablero));
@@ -23,6 +47,7 @@ public class ObjetivoTest {
 
     @Test
     public void test02unJugadorCon29PaisesNoCumpleElObjetivoGeneral(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Objetivo objetivo = new ObjetivoGeneral(unJugador);
@@ -32,6 +57,7 @@ public class ObjetivoTest {
 
     @Test
     public void test03unObjetivoDe3PaisesEnCadaContienteEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -58,6 +84,7 @@ public class ObjetivoTest {
 
     @Test
     public void test04unObjetivoDe3PaisesEnCadaContienteNoEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -84,6 +111,7 @@ public class ObjetivoTest {
 
     @Test
     public void test05unObjetivoDePaisesVariosEnDistintosContientesEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -109,6 +137,7 @@ public class ObjetivoTest {
 
     @Test
     public void test06unObjetivoDePaisesVariosEnDistintosContientesNoEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -134,6 +163,7 @@ public class ObjetivoTest {
 
     @Test
     public void test07unObjetivoDe2ContinentesConquistadosEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -150,6 +180,7 @@ public class ObjetivoTest {
 
     @Test
     public void test08unObjetivoDe2ContinentesConquistadosNoEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -166,6 +197,7 @@ public class ObjetivoTest {
 
     @Test
     public void test09unObjetivoDeContinenteMasPaisesVariosEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -183,6 +215,7 @@ public class ObjetivoTest {
 
     @Test
     public void test10unObjetivoDeContinenteMasPaisesVariosNoEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         ArrayList<Jugador> jugadores = new ArrayList<>();
@@ -200,6 +233,7 @@ public class ObjetivoTest {
 
     @Test
     public void test11unObjetivoDeDestruirAOtroJugadorEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
@@ -214,6 +248,7 @@ public class ObjetivoTest {
 
     @Test
     public void test12unObjetivoDeDestruirAOtroJugadorNoEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Jugador unJugador = mock(Jugador.class);
         Jugador otroJugador = mock(Jugador.class);
@@ -230,6 +265,7 @@ public class ObjetivoTest {
 
     @Test
     public void test12unObjetivoNuloNuncaEsCumplido(){
+        ObjetivoGeneral.resetearObjetivo();
         Tablero tablero = mock(Tablero.class);
         Objetivo objetivo = new ObjetivoNulo();
         assertFalse(objetivo.haGanado(tablero));
@@ -237,6 +273,7 @@ public class ObjetivoTest {
 
     @Test
     public void test13ObjetivoCantidadPorContinenteDevuelveDescripcionCorrectamente() {
+        ObjetivoGeneral.resetearObjetivo();
         HashMap<String, Integer> hashObjetivo = new HashMap<>();
 
         hashObjetivo.put("America del Norte", 5);
@@ -267,6 +304,7 @@ public class ObjetivoTest {
 
     @Test
     public void test14ObjetivoDestruirDevuelveDescripcionCorrectamente() {
+        ObjetivoGeneral.resetearObjetivo();
         Objetivo objetivoNulo = new ObjetivoNulo();
         Objetivo objetivo = new ObjetivoDestruir();
 
@@ -292,6 +330,7 @@ public class ObjetivoTest {
 
     @Test
     public void test15ObjetivoCOnquistarContinenteYCantidadPaisesDevuelveDescripcionCorrectamente() {
+        ObjetivoGeneral.resetearObjetivo();
         String continente = "Africa";
         HashMap<String, Integer> hashObjetivo = new HashMap<>();
         hashObjetivo.put("Oceania", 3);
@@ -308,6 +347,7 @@ public class ObjetivoTest {
 
     @Test
     public void test16ObjetivoConquistar2ContinentesDevuelveDescripcionCorrectamente() {
+        ObjetivoGeneral.resetearObjetivo();
         ArrayList<String> listaContinente = new ArrayList<>();
         listaContinente.add("Asia");
         listaContinente.add("Europa");
@@ -323,6 +363,7 @@ public class ObjetivoTest {
 
     @Test
     public void test17ObjetivoGeneralDevuelveDescripcionCorrectamente() {
+        ObjetivoGeneral.resetearObjetivo();
         Jugador.reiniciarClase();
 
         Jugador jugador = new Jugador(new ObjetivoNulo());
