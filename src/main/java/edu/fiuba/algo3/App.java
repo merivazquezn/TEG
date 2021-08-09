@@ -19,6 +19,7 @@ import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -74,10 +75,11 @@ public class App extends Application {
         Pais unPais = entry.getKey();
         int[] coordenadas = entry.getValue();
         VistaEjercito nuevaVistaEjercito = new VistaEjercito(unPais);
+        this.vistaEjercitos.add(nuevaVistaEjercito);
+
         nuevaVistaEjercito.setCenterX(coordenadas[0]);
         nuevaVistaEjercito.setCenterY(coordenadas[1]);
         unPais.addObserver(nuevaVistaEjercito);
-        this.vistaEjercitos.add(nuevaVistaEjercito);
     }
 
     private Parser inicializarParser() {
@@ -205,8 +207,9 @@ public class App extends Application {
 
         EventHandler<ActionEvent> eventoBoton = e -> {
             try {
-
+                if (!cantidadJugadores.getText().isEmpty())
                 realizarJuego(stage, Integer.parseInt(cantidadJugadores.getText()));
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

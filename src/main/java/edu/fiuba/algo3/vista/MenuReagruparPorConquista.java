@@ -100,7 +100,7 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
     }
 
     private void inicializarInputCantidad() {
-        this.inputCantidad = new TextField("0");
+        this.inputCantidad = new TextField();
         this.inputCantidad.setStyle("-fx-background-color: #f2f2e9;");
         this.inputCantidad.setMaxWidth(70);
         establecerParametrosValidosEnElInput();
@@ -108,19 +108,28 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
 
     private void establecerParametrosValidosEnElInput() {
         this.inputCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            System.out.println(1);
+
             if (!newValue.matches("\\d*")) {
                 inputCantidad.setText("0");
             }
-
             newValue = inputCantidad.getText();
+
 
             try {
                 if(parseInt(newValue) < 0 || parseInt(newValue) > cantidadMaximaReagrupacion){
                     inputCantidad.setText("0");
+                } else {
+                    inputCantidad.setText(String.valueOf(parseInt(newValue)));
                 }
+
+
             } catch(NumberFormatException e) {
 
             }
+
+
         });
     }
 
@@ -145,7 +154,7 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
         this.paisOrigen = this.ronda.getConquistador();
         this.paisDestino = this.ronda.getConquistado();
         this.cantidadMaximaReagrupacion = this.paisOrigen.getCantidadEjercitos() - 1;
-        this.inputCantidad.setText("0");
+        this.inputCantidad.setText("");
         this.etiquetaEjercitosDisponibles.setText("Ejercitos Disponibles para Reagrupar: " + this.cantidadMaximaReagrupacion);
     }
 

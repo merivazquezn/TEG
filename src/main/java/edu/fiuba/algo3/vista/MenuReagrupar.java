@@ -78,7 +78,7 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
     }
 
     private void inicializarInputCantidad() {
-        this.inputCantidad = new TextField("0");
+        this.inputCantidad = new TextField();
         this.inputCantidad.setTranslateY(25);
         this.inputCantidad.setPrefWidth(50);
         this.inputCantidad.setMaxWidth(50);
@@ -96,7 +96,10 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
             try {
                 if(parseInt(newValue) < 0 || parseInt(newValue) > cantidadMaximaTransferible){
                     inputCantidad.setText("0");
+                } else {
+                    inputCantidad.setText(String.valueOf(parseInt(newValue)));
                 }
+
             } catch (NumberFormatException e) {
 
             }
@@ -147,7 +150,7 @@ public class MenuReagrupar extends VistaMenuDesplegable implements Observer {
     }
 
     public void aparecerMenu(MouseEvent evento, Pais unPais){
-        this.inputCantidad.setText("0");
+        this.inputCantidad.setText("");
         String nombrePais = unPais.getNombre();
         this.paisActual = unPais;
 

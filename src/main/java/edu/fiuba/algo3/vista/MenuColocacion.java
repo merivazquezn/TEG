@@ -48,7 +48,7 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
     }
 
     private void inicializarEtiquetaMenuColocacion() {
-        this.etiquetaMenuColocacion = new Label("");
+        this.etiquetaMenuColocacion = new Label();
         this.etiquetaMenuColocacion.setStyle("-fx-font: 22 arial;");
         this.etiquetaMenuColocacion.setTranslateY(-35);
     }
@@ -96,7 +96,10 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
             try {
                 if(parseInt(newValue) < 0 || parseInt(newValue) > maximaCantidadAColocar){
                     inputCantidad.setText("0");
+                } else {
+                inputCantidad.setText(String.valueOf(parseInt(newValue)));
                 }
+
             } catch(NumberFormatException e) {
 
             }
@@ -133,7 +136,7 @@ public class MenuColocacion extends VistaMenuDesplegable implements Observer {
         String nombrePais = unPais.getNombre();
         this.paisActual = unPais;
         this.setVisible(true);
-        this.inputCantidad.setText("0");
+        this.inputCantidad.setText("");
         this.aparecer(evento.getSceneX(), evento.getSceneY());
         this.etiquetaMenuColocacion.setText(nombrePais);
 

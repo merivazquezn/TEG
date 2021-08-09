@@ -18,8 +18,10 @@ public class VistaEjercito implements Observer {
     public VistaEjercito(Pais unPais){
         this.paisAsociado = unPais;
         int numeroColorPais = this.paisAsociado.getJugador().getNumero();
+
         Color colorPais = AsignadorDeColores.colorEjercitoSegunElNumero(numeroColorPais);
         Color colorEtiquetaPais = AsignadorDeColores.colorEtiquetaSegunElNumero(numeroColorPais);
+
         inicializarCirculo(colorPais);
         inicializarEtiqueta(unPais, colorEtiquetaPais);
         agregarAccionAlClickear();
@@ -56,7 +58,7 @@ public class VistaEjercito implements Observer {
 
     public void setCenterY(double cY){
         this.circuloEjercito.setCenterY(cY);
-        this.etiquetaCantidadEjercito.setTranslateY(cY-6);
+        this.etiquetaCantidadEjercito.setTranslateY(cY-8);
     }
 
     @Override

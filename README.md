@@ -6,11 +6,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 3
 
-* **Integrante 1** - [Primerano Lomba, Franco Alejandro](https://github.com/FrancoPrime)
-* **Integrante 2** - [Szwarcberg, Tomas](https://github.com/szwtomas)
-* **Integrante 3** - [Vazquez Navarro, Maria](https://github.com/merivazquezn)
-* **Integrante 4** - [Bulnes, Mateo](https://github.com/MateoBulnes)
-* **Integrante 5** - [Lazzarini, Mariano](https://github.com/Maleriandro)
+* **Primerano Lomba, Franco Alejandro** - [FrancoPrime](https://github.com/FrancoPrime)
+* **Szwarcberg, Tomas** - [szwtomas](https://github.com/szwtomas)
+* **Vazquez Navarro, Maria** - [merivazquezn](https://github.com/merivazquezn)
+* **Bulnes, Mateo** - [MateoBulnes](https://github.com/MateoBulnes)
+* **Lazzarini, Mariano** - [Maleriandro](https://github.com/Maleriandro)
 
 Correctores: **Blázquez, Sebastián - Fernández Theillet, Nicolás Pablo**
 
