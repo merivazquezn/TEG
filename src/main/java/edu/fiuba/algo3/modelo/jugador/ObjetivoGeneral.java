@@ -5,12 +5,20 @@ import java.util.HashMap;
 
 public class ObjetivoGeneral implements Objetivo{
     private Jugador jugador;
+    private static int cantidadPaisesParaGanar = 30;
+
 
     public ObjetivoGeneral(Jugador jugador){
         this.jugador = jugador;
     }
+
+
     public boolean haGanado(Tablero tablero){
-        return(this.jugador.cantidadPaises() >= 30);
+        return(this.jugador.cantidadPaises() >= this.cantidadPaisesParaGanar);
+    }
+
+    public static void cambiarCantidadPaisesParaDosJugadores() {
+        ObjetivoGeneral.cantidadPaisesParaGanar = 40;
     }
 
     public void establecerJugadores(ArrayList<Jugador> listaJugadores, int indiceJugador){
@@ -22,7 +30,7 @@ public class ObjetivoGeneral implements Objetivo{
     }
 
     public String descripcionObjetivo(){
-        return "Conquistar 30 paises\n";
+        return "Conquistar " + cantidadPaisesParaGanar + " paises\n";
     }
 
 }

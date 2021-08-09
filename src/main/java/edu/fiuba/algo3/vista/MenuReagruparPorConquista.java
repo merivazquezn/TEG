@@ -108,7 +108,7 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
     }
 
     private void inicializarInputCantidad() {
-        this.inputCantidad = new TextField();
+        this.inputCantidad = new TextField("0");
         this.inputCantidad.setStyle("-fx-background-color: #f2f2e9;");
         this.inputCantidad.setMaxWidth(70);
         establecerParametrosValidosEnElInput();
@@ -162,7 +162,7 @@ public class MenuReagruparPorConquista extends VistaMenu implements Observer {
         this.paisOrigen = this.ronda.getConquistador();
         this.paisDestino = this.ronda.getConquistado();
         this.cantidadMaximaReagrupacion = this.paisOrigen.getCantidadEjercitos() - 1;
-        this.inputCantidad.setText("");
+        this.inputCantidad.setText("0");
         this.etiquetaEjercitosDisponibles.setText("Ejercitos Disponibles para Reagrupar: " + this.cantidadMaximaReagrupacion);
     }
 

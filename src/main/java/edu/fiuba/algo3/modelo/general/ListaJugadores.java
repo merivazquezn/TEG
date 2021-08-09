@@ -17,13 +17,35 @@ public class ListaJugadores {
         if(cantidadJugadores < this.cantidadMinimaJugadores || cantidadJugadores > this.cantidadMaximaJugadores)
                 throw new CantidadInvalidaDeJugadoresException();
 
+
         this.listaJugadores = new ArrayList<>();
         this.indiceActual = 0;
+
+        if(cantidadJugadores == 2) {
+            ObjetivoGeneral.cambiarCantidadPaisesParaDosJugadores();
+            Jugador jugadorNulo = new JugadorNulo();
+
+            Objetivo objetivo1 = new ObjetivoGeneral(jugadorNulo);
+            Objetivo objetivo2 = new ObjetivoGeneral(jugadorNulo);
+
+
+            this.listaJugadores.add(new Jugador(objetivo1));
+            this.listaJugadores.add(new Jugador(objetivo2));
+
+            objetivo1.establecerJugadores(this.listaJugadores, 0);
+            objetivo2.establecerJugadores(this.listaJugadores, 1);
+
+            mezclar(randomizador);
+
+            return;
+        }
+
 
         randomizador.mezclarObjetivos(listaObjetivos);
         ArrayList<Objetivo> listaObjetivosUsados = new ArrayList<>();
 
         for(int i=0; i < cantidadJugadores; i++) {
+
             Objetivo objetivoDelJugador = listaObjetivos.remove(0);
             listaObjetivosUsados.add(objetivoDelJugador);
             Jugador nuevoJugador = new Jugador(objetivoDelJugador);
