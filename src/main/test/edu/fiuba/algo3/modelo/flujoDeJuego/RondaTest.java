@@ -104,6 +104,15 @@ public class RondaTest {
         assertFalse(ronda.juegoTerminado());
     }
 
+    @Test
+    public void test04RondaColocaEjercitosRestantesYAvanzaDeFase(){
+        Tablero tablero = mock(Tablero.class);
+        ListaJugadores listaJugadores = mock(ListaJugadores.class);
+        Ronda ronda = new Ronda(tablero, listaJugadores);
+        ronda.seColocaronEjercitos(5);
+        verify(listaJugadores, times(2)).siguiente();
+    }
+
 
 
 

@@ -131,7 +131,7 @@ public class ListaJugadoresTest {
 
 
     @Test
-    public void test08SeInicializaLaListaNoHayGanadoresElGanadorEsUnJugadorNulo(){
+    public void test08seInicializaLaListaNoHayGanadoresElGanadorEsUnJugadorNulo(){
         ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
         listaObjetivos.add(new ObjetivoDestruir());
         listaObjetivos.add(new ObjetivoDestruir());
@@ -139,6 +139,12 @@ public class ListaJugadoresTest {
         ListaJugadores listaJugadores = new ListaJugadores(3, new Randomizador(), listaObjetivos);
         Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
         assertTrue(listaJugadores.jugadorGanador(tablero).esNulo());
+    }
 
+    @Test
+    public void test09seIntentaCrearUnaListaCon1JugadorYLanzaExcepcion(){
+        assertThrows(CantidadInvalidaDeJugadoresException.class, () -> {
+           ListaJugadores listaJugadores = new ListaJugadores(1, new Randomizador(), new ArrayList<Objetivo>());
+        });
     }
 }

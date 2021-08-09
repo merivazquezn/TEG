@@ -381,4 +381,11 @@ public class ObjetivoTest {
         assertFalse(objetivoNulo.haGanado(tablero));
     }
 
+    @Test
+    public void test19ObjetivoNuloDevuelveLosStringEsperados(){
+        ObjetivoNulo objetivoNulo = new ObjetivoNulo();
+        assertEquals("Objetivo nulo", objetivoNulo.nombreObjetivo());
+        assertEquals("Sin objetivo", objetivoNulo.descripcionObjetivo());
+    }
+
 }

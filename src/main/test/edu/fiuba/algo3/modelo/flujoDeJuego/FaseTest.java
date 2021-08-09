@@ -304,9 +304,22 @@ public class FaseTest {
         assertEquals(faseActual.accionARealizar(1), "Realice reagrupes entre paises limitrofes");
         faseActual = new FaseReagruparPorConquista();
         assertEquals(faseActual.accionARealizar(6), "Realice reagrupes entre países limítrofes.");
+        faseActual = new JuegoTerminado();
+        assertEquals(faseActual.getNombreRonda(), "Juego Terminado");
+        assertEquals(faseActual.accionARealizar(4), "Juego Terminado");
         faseActual = new FaseInicial3Fichas();
         assertEquals(faseActual.accionARealizar(2), "Ejercitos a colocar: 2");
         faseActual = new FaseInicial5Fichas();
         assertEquals(faseActual.accionARealizar(4), "Ejercitos a colocar: 4");
+    }
+
+    @Test
+    public void test18FaseColocacionNoPuedeAvanzarYLanzaExcepcion(){
+        Fase faseActual = new FaseColocacion();
+        Ronda ronda = mock(Ronda.class);
+        when(ronda.puedeAvanzar()).thenReturn(false);
+        assertThrows(NoSePuedeAvanzarFaseException.class, () -> {
+            Fase nuevaFase = faseActual.siguienteFase(ronda);
+        });
     }
 }
