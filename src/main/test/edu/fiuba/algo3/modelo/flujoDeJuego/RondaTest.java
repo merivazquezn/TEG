@@ -68,6 +68,42 @@ public class RondaTest {
 
     }
 
+    @Test
+    public void test03GettersDevuelvenCorrectamente() {
+        Jugador.reiniciarClase();
+        Tablero tablero = new Tablero(new HashMap<>(), new ConstructorDeConjuntoDados(new Randomizador()), new Mazo(new ArrayList<>(), new Randomizador()));
+        ArrayList<Objetivo> listaObjetivos = new ArrayList<Objetivo>();
+
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+        listaObjetivos.add(new ObjetivoDestruir());
+
+        Randomizador randomizador = mock(Randomizador.class);
+
+        ListaJugadores listaJugadores = new ListaJugadores(3, randomizador, listaObjetivos);
+        Ronda ronda = new Ronda(tablero, listaJugadores);
+
+        assertEquals(1, ronda.jugadorActual().getNumero());
+
+        assertEquals("Fase Inicial", ronda.getNombreRonda());
+
+        assertEquals("Ejercitos a colocar: 5", ronda.accionARealizar());
+
+        assertEquals(true, ronda.puedeColocar());
+
+        assertEquals(false, ronda.seProdujoConquista());
+
+        assertEquals(false, ronda.sePuedeReagrupar());
+
+        assertEquals(null, ronda.getConquistador());
+
+        assertEquals(null, ronda.getConquistado());
+
+        assertTrue(ronda.jugadorGanador().esNulo());
+
+        assertFalse(ronda.juegoTerminado());
+    }
+
 
 
 

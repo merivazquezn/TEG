@@ -5,6 +5,8 @@ import edu.fiuba.algo3.modelo.general.Continente;
 import edu.fiuba.algo3.modelo.general.Pais;
 import edu.fiuba.algo3.modelo.jugador.Jugador;
 import edu.fiuba.algo3.modelo.jugador.ObjetivoDestruir;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoGeneral;
+import edu.fiuba.algo3.modelo.jugador.ObjetivoNulo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -209,5 +211,29 @@ public class ContinenteTest {
 
         assertEquals("America Del Sur", continente.getNombre());
     }
+
+    @Test
+    public void test09DevuelveLaListaDePaisesCorrectamente() {
+        ArrayList<Pais> listaPaises = new ArrayList<Pais>();
+        Jugador unJugador = new Jugador(new ObjetivoNulo());
+        listaPaises.add(new Pais("Argentina"));
+        listaPaises.add(new Pais("Chile"));
+        listaPaises.add(new Pais("Brasil"));
+        listaPaises.add(new Pais("Colombia"));
+        listaPaises.add(new Pais("Peru"));
+        listaPaises.add(new Pais("Uruguay"));
+
+        listaPaises.get(0).asignarJugador(unJugador);
+        listaPaises.get(1).asignarJugador(unJugador);
+        listaPaises.get(2).asignarJugador(unJugador);
+        listaPaises.get(3).asignarJugador(unJugador);
+        listaPaises.get(4).asignarJugador(unJugador);
+        listaPaises.get(5).asignarJugador(unJugador);
+
+        Continente continente = new Continente(listaPaises, "America Del Sur", 5);
+
+        assertEquals(listaPaises, continente.getListaPaises());
+    }
+
 
 }
