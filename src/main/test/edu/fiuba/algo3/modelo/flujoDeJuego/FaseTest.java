@@ -293,4 +293,20 @@ public class FaseTest {
         assertEquals(faseActual.getNombreRonda(), "Fase Inicial");
 
     }
+
+    @Test
+    public void test17FasesDevuelvenBienAccionARealizar() {
+        Fase faseActual = new FaseAtaque();
+        assertEquals(faseActual.accionARealizar(5), "Seleccione un país para atacar");
+        faseActual = new FaseColocacion();
+        assertEquals(faseActual.accionARealizar(15), "Ejercitos a colocar: 15");
+        faseActual = new FaseReagruparFinal();
+        assertEquals(faseActual.accionARealizar(1), "Realice reagrupes entre paises limitrofes");
+        faseActual = new FaseReagruparPorConquista();
+        assertEquals(faseActual.accionARealizar(6), "Realice reagrupes entre países limítrofes.");
+        faseActual = new FaseInicial3Fichas();
+        assertEquals(faseActual.accionARealizar(2), "Ejercitos a colocar: 2");
+        faseActual = new FaseInicial5Fichas();
+        assertEquals(faseActual.accionARealizar(4), "Ejercitos a colocar: 4");
+    }
 }

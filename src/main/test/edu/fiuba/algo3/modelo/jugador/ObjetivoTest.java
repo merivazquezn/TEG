@@ -374,4 +374,11 @@ public class ObjetivoTest {
         assertEquals(stringEsperado, objetivo.descripcionObjetivo());
     }
 
+    @Test
+    public void test18ObjetivoNuloSiempreDevuelveNoGano(){
+        ObjetivoNulo objetivoNulo = new ObjetivoNulo();
+        Tablero tablero = mock(Tablero.class);
+        assertFalse(objetivoNulo.haGanado(tablero));
+    }
+
 }
